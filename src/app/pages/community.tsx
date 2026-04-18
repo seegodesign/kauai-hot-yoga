@@ -135,39 +135,6 @@ export function CommunityPage({ members }: CommunityPageProps) {
           </div>
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="py-16 bg-purple-dark text-white text-center">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-4"
-          >
-            Want to Be Featured?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-white/75 mb-8 max-w-xl mx-auto"
-          >
-            If you're a local practitioner, healer, guide, or business aligned with our values, we'd love to connect.
-          </motion.p>
-          <motion.a
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            href="/contact"
-            className="inline-block bg-orange hover:bg-orange-dark text-white font-semibold px-9 py-4 rounded-full transition-colors shadow-lg"
-          >
-            Get in Touch
-          </motion.a>
-        </div>
-      </section>
     </div>
   );
 }

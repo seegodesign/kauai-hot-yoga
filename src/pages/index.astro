@@ -6,6 +6,9 @@ import { HomePage } from "../app/pages/home";
 const homeEntry = await getEntry("home", "main");
 if (!homeEntry) throw new Error("Missing content: home/main.yml");
 
+const settingsEntry = await getEntry("settings", "main");
+if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
+
 const testimonialEntries = await getCollection("testimonials");
 const testimonials = testimonialEntries
   .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
@@ -25,6 +28,8 @@ const offerings = offeringEntries
     content={homeEntry.data}
     testimonials={testimonials}
     offerings={offerings}
+    googleReviewUrl={settingsEntry.data.google_review_url ?? ""}
+    yelpReviewUrl={settingsEntry.data.yelp_review_url ?? ""}
     client:load
   />
 </BaseLayout>

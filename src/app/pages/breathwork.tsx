@@ -36,7 +36,7 @@ export function BreathworkPage() {
     {
       title: "Group Breathwork Journey",
       duration: "90 minutes",
-      price: "$45",
+      price: "$75",
       description:
         "Experience the power of collective energy in our intimate group sessions. Maximum 12 participants.",
       schedule: "Every Saturday at 10:00 AM",

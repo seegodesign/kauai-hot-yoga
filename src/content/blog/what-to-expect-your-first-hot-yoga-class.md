@@ -3,7 +3,7 @@ title: What to Expect at Your First Hot Yoga Class
 description: Nervous about your first hot yoga class? Here's everything you need to know to walk in confident and walk out feeling amazing.
 pubDate: 2026-04-17
 author: Kauai Hot Yoga
-image: /images/studio-interior.jpeg
+image: /images/studio-interior.jpg
 tags:
   - Beginners
   - Hot Yoga

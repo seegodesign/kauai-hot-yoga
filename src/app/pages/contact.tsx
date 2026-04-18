@@ -29,7 +29,7 @@ export function ContactPage({ info }: ContactPageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative py-20 overflow-hidden min-h-[50vh] flex items-center">
+      <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/images/beach.jpg')" }}

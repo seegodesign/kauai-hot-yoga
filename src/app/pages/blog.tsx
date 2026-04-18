@@ -23,7 +23,7 @@ export function BlogPage({ posts }: BlogPageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative py-20 overflow-hidden min-h-[50vh] flex items-center">
+      <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/images/beach.jpg')" }}
@@ -46,7 +46,7 @@ export function BlogPage({ posts }: BlogPageProps) {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-6xl lg:text-7xl text-white mb-4"
           >
-            The Blog
+            Our Blog
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

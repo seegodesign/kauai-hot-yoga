@@ -20,6 +20,8 @@ const settings = defineCollection({
         facebook: z.string().optional().default(""),
       })
       .optional(),
+    google_review_url: z.string().optional().default(""),
+    yelp_review_url: z.string().optional().default(""),
   }),
 });
 

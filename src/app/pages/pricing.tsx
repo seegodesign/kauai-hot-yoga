@@ -100,26 +100,27 @@ export function PricingPage() {
     target: heroRef,
     offset: ["start start", "end start"],
   });
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.15], [0.8, 0]);
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.15], [0.6, 0]);
 
   const handleBuyNow = () => {
     // Mock MINDBODY integration
     alert("Redirecting to MINDBODY for purchase...");
   };
 
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1.15, 1]);
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative py-20 overflow-hidden min-h-[95vh] flex items-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{
-            backgroundImage:
-              "url('/images/hero-main.jpg')",
-          }}
-        >
-          <motion.div className="absolute inset-0 bg-orange" style={{ opacity: overlayOpacity }} />
-        </div>
+      <section ref={heroRef} className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
+        <motion.img
+          src="/images/hero-main.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ scale: bgScale }}
+        />
+        <motion.div className="absolute inset-0 bg-orange" style={{ opacity: overlayOpacity }} />
         <div className="relative container mx-auto px-4 text-center text-white">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -150,7 +151,7 @@ export function PricingPage() {
               viewport={{ once: true }}
               className="inline-block text-orange-light font-semibold tracking-widest uppercase text-xs mb-3"
             >
-              Limited Offers
+              Limited-Time Deals
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 10 }}
@@ -231,13 +232,16 @@ export function PricingPage() {
         </div>
       </section>
 
-      {/* Drop-In Options */}
+      {/* Drop-In & Class Packs */}
       <section id="drop-in" className="py-16 bg-white scroll-mt-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-purple-dark text-center mb-12 text-4xl md:text-5xl">Drop-In Options</h2>
-            <div className="max-w-sm mx-auto">
-              {dropInOptions.map((option, index) => (
+            <h2 className="text-purple-dark text-center mb-4 text-4xl md:text-5xl">Classes & Packs</h2>
+            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+              Drop in anytime or stock up and save. Class packs are shareable.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[...dropInOptions, ...classPacks].map((option, index) => (
                 <motion.div
                   key={option.name}
                   initial={{ opacity: 0, y: 20 }}
@@ -254,34 +258,8 @@ export function PricingPage() {
         </div>
       </section>
 
-      {/* Class Packs */}
-      <section id="class-packs" className="py-16 bg-warm-cream scroll-mt-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-purple-dark text-center mb-4 text-4xl md:text-5xl">Class Packs</h2>
-            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-              Stock up and save. Class packs are shareable and never expire.
-            </p>
-            <div className={`grid grid-cols-1 md:grid-cols-${classPacks.length} gap-8`}>
-              {classPacks.map((pack, index) => (
-                <motion.div
-                  key={pack.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="h-full"
-                >
-                  <PricingCard {...pack} onBuyNow={handleBuyNow} />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Memberships */}
-      <section id="memberships" className="py-16 bg-white scroll-mt-20">
+      <section id="memberships" className="py-16 bg-warm-cream scroll-mt-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-purple-dark text-center mb-4 text-4xl md:text-5xl">Monthly Memberships</h2>
@@ -307,7 +285,7 @@ export function PricingPage() {
       </section>
 
       {/* Add-Ons */}
-      <section id="add-ons" className="py-16 bg-warm-cream scroll-mt-20">
+      {/* <section id="add-ons" className="py-16 bg-white scroll-mt-20">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-purple-dark text-center mb-12 text-4xl md:text-5xl">Add-On Experiences</h2>
@@ -325,7 +303,7 @@ export function PricingPage() {
                 </p>
                 <button
                   onClick={handleBuyNow}
-                  className="w-full bg-soft-purple text-purple-dark py-2 rounded-full hover:bg-purple-light hover:text-white transition-colors text-sm"
+                  className="w-full bg-purple text-white py-2 rounded-full hover:bg-purple-dark transition-colors text-sm"
                 >
                   Book Now
                 </button>
@@ -345,7 +323,7 @@ export function PricingPage() {
                 </p>
                 <button
                   onClick={handleBuyNow}
-                  className="w-full bg-soft-purple text-purple-dark py-2 rounded-full hover:bg-purple-light hover:text-white transition-colors text-sm"
+                  className="w-full bg-purple text-white py-2 rounded-full hover:bg-purple-dark transition-colors text-sm"
                 >
                   Book Now
                 </button>
@@ -365,7 +343,7 @@ export function PricingPage() {
                 </p>
                 <button
                   onClick={handleBuyNow}
-                  className="w-full bg-soft-purple text-purple-dark py-2 rounded-full hover:bg-purple-light hover:text-white transition-colors text-sm"
+                  className="w-full bg-purple text-white py-2 rounded-full hover:bg-purple-dark transition-colors text-sm"
                 >
                   Add to Booking
                 </button>
@@ -373,10 +351,10 @@ export function PricingPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ */}
-      <section className="py-16 bg-white">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-purple-dark text-center mb-12">Pricing FAQs</h2>

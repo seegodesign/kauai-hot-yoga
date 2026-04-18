@@ -68,12 +68,12 @@ export function SchedulePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
             backgroundImage:
-              "url('/images/schedule-hero.jpg')",
+              "url('/images/studio-interior.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-purple/60" />
@@ -111,7 +111,7 @@ export function SchedulePage() {
         <div className="container mx-auto px-4">
           {/* Day Selector */}
           <div className="mb-8 overflow-x-auto">
-            <div className="flex space-x-2 pb-2 min-w-max">
+            <div className="flex space-x-2 pb-2 min-w-max justify-center">
               {days.map((day) => (
                 <button
                   key={day}
