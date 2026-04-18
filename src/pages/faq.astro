@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { FAQPage } from "../app/pages/faq";
+---
+
+<BaseLayout
+  title="New Here? | Kauai Hot Yoga"
+  description="Everything you need to know before your first hot yoga class at Kauai Hot Yoga — what to bring, what to expect, and more."
+  ogImage="/images/faq-hero.jpg"
+  currentPath="/faq">
+  <FAQPage client:load />
+</BaseLayout>

@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { PricingPage } from "../app/pages/pricing";
+---
+
+<BaseLayout
+  title="Pricing & Packages | Kauai Hot Yoga"
+  description="Drop-in classes, class packs, and monthly memberships at Kauai Hot Yoga. Find the perfect option for your practice."
+  currentPath="/pricing">
+  <PricingPage client:load />
+</BaseLayout>

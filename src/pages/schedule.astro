@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SchedulePage } from "../app/pages/schedule";
+---
+
+<BaseLayout
+  title="Class Schedule | Kauai Hot Yoga"
+  description="View the weekly hot yoga class schedule and book your spot at Kauai Hot Yoga."
+  ogImage="/images/schedule-hero.jpg"
+  currentPath="/schedule">
+  <SchedulePage client:load />
+</BaseLayout>

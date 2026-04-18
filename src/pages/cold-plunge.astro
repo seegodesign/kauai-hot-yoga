@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { ColdPlungePage } from "../app/pages/cold-plunge";
+---
+
+<BaseLayout
+  title="Cold Plunge | Kauai Hot Yoga"
+  description="Ice bath therapy and cold plunge sessions for recovery, inflammation reduction, and mental clarity in Kauai."
+  ogImage="/images/cold-plunge-hero.jpg"
+  currentPath="/cold-plunge">
+  <ColdPlungePage client:load />
+</BaseLayout>

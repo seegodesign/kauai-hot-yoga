@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { WorkshopsPage } from "../app/pages/workshops";
+---
+
+<BaseLayout
+  title="Workshops | Kauai Hot Yoga"
+  description="Deepen your practice with specialized yoga workshops and events at Kauai Hot Yoga."
+  ogImage="/images/workshops-hero.jpg"
+  currentPath="/workshops">
+  <WorkshopsPage client:load />
+</BaseLayout>

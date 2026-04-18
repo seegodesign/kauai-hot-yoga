@@ -1,0 +1,262 @@
+import { motion } from "motion/react";
+import { Brain, Heart, Sparkles, Shield, Calendar } from "lucide-react";
+
+export function BreathworkPage() {
+  const benefits = [
+    {
+      icon: Brain,
+      title: "Mental Clarity",
+      description: "Clear mental fog and enhance focus through conscious breathing patterns",
+    },
+    {
+      icon: Heart,
+      title: "Emotional Release",
+      description: "Process and release stored emotions in a safe, supported environment",
+    },
+    {
+      icon: Sparkles,
+      title: "Stress Relief",
+      description: "Activate your parasympathetic nervous system for deep relaxation",
+    },
+    {
+      icon: Shield,
+      title: "Trauma Healing",
+      description: "Gentle approach to somatic healing and nervous system regulation",
+    },
+  ];
+
+  const sessions = [
+    {
+      title: "Individual 9D Breathwork Session",
+      duration: "60 minutes",
+      price: "$85",
+      description:
+        "Private one-on-one session with personalized guidance. Perfect for first-timers or those seeking deeper individual work.",
+    },
+    {
+      title: "Group Breathwork Journey",
+      duration: "90 minutes",
+      price: "$45",
+      description:
+        "Experience the power of collective energy in our intimate group sessions. Maximum 12 participants.",
+      schedule: "Every Saturday at 10:00 AM",
+    },
+    {
+      title: "Breathwork + Cold Plunge",
+      duration: "90 minutes",
+      price: "$95",
+      description:
+        "Combine breathwork with cold immersion for enhanced benefits. The perfect recovery and reset experience.",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('/images/9d-breathwork.jpg')",
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-lava/70 via-lava/50 to-lava/70" />
+        </div>
+        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm mb-6"
+          >
+            Immersive Experience
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-white mb-6"
+          >
+            9D Breathwork Journey
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-white/90 mb-8"
+          >
+            A transformative somatic breathwork experience using hypnotic breathwork,
+            binaural beats, solfeggio frequencies, and guided visualization
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <a
+              href="/pricing"
+              className="bg-white text-ocean-dark px-8 py-4 rounded-full hover:bg-sand transition-colors inline-block"
+            >
+              Book a Session
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* What is 9D Breathwork */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-lava mb-6">What is 9D Breathwork?</h2>
+              <p className="text-lg text-muted-foreground mb-6">
+                9D Breathwork is a multi-dimensional approach to healing that combines ancient
+                breathwork practices with modern neuroscience and sound technology.
+              </p>
+              <p className="text-muted-foreground">
+                Using specialized audio that includes binaural brain entrainment, solfeggio frequencies,
+                isochronic brainwave tones, and subliminal hypnotic therapy, you'll be guided through
+                a powerful journey of release, healing, and transformation.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {benefits.map((benefit, index) => (
+                <motion.div
+                  key={benefit.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-mist p-8 rounded-2xl"
+                >
+                  <benefit.icon size={40} className="text-ocean-dark mb-4" />
+                  <h3 className="text-lava mb-3">{benefit.title}</h3>
+                  <p className="text-muted-foreground">{benefit.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Session Options */}
+      <section className="py-20 bg-mist">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-lava text-center mb-12">Session Options</h2>
+            <div className="space-y-6">
+              {sessions.map((session, index) => (
+                <motion.div
+                  key={session.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white p-8 rounded-2xl border border-sand-dark hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between">
+                    <div className="flex-1 mb-6 lg:mb-0">
+                      <h3 className="text-lava mb-2">{session.title}</h3>
+                      <div className="flex flex-wrap gap-4 mb-4 text-sm text-muted-foreground">
+                        <span>{session.duration}</span>
+                        {session.schedule && (
+                          <>
+                            <span>•</span>
+                            <span className="flex items-center space-x-1">
+                              <Calendar size={14} />
+                              <span>{session.schedule}</span>
+                            </span>
+                          </>
+                        )}
+                      </div>
+                      <p className="text-muted-foreground">{session.description}</p>
+                    </div>
+                    <div className="flex flex-col items-start lg:items-end space-y-3">
+                      <div className="text-3xl text-ocean-dark">{session.price}</div>
+                      <button className="bg-ocean-dark text-white px-6 py-2 rounded-full hover:bg-ocean transition-colors">
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What to Expect */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-lava text-center mb-12">What to Expect</h2>
+            <div className="space-y-8">
+              <div className="bg-mist p-8 rounded-2xl">
+                <h3 className="text-lava mb-3">Before Your Session</h3>
+                <p className="text-muted-foreground">
+                  Avoid heavy meals 2-3 hours before. Wear comfortable clothing. Come with an
+                  open mind and be prepared to let go. We'll provide everything else you need
+                  including a mat, blanket, and eye mask.
+                </p>
+              </div>
+              <div className="bg-mist p-8 rounded-2xl">
+                <h3 className="text-lava mb-3">During the Experience</h3>
+                <p className="text-muted-foreground">
+                  You'll lie down in a comfortable position with headphones. The facilitator
+                  will guide you through the breathing technique, then you'll journey through
+                  the multi-layered soundscape. Sessions can be emotional - this is normal and
+                  encouraged.
+                </p>
+              </div>
+              <div className="bg-mist p-8 rounded-2xl">
+                <h3 className="text-lava mb-3">After Integration</h3>
+                <p className="text-muted-foreground">
+                  Take time to integrate your experience. Drink plenty of water, journal if
+                  desired, and be gentle with yourself. Many people report feeling lighter,
+                  clearer, and more grounded in the days following.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 bg-gradient-to-br from-ocean-dark to-ocean text-white">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
+            <h2 className="text-white mb-4">Ready for Transformation?</h2>
+            <p className="text-xl text-white/90 mb-8">
+              Book your 9D Breathwork journey today
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+              <a
+                href="/schedule"
+                className="bg-white text-ocean-dark px-8 py-4 rounded-full hover:bg-sand transition-colors"
+              >
+                View Available Times
+              </a>
+              <a
+                href="/faq"
+                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white/10 transition-colors"
+              >
+                Learn More
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}

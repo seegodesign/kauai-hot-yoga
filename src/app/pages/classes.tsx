@@ -1,0 +1,176 @@
+import { ClassCard } from "../components/class-card";
+import { motion } from "motion/react";
+
+export function ClassesPage() {
+  const classes = [
+    {
+      title: "Hot 26 & 2",
+      description:
+        "Traditional Bikram-style sequence of 26 postures and 2 breathing exercises. Perfect for beginners and those seeking a structured practice.",
+      intensity: "Medium" as const,
+      duration: "90 minutes",
+      image: "/images/class-hot-26.jpg",
+    },
+    {
+      title: "Power Flow",
+      description:
+        "Dynamic vinyasa flow that builds strength and flexibility. Creative sequencing set to curated playlists in a heated room.",
+      intensity: "High" as const,
+      duration: "60 minutes",
+      image: "/images/class-yin-restore.jpg",
+    },
+    {
+      title: "Yin & Restore",
+      description:
+        "Slow-paced class with passive holds targeting deep connective tissue. Gentle heat promotes relaxation and release.",
+      intensity: "Low" as const,
+      duration: "75 minutes",
+      image: "/images/class-power-flow.jpg",
+    },
+    {
+      title: "Hot Hatha",
+      description:
+        "Alignment-focused class exploring foundational poses with longer holds. Build strength and deepen your understanding of asana.",
+      intensity: "Medium" as const,
+      duration: "60 minutes",
+      image: "/images/class-hatha.jpg",
+    },
+    {
+      title: "Sunrise Flow",
+      description:
+        "Energizing morning practice to awaken the body. Moderate heat with emphasis on breathwork and intention setting.",
+      intensity: "Medium" as const,
+      duration: "60 minutes",
+    },
+    {
+      title: "Core & Flow",
+      description:
+        "Challenging class focused on core strength and stability. Expect planks, twists, and creative transitions.",
+      intensity: "High" as const,
+      duration: "60 minutes",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('/images/classes-hero.jpg')",
+          }}
+        >
+          <div className="absolute inset-0 bg-purple-dark/70" />
+        </div>
+        <div className="relative z-10 text-center text-white px-4 max-w-3xl mx-auto">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-5xl md:text-6xl lg:text-7xl text-white mb-4"
+          >
+            Our Classes
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-xl text-white/90"
+          >
+            Find the perfect class for your practice level and goals
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Classes Grid */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="mb-12 text-center">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              All classes are taught in our heated studio by experienced instructors.
+              Each class offers modifications for different experience levels.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {classes.map((classItem, index) => (
+              <motion.div
+                key={classItem.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+              >
+                <ClassCard {...classItem} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What to Know Section */}
+      <section className="py-20 bg-warm-cream">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-purple-dark text-center mb-12">What to Know</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white p-8 rounded-2xl border border-soft-purple">
+                <h3 className="text-purple-dark mb-4">Studio Temperature</h3>
+                <p className="text-muted-foreground">
+                  Our studio is heated to 95-105°F with controlled humidity. The heat helps warm
+                  muscles, increase flexibility, and promote detoxification through sweating.
+                </p>
+              </div>
+              <div className="bg-white p-8 rounded-2xl border border-soft-purple">
+                <h3 className="text-purple-dark mb-4">All Levels Welcome</h3>
+                <p className="text-muted-foreground">
+                  Whether you're brand new or have years of experience, our teachers provide
+                  modifications and options to support your individual practice.
+                </p>
+              </div>
+              <div className="bg-white p-8 rounded-2xl border border-soft-purple">
+                <h3 className="text-purple-dark mb-4">Class Etiquette</h3>
+                <p className="text-muted-foreground">
+                  Arrive 5-10 minutes early, silence your phone, and practice mindful awareness
+                  of shared space. Late entry is allowed but enter quietly.
+                </p>
+              </div>
+              <div className="bg-white p-8 rounded-2xl border border-soft-purple">
+                <h3 className="text-purple-dark mb-4">Hydration Tips</h3>
+                <p className="text-muted-foreground">
+                  Drink plenty of water throughout the day before class. Bring a water bottle
+                  and consider adding electrolytes for longer sessions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-purple text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-white mb-4">Ready to Practice?</h2>
+          <p className="text-white/80 mb-8 text-lg">
+            View our schedule and reserve your spot
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <a
+              href="/schedule"
+              className="bg-white text-purple px-8 py-3 rounded-full hover:bg-warm-cream transition-colors"
+            >
+              View Schedule
+            </a>
+            <a
+              href="/pricing"
+              className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white/10 transition-colors"
+            >
+              View Pricing
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { ClassesPage } from "../app/pages/classes";
+---
+
+<BaseLayout
+  title="Classes | Kauai Hot Yoga"
+  description="Explore our hot yoga class styles — Hot 26 & 2, Power Flow, Yin & Restore, and more — in a welcoming Kauai studio."
+  ogImage="/images/classes-hero.jpg"
+  currentPath="/classes">
+  <ClassesPage client:load />
+</BaseLayout>

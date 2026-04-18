@@ -1,0 +1,65 @@
+import { motion } from "motion/react";
+import { Flame, Wind, Heart } from "lucide-react";
+
+interface ClassCardProps {
+  title: string;
+  description: string;
+  intensity: "Low" | "Medium" | "High";
+  duration?: string;
+  image?: string;
+  onClick?: () => void;
+}
+
+export function ClassCard({
+  title,
+  description,
+  intensity,
+  duration,
+  image,
+  onClick,
+}: ClassCardProps) {
+  const intensityColors = {
+    Low: "text-tropical-green bg-tropical-green/10",
+    Medium: "text-sunset bg-sunset/10",
+    High: "text-ocean-dark bg-ocean-dark/10",
+  };
+
+  const IntensityIcon =
+    intensity === "High" ? Flame : intensity === "Medium" ? Heart : Wind;
+
+  return (
+    <motion.div
+      whileHover={{ y: -4 }}
+      className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-sand-dark"
+      onClick={onClick}
+    >
+      {image && (
+        <div className="h-48 overflow-hidden">
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+      <div className="p-6">
+        <div className="flex items-start justify-between mb-3">
+          <h3 className="text-lava">{title}</h3>
+          <span
+            className={`flex items-center space-x-1 px-3 py-1 rounded-full text-xs ${intensityColors[intensity]}`}
+          >
+            <IntensityIcon size={14} />
+            <span>{intensity}</span>
+          </span>
+        </div>
+        <p className="text-muted-foreground text-sm mb-4">{description}</p>
+        {duration && (
+          <p className="text-xs text-muted-foreground">{duration}</p>
+        )}
+        <button className="mt-4 text-ocean-dark text-sm hover:text-ocean transition-colors">
+          View Details on MINDBODY →
+        </button>
+      </div>
+    </motion.div>
+  );
+}
