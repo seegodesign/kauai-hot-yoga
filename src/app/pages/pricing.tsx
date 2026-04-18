@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion } from "motion/react";
 import { useRef } from "react";
 import { PricingCard } from "../components/pricing-card";
 import { ScrollChevron } from "../components/scroll-chevron";
@@ -42,12 +42,6 @@ export function PricingPage({ plans, specials, faqs }: PricingPageProps) {
   const memberships = plans.filter((p) => p.category === "membership");
 
   const heroRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.15], [0.6, 0]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1.15, 1]);
 
   const handleBuyNow = () => {
     alert("Redirecting to MINDBODY for purchase...");
@@ -61,10 +55,17 @@ export function PricingPage({ plans, specials, faqs }: PricingPageProps) {
           src="/images/hero-main.jpg"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center="
-          style={{ scale: bgScale }}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          initial={{ scale: 1.15 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 5, ease: "easeOut" }}
         />
-        <motion.div className="absolute inset-0 bg-orange" style={{ opacity: overlayOpacity }} />
+        <motion.div
+          className="absolute inset-0 bg-orange"
+          initial={{ opacity: 0.6 }}
+          animate={{ opacity: 0.3 }}
+          transition={{ duration: 5, ease: "easeOut" }}
+        />
         <div className="relative container mx-auto px-4 text-center text-white">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -135,7 +136,7 @@ export function PricingPage({ plans, specials, faqs }: PricingPageProps) {
                   href={special.cta_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full block text-center bg-white/20 group-hover:bg-orange hover:opacity-90 text-white font-semibold py-3 rounded-full transition-all duration-300 cursor-pointer"
+                  className="w-full block text-center bg-orange md:bg-white/20 group-hover:bg-orange hover:opacity-90 text-white font-semibold py-3 rounded-full transition-all duration-300 cursor-pointer"
                 >
                   {special.cta_text}
                 </a>

@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Snowflake, Heart, Zap, Shield, TrendingUp, Activity } from "lucide-react";
+import { Snowflake, Heart, Zap, Shield, TrendingUp, Activity, Wind, Waves, Flame, Sparkles } from "lucide-react";
 
 export function ColdPlungePage() {
   const benefits = [
@@ -80,10 +80,10 @@ export function ColdPlungePage() {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('/images/cold-plunge.jpg')",
+              "url('/images/cold-plunge-tub.jpg')",
           }}
         >
-          <div className="absolute inset-0 bg-purple-dark/50" />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <motion.div
@@ -123,7 +123,7 @@ export function ColdPlungePage() {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-purple-dark mb-6">The Science of Cold</h2>
+              <h2 className="text-4xl font-semibold text-purple-dark mb-6">The Science of Cold</h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 Cold water immersion has been used for centuries as a healing practice.
                 Modern science confirms its powerful benefits for both body and mind.
@@ -138,11 +138,13 @@ export function ColdPlungePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="bg-mist p-6 rounded-2xl"
+                  className="border border-orange p-6 rounded-2xl flex items-start space-x-4"
                 >
-                  <benefit.icon size={32} className="text-purple-light mb-4" />
-                  <h4 className="text-purple-dark mb-2">{benefit.title}</h4>
-                  <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                  <benefit.icon size={64} className="text-orange mb-4" />
+                  <div>
+                    <h4 className="text-purple-dark mb-2">{benefit.title}</h4>
+                    <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -154,7 +156,7 @@ export function ColdPlungePage() {
       <section className="py-20 bg-mist">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-purple-dark text-center mb-12">Cold Plunge Options</h2>
+            <h2 className="text-4xl font-semibold text-purple-dark text-center mb-12">Cold Plunge Options</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
               {pairings.slice(0, 3).map((pairing, index) => (
                 <motion.div
@@ -208,42 +210,73 @@ export function ColdPlungePage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-purple-dark text-center mb-12">How It Works</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-mist p-8 rounded-2xl">
-                <div className="text-purple text-4xl mb-4">1</div>
-                <h3 className="text-purple-dark mb-3">Prepare</h3>
-                <p className="text-muted-foreground">
-                  Start with breathwork or a hot yoga class to prepare your body. We'll guide
-                  you on proper breathing techniques before entering the cold.
-                </p>
-              </div>
-              <div className="bg-mist p-8 rounded-2xl">
-                <div className="text-purple text-4xl mb-4">2</div>
-                <h3 className="text-purple-dark mb-3">Plunge</h3>
-                <p className="text-muted-foreground">
-                  Enter the cold plunge tub slowly, focusing on your breath. Start with 1-3 minutes
-                  and build up over time. Full supervision provided.
-                </p>
-              </div>
-              <div className="bg-mist p-8 rounded-2xl">
-                <div className="text-purple text-4xl mb-4">3</div>
-                <h3 className="text-purple-dark mb-3">Warm Up</h3>
-                <p className="text-muted-foreground">
-                  Exit mindfully and warm up naturally. Use our sauna or take a warm shower.
-                  Towels and robes provided for your comfort.
-                </p>
-              </div>
-              <div className="bg-mist p-8 rounded-2xl">
-                <div className="text-purple text-4xl mb-4">4</div>
-                <h3 className="text-purple-dark mb-3">Integrate</h3>
-                <p className="text-muted-foreground">
-                  Relax in our lounge area. Stay hydrated and notice the effects: increased
-                  alertness, mood elevation, and sense of accomplishment.
-                </p>
+          <div className="max-w-5xl mx-auto">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl font-semibold text-purple text-center mb-8"
+            >
+              How It Works
+            </motion.h2>
+            <div className="relative">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                {[
+                  {
+                    step: "1",
+                    icon: Wind,
+                    title: "Prepare",
+                    color: "text-blue-400",
+                    bg: "bg-blue-50",
+                    ring: "ring-blue-200",
+                    description: "Start with breathwork or a hot yoga class. We'll guide you on proper breathing techniques before entering the cold.",
+                  },
+                  {
+                    step: "2",
+                    icon: Waves,
+                    title: "Plunge",
+                    color: "text-purple",
+                    bg: "bg-soft-purple/40",
+                    ring: "ring-purple/30",
+                    description: "Enter the cold plunge slowly, focusing on your breath. Start with 1–3 minutes and build up over time.",
+                  },
+                  {
+                    step: "3",
+                    icon: Flame,
+                    title: "Warm Up",
+                    color: "text-orange",
+                    bg: "bg-orange/10",
+                    ring: "ring-orange/20",
+                    description: "Exit mindfully and warm up naturally. Use our sauna or take a warm shower. Towels and robes provided.",
+                  },
+                  {
+                    step: "4",
+                    icon: Sparkles,
+                    title: "Integrate",
+                    color: "text-purple-dark",
+                    bg: "bg-warm-cream",
+                    ring: "ring-soft-purple",
+                    description: "Relax in our lounge. Stay hydrated and notice the effects: increased alertness, mood elevation, and calm.",
+                  },
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.step}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.15 }}
+                    className="flex flex-col items-center text-center"
+                  >
+                    {/* Icon circle */}
+                    <div className={`relative w-20 h-20 rounded-full ${item.bg} ring-2 ${item.ring} flex items-center justify-center mb-5 shadow-sm`}>
+                      <item.icon size={30} className={item.color} />
+                    </div>
+                    <h3 className="text-purple-dark font-semibold text-2xl mb-2">{item.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
@@ -254,7 +287,7 @@ export function ColdPlungePage() {
       <section className="py-20 bg-warm-cream">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-purple-dark text-center mb-8">Safety First</h2>
+            <h2 className="text-4xl font-semibold text-purple text-center mb-8">Safety First</h2>
             <div className="bg-white p-8 rounded-2xl border border-soft-purple">
               <p className="text-muted-foreground mb-6">
                 Cold plunge is generally safe for most people, but please note:
@@ -295,7 +328,7 @@ export function ColdPlungePage() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-white mb-4">Ready to Take the Plunge?</h2>
+            <h2 className="text-4xl font-semibold text-white mb-4">Ready to Take the Plunge?</h2>
             <p className="text-xl text-white/90 mb-8">
               Experience the transformative power of cold therapy
             </p>

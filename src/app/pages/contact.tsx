@@ -66,7 +66,7 @@ export function ContactPage({ info }: ContactPageProps) {
       </section>
 
       {/* Contact details + map */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 

@@ -35,13 +35,13 @@ export function AboutPage() {
             transition={{ delay: 0.2 }}
             className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto"
           >
-            Kauai's premier hot yoga studio — a healing space for every body, every level, every day.
+            Kauai Hot Yoga is a locally owned and operated yoga studio in Lihue, Kauai. We offer a variety of hot and non-heated yoga classes, workshops, and special events in our beautiful studio, which features a state-of-the-art infrared heating system and a commercial cold plunge tub.
           </motion.p>
         </div>
       </section>
 
       {/* Our Studio */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -81,7 +81,7 @@ export function AboutPage() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="rounded-2xl overflow-hidden shadow-lg aspect-[4/5]"
+              className="rounded-2xl overflow-hidden shadow-lg aspect-[4/5] max-h-[300px] md:max-h-[500px mx-auto order-2"
             >
               <img
                 src="/images/about-studio.jpg"
@@ -94,14 +94,14 @@ export function AboutPage() {
       </section>
 
       {/* Cold Plunge */}
-      <section className="py-24 bg-warm-cream">
+      <section className="py-12 md:py-24 bg-warm-cream">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="rounded-2xl overflow-hidden shadow-lg aspect-[4/5] order-2 lg:order-1"
+              className="rounded-2xl overflow-hidden shadow-lg aspect-[4/5] max-h-[300px] md:max-h-[500px mx-auto order-2"
             >
               <img
                 src="/images/cold-plunge.jpg"
@@ -153,7 +153,7 @@ export function AboutPage() {
       </section>
 
       {/* Boutique */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <motion.span

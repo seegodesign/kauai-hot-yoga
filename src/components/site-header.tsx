@@ -1,4 +1,4 @@
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Flame, Calendar, Tag, Compass, Sparkles, Info, Users, Heart, BookOpen, HelpCircle, Wind, Droplets, Presentation, CalendarCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import logo from "../assets/logo.png";
@@ -28,39 +28,42 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
   }, [currentPath]);
 
   const experiencesLinks = [
-    { href: "/workshops", label: "Workshops" },
-    { href: "/9d-breathwork", label: "9D Breathwork" },
-    { href: "/cold-plunge", label: "Cold Plunge" },
+    { href: "/workshops", label: "Workshops", icon: Presentation },
+    { href: "/9d-breathwork", label: "9D Breathwork", icon: Wind },
+    { href: "/cold-plunge", label: "Cold Plunge", icon: Droplets },
   ];
 
   const exploreLinks = [
-    { href: "/our-studio", label: "About Us" },
-    { href: "/our-teachers", label: "Our Teachers" },
-    { href: "/our-community-1", label: "Community" },
-    { href: "/blog", label: "Blog" },
-    { href: "/faq", label: "New Here?" },
+    { href: "/our-studio", label: "About Us", icon: Info },
+    { href: "/our-teachers", label: "Our Teachers", icon: Users },
+    { href: "/our-community-1", label: "Community", icon: Heart },
+    { href: "/blog", label: "Blog", icon: BookOpen },
+    { href: "/faq", label: "New Here?", icon: HelpCircle },
   ];
 
   const navLinks = [
-    { href: "/classes", label: "Classes" },
-    { href: "/schedule", label: "Schedule" },
-    { href: "/prices", label: "Pricing" },
+    { href: "/classes", label: "Classes", icon: Flame },
+    { href: "/schedule", label: "Schedule", icon: Calendar },
+    { href: "/prices", label: "Pricing", icon: Tag },
   ];
 
   const isExperiencesActive = experiencesLinks.some((link) => currentPath === link.href);
   const isExploreActive = exploreLinks.some((link) => currentPath === link.href);
+  const isHome = currentPath === "/";
+  // Show purple/transparent only on the home page before scrolling
+  const isHero = isHome && !scrolled;
 
   return (
     <header className={`border-b sticky top-0 z-40 transition-all duration-300 ${
-      scrolled
-        ? "bg-white/95 border-soft-purple"
-        : "bg-purple/70 border-transparent"
+      isHero
+        ? "bg-purple/70 border-transparent"
+        : "bg-white/95 border-soft-purple"
     }`}>
 
       <nav className="container mx-auto">
         <div className="flex items-center justify-between px-6">
           <a href="/" className="flex items-center space-x-2">
-            <img src={scrolled ? logo.src : logoLight.src} alt="Kauai Hot Yoga" className="h-20 transition-all duration-300" />
+            <img src={isHero ? logoLight.src : logo.src} alt="Kauai Hot Yoga" className="h-20 transition-all duration-300" />
           </a>
 
           <div className="hidden lg:flex items-center space-x-8">
@@ -70,8 +73,8 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
                 href={link.href}
                 className={`text-sm transition-colors ${
                   currentPath === link.href
-                    ? scrolled ? "text-purple" : "text-white"
-                    : scrolled ? "text-purple-dark/70 hover:text-purple" : "text-white/80 hover:text-white"
+                    ? isHero ? "text-white" : "text-purple"
+                    : isHero ? "text-white/80 hover:text-white" : "text-purple-dark/70 hover:text-purple"
                 }`}
               >
                 {link.label}
@@ -85,8 +88,8 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
               <button
                 className={`text-sm transition-colors flex items-center gap-1 ${
                   isExploreActive
-                    ? scrolled ? "text-purple" : "text-white"
-                    : scrolled ? "text-purple-dark/70 hover:text-purple" : "text-white/80 hover:text-white"
+                    ? isHero ? "text-white" : "text-purple"
+                    : isHero ? "text-white/80 hover:text-white" : "text-purple-dark/70 hover:text-purple"
                 }`}
               >
                 Explore <ChevronDown size={16} />
@@ -117,8 +120,8 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
               <button
                 className={`text-sm transition-colors flex items-center gap-1 ${
                   isExperiencesActive
-                    ? scrolled ? "text-purple" : "text-white"
-                    : scrolled ? "text-purple-dark/70 hover:text-purple" : "text-white/80 hover:text-white"
+                    ? isHero ? "text-white" : "text-purple"
+                    : isHero ? "text-white/80 hover:text-white" : "text-purple-dark/70 hover:text-purple"
                 }`}
               >
                 Experiences <ChevronDown size={16} />
@@ -143,14 +146,14 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
             </div>
             <a
               href="/prices"
-              className="bg-orange text-white px-6 py-2.5 rounded-full hover:bg-orange-dark transition-colors"
+              className="bg-orange text-white px-6 py-2.5 rounded-full hover:bg-orange-light transition-colors"
             >
               Book Now
             </a>
           </div>
 
           <button
-            className={`lg:hidden transition-colors ${scrolled ? "text-purple-dark" : "text-white"}`}
+            className={`lg:hidden transition-colors ${isHero ? "text-white" : "text-purple-dark"}`}
             onClick={() => setMobileMenuOpen((open) => !open)}
             aria-label="Toggle navigation"
           >
@@ -164,17 +167,18 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden overflow-hidden"
+              className="lg:hidden overflow-hidden bg-white/95 border-t border-soft-purple relative z-[9999]"
             >
-              <div className="py-4 space-y-3">
+              <div className="py-4 px-6 space-y-3">
                 {navLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
-                    className={`block py-2 text-base transition-colors ${
+                    className={`flex items-center gap-3 py-2 text-base transition-colors ${
                       currentPath === link.href ? "text-purple" : "text-purple-dark/70"
                     }`}
                   >
+                    <link.icon size={18} className="shrink-0" />
                     {link.label}
                   </a>
                 ))}
@@ -186,7 +190,7 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
                       isExploreActive ? "text-purple" : "text-purple-dark/70"
                     }`}
                   >
-                    Explore
+                    <span className="flex items-center gap-3"><Compass size={18} className="shrink-0" />Explore</span>
                     <ChevronDown
                       size={16}
                       className={`transition-transform ${exploreDropdownOpen ? "rotate-180" : ""}`}
@@ -204,10 +208,11 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
                           <a
                             key={link.href}
                             href={link.href}
-                            className={`block py-2 text-sm transition-colors ${
+                            className={`flex items-center gap-3 py-2 text-sm transition-colors ${
                               currentPath === link.href ? "text-purple" : "text-purple-dark/70"
                             }`}
                           >
+                            <link.icon size={15} className="shrink-0" />
                             {link.label}
                           </a>
                         ))}
@@ -223,7 +228,7 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
                       isExperiencesActive ? "text-purple" : "text-purple-dark/70"
                     }`}
                   >
-                    Experiences
+                    <span className="flex items-center gap-3"><Sparkles size={18} className="shrink-0" />Experiences</span>
                     <ChevronDown
                       size={16}
                       className={`transition-transform ${experiencesDropdownOpen ? "rotate-180" : ""}`}
@@ -241,10 +246,11 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
                           <a
                             key={link.href}
                             href={link.href}
-                            className={`block py-2 text-sm transition-colors ${
+                            className={`flex items-center gap-3 py-2 text-sm transition-colors ${
                               currentPath === link.href ? "text-purple" : "text-purple-dark/70"
                             }`}
                           >
+                            <link.icon size={15} className="shrink-0" />
                             {link.label}
                           </a>
                         ))}
@@ -255,8 +261,9 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
 
                 <a
                   href="/prices"
-                  className="block bg-orange text-white px-6 py-3 rounded-full text-center hover:bg-orange-dark transition-colors"
+                  className="flex items-center justify-center gap-2 bg-orange text-white px-6 py-3 rounded-full text-center hover:bg-orange-dark transition-colors"
                 >
+                  <CalendarCheck size={18} />
                   Book Now
                 </a>
               </div>

@@ -216,8 +216,8 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
     target: sunRef,
     offset: ["start end", "end start"],
   });
-  const sunScale = useTransform(sunProgress, [0, 0.5, 1], [0.6, 1, 0.6]);
-  const sunRotation = useTransform(sunProgress, [0, 1], [0, 72]);
+  const sunScale = useTransform(sunProgress, [0, 0.5, 1], [0.1, 1, 0.6]);
+  // const sunRotation = useTransform(sunProgress, [0, 1], [0, 72]);
 
   // Enrich offerings with their visual meta
   const enrichedOfferings = offerings.map((o) => ({
@@ -309,7 +309,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
       </section>
 
       {/* Testimonials */}
-      <section className="py-12 md:py-24 bg-white/60 backdrop-blur-md">
+      <section className="py-12 md:py-12 md:py-24 bg-white/60 backdrop-blur-md">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-16">
             <motion.span
@@ -339,7 +339,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
       </section>
 
       {/* Explainer Section */}
-      <section ref={sunRef} className="relative py-20 min-h-[100vh] flex items-center overflow-hidden" style={{ paddingBottom: '5rem' }}>
+      <section ref={sunRef} className="relative py-20 min-h-[100vh] flex items-center overflow-hidden pb-20">
         {/* Light wash so text stays readable */}
         <div className="absolute inset-0 bg-white" />
         {/* Sun rays */}
@@ -352,15 +352,15 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
         /> */}
         {/* Sun disk */}
         <motion.div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full pointer-events-none shadow-[0_0_20px_rgba(247,158,68,0.6)]"
+          className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-[150px] w-[520px] h-[520px] rounded-full pointer-events-none shadow-[0_0_20px_rgba(247,158,68,0.6)]"
           style={{ background: "radial-gradient(circle, #ffdd98 0%, #ffb657 100%)", opacity: 0.8, scale: sunScale }}
         />
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative max-w-3xl mx-auto text-center"
+            className="relative md:max-w-xl max-w-3xl mx-auto md:ml-16 text-center md:text-left"
           >
             <h2 className="text-4xl md:text-5xl text-purple-dark mb-6">
               {content.explainer_heading}
@@ -375,7 +375,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
       </section>
 
       {/* Offerings Section */}
-      <section className="py-24 bg-warm-cream/60 backdrop-blur-md">
+      <section className="py-12 md:py-24 bg-warm-cream/60 backdrop-blur-md">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <motion.span
@@ -639,7 +639,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
       </section>
 
       {/* Teaching Staff — full-width warm-cream */}
-      <section className="py-24 bg-warm-cream relative">
+      <section className="py-12 md:py-24 bg-warm-cream relative">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <motion.span
@@ -781,7 +781,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
       </section>
 
       {/* CTA Strip */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-12 md:py-24 overflow-hidden">
         {/* Semi-transparent overlay so video shows through */}
         <div className="absolute inset-0 bg-purple-dark/60 backdrop-blur-sm" />
         {/* Decorative blobs */}
@@ -820,7 +820,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
             </div>
           </motion.div>
         </div>
-        <WaveDivider fill="#4A1F56" gradient={{ from: "#4A1F56", to: "#6B2D7D" }} bottomOffset={0} />
+        <WaveDivider fill="#4A1F56" gradient={{ from: "#4A1F56", to: "#6B2D7D" }} bottomOffset={-2} />
       </section>
 
     </div>

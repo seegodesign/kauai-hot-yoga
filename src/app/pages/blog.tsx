@@ -60,7 +60,7 @@ export function BlogPage({ posts }: BlogPageProps) {
       </section>
 
       {/* Posts grid */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           {posts.length === 0 ? (
             <p className="text-center text-muted-foreground text-lg">No posts yet — check back soon!</p>
