@@ -231,6 +231,14 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
     ...(offeringMeta[o.slug] ?? { icon: Flame, color: "text-orange" }),
   }));
 
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const update = () => setIsDesktop(window.innerWidth >= 768);
+    update();
+    window.addEventListener("resize", update, { passive: true });
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
