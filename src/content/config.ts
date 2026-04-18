@@ -73,4 +73,17 @@ const faq = defineCollection({
   }),
 });
 
-export const collections = { settings, home, testimonials, offerings, faq };
+const blog = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    author: z.string().default("Kauai Hot Yoga"),
+    image: z.string().optional(),
+    tags: z.array(z.string()).optional().default([]),
+    draft: z.boolean().optional().default(false),
+  }),
+});
+
+export const collections = { settings, home, testimonials, offerings, faq, blog };

@@ -161,7 +161,28 @@ collections:
           - Yelp
       - { label: Display Order, name: order, widget: number, default: 0 }
 
-  # ── FAQ ───────────────────────────────────────────────────
+  # ── Blog ──────────────────────────────────────────────────
+  - name: blog
+    label: Blog Posts
+    folder: src/content/blog
+    create: true
+    format: frontmatter
+    extension: md
+    identifier_field: title
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, hint: "Short summary shown on the blog listing page and in search results" }
+      - { label: Publish Date, name: pubDate, widget: datetime }
+      - { label: Author, name: author, widget: string, default: "Kauai Hot Yoga" }
+      - { label: Cover Image, name: image, widget: image, required: false }
+      - label: Tags
+        name: tags
+        widget: list
+        field: { label: Tag, name: tag, widget: string }
+        required: false
+      - { label: Draft, name: draft, widget: boolean, default: false, hint: "Drafts are hidden from the public blog" }
+      - { label: Body, name: body, widget: markdown }
   - name: faq
     label: FAQ
     folder: src/content/faq
