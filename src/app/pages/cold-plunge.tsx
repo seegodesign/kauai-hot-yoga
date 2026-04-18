@@ -54,7 +54,21 @@ export function ColdPlungePage() {
       title: "Cold Plunge Only",
       description:
         "Drop in for a quick plunge session. Perfect for recovery days or before/after surf sessions.",
-      price: "$25",
+      price: "$15",
+    },
+    {
+      title: "10-Plunge Pass",
+      description:
+        "Stock up and save. Use at your own pace — perfect for regular recovery practitioners.",
+      price: "$125",
+      savings: "Save $25",
+    },
+    {
+      title: "20-Plunge Pass",
+      description:
+        "Our best value pass for committed cold therapy enthusiasts. Never run out of plunges.",
+      price: "$200",
+      savings: "Save $100",
     },
   ];
 
@@ -153,8 +167,32 @@ export function ColdPlungePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-lava text-center mb-12">Cold Plunge Options</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {pairings.map((pairing, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              {pairings.slice(0, 3).map((pairing, index) => (
+                <motion.div
+                  key={pairing.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white p-8 rounded-2xl border border-sand-dark hover:shadow-lg transition-shadow relative"
+                >
+                  {pairing.savings && (
+                    <div className="absolute -top-3 right-4 bg-sunset text-white px-3 py-1 rounded-full text-xs">
+                      {pairing.savings}
+                    </div>
+                  )}
+                  <h3 className="text-lava mb-3">{pairing.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-6">{pairing.description}</p>
+                  <div className="text-3xl text-ocean-dark mb-6">{pairing.price}</div>
+                  <button className="w-full bg-ocean-dark text-white py-3 rounded-full hover:bg-ocean transition-colors">
+                    Book Now
+                  </button>
+                </motion.div>
+              ))}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+              {pairings.slice(3).map((pairing, index) => (
                 <motion.div
                   key={pairing.title}
                   initial={{ opacity: 0, y: 20 }}

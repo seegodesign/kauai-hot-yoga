@@ -28,6 +28,7 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
     { href: "/schedule", label: "Schedule" },
     { href: "/pricing", label: "Pricing" },
     { href: "/faq", label: "New Here?" },
+    { href: "/community", label: "Community" },
     { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" },
   ];

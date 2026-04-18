@@ -1,0 +1,17 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CommunityPage } from "../app/pages/community";
+
+const communityEntries = await getCollection("community");
+const members = communityEntries
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => e.data);
+---
+
+<BaseLayout
+  title="Community | Kauai Hot Yoga"
+  description="Meet the local practitioners, healers, and guides who are part of the Kauai Hot Yoga community in Lihue, Hawaii."
+  currentPath="/community">
+  <CommunityPage members={members} client:load />
+</BaseLayout>

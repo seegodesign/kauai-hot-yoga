@@ -12,6 +12,8 @@ const settings = defineCollection({
       state: z.string(),
       zip: z.string(),
     }),
+    latitude: z.number().optional().default(21.978104),
+    longitude: z.number().optional().default(-159.368038),
     social: z
       .object({
         instagram: z.string().optional().default(""),
@@ -86,4 +88,17 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { settings, home, testimonials, offerings, faq, blog };
+const community = defineCollection({
+  type: "data",
+  schema: z.object({
+    name: z.string(),
+    role: z.string().optional().default(""),
+    bio: z.string(),
+    photo: z.string().optional().default(""),
+    website: z.string().optional().default(""),
+    instagram: z.string().optional().default(""),
+    order: z.number().optional().default(0),
+  }),
+});
+
+export const collections = { settings, home, testimonials, offerings, faq, blog, community };

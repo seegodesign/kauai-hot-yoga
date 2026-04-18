@@ -37,6 +37,14 @@
           ],
           "additionalProperties": false
         },
+        "latitude": {
+          "type": "number",
+          "default": 21.978104
+        },
+        "longitude": {
+          "type": "number",
+          "default": -159.368038
+        },
         "social": {
           "type": "object",
           "properties": {

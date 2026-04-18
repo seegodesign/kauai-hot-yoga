@@ -49,6 +49,8 @@ collections:
               - { label: City, name: city, widget: string }
               - { label: State, name: state, widget: string }
               - { label: ZIP Code, name: zip, widget: string }
+          - { label: Latitude, name: latitude, widget: number, value_type: float, hint: "e.g. 21.978104" }
+          - { label: Longitude, name: longitude, widget: number, value_type: float, hint: "e.g. -159.368038" }
           - label: Social Links
             name: social
             widget: object
@@ -162,6 +164,21 @@ collections:
       - { label: Display Order, name: order, widget: number, default: 0 }
 
   # ── Blog ──────────────────────────────────────────────────
+  - name: community
+    label: Community Members
+    folder: src/content/community
+    create: true
+    format: yaml
+    identifier_field: name
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Role / Title, name: role, widget: string, required: false, hint: "e.g. Surf Instructor, Massage Therapist" }
+      - { label: Bio, name: bio, widget: text }
+      - { label: Photo, name: photo, widget: image, required: false }
+      - { label: Website URL, name: website, widget: string, required: false }
+      - { label: Instagram URL, name: instagram, widget: string, required: false }
+      - { label: Display Order, name: order, widget: number, default: 0 }
+
   - name: blog
     label: Blog Posts
     folder: src/content/blog
