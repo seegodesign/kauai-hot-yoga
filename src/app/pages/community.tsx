@@ -78,6 +78,8 @@ export function CommunityPage({ members }: CommunityPageProps) {
                           alt={member.name}
                           className="w-full h-full object-cover"
                           loading="lazy"
+                          width={400}
+                          height={400}
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-light/30 to-orange/20">

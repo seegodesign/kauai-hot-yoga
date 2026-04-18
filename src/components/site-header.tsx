@@ -63,7 +63,7 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
       <nav className="container mx-auto">
         <div className="flex items-center justify-between px-6">
           <a href="/" className="flex items-center space-x-2">
-            <img src={isHero ? logoLight.src : logo.src} alt="Kauai Hot Yoga" className="h-20 transition-all duration-300" />
+            <img src={isHero ? logoLight.src : logo.src} alt="Kauai Hot Yoga" className="h-20 transition-all duration-300" width={240} height={80} />
           </a>
 
           <div className="hidden lg:flex items-center space-x-8">

@@ -17,7 +17,7 @@ export function AboutPage({ heroDesktopSrc, heroMobileSrc, studioDesktopSrc, stu
       <section className="relative min-h-[60vh] flex items-center overflow-hidden">
         <picture>
           <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
-          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover bg-fixed" loading="eager" fetchPriority="high" />
+          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover bg-fixed" loading="eager" fetchPriority="high" width={1920} height={1080} />
         </picture>
         <div className="absolute inset-0 bg-purple-dark/65" />
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-orange/20 rounded-full blur-3xl" />
@@ -99,6 +99,8 @@ export function AboutPage({ heroDesktopSrc, heroMobileSrc, studioDesktopSrc, stu
                   alt="Kauai Hot Yoga studio interior"
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  width={800}
+                  height={1000}
                 />
               </picture>
             </motion.div>
@@ -123,6 +125,8 @@ export function AboutPage({ heroDesktopSrc, heroMobileSrc, studioDesktopSrc, stu
                   alt="Cold plunge tub at Kauai Hot Yoga"
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  width={800}
+                  height={1000}
                 />
               </picture>
             </motion.div>

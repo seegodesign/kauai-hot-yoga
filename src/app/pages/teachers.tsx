@@ -75,6 +75,8 @@ export function TeachersPage({ teachers }: TeachersPageProps) {
                       alt={teacher.name}
                       className="w-full h-full object-cover"
                       loading="lazy"
+                      width={400}
+                      height={533}
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">

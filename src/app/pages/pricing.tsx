@@ -55,7 +55,7 @@ export function PricingPage({ plans, specials, faqs, heroDesktopSrc, heroMobileS
       <section ref={heroRef} className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
         <picture>
           <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
-          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" loading="eager" fetchPriority="high" />
+          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" loading="eager" fetchPriority="high" width={1920} height={1080} />
         </picture>
         <motion.div
           className="absolute inset-0 bg-orange"

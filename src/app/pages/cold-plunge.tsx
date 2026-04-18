@@ -329,6 +329,8 @@ export function ColdPlungePage() {
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
+          width={1920}
+          height={1080}
         />
         <div className="absolute inset-0 bg-purple-dark/50" />
         <div className="relative container mx-auto px-4 text-center">

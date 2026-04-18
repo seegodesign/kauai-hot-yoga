@@ -258,7 +258,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="fixed inset-0 z-[200] bg-[#1a0a2e] flex items-center justify-center pointer-events-none"
           >
-            <img src={logoLight.src} alt="Kauai Hot Yoga" className="h-24 opacity-90" />
+            <img src={logoLight.src} alt="Kauai Hot Yoga" className="h-24 opacity-90" width={288} height={96} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -272,6 +272,8 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
           className="fixed inset-0 w-full h-full object-cover -z-10"
           loading="eager"
           fetchPriority="high"
+          width={768}
+          height={1024}
         />
         {/* Desktop: video background — only rendered in DOM on desktop to prevent mobile download */}
         {isDesktop && (
@@ -463,6 +465,8 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
                         alt={offering.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
+                        width={800}
+                        height={450}
                       />
                       <div className="absolute bottom-3 left-3 w-11 h-11 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
                         <offering.icon size={22} className="text-white" />
@@ -510,6 +514,8 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
                   src="/images/studio-interior.jpg"
                   alt="Yoga Studio"
                   className="rounded-2xl shadow-lg"
+                  width={1200}
+                  height={800}
                 />
               </motion.div>
               <motion.div
@@ -736,6 +742,8 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
                           alt={teacher.name}
                           className="w-full h-full object-cover"
                           loading="lazy"
+                          width={80}
+                          height={80}
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-orange to-purple-light flex items-center justify-center text-white text-xl font-bold">

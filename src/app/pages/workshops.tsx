@@ -120,6 +120,8 @@ export function WorkshopsPage() {
                         alt={workshop.title}
                         className="w-full h-full object-cover"
                         loading="lazy"
+                        width={800}
+                        height={533}
                       />
                     </div>
                   )}
