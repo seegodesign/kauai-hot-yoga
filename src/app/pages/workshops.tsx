@@ -119,6 +119,7 @@ export function WorkshopsPage() {
                         src={workshop.image}
                         alt={workshop.title}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                     </div>
                   )}

@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../components/ui/accordion";
+import meditationImg from "../../assets/images/meditation.jpg";
 
 export interface FAQCategory {
   category: string;
@@ -28,7 +29,7 @@ export function FAQPage({ categories, phone, email }: FAQPageProps) {
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
             backgroundImage:
-              "url('/images/meditation.jpg')",
+              `url('${meditationImg.src}')`,
           }}
         >
           <div className="absolute inset-0 bg-purple/60" />

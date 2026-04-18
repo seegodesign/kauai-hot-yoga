@@ -52,6 +52,7 @@ interface HomePageProps {
   googleReviewUrl: string;
   yelpReviewUrl: string;
   phone: string;
+  heroMobileSrc: string;
 }
 
 // Curved wave divider between sections
@@ -202,7 +203,7 @@ function TestimonialsCarousel({ testimonials }: { testimonials: HomeTestimonial[
   );
 }
 
-export function HomePage({ content, testimonials, offerings, teachers, googleReviewUrl, yelpReviewUrl, phone }: HomePageProps) {
+export function HomePage({ content, testimonials, offerings, teachers, googleReviewUrl, yelpReviewUrl, phone, heroMobileSrc }: HomePageProps) {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -231,7 +232,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
       <section ref={heroRef} className="relative h-[92vh] flex items-center justify-center overflow-hidden">
         {/* Mobile: static image (no video download) */}
         <img
-          src="/images/hero-main.jpg"
+          src={heroMobileSrc}
           alt=""
           aria-hidden="true"
           className="fixed inset-0 w-full h-full object-cover -z-10 md:hidden"
@@ -422,6 +423,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
                         src={offering.image}
                         alt={offering.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
                       />
                       <div className="absolute bottom-3 left-3 w-11 h-11 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
                         <offering.icon size={22} className="text-white" />
@@ -694,6 +696,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
                           src={teacher.photo}
                           alt={teacher.name}
                           className="w-full h-full object-cover"
+                          loading="lazy"
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-orange to-purple-light flex items-center justify-center text-white text-xl font-bold">

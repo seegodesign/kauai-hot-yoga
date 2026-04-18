@@ -1,6 +1,11 @@
 ---
+import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { SchedulePage } from "../app/pages/schedule";
+import scheduleHeroImg from "../assets/images/schedule-hero.jpg";
+
+const heroDesktop = await getImage({ src: scheduleHeroImg, width: 1600, format: "webp", quality: 85 });
+const heroMobile  = await getImage({ src: scheduleHeroImg, width: 768,  format: "webp", quality: 80 });
 ---
 
 <BaseLayout
@@ -8,5 +13,5 @@ import { SchedulePage } from "../app/pages/schedule";
   description="View the weekly hot yoga class schedule and book your spot at Kauai Hot Yoga."
   ogImage="/images/schedule-hero.jpg"
   currentPath="/schedule">
-  <SchedulePage client:load />
+  <SchedulePage heroDesktopSrc={heroDesktop.src} heroMobileSrc={heroMobile.src} client:visible />
 </BaseLayout>

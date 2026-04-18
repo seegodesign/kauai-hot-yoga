@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { MapPin, Phone, Mail, Instagram, Facebook, Clock } from "lucide-react";
+import beachImg from "../../assets/images/beach.jpg";
 
 export interface ContactInfo {
   studio_name: string;
@@ -32,7 +33,7 @@ export function ContactPage({ info }: ContactPageProps) {
       <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/beach.jpg')" }}
+          style={{ backgroundImage: `url('${beachImg.src}')` }}
         />
         <div className="absolute inset-0 bg-purple/65" />
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-orange/30 rounded-full blur-3xl" />

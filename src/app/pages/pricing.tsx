@@ -35,9 +35,11 @@ interface PricingPageProps {
   plans: PricingPlan[];
   specials: PricingSpecial[];
   faqs: PricingFaq[];
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
 }
 
-export function PricingPage({ plans, specials, faqs }: PricingPageProps) {
+export function PricingPage({ plans, specials, faqs, heroDesktopSrc, heroMobileSrc }: PricingPageProps) {
   const dropInAndPacks = plans.filter((p) => p.category === "drop-in" || p.category === "class-pack");
   const memberships = plans.filter((p) => p.category === "membership");
 
@@ -51,15 +53,10 @@ export function PricingPage({ plans, specials, faqs }: PricingPageProps) {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section ref={heroRef} className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
-        <motion.img
-          src="/images/hero-main.jpg"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          initial={{ scale: 1.15 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 5, ease: "easeOut" }}
-        />
+        <picture>
+          <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
+          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" loading="eager" fetchPriority="high" />
+        </picture>
         <motion.div
           className="absolute inset-0 bg-orange"
           initial={{ opacity: 0.6 }}

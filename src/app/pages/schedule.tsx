@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Calendar, Clock, User } from "lucide-react";
 import { motion } from "motion/react";
 
-export function SchedulePage() {
+export function SchedulePage({ heroDesktopSrc, heroMobileSrc }: { heroDesktopSrc: string; heroMobileSrc: string }) {
   const [selectedDay, setSelectedDay] = useState("Monday");
 
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -69,15 +69,11 @@ export function SchedulePage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{
-            backgroundImage:
-              "url('/images/about-studio.jpg')",
-          }}
-        >
-          <div className="absolute inset-0 bg-purple/60" />
-        </div>
+        <picture>
+          <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
+          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover bg-fixed" loading="eager" fetchPriority="high" />
+        </picture>
+        <div className="absolute inset-0 bg-purple/60" />
         <div className="relative container mx-auto px-4 text-center text-white">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

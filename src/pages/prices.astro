@@ -1,7 +1,12 @@
 ---
 import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { PricingPage } from "../app/pages/pricing";
+import heroMainImg from "../assets/images/hero-main.jpg";
+
+const heroDesktop = await getImage({ src: heroMainImg, width: 1600, format: "webp", quality: 85 });
+const heroMobile  = await getImage({ src: heroMainImg, width: 768,  format: "webp", quality: 80 });
 
 const planEntries = await getCollection("pricingPlans");
 const plans = planEntries
@@ -24,5 +29,5 @@ const faqs = faqEntries
   title="Hot Yoga Pricing & Memberships in Kauai | Kauai Hot Yoga"
   description="Drop-in classes, class packs, and monthly memberships at Kauai Hot Yoga in Lihue, Hawaii. Traveler weekly passes and local intro month deals available."
   currentPath="/prices">
-  <PricingPage plans={plans} specials={specials} faqs={faqs} client:load />
+  <PricingPage plans={plans} specials={specials} faqs={faqs} heroDesktopSrc={heroDesktop.src} heroMobileSrc={heroMobile.src} client:visible />
 </BaseLayout>

@@ -14,6 +14,8 @@ export interface ClassEntry {
 
 interface ClassesPageProps {
   classes: ClassEntry[];
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
 }
 
 const intensityMap = {
@@ -22,7 +24,7 @@ const intensityMap = {
   Intense: "High",
 } as const;
 
-export function ClassesPage({ classes }: ClassesPageProps) {
+export function ClassesPage({ classes, heroDesktopSrc, heroMobileSrc }: ClassesPageProps) {
   const [activeFilter, setActiveFilter] = useState<string>("All");
 
   const filters: { label: string; value: string; active: string; inactive: string }[] = [
@@ -40,15 +42,11 @@ export function ClassesPage({ classes }: ClassesPageProps) {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('/images/studio-interior.jpg')",
-          }}
-        >
-          <div className="absolute inset-0 bg-purple-dark/70" />
-        </div>
+        <picture>
+          <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
+          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" />
+        </picture>
+        <div className="absolute inset-0 bg-purple-dark/70" />
         <div className="relative z-10 text-center text-white px-4 max-w-3xl mx-auto">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -117,7 +115,7 @@ export function ClassesPage({ classes }: ClassesPageProps) {
       <section className="py-20 bg-warm-cream">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-purple-dark text-center mb-12">What to Know</h2>
+            <h2 className="text-4xl text-purple-dark text-center mb-12">What to Know</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-white p-8 rounded-2xl border border-soft-purple">
                 <h3 className="text-purple-dark mb-4">Studio Temperature</h3>

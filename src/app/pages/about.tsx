@@ -1,15 +1,24 @@
 import { motion } from "motion/react";
-import { Thermometer, Droplets, ShoppingBag, Waves, Check } from "lucide-react";
+import { Droplets, Waves, Check } from "lucide-react";
 
-export function AboutPage() {
+interface AboutPageProps {
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
+  studioDesktopSrc: string;
+  studioMobileSrc: string;
+  plungeDesktopSrc: string;
+  plungeMobileSrc: string;
+}
+
+export function AboutPage({ heroDesktopSrc, heroMobileSrc, studioDesktopSrc, studioMobileSrc, plungeDesktopSrc, plungeMobileSrc }: AboutPageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: "url('/images/about-studio.jpg')" }}
-        />
+        <picture>
+          <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
+          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover bg-fixed" loading="eager" fetchPriority="high" />
+        </picture>
         <div className="absolute inset-0 bg-purple-dark/65" />
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-orange/20 rounded-full blur-3xl" />
 
@@ -19,7 +28,7 @@ export function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-block text-orange-light font-semibold tracking-widest uppercase text-sm mb-4"
           >
-            Lihue, Kauai, Hawaii
+            About Us
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -27,7 +36,7 @@ export function AboutPage() {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-6xl lg:text-7xl text-white font-bold mb-5"
           >
-            About Us
+            Kauai Hot Yoga
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -83,11 +92,15 @@ export function AboutPage() {
               viewport={{ once: true }}
               className="rounded-2xl overflow-hidden shadow-lg aspect-[4/5] max-h-[300px] md:max-h-[500px mx-auto order-2"
             >
-              <img
-                src="/images/about-studio.jpg"
-                alt="Kauai Hot Yoga studio interior"
-                className="w-full h-full object-cover"
-              />
+              <picture>
+                <source media="(max-width: 767px)" srcSet={studioMobileSrc} />
+                <img
+                  src={studioDesktopSrc}
+                  alt="Kauai Hot Yoga studio interior"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
             </motion.div>
           </div>
         </div>
@@ -103,11 +116,15 @@ export function AboutPage() {
               viewport={{ once: true }}
               className="rounded-2xl overflow-hidden shadow-lg aspect-[4/5] max-h-[300px] md:max-h-[500px mx-auto order-2"
             >
-              <img
-                src="/images/cold-plunge.jpg"
-                alt="Cold plunge tub at Kauai Hot Yoga"
-                className="w-full h-full object-cover"
-              />
+              <picture>
+                <source media="(max-width: 767px)" srcSet={plungeMobileSrc} />
+                <img
+                  src={plungeDesktopSrc}
+                  alt="Cold plunge tub at Kauai Hot Yoga"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
             </motion.div>
 
             <motion.div

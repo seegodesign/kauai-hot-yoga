@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Globe, Instagram } from "lucide-react";
+import beachImg from "../../assets/images/beach.jpg";
 
 export interface CommunityMember {
   name: string;
@@ -21,7 +22,7 @@ export function CommunityPage({ members }: CommunityPageProps) {
       <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: "url('/images/beach.jpg')" }}
+          style={{ backgroundImage: `url('${beachImg.src}')` }}
         >
           <div className="absolute inset-0 bg-purple-dark/65" />
         </div>
@@ -76,6 +77,7 @@ export function CommunityPage({ members }: CommunityPageProps) {
                           src={member.photo}
                           alt={member.name}
                           className="w-full h-full object-cover"
+                          loading="lazy"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-light/30 to-orange/20">

@@ -15,5 +15,18 @@ export default defineConfig({
         "@": path.resolve("./src"),
       },
     },
+    optimizeDeps: {
+      include: ["lucide-react"],
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            "lucide": ["lucide-react"],
+            "motion": ["motion/react"],
+          },
+        },
+      },
+    },
   },
 });

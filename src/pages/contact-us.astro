@@ -8,5 +8,5 @@ if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
 ---
 
 <BaseLayout title="Contact | Kauai Hot Yoga" description="Get in touch with Kauai Hot Yoga. Find our address, phone number, email, and studio hours." currentPath="/contact-us">
-  <ContactPage info={settingsEntry.data} client:load />
+  <ContactPage info={settingsEntry.data} client:visible />
 </BaseLayout>

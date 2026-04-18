@@ -1,11 +1,29 @@
 ---
+import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { AboutPage } from "../app/pages/about";
+import aboutStudioImg from "../assets/images/about-studio.jpg";
+import coldPlungeImg from "../assets/images/cold-plunge.jpg";
+
+const heroDesktop    = await getImage({ src: aboutStudioImg, width: 1600, format: "webp", quality: 85 });
+const heroMobile     = await getImage({ src: aboutStudioImg, width: 768,  format: "webp", quality: 80 });
+const studioDesktop  = await getImage({ src: aboutStudioImg, width: 900,  format: "webp", quality: 85 });
+const studioMobile   = await getImage({ src: aboutStudioImg, width: 600,  format: "webp", quality: 80 });
+const plungeDesktop  = await getImage({ src: coldPlungeImg,  width: 900,  format: "webp", quality: 85 });
+const plungeMobile   = await getImage({ src: coldPlungeImg,  width: 600,  format: "webp", quality: 80 });
 ---
 
 <BaseLayout
   title="About Us | Kauai Hot Yoga — Lihue, Hawaii"
   description="Learn about Kauai Hot Yoga — our studio, infrared heating, cold plunge, yoga boutique, and mission to serve the Kauai community in Lihue, Hawaii."
   currentPath="/our-studio">
-  <AboutPage client:load />
+  <AboutPage
+    heroDesktopSrc={heroDesktop.src}
+    heroMobileSrc={heroMobile.src}
+    studioDesktopSrc={studioDesktop.src}
+    studioMobileSrc={studioMobile.src}
+    plungeDesktopSrc={plungeDesktop.src}
+    plungeMobileSrc={plungeMobile.src}
+    client:visible
+  />
 </BaseLayout>
