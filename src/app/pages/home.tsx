@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import { Flame, Wind, Snowflake, Users, ArrowRight, Star, ChevronDown, type LucideIcon } from "lucide-react";
+import { Flame, Wind, Snowflake, Users, ArrowRight, Star, type LucideIcon } from "lucide-react";
+import { ScrollChevron } from "../components/scroll-chevron";
 import GoogleLogo from "../../assets/google-logo.svg?react";
 import YelpLogo from "../../assets/yelp-logo.svg?react";
 
@@ -166,21 +167,7 @@ export function HomePage({ content, testimonials, offerings }: HomePageProps) {
           </motion.div>
 
           {/* Scroll down chevron */}
-          <motion.button
-            aria-label="Scroll down"
-            onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
-            className="absolute -bottom-20 left-1/2 -translate-x-1/2 text-white/70 hover:text-white transition-colors cursor-pointer"
-          >
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <ChevronDown size={36} strokeWidth={1.5} />
-            </motion.div>
-          </motion.button>
+          <ScrollChevron className="absolute -bottom-20 left-1/2 -translate-x-1/2" />
         </div>
       </section>
 

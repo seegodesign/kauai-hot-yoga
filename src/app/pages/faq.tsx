@@ -13,15 +13,17 @@ export interface FAQCategory {
 
 interface FAQPageProps {
   categories: FAQCategory[];
+  phone: string;
+  email: string;
 }
 
-export function FAQPage({ categories }: FAQPageProps) {
+export function FAQPage({ categories, phone, email }: FAQPageProps) {
   const faqs = categories;
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden min-h-[95vh] flex items-center">
+      <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -214,20 +216,20 @@ export function FAQPage({ categories }: FAQPageProps) {
               <div>
                 <p className="text-sm text-muted-foreground mb-1">Call Us</p>
                 <a
-                  href="tel:8085559642"
+                  href={`tel:${phone.replace(/\D/g, "")}`}
                   className="text-purple hover:text-ocean transition-colors"
                 >
-                  (804) 615-3678
+                  {phone}
                 </a>
               </div>
               <div className="hidden sm:block text-sand-dark">|</div>
               <div>
                 <p className="text-sm text-muted-foreground mb-1">Email Us</p>
                 <a
-                  href="mailto:info@kauaihotyoga.com"
+                  href={`mailto:${email}`}
                   className="text-purple hover:text-ocean transition-colors"
                 >
-                  info@kauaihotyoga.com
+                  {email}
                 </a>
               </div>
             </div>

@@ -155,8 +155,8 @@ const localBusinessSchema = {
               <h4 class="text-white mb-4 text-sm">Visit Us</h4>
               <div class="space-y-2 text-sm">
                 <p>{settings.address.street},<br/> {settings.address.city}, {settings.address.state}</p>
-                <p>{settings.email}</p>
-                <p>{settings.phone}</p>
+                <p><a href={`mailto:${settings.email}`}>{settings.email}</a></p>
+                <p><a href={`tel:${settings.phone}`}>{settings.phone}</a></p>
               </div>
             </div>
           </div>

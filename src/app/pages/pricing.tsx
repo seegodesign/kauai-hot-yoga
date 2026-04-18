@@ -1,6 +1,8 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import { PricingCard } from "../components/pricing-card";
 import { Sparkles } from "lucide-react";
+import { ScrollChevron } from "../components/scroll-chevron";
 
 export function PricingPage() {
   const dropInOptions = [
@@ -107,6 +109,13 @@ export function PricingPage() {
     },
   ];
 
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.4, 0.85]);
+
   const handleBuyNow = () => {
     // Mock MINDBODY integration
     alert("Redirecting to MINDBODY for purchase...");
@@ -115,7 +124,7 @@ export function PricingPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
+      <section ref={heroRef} className="relative py-20 overflow-hidden min-h-[95vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
@@ -123,7 +132,7 @@ export function PricingPage() {
               "url('/images/hero-main.jpg')",
           }}
         >
-          <div className="absolute inset-0 bg-orange/60" />
+          <motion.div className="absolute inset-0 bg-orange" style={{ opacity: overlayOpacity }} />
         </div>
         <div className="relative container mx-auto px-4 text-center text-white">
           <motion.h1
@@ -141,6 +150,94 @@ export function PricingPage() {
           >
             Find the perfect option for your practice
           </motion.p>
+          <ScrollChevron className="absolute -bottom-20 left-1/2 -translate-x-1/2" />
+        </div>
+      </section>
+
+      {/* Special Offers */}
+      <section className="py-14 bg-gradient-to-r from-purple to-purple-light">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto text-center mb-10">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-block text-orange-light font-semibold tracking-widest uppercase text-xs mb-3"
+            >
+              Limited Offers
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.05 }}
+              className="text-3xl md:text-4xl font-bold text-white"
+            >
+              Special Offers
+            </motion.h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {/* Intro Month for Locals */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 text-white flex flex-col"
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-orange-light mb-1">For Kauai Residents</p>
+                  <h3 className="text-2xl font-bold">Intro Month</h3>
+                </div>
+                <span className="bg-orange text-white text-xs font-bold px-3 py-1 rounded-full">Local Deal</span>
+              </div>
+              <div className="text-5xl font-extrabold mb-1">$119</div>
+              <p className="text-white/60 text-sm mb-6">First month unlimited · New members only</p>
+              <ul className="space-y-2 text-sm text-white/80 mb-8 flex-1">
+                <li className="flex items-center gap-2"><span className="text-orange">✓</span> Unlimited classes for 30 days</li>
+                <li className="flex items-center gap-2"><span className="text-orange">✓</span> All class types included</li>
+                <li className="flex items-center gap-2"><span className="text-orange">✓</span> Rolls into regular membership after</li>
+                <li className="flex items-center gap-2"><span className="text-orange">✓</span> Must show local ID</li>
+              </ul>
+              <button
+                onClick={handleBuyNow}
+                className="w-full bg-orange hover:bg-orange-dark text-white font-semibold py-3 rounded-full transition-colors"
+              >
+                Claim Local Offer
+              </button>
+            </motion.div>
+
+            {/* Traveler Week */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 text-white flex flex-col"
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-orange-light mb-1">For Visitors</p>
+                  <h3 className="text-2xl font-bold">Traveler Week</h3>
+                </div>
+                <span className="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">7 Days</span>
+              </div>
+              <div className="text-5xl font-extrabold mb-1">$89</div>
+              <p className="text-white/60 text-sm mb-6">Unlimited classes · 7 consecutive days</p>
+              <ul className="space-y-2 text-sm text-white/80 mb-8 flex-1">
+                <li className="flex items-center gap-2"><span className="text-orange">✓</span> Unlimited yoga all week</li>
+                <li className="flex items-center gap-2"><span className="text-orange">✓</span> All class types included</li>
+                <li className="flex items-center gap-2"><span className="text-orange">✓</span> Activate any day you choose</li>
+                <li className="flex items-center gap-2"><span className="text-orange">✓</span> Perfect for your Kauai stay</li>
+              </ul>
+              <button
+                onClick={handleBuyNow}
+                className="w-full bg-white/20 hover:bg-white/30 text-white font-semibold py-3 rounded-full border border-white/30 transition-colors"
+              >
+                Book Traveler Week
+              </button>
+            </motion.div>
+          </div>
         </div>
       </section>
 
