@@ -1,4 +1,5 @@
 ---
+import { getEntry } from "astro:content";
 import logo from "../assets/logo-light.png";
 import { SiteHeader } from "../components/site-header";
 import "../styles/index.css";
@@ -17,6 +18,8 @@ const {
   currentPath,
 } = Astro.props;
 
+const settings = (await getEntry("settings", "main")).data;
+
 const SITE_URL = "https://www.kauaihotyoga.com";
 const canonicalURL = new URL(currentPath, SITE_URL).href;
 function toOgImage(url: string): string {
@@ -27,17 +30,17 @@ const ogImageURL = ogImage ? toOgImage(ogImage) : `${SITE_URL}${logo.src}`;
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HealthAndBeautyBusiness",
-  name: "Kauai Hot Yoga",
+  name: settings.studio_name,
   description,
   url: SITE_URL,
-  telephone: "+18085559642",
-  email: "info@kauaihotyoga.com",
+  telephone: settings.phone,
+  email: settings.email,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "1234 Ala Kinoiki St",
-    addressLocality: "Kapaa",
-    addressRegion: "HI",
-    postalCode: "96746",
+    streetAddress: settings.address.street,
+    addressLocality: settings.address.city,
+    addressRegion: settings.address.state,
+    postalCode: settings.address.zip,
     addressCountry: "US",
   },
   geo: {
@@ -63,6 +66,105 @@ const localBusinessSchema = {
   ],
 };
 ---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={settings.studio_name} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content={title} />
+
+    <!-- Local Business structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  </head>
+  <body>
+    <div class="min-h-screen flex flex-col">
+      <SiteHeader currentPath={currentPath} client:load />
+
+      <main class="flex-grow">
+        <slot />
+      </main>
+
+      <div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-soft-purple z-40">
+        <div class="flex items-center justify-around py-3">
+          <a href="/schedule" class="flex flex-col items-center space-y-1 text-purple">
+            <span class="text-xs">Schedule</span>
+          </a>
+          <a href="/pricing" class="flex flex-col items-center space-y-1 bg-orange text-white px-6 py-2 rounded-full">
+            <span class="text-sm">Book</span>
+          </a>
+          <a href="/pricing" class="flex flex-col items-center space-y-1 text-purple">
+            <span class="text-xs">Pricing</span>
+          </a>
+        </div>
+      </div>
+
+      <footer class="bg-purple-dark text-white/80 py-12 mb-20 lg:mb-0">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <img src={logo.src} alt={settings.studio_name} class="h-12 mb-4" />
+              <p class="text-sm text-white/60">
+                Find your flow in paradise. Hot yoga, breathwork, and recovery experiences.
+              </p>
+            </div>
+            <div>
+              <h4 class="text-white mb-4 text-sm">Quick Links</h4>
+              <div class="space-y-2">
+                <a href="/classes" class="block text-sm hover:text-white transition-colors">Classes</a>
+                <a href="/schedule" class="block text-sm hover:text-white transition-colors">Schedule</a>
+                <a href="/pricing" class="block text-sm hover:text-white transition-colors">Pricing</a>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-white mb-4 text-sm">Experiences</h4>
+              <div class="space-y-2">
+                <a href="/breathwork" class="block text-sm hover:text-white transition-colors">9D Breathwork</a>
+                <a href="/cold-plunge" class="block text-sm hover:text-white transition-colors">Cold Plunge</a>
+                <a href="/workshops" class="block text-sm hover:text-white transition-colors">Workshops</a>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-white mb-4 text-sm">Visit Us</h4>
+              <div class="space-y-2 text-sm">
+                <p>{settings.address.street},<br/> {settings.address.city}, {settings.address.state}</p>
+                <p>{settings.email}</p>
+                <p>{settings.phone}</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-12 pt-8 border-t border-white/10 text-center text-sm text-white/40">
+            © 2026 {settings.studio_name}. All rights reserved.
+            <span class="block mt-1">Website by <a href="https://seegodesign.com" target="_blank" rel="noopener noreferrer" class="hover:text-white/70 transition-colors">Seego Design</a></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
 
 <!doctype html>
 <html lang="en">

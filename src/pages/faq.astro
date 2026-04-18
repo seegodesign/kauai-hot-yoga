@@ -1,6 +1,29 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { FAQPage } from "../app/pages/faq";
+
+const faqEntries = await getCollection("faq");
+
+// Group FAQ items into categories, preserving per-category order
+const categoryOrder = [
+  "Getting Started",
+  "Class Information",
+  "Health & Safety",
+  "Studio Policies",
+  "9D Breathwork & Cold Plunge",
+];
+
+const grouped = new Map<string, { q: string; a: string }[]>();
+for (const entry of faqEntries.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))) {
+  const cat = entry.data.category;
+  if (!grouped.has(cat)) grouped.set(cat, []);
+  grouped.get(cat)!.push({ q: entry.data.question, a: entry.data.answer });
+}
+
+const categories = categoryOrder
+  .filter((c) => grouped.has(c))
+  .map((c) => ({ category: c, questions: grouped.get(c)! }));
 ---
 
 <BaseLayout
@@ -8,5 +31,5 @@ import { FAQPage } from "../app/pages/faq";
   description="Everything you need to know before your first hot yoga class at Kauai Hot Yoga — what to bring, what to expect, and more."
   ogImage="/images/faq-hero.jpg"
   currentPath="/faq">
-  <FAQPage client:load />
+  <FAQPage categories={categories} client:load />
 </BaseLayout>

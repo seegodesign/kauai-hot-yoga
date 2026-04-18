@@ -1,8 +1,27 @@
 ---
+import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { HomePage } from "../app/pages/home";
+
+const homeEntry = await getEntry("home", "main");
+const settingsEntry = await getEntry("settings", "main");
+
+const testimonialEntries = await getCollection("testimonials");
+const testimonials = testimonialEntries
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => e.data);
+
+const offeringEntries = await getCollection("offerings");
+const offerings = offeringEntries
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => e.data);
 ---
 
 <BaseLayout title="Kauai Hot Yoga" currentPath="/">
-  <HomePage client:load />
+  <HomePage
+    content={homeEntry.data}
+    testimonials={testimonials}
+    offerings={offerings}
+    client:load
+  />
 </BaseLayout>

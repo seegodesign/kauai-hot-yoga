@@ -5,116 +5,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../components/ui/accordion";
-import { HelpCircle } from "lucide-react";
 
-export function FAQPage() {
-  const faqs = [
-    {
-      category: "Getting Started",
-      questions: [
-        {
-          q: "What should I bring to my first class?",
-          a: "Bring a yoga mat (or rent one for $3), a large towel, and a water bottle. Wear comfortable, moisture-wicking clothing. We recommend layers that you can remove as the room heats up.",
-        },
-        {
-          q: "What should I expect in my first hot yoga class?",
-          a: "The studio will be heated to 95-105°F. You'll likely sweat more than usual - this is normal! Take breaks whenever needed, stay hydrated, and don't worry about keeping up with others. Our teachers will guide you through modifications.",
-        },
-        {
-          q: "Do I need to be flexible to do hot yoga?",
-          a: "Not at all! Yoga is a practice, not a performance. The heat actually helps increase flexibility over time. Come as you are, and you'll be amazed at your progress.",
-        },
-        {
-          q: "How early should I arrive?",
-          a: "Please arrive 10-15 minutes before your first class so we can show you around, answer questions, and help you get set up. For subsequent classes, 5-10 minutes early is perfect.",
-        },
-      ],
-    },
-    {
-      category: "Class Information",
-      questions: [
-        {
-          q: "What's the difference between the class types?",
-          a: "Hot 26 & 2 is a structured Bikram-style sequence. Power Flow is a dynamic vinyasa practice. Yin & Restore is slow-paced with long holds. Hot Hatha focuses on alignment. Check our Classes page for detailed descriptions of each style.",
-        },
-        {
-          q: "Can I try different class types as a beginner?",
-          a: "Absolutely! We recommend starting with Hot 26 & 2 or Hot Hatha for structure, but you're welcome to try any class. Let the teacher know you're new and they'll help you modify.",
-        },
-        {
-          q: "What if I need to leave class early?",
-          a: "Life happens! If you need to leave early, please let the teacher know before class and position yourself near the door. Exit quietly during a resting pose.",
-        },
-        {
-          q: "Is it safe to practice hot yoga every day?",
-          a: "Many students practice daily! Listen to your body and stay well-hydrated. We also recommend mixing in some Yin or restorative classes for balance.",
-        },
-      ],
-    },
-    {
-      category: "Health & Safety",
-      questions: [
-        {
-          q: "Are there any health conditions that prevent me from practicing?",
-          a: "Please consult your doctor if you're pregnant, have heart conditions, uncontrolled high blood pressure, or heat sensitivity. Let us know about any injuries or health concerns before class.",
-        },
-        {
-          q: "I felt dizzy during class. Is this normal?",
-          a: "Some dizziness can be normal as your body adjusts to the heat, especially in your first few classes. Take child's pose, drink water, and breathe. If dizziness persists or is severe, exit the room and inform the teacher.",
-        },
-        {
-          q: "How can I prevent dehydration?",
-          a: "Drink plenty of water throughout the day before class - not just right before. Bring a water bottle to class. Consider adding electrolytes, especially after longer or more intense classes.",
-        },
-        {
-          q: "What about injuries? Can I still practice?",
-          a: "Many injuries can be worked around with modifications. Inform your teacher before class about any injuries or limitations. They'll help you modify poses safely.",
-        },
-      ],
-    },
-    {
-      category: "Studio Policies",
-      questions: [
-        {
-          q: "What's your cancellation policy?",
-          a: "Please cancel at least 12 hours before class to avoid being charged. You can cancel through the MINDBODY app or by calling the studio.",
-        },
-        {
-          q: "Can I bring my phone into the studio?",
-          a: "We ask that phones be silenced and stored in cubbies during class to maintain the peaceful environment. The studio is a technology-free zone during practice.",
-        },
-        {
-          q: "Do you offer private sessions?",
-          a: "Yes! Private and semi-private sessions are available with our teachers. Contact us directly to schedule and discuss pricing.",
-        },
-        {
-          q: "Can I bring a friend to try a class?",
-          a: "We love when students bring friends! Your friend can take advantage of our first-time special: 3 classes for $45. Some memberships also include monthly guest passes.",
-        },
-      ],
-    },
-    {
-      category: "9D Breathwork & Cold Plunge",
-      questions: [
-        {
-          q: "What is 9D Breathwork?",
-          a: "9D Breathwork is an immersive somatic breathwork experience using hypnotic breathing, binaural beats, solfeggio frequencies, and guided visualization. It's a powerful tool for emotional release and healing. Visit our Breathwork page for more details.",
-        },
-        {
-          q: "Do I need experience with breathwork?",
-          a: "No experience necessary! Our facilitators guide you through everything. Come with an open mind and be ready for a transformative experience.",
-        },
-        {
-          q: "Is cold plunge safe?",
-          a: "Cold plunge is generally safe for most people, but consult your doctor if you have heart conditions or high blood pressure. We always supervise plunge sessions and provide safety guidelines.",
-        },
-        {
-          q: "How long should I stay in the cold plunge?",
-          a: "Start with 1-2 minutes and build up over time. Most people work up to 3-5 minutes. Listen to your body and exit if you feel uncomfortable.",
-        },
-      ],
-    },
-  ];
+export interface FAQCategory {
+  category: string;
+  questions: { q: string; a: string }[];
+}
+
+interface FAQPageProps {
+  categories: FAQCategory[];
+}
+
+export function FAQPage({ categories }: FAQPageProps) {
+  const faqs = categories;
 
   return (
     <div className="min-h-screen">
