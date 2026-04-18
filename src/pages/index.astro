@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { HomePage } from "../app/pages/home";
 
 const homeEntry = await getEntry("home", "main");
-const settingsEntry = await getEntry("settings", "main");
+if (!homeEntry) throw new Error("Missing content: home/main.yml");
 
 const testimonialEntries = await getCollection("testimonials");
 const testimonials = testimonialEntries

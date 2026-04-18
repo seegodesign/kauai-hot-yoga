@@ -5,9 +5,10 @@ import logo from "../assets/logo.png";
 
 interface SiteHeaderProps {
   currentPath: string;
+  phone?: string;
 }
 
-export function SiteHeader({ currentPath }: SiteHeaderProps) {
+export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [experiencesDropdownOpen, setExperiencesDropdownOpen] = useState(false);
 
@@ -27,14 +28,16 @@ export function SiteHeader({ currentPath }: SiteHeaderProps) {
     { href: "/schedule", label: "Schedule" },
     { href: "/pricing", label: "Pricing" },
     { href: "/faq", label: "New Here?" },
+    { href: "/contact", label: "Contact" },
   ];
 
   const isExperiencesActive = experiencesLinks.some((link) => currentPath === link.href);
 
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-soft-purple sticky top-0 z-40">
+
       <nav className="container mx-auto">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between px-6">
           <a href="/" className="flex items-center space-x-2">
             <img src={logo.src} alt="Kauai Hot Yoga" className="h-20" />
           </a>
@@ -167,6 +170,13 @@ export function SiteHeader({ currentPath }: SiteHeaderProps) {
           )}
         </AnimatePresence>
       </nav>
+      {/* {phone && (
+        <div className="bg-purple text-white text-sm py-2 text-center">
+          <a href={`tel:${phone.replace(/\D/g, "")}`} className="hover:underline font-medium tracking-wide">
+            {phone}
+          </a>
+        </div>
+      )} */}
     </header>
   );
 }

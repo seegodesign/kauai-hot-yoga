@@ -21,15 +21,17 @@ export function FAQPage({ categories }: FAQPageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-20 overflow-hidden min-h-[95vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('/images/faq-hero.jpg')",
+              "url('/images/beach.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-purple/60" />
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-orange/30 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-light/40 rounded-full blur-3xl" />
         </div>
         <div className="relative container mx-auto px-4 text-center">
           <motion.h1
@@ -52,10 +54,6 @@ export function FAQPage({ categories }: FAQPageProps) {
 
       {/* Quick Start Guide */}
       <section className="relative py-20 overflow-hidden bg-white">
-        {/* Background sun glow */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none opacity-20"
-          style={{ background: "radial-gradient(circle, #FFC857 0%, #F79E44 60%, transparent 100%)" }} />
-
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
@@ -167,9 +165,6 @@ export function FAQPage({ categories }: FAQPageProps) {
       <section className="relative py-28 overflow-hidden text-white">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/hot-yoga-class.jpg')" }} />
         <div className="absolute inset-0 bg-gradient-to-br from-purple-dark via-purple to-orange opacity-80" />
-        <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)", backgroundSize: "60px 60px" }}
-        />
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-orange/30 rounded-full blur-3xl" />
         <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-light/40 rounded-full blur-3xl" />
         <div className="relative container mx-auto px-4 text-center">

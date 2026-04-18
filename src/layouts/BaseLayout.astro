@@ -2,6 +2,7 @@
 import { getEntry } from "astro:content";
 import logo from "../assets/logo-light.png";
 import { SiteHeader } from "../components/site-header";
+import { NewClientPopup } from "../components/new-client-popup";
 import "../styles/index.css";
 
 interface Props {
@@ -18,7 +19,9 @@ const {
   currentPath,
 } = Astro.props;
 
-const settings = (await getEntry("settings", "main")).data;
+const settingsEntry = await getEntry("settings", "main");
+if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
+const settings = settingsEntry.data;
 
 const SITE_URL = "https://www.kauaihotyoga.com";
 const canonicalURL = new URL(currentPath, SITE_URL).href;
@@ -102,7 +105,8 @@ const localBusinessSchema = {
   </head>
   <body>
     <div class="min-h-screen flex flex-col">
-      <SiteHeader currentPath={currentPath} client:load />
+      <SiteHeader currentPath={currentPath} phone={settings.phone} client:load />
+      <NewClientPopup client:load />
 
       <main class="flex-grow">
         <slot />
@@ -156,111 +160,27 @@ const localBusinessSchema = {
               </div>
             </div>
           </div>
-          <div class="mt-12 pt-8 border-t border-white/10 text-center text-sm text-white/40">
-            © 2026 {settings.studio_name}. All rights reserved.
-            <span class="block mt-1">Website by <a href="https://seegodesign.com" target="_blank" rel="noopener noreferrer" class="hover:text-white/70 transition-colors">Seego Design</a></span>
+          <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/40">
+            <span>© 2026 {settings.studio_name}. All rights reserved.</span>
+            <div class="flex items-center gap-4">
+              {settings.social?.instagram && (
+                <a href={settings.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-white/80 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+              )}
+              {settings.social?.facebook && (
+                <a href={settings.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-white/80 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+              )}
+            </div>
+            <span>Website by <a href="https://seegodesign.com" target="_blank" rel="noopener noreferrer" class="hover:text-white/70 transition-colors">Seego Design</a></span>
           </div>
         </div>
       </footer>
     </div>
-  </body>
-</html>
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-
-    <!-- Canonical -->
-    <link rel="canonical" href={canonicalURL} />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Kauai Hot Yoga" />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImageURL} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={title} />
-    <meta property="og:locale" content="en_US" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImageURL} />
-    <meta name="twitter:image:alt" content={title} />
-
-    <!-- Local Business structured data -->
-    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
-  </head>
-  <body>
-    <div class="min-h-screen flex flex-col">
-      <SiteHeader currentPath={currentPath} client:load />
-
-      <main class="flex-grow">
-        <slot />
-      </main>
-
-      <div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-soft-purple z-40">
-        <div class="flex items-center justify-around py-3">
-          <a href="/schedule" class="flex flex-col items-center space-y-1 text-purple">
-            <span class="text-xs">Schedule</span>
-          </a>
-          <a href="/pricing" class="flex flex-col items-center space-y-1 bg-orange text-white px-6 py-2 rounded-full">
-            <span class="text-sm">Book</span>
-          </a>
-          <a href="/pricing" class="flex flex-col items-center space-y-1 text-purple">
-            <span class="text-xs">Pricing</span>
-          </a>
-        </div>
-      </div>
-
-      <footer class="bg-purple-dark text-white/80 py-12 mb-20 lg:mb-0">
-        <div class="container mx-auto px-4">
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-                <img src={logo.src} alt="Kauai Hot Yoga" class="h-12 mb-4" />
-              <p class="text-sm text-white/60">
-                Find your flow in paradise. Hot yoga, breathwork, and recovery experiences.
-              </p>
-            </div>
-            <div>
-              <h4 class="text-white mb-4 text-sm">Quick Links</h4>
-              <div class="space-y-2">
-                <a href="/classes" class="block text-sm hover:text-white transition-colors">Classes</a>
-                <a href="/schedule" class="block text-sm hover:text-white transition-colors">Schedule</a>
-                <a href="/pricing" class="block text-sm hover:text-white transition-colors">Pricing</a>
-              </div>
-            </div>
-            <div>
-              <h4 class="text-white mb-4 text-sm">Experiences</h4>
-              <div class="space-y-2">
-                <a href="/breathwork" class="block text-sm hover:text-white transition-colors">9D Breathwork</a>
-                <a href="/cold-plunge" class="block text-sm hover:text-white transition-colors">Cold Plunge</a>
-                <a href="/workshops" class="block text-sm hover:text-white transition-colors">Workshops</a>
-              </div>
-            </div>
-            <div>
-              <h4 class="text-white mb-4 text-sm">Visit Us</h4>
-              <div class="space-y-2 text-sm">
-                <p>3-3122 Kuhio Highway,<br/> Lihue, Hawaii</p>
-                <p>info@kauaihotyoga.com</p>
-                <p>(804) 615-3678</p>
-              </div>
-            </div>
-          </div>
-          <div class="mt-12 pt-8 border-t border-white/10 text-center text-sm text-white/40">
-            © 2026 Kauai Hot Yoga. All rights reserved.
-            <span class="block mt-1">Website by <a href="https://seegodesign.com" target="_blank" rel="noopener noreferrer" class="hover:text-white/70 transition-colors">Seego Design</a></span>
-          </div>
-        </div>
-      </footer>
-    </div>
+    <!-- GHL Chat Widget -->
+    <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="69e2ffb506d5d53073b74b7d" is:inline></script>
   </body>
 </html>

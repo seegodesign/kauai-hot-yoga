@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import { Flame, Wind, Snowflake, Users, ArrowRight, Star, type LucideIcon } from "lucide-react";
+import { Flame, Wind, Snowflake, Users, ArrowRight, Star, ChevronDown, type LucideIcon } from "lucide-react";
 import GoogleLogo from "../../assets/google-logo.svg?react";
 import YelpLogo from "../../assets/yelp-logo.svg?react";
 
@@ -43,6 +43,17 @@ interface HomePageProps {
   offerings: HomeOffering[];
 }
 
+// Curved wave divider between sections
+function WaveDivider({ fill }: { fill: string }) {
+  return (
+    <div className="absolute bottom-0 left-0 right-0 z-10">
+      <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-16 block">
+        <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill={fill} />
+      </svg>
+    </div>
+  );
+}
+
 // Map offering slugs to their fixed visual config (icon + color)
 const offeringMeta: Record<string, { icon: LucideIcon; color: string }> = {
   "yoga-classes": { icon: Flame, color: "text-orange" },
@@ -65,7 +76,7 @@ export function HomePage({ content, testimonials, offerings }: HomePageProps) {
     target: sunRef,
     offset: ["start end", "end start"],
   });
-  const sunScale = useTransform(sunProgress, [0, 0.4, 1], [0.6, 1, 1]);
+  const sunScale = useTransform(sunProgress, [0, 0.5, 1], [0.6, 1, 0.6]);
   const sunRotation = useTransform(sunProgress, [0, 1], [0, 72]);
 
   // Enrich offerings with their visual meta
@@ -77,7 +88,7 @@ export function HomePage({ content, testimonials, offerings }: HomePageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} className="relative h-[95vh] flex items-center justify-center overflow-hidden">
         <video
           className="fixed inset-0 w-full h-full object-cover -z-10"
           src="/video/yoga.mov"
@@ -97,27 +108,25 @@ export function HomePage({ content, testimonials, offerings }: HomePageProps) {
           <div className="flex flex-col items-center mb-6">
             <div className="flex items-center gap-6 flex-wrap justify-center">
               {/* Google */}
-              <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2">
+              <a href="https://www.google.com/search?sca_esv=ba43fa757c43458e&rlz=1C5CHFA_enUS1024US1024&sxsrf=ANbL-n42RLQOwyaPETwI7YPAe1OvX9guaA:1776481784996&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOa1fZxaAPArwL4LmXRRjqdZ0fmXYn6Wv2wTW6vhTPblnUntpWtzA8RiXUA_P7JfKvqg_tiJ8uGQXHVnMlzrPlARO6fqx&q=Kauai+Hot+Yoga+Reviews&sa=X&ved=2ahUKEwjhn_qttvaTAxUske4BHTnYNV8Q0bkNegQITxAH&biw=1728&bih=963&dpr=2" target="_blank" className="flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 hover:bg-white/25 transition-colors">
                 <GoogleLogo className="w-4 h-4 flex-shrink-0" />
                 <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={12} className="fill-orange text-orange" />
                   ))}
                 </div>
-                <span className="text-sm font-semibold text-white">4.9</span>
                 <span className="text-xs text-white/70">Google</span>
-              </div>
+              </a>
               {/* Yelp */}
-              <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2">
+              <a href="https://www.yelp.com/biz/kauai-hot-yoga-lihue" target="_blank" className="flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 hover:bg-white/25 transition-colors">
                 <YelpLogo className="w-4 h-4 flex-shrink-0" />
                 <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={12} className="fill-orange text-orange" />
                   ))}
                 </div>
-                <span className="text-sm font-semibold text-white">4.9</span>
                 <span className="text-xs text-white/70">Yelp</span>
-              </div>
+              </a>
             </div>
           </div>
           <motion.h1
@@ -155,11 +164,28 @@ export function HomePage({ content, testimonials, offerings }: HomePageProps) {
               {content.cta_secondary.text}
             </a>
           </motion.div>
+
+          {/* Scroll down chevron */}
+          <motion.button
+            aria-label="Scroll down"
+            onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+            className="absolute -bottom-20 left-1/2 -translate-x-1/2 text-white/70 hover:text-white transition-colors cursor-pointer"
+          >
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <ChevronDown size={36} strokeWidth={1.5} />
+            </motion.div>
+          </motion.button>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-soft-purple/30">
+      <section className="py-24 bg-white/60 backdrop-blur-md">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <motion.span
@@ -235,14 +261,12 @@ export function HomePage({ content, testimonials, offerings }: HomePageProps) {
       </section>
 
       {/* Explainer Section */}
-      <section ref={sunRef} className="relative py-20 min-h-[100vh] flex items-center overflow-hidden">
-        {/* Beach background */}
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/beach.jpg')" }} />
+      <section ref={sunRef} className="relative py-20 min-h-[100vh] flex items-center overflow-hidden" style={{ paddingBottom: '5rem' }}>
         {/* Light wash so text stays readable */}
-        <div className="absolute inset-0 bg-white/55" />
+        <div className="absolute inset-0 bg-white" />
         {/* Sun rays */}
         <motion.div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vmax] h-[200vmax] pointer-events-none"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vmax] h-[200vmax] pointer-events-none opacity-40"
           style={{
             background: "repeating-conic-gradient(rgba(255, 200, 87, 0.18) 0deg 12deg, transparent 12deg 24deg)",
             rotate: sunRotation,
@@ -250,8 +274,8 @@ export function HomePage({ content, testimonials, offerings }: HomePageProps) {
         />
         {/* Sun disk */}
         <motion.div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(circle, #ffd684 0%, #F79E44 55%, #FFC857 100%)", opacity: 0.8, scale: sunScale }}
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full pointer-events-none shadow-[0_0_20px_rgba(247,158,68,0.6)]"
+          style={{ background: "radial-gradient(circle, #ffdd98 0%, #ffb657 100%)", opacity: 0.8, scale: sunScale }}
         />
         <div className="container mx-auto px-4">
           <motion.div
@@ -289,7 +313,7 @@ export function HomePage({ content, testimonials, offerings }: HomePageProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-6xl text-purple-dark mb-5 font-bold"
+              className="text-5xl md:text-6xl text-purple mb-5 font-bold"
             >What We Offer</motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -302,7 +326,7 @@ export function HomePage({ content, testimonials, offerings }: HomePageProps) {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {enrichedOfferings.map((offering, index) => (
               <motion.div
                 key={offering.title}
@@ -350,10 +374,11 @@ export function HomePage({ content, testimonials, offerings }: HomePageProps) {
             ))}
           </div>
         </div>
+        <WaveDivider fill="white" />
       </section>
 
       {/* New Here Section */}
-      <section className="py-20 bg-white">
+      <section className="relative py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

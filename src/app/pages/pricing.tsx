@@ -115,9 +115,9 @@ export function PricingPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
             backgroundImage:
               "url('/images/hero-main.jpg')",
@@ -141,59 +141,6 @@ export function PricingPage() {
           >
             Find the perfect option for your practice
           </motion.p>
-        </div>
-      </section>
-
-      {/* Nav + New Student Offer */}
-      <section className="py-10 bg-warm-cream">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 items-stretch">
-            {/* Internal section links */}
-            <div className="flex flex-col justify-center gap-3 md:w-1/2">
-              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Jump to</p>
-              {[
-                { href: "#drop-in", label: "Drop-In Options" },
-                { href: "#class-packs", label: "Class Packs" },
-                { href: "#memberships", label: "Monthly Memberships" },
-                { href: "#add-ons", label: "Add-On Experiences" },
-              ].map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="flex items-center gap-2 text-purple-dark hover:text-purple transition-colors text-base font-medium group"
-                >
-                  <span className="w-5 h-5 rounded-full bg-soft-purple group-hover:bg-purple transition-colors flex items-center justify-center">
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2 5h6M5 2l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-purple group-hover:text-white transition-colors" />
-                    </svg>
-                  </span>
-                  {link.label}
-                </a>
-              ))}
-            </div>
-
-            {/* New Student Offer */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="md:w-1/2 bg-gradient-to-r from-orange to-purple text-white rounded-2xl p-8 text-center flex flex-col items-center justify-center"
-            >
-              <div className="flex items-center justify-center mb-4">
-                <Sparkles size={32} />
-              </div>
-              <h2 className="text-white mb-4">New Student Offer</h2>
-              <p className="text-white/90 text-lg mb-6">
-                Get <span className="text-2xl">10% off</span> your first class or intro package
-              </p>
-              <button
-                onClick={handleBuyNow}
-                className="bg-white text-purple px-8 py-3 rounded-full hover:bg-warm-cream transition-colors"
-              >
-                Claim Your Discount
-              </button>
-            </motion.div>
-          </div>
         </div>
       </section>
 
