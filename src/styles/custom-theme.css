@@ -11,7 +11,9 @@
   --color-sunset-yellow: #FFC857;
   --color-warm-cream: #FFF8F0;
   --color-soft-purple: #E8D4F0;
-  
+  --color-mist: #F5EDF9;
+  --color-sunset: #F79E44;
+
   /* Override default theme colors */
   --background: #FFFFFF;
   --foreground: #2A2A2A;
@@ -23,7 +25,7 @@
   --muted-foreground: #6B6B6B;
   --accent: #F79E44;
   --accent-foreground: #FFFFFF;
-  
+
   /* Border radius for softer feel */
   --radius: 0.75rem;
 }
@@ -38,6 +40,13 @@
   --color-sunset-yellow: #FFC857;
   --color-warm-cream: #FFF8F0;
   --color-soft-purple: #E8D4F0;
+  --color-purple-dark: #4A1F56;
+  --color-mist: #F5EDF9;
+  --color-purple-light: #8B4DA0;
+  --color-purple: #6B2D7D;
+  --color-warm-cream: #FFF8F0;
+  --color-soft-purple: #E8D4F0;
+  --color-sunset: #F79E44;
 }
 
 /* Global typography adjustments */

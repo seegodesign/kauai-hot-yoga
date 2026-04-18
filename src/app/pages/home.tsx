@@ -1,6 +1,6 @@
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
-import { Flame, Wind, Snowflake, Users, ArrowRight, Star, MapPin, Check, type LucideIcon } from "lucide-react";
+import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
+import { useRef, useState } from "react";
+import { Flame, Wind, Snowflake, Users, ArrowRight, Star, MapPin, Check, ChevronLeft, ChevronRight, type LucideIcon } from "lucide-react";
 import { ScrollChevron } from "../components/scroll-chevron";
 import GoogleLogo from "../../assets/google-logo.svg?react";
 import YelpLogo from "../../assets/yelp-logo.svg?react";
@@ -44,6 +44,7 @@ interface HomePageProps {
   offerings: HomeOffering[];
   googleReviewUrl: string;
   yelpReviewUrl: string;
+  phone: string;
 }
 
 // Curved wave divider between sections
@@ -74,7 +75,120 @@ const offeringMeta: Record<string, { icon: LucideIcon; color: string }> = {
   "cold-plunge": { icon: Snowflake, color: "text-purple-light" },
 };
 
-export function HomePage({ content, testimonials, offerings, googleReviewUrl, yelpReviewUrl }: HomePageProps) {
+function TestimonialCard({ testimonial }: { testimonial: HomeTestimonial }) {
+  return (
+    <div className="bg-white rounded-2xl shadow-sm border border-soft-purple overflow-hidden flex flex-col h-full">
+      <div className="h-1.5 bg-gradient-to-r from-orange to-purple-light" />
+      <div className="p-8 flex flex-col flex-1">
+        <div className="inline-flex items-center gap-1.5 mb-4">
+          <span className="text-sm font-semibold text-orange uppercase tracking-wide">{testimonial.highlight}</span>
+        </div>
+        <p className="text-purple-dark/80 italic leading-relaxed flex-1 mb-6">"{testimonial.text}"</p>
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center gap-1">
+            {[...Array(testimonial.rating)].map((_, i) => (
+              <Star key={i} size={20} className="fill-orange text-orange" />
+            ))}
+          </div>
+          <div className="bg-soft-purple/50 px-3 py-1.5 rounded-full flex items-center">
+            {testimonial.source === "Google" ? (
+              <GoogleLogo className="w-3.5 h-3.5" />
+            ) : (
+              <YelpLogo className="w-3.5 h-3.5" />
+            )}
+          </div>
+        </div>
+        <div className="flex items-center gap-3 pt-4 border-t border-soft-purple">
+          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-orange to-purple-light flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+            {testimonial.name.charAt(0)}
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-purple-dark">{testimonial.name}</p>
+            <p className="text-xs text-muted-foreground">{testimonial.location}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const CARDS_PER_PAGE = 3;
+
+function TestimonialsCarousel({ testimonials }: { testimonials: HomeTestimonial[] }) {
+  const [page, setPage] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const totalPages = Math.ceil(testimonials.length / CARDS_PER_PAGE);
+
+  const go = (next: number) => {
+    setDirection(next > page ? 1 : -1);
+    setPage(next);
+  };
+  const prev = () => go((page - 1 + totalPages) % totalPages);
+  const next = () => go((page + 1) % totalPages);
+
+  const visible = testimonials.slice(page * CARDS_PER_PAGE, page * CARDS_PER_PAGE + CARDS_PER_PAGE);
+
+  const variants = {
+    enter: (d: number) => ({ opacity: 0, x: d * 60 }),
+    center: { opacity: 1, x: 0 },
+    exit: (d: number) => ({ opacity: 0, x: d * -60 }),
+  };
+
+  return (
+    <div className="max-w-6xl mx-auto">
+      <div className="relative">
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={page}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
+            {visible.map((t, i) => (
+              <TestimonialCard key={i} testimonial={t} />
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Controls */}
+      <div className="flex items-center justify-center gap-6 mt-10">
+        <button
+          onClick={prev}
+          aria-label="Previous reviews"
+          className="w-10 h-10 rounded-full border border-soft-purple bg-white hover:bg-soft-purple/30 flex items-center justify-center transition-colors text-purple-dark"
+        >
+          <ChevronLeft size={20} />
+        </button>
+
+        <div className="flex items-center gap-2">
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => go(i)}
+              aria-label={`Go to page ${i + 1}`}
+              className={`rounded-full transition-all ${i === page ? "w-6 h-2.5 bg-orange" : "w-2.5 h-2.5 bg-soft-purple hover:bg-purple-light"}`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={next}
+          aria-label="Next reviews"
+          className="w-10 h-10 rounded-full border border-soft-purple bg-white hover:bg-soft-purple/30 flex items-center justify-center transition-colors text-purple-dark"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export function HomePage({ content, testimonials, offerings, googleReviewUrl, yelpReviewUrl, phone }: HomePageProps) {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -153,19 +267,19 @@ export function HomePage({ content, testimonials, offerings, googleReviewUrl, ye
           </motion.div>
 
           {/* Phone number */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-8"
           >
             <a
-              href="tel:+18046153678"
+              href={`tel:${phone}`}
               className="text-white/70 hover:text-white text-sm tracking-wide transition-colors"
             >
-              (804) 615-3678
+              {phone}
             </a>
-          </motion.div>
+          </motion.div> */}
 
           {/* Scroll down chevron */}
           <ScrollChevron className="absolute -bottom-20 left-1/2 -translate-x-1/2" />
@@ -198,85 +312,7 @@ export function HomePage({ content, testimonials, offerings, googleReviewUrl, ye
             >Real stories from our community</motion.p>
           </div>
 
-          {/* Ratings */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex flex-row gap-2 width-full justify-center mb-12"
-          >
-            {/* Google */}
-            <a href={googleReviewUrl} target="_blank" className="flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 hover:bg-white/25 transition-colors">
-              <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-                <GoogleLogo className="w-3.5 h-3.5" />
-              </div>
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="fill-orange text-orange" />
-                ))}
-              </div>
-            </a>
-            {/* Yelp */}
-            <a href={yelpReviewUrl} target="_blank" className="flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 hover:bg-white/25 transition-colors">
-              <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-                <YelpLogo className="w-3.5 h-3.5" />
-              </div>
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="fill-orange text-orange" />
-                ))}
-              </div>
-            </a>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-2xl shadow-sm border border-soft-purple overflow-hidden flex flex-col"
-              >
-                {/* Top accent bar */}
-                <div className="h-1.5 bg-gradient-to-r from-orange to-purple-light" />
-                <div className="p-8 flex flex-col flex-1">
-                  {/* Highlight pill */}
-                  <div className="inline-flex items-center gap-1.5 mb-4">
-                    <span className="text-sm font-semibold text-orange uppercase tracking-wide">{testimonial.highlight}</span>
-                  </div>
-                  <p className="text-purple-dark/80 italic leading-relaxed flex-1 mb-6">"{testimonial.text}"</p>
-
-                  {/* Stars + source */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="flex items-center gap-1">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} size={24} className="fill-orange text-orange" />
-                      ))}
-                    </div>
-                    <div className="bg-soft-purple/50 px-3 py-1.5 rounded-full flex items-center">
-                      {testimonial.source === "Google" ? (
-                        <GoogleLogo className="w-3.5 h-3.5" />
-                      ) : (
-                        <YelpLogo className="w-3.5 h-3.5" />
-                      )}
-                    </div>
-                  </div>
-                  {/* Author */}
-                  <div className="flex items-center gap-3 pt-4 border-t border-soft-purple">
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-orange to-purple-light flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                      {testimonial.name.charAt(0)}
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-purple-dark">{testimonial.name}</p>
-                      <p className="text-xs text-muted-foreground">{testimonial.location}</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <TestimonialsCarousel testimonials={testimonials} />
         </div>
       </section>
 
@@ -285,13 +321,13 @@ export function HomePage({ content, testimonials, offerings, googleReviewUrl, ye
         {/* Light wash so text stays readable */}
         <div className="absolute inset-0 bg-white" />
         {/* Sun rays */}
-        <motion.div
+        {/* <motion.div
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vmax] h-[200vmax] pointer-events-none opacity-40"
           style={{
             background: "repeating-conic-gradient(rgba(255, 200, 87, 0.18) 0deg 12deg, transparent 12deg 24deg)",
             rotate: sunRotation,
           }}
-        />
+        /> */}
         {/* Sun disk */}
         <motion.div
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full pointer-events-none shadow-[0_0_20px_rgba(247,158,68,0.6)]"
@@ -557,8 +593,14 @@ export function HomePage({ content, testimonials, offerings, googleReviewUrl, ye
               >
                 <span className="inline-block text-orange font-semibold tracking-widest uppercase text-xs mb-3">Our Purpose</span>
                 <h3 className="text-2xl text-purple-dark font-bold mb-5">Our Mission</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed mb-5">
                   At Kauai Hot Yoga, our mission is to heal, empower, and connect people to the joy, beauty, and purpose of their own unique lives and experiences — through the various practices of yoga.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mb-5">
+                  We believe in the transformative power of yoga to cultivate self-love, confidence, resilience, and compassion. We are dedicated to creating a welcoming, inclusive, and supportive community space where everyone can explore and deepen their practice — whether you're a local looking for a consistent studio home or a visitor seeking the best yoga experience on Kauai.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mb-5">
+                  Our commitment is to provide exceptional instruction, a serene environment, and a vibrant community that inspires growth on and off the mat.
                 </p>
               </motion.div>
             </div>

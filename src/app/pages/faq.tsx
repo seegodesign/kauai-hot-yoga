@@ -23,7 +23,7 @@ export function FAQPage({ categories, phone, email }: FAQPageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden min-h-[70vh] flex items-center">
+      <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
@@ -188,7 +188,7 @@ export function FAQPage({ categories, phone, email }: FAQPageProps) {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="/pricing"
+                href="/prices"
                 className="bg-white text-purple font-semibold px-9 py-4 rounded-full hover:bg-warm-cream hover:scale-105 transition-all shadow-lg"
               >
                 View Intro Offers
@@ -217,17 +217,17 @@ export function FAQPage({ categories, phone, email }: FAQPageProps) {
                 <p className="text-sm text-muted-foreground mb-1">Call Us</p>
                 <a
                   href={`tel:${phone.replace(/\D/g, "")}`}
-                  className="text-purple hover:text-ocean transition-colors"
+                  className="text-purple hover:text-purple-light transition-colors"
                 >
                   {phone}
                 </a>
               </div>
-              <div className="hidden sm:block text-sand-dark">|</div>
+              <div className="hidden sm:block text-soft-purple">|</div>
               <div>
                 <p className="text-sm text-muted-foreground mb-1">Email Us</p>
                 <a
                   href={`mailto:${email}`}
-                  className="text-purple hover:text-ocean transition-colors"
+                  className="text-purple hover:text-purple-light transition-colors"
                 >
                   {email}
                 </a>

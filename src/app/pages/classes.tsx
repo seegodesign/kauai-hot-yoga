@@ -1,55 +1,27 @@
 import { ClassCard } from "../components/class-card";
 import { motion } from "motion/react";
 
-export function ClassesPage() {
-  const classes = [
-    {
-      title: "Hot 26 & 2",
-      description:
-        "Traditional Bikram-style sequence of 26 postures and 2 breathing exercises. Perfect for beginners and those seeking a structured practice.",
-      intensity: "Medium" as const,
-      duration: "90 minutes",
-      image: "/images/class-hot-26.jpg",
-    },
-    {
-      title: "Power Flow",
-      description:
-        "Dynamic vinyasa flow that builds strength and flexibility. Creative sequencing set to curated playlists in a heated room.",
-      intensity: "High" as const,
-      duration: "60 minutes",
-      image: "/images/class-yin-restore.jpg",
-    },
-    {
-      title: "Yin & Restore",
-      description:
-        "Slow-paced class with passive holds targeting deep connective tissue. Gentle heat promotes relaxation and release.",
-      intensity: "Low" as const,
-      duration: "75 minutes",
-      image: "/images/class-power-flow.jpg",
-    },
-    {
-      title: "Hot Hatha",
-      description:
-        "Alignment-focused class exploring foundational poses with longer holds. Build strength and deepen your understanding of asana.",
-      intensity: "Medium" as const,
-      duration: "60 minutes",
-      image: "/images/class-hatha.jpg",
-    },
-    {
-      title: "Sunrise Flow",
-      description:
-        "Energizing morning practice to awaken the body. Moderate heat with emphasis on breathwork and intention setting.",
-      intensity: "Medium" as const,
-      duration: "60 minutes",
-    },
-    {
-      title: "Core & Flow",
-      description:
-        "Challenging class focused on core strength and stability. Expect planks, twists, and creative transitions.",
-      intensity: "High" as const,
-      duration: "60 minutes",
-    },
-  ];
+export interface ClassEntry {
+  name: string;
+  description: string;
+  duration?: string;
+  intensity?: "Gentle" | "Moderate" | "Intense";
+  heat?: boolean;
+  image?: string;
+  order?: number;
+}
+
+interface ClassesPageProps {
+  classes: ClassEntry[];
+}
+
+const intensityMap = {
+  Gentle: "Low",
+  Moderate: "Medium",
+  Intense: "High",
+} as const;
+
+export function ClassesPage({ classes }: ClassesPageProps) {
 
   return (
     <div className="min-h-screen">
@@ -59,7 +31,7 @@ export function ClassesPage() {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('/images/classes-hero.jpg')",
+              "url('/images/studio-interior.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-purple-dark/70" />
@@ -96,13 +68,19 @@ export function ClassesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {classes.map((classItem, index) => (
               <motion.div
-                key={classItem.title}
+                key={classItem.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
               >
-                <ClassCard {...classItem} />
+                <ClassCard
+                  title={classItem.name}
+                  description={classItem.description}
+                  intensity={intensityMap[classItem.intensity ?? "Moderate"]}
+                  duration={classItem.duration}
+                  image={classItem.image || undefined}
+                />
               </motion.div>
             ))}
           </div>
@@ -163,7 +141,7 @@ export function ClassesPage() {
               View Schedule
             </a>
             <a
-              href="/pricing"
+              href="/prices"
               className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white/10 transition-colors"
             >
               View Pricing

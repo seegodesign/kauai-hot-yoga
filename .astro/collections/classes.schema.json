@@ -1,0 +1,49 @@
+{
+  "$ref": "#/definitions/classes",
+  "definitions": {
+    "classes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "string",
+          "default": ""
+        },
+        "intensity": {
+          "type": "string",
+          "enum": [
+            "Gentle",
+            "Moderate",
+            "Intense"
+          ]
+        },
+        "heat": {
+          "type": "boolean",
+          "default": true
+        },
+        "image": {
+          "type": "string",
+          "default": ""
+        },
+        "order": {
+          "type": "number",
+          "default": 0
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "description"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

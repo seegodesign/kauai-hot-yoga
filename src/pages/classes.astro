@@ -1,6 +1,12 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { ClassesPage } from "../app/pages/classes";
+
+const classEntries = await getCollection("classes");
+const classes = classEntries
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => e.data);
 ---
 
 <BaseLayout
@@ -8,5 +14,5 @@ import { ClassesPage } from "../app/pages/classes";
   description="Explore our hot yoga class styles — Hot 26 & 2, Power Flow, Yin & Restore, and more — at our Lihue, Kauai studio. All levels welcome."
   ogImage="/images/classes-hero.jpg"
   currentPath="/classes">
-  <ClassesPage client:load />
+  <ClassesPage classes={classes} client:load />
 </BaseLayout>

@@ -55,13 +55,13 @@ export function BreathworkPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
             backgroundImage:
               "url('/images/9d-breathwork.jpg')",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-lava/70 via-lava/50 to-lava/70" />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <motion.div
@@ -75,7 +75,7 @@ export function BreathworkPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-white mb-6"
+            className="text-white text-6xl font-bold mb-6"
           >
             9D Breathwork Journey
           </motion.h1>
@@ -88,18 +88,6 @@ export function BreathworkPage() {
             A transformative somatic breathwork experience using hypnotic breathwork,
             binaural beats, solfeggio frequencies, and guided visualization
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <a
-              href="/pricing"
-              className="bg-white text-ocean-dark px-8 py-4 rounded-full hover:bg-sand transition-colors inline-block"
-            >
-              Book a Session
-            </a>
-          </motion.div>
         </div>
       </section>
 
@@ -113,7 +101,7 @@ export function BreathworkPage() {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-lava mb-6">What is 9D Breathwork?</h2>
+              <h2 className="text-purple-dark mb-6">What is 9D Breathwork?</h2>
               <p className="text-lg text-muted-foreground mb-6">
                 9D Breathwork is a multi-dimensional approach to healing that combines ancient
                 breathwork practices with modern neuroscience and sound technology.
@@ -135,8 +123,8 @@ export function BreathworkPage() {
                   transition={{ delay: index * 0.1 }}
                   className="bg-mist p-8 rounded-2xl"
                 >
-                  <benefit.icon size={40} className="text-ocean-dark mb-4" />
-                  <h3 className="text-lava mb-3">{benefit.title}</h3>
+                  <benefit.icon size={40} className="text-purple mb-4" />
+                  <h3 className="text-purple-dark mb-3">{benefit.title}</h3>
                   <p className="text-muted-foreground">{benefit.description}</p>
                 </motion.div>
               ))}
@@ -149,7 +137,7 @@ export function BreathworkPage() {
       <section className="py-20 bg-mist">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-lava text-center mb-12">Session Options</h2>
+            <h2 className="text-purple-dark text-center mb-12">Session Options</h2>
             <div className="space-y-6">
               {sessions.map((session, index) => (
                 <motion.div
@@ -158,11 +146,11 @@ export function BreathworkPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white p-8 rounded-2xl border border-sand-dark hover:shadow-lg transition-shadow"
+                  className="bg-white p-8 rounded-2xl border border-soft-purple hover:shadow-lg transition-shadow"
                 >
                   <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between">
                     <div className="flex-1 mb-6 lg:mb-0">
-                      <h3 className="text-lava mb-2">{session.title}</h3>
+                      <h3 className="text-purple-dark mb-2">{session.title}</h3>
                       <div className="flex flex-wrap gap-4 mb-4 text-sm text-muted-foreground">
                         <span>{session.duration}</span>
                         {session.schedule && (
@@ -178,8 +166,8 @@ export function BreathworkPage() {
                       <p className="text-muted-foreground">{session.description}</p>
                     </div>
                     <div className="flex flex-col items-start lg:items-end space-y-3">
-                      <div className="text-3xl text-ocean-dark">{session.price}</div>
-                      <button className="bg-ocean-dark text-white px-6 py-2 rounded-full hover:bg-ocean transition-colors">
+                      <div className="text-3xl text-purple">{session.price}</div>
+                      <button className="bg-purple text-white px-6 py-2 rounded-full hover:bg-purple-light transition-colors">
                         Book Now
                       </button>
                     </div>
@@ -195,10 +183,10 @@ export function BreathworkPage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-lava text-center mb-12">What to Expect</h2>
+            <h2 className="text-purple-dark text-center mb-12">What to Expect</h2>
             <div className="space-y-8">
               <div className="bg-mist p-8 rounded-2xl">
-                <h3 className="text-lava mb-3">Before Your Session</h3>
+                <h3 className="text-purple-dark mb-3">Before Your Session</h3>
                 <p className="text-muted-foreground">
                   Avoid heavy meals 2-3 hours before. Wear comfortable clothing. Come with an
                   open mind and be prepared to let go. We'll provide everything else you need
@@ -206,7 +194,7 @@ export function BreathworkPage() {
                 </p>
               </div>
               <div className="bg-mist p-8 rounded-2xl">
-                <h3 className="text-lava mb-3">During the Experience</h3>
+                <h3 className="text-purple-dark mb-3">During the Experience</h3>
                 <p className="text-muted-foreground">
                   You'll lie down in a comfortable position with headphones. The facilitator
                   will guide you through the breathing technique, then you'll journey through
@@ -215,7 +203,7 @@ export function BreathworkPage() {
                 </p>
               </div>
               <div className="bg-mist p-8 rounded-2xl">
-                <h3 className="text-lava mb-3">After Integration</h3>
+                <h3 className="text-purple-dark mb-3">After Integration</h3>
                 <p className="text-muted-foreground">
                   Take time to integrate your experience. Drink plenty of water, journal if
                   desired, and be gentle with yourself. Many people report feeling lighter,
@@ -228,7 +216,7 @@ export function BreathworkPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-ocean-dark to-ocean text-white">
+      <section className="py-20 bg-gradient-to-br from-purple to-purple-light text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -243,7 +231,7 @@ export function BreathworkPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <a
                 href="/schedule"
-                className="bg-white text-ocean-dark px-8 py-4 rounded-full hover:bg-sand transition-colors"
+                className="bg-white text-purple px-8 py-4 rounded-full hover:bg-warm-cream transition-colors"
               >
                 View Available Times
               </a>

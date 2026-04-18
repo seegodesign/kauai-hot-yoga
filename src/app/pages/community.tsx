@@ -70,7 +70,7 @@ export function CommunityPage({ members }: CommunityPageProps) {
                     className="bg-white rounded-2xl overflow-hidden shadow-sm border border-soft-purple flex flex-col"
                   >
                     {/* Photo */}
-                    <div className="relative h-64 bg-soft-purple overflow-hidden">
+                    <div className="relative h-96 bg-soft-purple overflow-hidden">
                       {member.photo ? (
                         <img
                           src={member.photo}

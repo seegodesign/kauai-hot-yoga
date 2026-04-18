@@ -28,8 +28,9 @@ const offerings = offeringEntries
     content={homeEntry.data}
     testimonials={testimonials}
     offerings={offerings}
-    googleReviewUrl={settingsEntry.data.google_review_url ?? ""}
-    yelpReviewUrl={settingsEntry.data.yelp_review_url ?? ""}
+    googleReviewUrl={settingsEntry.data.social?.google_review_url ?? ""}
+    yelpReviewUrl={settingsEntry.data.social?.yelp_review_url ?? ""}
+    phone={settingsEntry.data.phone ?? ""}
     client:load
   />
 </BaseLayout>

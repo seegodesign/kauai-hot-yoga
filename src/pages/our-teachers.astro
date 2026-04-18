@@ -1,0 +1,17 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { TeachersPage } from "../app/pages/teachers";
+
+const teacherEntries = await getCollection("teachers");
+const teachers = teacherEntries
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => e.data);
+---
+
+<BaseLayout
+  title="Our Teachers | Kauai Hot Yoga"
+  description="Meet the certified hot yoga instructors at Kauai Hot Yoga in Lihue, Hawaii. Experienced teachers in Bikram, Vinyasa, Pilates, breathwork, and more."
+  currentPath="/our-teachers">
+  <TeachersPage teachers={teachers} client:load />
+</BaseLayout>

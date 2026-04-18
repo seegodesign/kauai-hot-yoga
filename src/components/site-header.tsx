@@ -19,14 +19,14 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
 
   const experiencesLinks = [
     { href: "/workshops", label: "Workshops" },
-    { href: "/breathwork", label: "9D Breathwork" },
+    { href: "/9d-breathwork", label: "9D Breathwork" },
     { href: "/cold-plunge", label: "Cold Plunge" },
   ];
 
   const navLinks = [
     { href: "/classes", label: "Classes" },
     { href: "/schedule", label: "Schedule" },
-    { href: "/pricing", label: "Pricing" },
+    { href: "/prices", label: "Pricing" },
     { href: "/faq", label: "New Here?" },
   ];
 
@@ -84,7 +84,7 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
               )}
             </div>
             <a
-              href="/pricing"
+              href="/prices"
               className="bg-orange text-white px-6 py-2.5 rounded-full hover:bg-orange-dark transition-colors"
             >
               Book Now
@@ -159,7 +159,7 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
                 </div>
 
                 <a
-                  href="/pricing"
+                  href="/prices"
                   className="block bg-orange text-white px-6 py-3 rounded-full text-center hover:bg-orange-dark transition-colors"
                 >
                   Book Now

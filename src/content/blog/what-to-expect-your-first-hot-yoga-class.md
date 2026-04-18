@@ -38,4 +38,4 @@ We have showers available, and filtered water at the studio.
 
 ## Ready to Try?
 
-Check out our [New Client Offer](/pricing) — 3 classes for $59, designed specifically so you can ease in without commitment. We can't wait to practice with you.
+Check out our [New Client Offer](/prices) — 3 classes for $59, designed specifically so you can ease in without commitment. We can't wait to practice with you.

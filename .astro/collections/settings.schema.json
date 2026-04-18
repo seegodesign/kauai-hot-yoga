@@ -55,17 +55,17 @@
             "facebook": {
               "type": "string",
               "default": ""
+            },
+            "google_review_url": {
+              "type": "string",
+              "default": ""
+            },
+            "yelp_review_url": {
+              "type": "string",
+              "default": ""
             }
           },
           "additionalProperties": false
-        },
-        "google_review_url": {
-          "type": "string",
-          "default": ""
-        },
-        "yelp_review_url": {
-          "type": "string",
-          "default": ""
         },
         "$schema": {
           "type": "string"

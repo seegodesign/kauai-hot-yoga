@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { AboutPage } from "../app/pages/about";
+---
+
+<BaseLayout
+  title="About Us | Kauai Hot Yoga — Lihue, Hawaii"
+  description="Learn about Kauai Hot Yoga — our studio, infrared heating, cold plunge, yoga boutique, and mission to serve the Kauai community in Lihue, Hawaii."
+  currentPath="/our-studio">
+  <AboutPage client:load />
+</BaseLayout>

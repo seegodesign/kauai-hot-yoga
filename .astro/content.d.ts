@@ -172,6 +172,14 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
+"classes": Record<string, {
+  id: string;
+  body?: string;
+  collection: "classes";
+  data: InferEntrySchema<"classes">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
 "community": Record<string, {
   id: string;
   body?: string;
@@ -209,6 +217,14 @@ declare module 'astro:content' {
   body?: string;
   collection: "settings";
   data: InferEntrySchema<"settings">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"teachers": Record<string, {
+  id: string;
+  body?: string;
+  collection: "teachers";
+  data: InferEntrySchema<"teachers">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;

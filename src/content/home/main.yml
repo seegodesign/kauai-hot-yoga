@@ -5,7 +5,7 @@ cta_primary:
   href: /schedule
 cta_secondary:
   text: Book Your First Class
-  href: /pricing
+  href: /prices
 explainer_heading: 'Kauai Hot Yoga: a space to reset — physically, mentally, and emotionally.'
 explainer_paragraphs:
   - Whether you're brand new or experienced, our heated classes help you build strength, increase flexibility, and release stress in a supportive, welcoming environment.
@@ -17,4 +17,4 @@ cta_strip_primary:
   href: /schedule
 cta_strip_secondary:
   text: Buy a Pass
-  href: /pricing
+  href: /prices

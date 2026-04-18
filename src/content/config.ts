@@ -18,10 +18,10 @@ const settings = defineCollection({
       .object({
         instagram: z.string().optional().default(""),
         facebook: z.string().optional().default(""),
+        google_review_url: z.string().optional().default(""),
+        yelp_review_url: z.string().optional().default(""),
       })
       .optional(),
-    google_review_url: z.string().optional().default(""),
-    yelp_review_url: z.string().optional().default(""),
   }),
 });
 
@@ -103,4 +103,30 @@ const community = defineCollection({
   }),
 });
 
-export const collections = { settings, home, testimonials, offerings, faq, blog, community };
+const teachers = defineCollection({
+  type: "data",
+  schema: z.object({
+    name: z.string(),
+    title: z.string().optional().default(""),
+    bio: z.string(),
+    photo: z.string().optional().default(""),
+    specialties: z.array(z.string()).optional().default([]),
+    instagram: z.string().optional().default(""),
+    order: z.number().optional().default(0),
+  }),
+});
+
+const classes = defineCollection({
+  type: "data",
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    duration: z.string().optional().default(""),
+    intensity: z.enum(["Gentle", "Moderate", "Intense"]).optional(),
+    heat: z.boolean().optional().default(true),
+    image: z.string().optional().default(""),
+    order: z.number().optional().default(0),
+  }),
+});
+
+export const collections = { settings, home, testimonials, offerings, faq, blog, community, teachers, classes };

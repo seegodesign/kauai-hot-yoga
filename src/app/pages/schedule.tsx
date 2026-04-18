@@ -99,9 +99,6 @@ export function SchedulePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <button className="bg-white text-purple px-8 py-3 rounded-full hover:bg-warm-cream transition-colors">
-              Book a Class
-            </button>
           </motion.div>
         </div>
       </section>
@@ -209,34 +206,6 @@ export function SchedulePage() {
                   Cancel at least 12 hours before class to avoid being charged.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Special Classes Note */}
-      <section className="py-16 bg-soft-purple">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h3 className="text-purple-dark mb-4">Special Experiences</h3>
-            <p className="text-muted-foreground mb-6">
-              Our Saturday 9D Breathwork Journey and Sunday Community Classes offer unique
-              experiences beyond regular yoga classes. These sessions are included with
-              unlimited memberships or can be booked separately.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4">
-              <a
-                href="/breathwork"
-                className="text-purple hover:text-purple-light transition-colors text-sm"
-              >
-                Learn about 9D Breathwork →
-              </a>
-              <a
-                href="/pricing"
-                className="text-purple hover:text-purple-light transition-colors text-sm"
-              >
-                View Pricing Options →
-              </a>
             </div>
           </div>
         </div>
