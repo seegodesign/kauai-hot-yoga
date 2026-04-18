@@ -19,13 +19,10 @@ export function ClassCard({
   onClick,
 }: ClassCardProps) {
   const intensityColors = {
-    Low: "text-tropical-green bg-tropical-green/10",
-    Medium: "text-sunset bg-sunset/10",
-    High: "text-purple bg-purple/10",
+    Low: "text-green bg-green/10",
+    Medium: "text-orange-dark bg-orange-dark/10",
+    High: "text-red bg-red/10",
   };
-
-  const IntensityIcon =
-    intensity === "High" ? Flame : intensity === "Medium" ? Heart : Wind;
 
   return (
     <motion.div
@@ -48,8 +45,7 @@ export function ClassCard({
           <span
             className={`flex items-center space-x-1 px-3 py-1 rounded-full text-xs ${intensityColors[intensity]}`}
           >
-            <IntensityIcon size={14} />
-            <span>{intensity}</span>
+            <span>{intensity} intensity</span>
           </span>
         </div>
         <p className="text-muted-foreground text-sm mb-4">{description}</p>

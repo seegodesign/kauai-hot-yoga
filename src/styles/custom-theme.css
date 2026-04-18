@@ -13,6 +13,9 @@
   --color-soft-purple: #E8D4F0;
   --color-mist: #F5EDF9;
   --color-sunset: #F79E44;
+  --color-red: #E63946;
+  --color-green: #2A9D8F;
+  --color-blue: #1d7ad7;
 
   /* Override default theme colors */
   --background: #FFFFFF;
@@ -47,6 +50,9 @@
   --color-warm-cream: #FFF8F0;
   --color-soft-purple: #E8D4F0;
   --color-sunset: #F79E44;
+  --color-red: #E63946;
+  --color-green: #2A9D8F;
+  --color-blue: #1d7ad7;
 }
 
 /* Global typography adjustments */

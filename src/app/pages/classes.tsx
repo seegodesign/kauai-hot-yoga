@@ -1,5 +1,6 @@
 import { ClassCard } from "../components/class-card";
 import { motion } from "motion/react";
+import { useState } from "react";
 
 export interface ClassEntry {
   name: string;
@@ -22,6 +23,18 @@ const intensityMap = {
 } as const;
 
 export function ClassesPage({ classes }: ClassesPageProps) {
+  const [activeFilter, setActiveFilter] = useState<string>("All");
+
+  const filters: { label: string; value: string; active: string; inactive: string }[] = [
+    { label: "All Classes", value: "All",      active: "bg-purple text-white",                    inactive: "bg-soft-purple text-purple-dark hover:bg-purple/20" },
+    { label: "Gentle",      value: "Gentle",   active: "bg-green-500 text-white",                 inactive: "bg-green-100 text-green-700 hover:bg-green-200" },
+    { label: "Moderate",    value: "Moderate", active: "bg-orange-dark text-white",            inactive: "bg-orange-dark/10 text-orange hover:bg-yellow-200" },
+    { label: "Intense",     value: "Intense",  active: "bg-red text-white",                  inactive: "bg-red-100 text-red-700 hover:bg-red-200" },
+  ];
+
+  const filteredClasses = activeFilter === "All"
+    ? classes
+    : classes.filter((c) => (c.intensity ?? "Moderate") === activeFilter);
 
   return (
     <div className="min-h-screen">
@@ -59,14 +72,27 @@ export function ClassesPage({ classes }: ClassesPageProps) {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
               All classes are taught in our heated studio by experienced instructors.
               Each class offers modifications for different experience levels.
             </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {filters.map((filter) => (
+                <button
+                  key={filter.value}
+                  onClick={() => setActiveFilter(filter.value)}
+                  className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeFilter === filter.value ? filter.active : filter.inactive
+                  }`}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {classes.map((classItem, index) => (
+            {filteredClasses.map((classItem, index) => (
               <motion.div
                 key={classItem.name}
                 initial={{ opacity: 0, y: 20 }}

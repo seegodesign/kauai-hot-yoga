@@ -28,7 +28,7 @@ export function FAQPage({ categories, phone, email }: FAQPageProps) {
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
             backgroundImage:
-              "url('/images/beach.jpg')",
+              "url('/images/meditation.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-purple/60" />

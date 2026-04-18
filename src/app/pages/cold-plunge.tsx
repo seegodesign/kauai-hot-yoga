@@ -77,7 +77,7 @@ export function ColdPlungePage() {
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
             backgroundImage:
               "url('/images/cold-plunge-tub.jpg')",
@@ -320,8 +320,15 @@ export function ColdPlungePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-purple text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative py-20 text-white overflow-hidden">
+        <img
+          src="/images/plunge.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-purple-dark/50" />
+        <div className="relative container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
