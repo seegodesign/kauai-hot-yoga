@@ -4,6 +4,7 @@ import { Flame, Wind, Snowflake, Users, ArrowRight, Star, MapPin, Check, Chevron
 import { ScrollChevron } from "../components/scroll-chevron";
 import GoogleLogo from "../../assets/google-logo.svg?react";
 import YelpLogo from "../../assets/yelp-logo.svg?react";
+import logoLight from "../../assets/logo-light.png";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -231,16 +232,36 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
     ...(offeringMeta[o.slug] ?? { icon: Flame, color: "text-orange" }),
   }));
 
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window !== "undefined" && window.innerWidth >= 768
+  );
   useEffect(() => {
     const update = () => setIsDesktop(window.innerWidth >= 768);
-    update();
     window.addEventListener("resize", update, { passive: true });
     return () => window.removeEventListener("resize", update);
   }, []);
 
+  // Show loader until video is ready (on mobile, no video so mark ready immediately)
+  const [videoReady, setVideoReady] = useState(() =>
+    typeof window !== "undefined" && window.innerWidth < 768
+  );
+
   return (
     <div className="min-h-screen">
+      {/* Page loader — fades out once video is ready */}
+      <AnimatePresence>
+        {!videoReady && (
+          <motion.div
+            key="page-loader"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="fixed inset-0 z-[200] bg-[#1a0a2e] flex items-center justify-center pointer-events-none"
+          >
+            <img src={logoLight.src} alt="Kauai Hot Yoga" className="h-24 opacity-90" />
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Hero Section */}
       <section ref={heroRef} className="relative h-[92vh] flex items-center justify-center overflow-hidden">
         {/* Mobile: static image (no video download) */}
@@ -261,6 +282,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
             loop
             muted
             playsInline
+            onCanPlay={() => setVideoReady(true)}
           />
         )}
         <div className="absolute inset-0 bg-purple/70" />
