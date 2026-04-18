@@ -45,9 +45,9 @@ interface HomePageProps {
 }
 
 // Curved wave divider between sections
-function WaveDivider({ fill }: { fill: string }) {
+function WaveDivider({ fill, bottomOffset = 0, flipped = false }: { fill: string; bottomOffset?: number; flipped?: boolean }) {
   return (
-    <div className="absolute bottom-0 left-0 right-0 z-10">
+    <div className="absolute left-0 right-0 z-10" style={{ bottom: bottomOffset, transform: flipped ? "scaleY(-1)" : undefined }}>
       <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-16 block">
         <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill={fill} />
       </svg>
@@ -425,6 +425,7 @@ export function HomePage({ content, testimonials, offerings }: HomePageProps) {
             </div>
           </div>
         </div>
+        <WaveDivider fill="white" bottomOffset={-50} flipped={true} />
       </section>
 
       {/* CTA Strip */}
@@ -435,7 +436,7 @@ export function HomePage({ content, testimonials, offerings }: HomePageProps) {
         <div className="absolute -top-20 left-1/4 w-72 h-72 bg-orange/20 rounded-full blur-3xl" />
         <div className="absolute -bottom-20 right-1/4 w-72 h-72 bg-purple-light/20 rounded-full blur-3xl" />
 
-        <div className="relative container mx-auto px-4">
+        <div className="relative container mx-auto px-4 py-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -467,6 +468,7 @@ export function HomePage({ content, testimonials, offerings }: HomePageProps) {
             </div>
           </motion.div>
         </div>
+        <WaveDivider fill="#4A1F56" bottomOffset={0} />
       </section>
 
     </div>

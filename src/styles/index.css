@@ -2,3 +2,7 @@
 @import './tailwind.css';
 @import './theme.css';
 @import './custom-theme.css';
+
+button {
+  cursor: pointer;
+}

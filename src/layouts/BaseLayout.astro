@@ -32,7 +32,7 @@ const ogImageURL = ogImage ? toOgImage(ogImage) : `${SITE_URL}${logo.src}`;
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "HealthAndBeautyBusiness",
+  "@type": "SportsActivityLocation",
   name: settings.studio_name,
   description,
   url: SITE_URL,
@@ -99,6 +99,15 @@ const localBusinessSchema = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
     <meta name="twitter:image:alt" content={title} />
+
+    <!-- Geo / Local -->
+    <meta name="geo.region" content="US-HI" />
+    <meta name="geo.placename" content="Lihue, Kauai, Hawaii" />
+    <meta name="geo.position" content="22.0753;-159.3190" />
+    <meta name="ICBM" content="22.0753, -159.3190" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#4A1F56" />
 
     <!-- Local Business structured data -->
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
