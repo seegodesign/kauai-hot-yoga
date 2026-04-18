@@ -73,7 +73,7 @@ export function SchedulePage() {
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
             backgroundImage:
-              "url('/images/studio-interior.jpg')",
+              "url('/images/about-studio.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-purple/60" />

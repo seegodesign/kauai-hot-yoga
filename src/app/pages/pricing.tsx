@@ -37,25 +37,14 @@ export function PricingPage() {
         "Shareable with friends",
       ],
       popular: true,
-    },
-    // {
-    //   name: "20-Class Pack",
-    //   price: "$400",
-    //   description: "For committed practitioners",
-    //   features: [
-    //     "20 classes - $20 per class",
-    //     "Valid for 120 days",
-    //     "All class types included",
-    //     "Shareable with friends",
-    //     "Save $160",
-    //   ],
-    // },
+    }
   ];
 
   const memberships = [
     {
       name: "Monthly Unlimited Autopay",
       price: "$139",
+      popular: true,
       period: "month",
       description: "First month · Autopay required",
       features: [
@@ -70,7 +59,6 @@ export function PricingPage() {
       price: "$179",
       period: "month",
       description: "No commitment",
-      popular: true,
       features: [
         "Unlimited yoga classes",
         "1 free 9D Breathwork per month",
@@ -78,7 +66,6 @@ export function PricingPage() {
         "15% off cold plunge add-ons",
         "Priority booking",
       ],
-      popular: true,
     },
     {
       name: "Annual Membership",
@@ -117,7 +104,7 @@ export function PricingPage() {
           src="/images/hero-main.jpg"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-center="
           style={{ scale: bgScale }}
         />
         <motion.div className="absolute inset-0 bg-orange" style={{ opacity: overlayOpacity }} />
@@ -357,7 +344,7 @@ export function PricingPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-purple-dark text-center mb-12">Pricing FAQs</h2>
+            <h2 className="text-white text-2xl text-center mb-12">Pricing FAQs</h2>
             <div className="space-y-6">
               <div className="bg-warm-cream p-6 rounded-2xl">
                 <h4 className="text-purple-dark mb-2">Can I share my class pack?</h4>

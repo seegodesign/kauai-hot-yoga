@@ -1,0 +1,22 @@
+---
+import { getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { PrivacyPolicyPage } from "../app/pages/privacy-policy";
+
+const settingsEntry = await getEntry("settings", "main");
+if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
+const settings = settingsEntry.data;
+---
+
+<BaseLayout
+  title="Privacy Policy | Kauai Hot Yoga"
+  description="Privacy policy for Kauai Hot Yoga in Lihue, Hawaii."
+  currentPath="/privacy-policy">
+  <PrivacyPolicyPage
+    businessName={settings.studio_name}
+    businessEmail={settings.email}
+    businessPhone={settings.phone}
+    businessWebsite="https://www.kauaihotyoga.com"
+    client:load
+  />
+</BaseLayout>

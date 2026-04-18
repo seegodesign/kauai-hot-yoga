@@ -2,6 +2,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import logo from "../assets/logo.png";
+import logoLight from "../assets/logo-light.png";
 
 interface SiteHeaderProps {
   currentPath: string;
@@ -11,10 +12,19 @@ interface SiteHeaderProps {
 export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [experiencesDropdownOpen, setExperiencesDropdownOpen] = useState(false);
+  const [exploreDropdownOpen, setExploreDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     setMobileMenuOpen(false);
     setExperiencesDropdownOpen(false);
+    setExploreDropdownOpen(false);
   }, [currentPath]);
 
   const experiencesLinks = [
@@ -23,22 +33,34 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
     { href: "/cold-plunge", label: "Cold Plunge" },
   ];
 
+  const exploreLinks = [
+    { href: "/our-studio", label: "About Us" },
+    { href: "/our-teachers", label: "Our Teachers" },
+    { href: "/our-community-1", label: "Community" },
+    { href: "/blog", label: "Blog" },
+    { href: "/faq", label: "New Here?" },
+  ];
+
   const navLinks = [
     { href: "/classes", label: "Classes" },
     { href: "/schedule", label: "Schedule" },
     { href: "/prices", label: "Pricing" },
-    { href: "/faq", label: "New Here?" },
   ];
 
   const isExperiencesActive = experiencesLinks.some((link) => currentPath === link.href);
+  const isExploreActive = exploreLinks.some((link) => currentPath === link.href);
 
   return (
-    <header className="bg-white/95 backdrop-blur-sm border-b border-soft-purple sticky top-0 z-40">
+    <header className={`border-b sticky top-0 z-40 transition-all duration-300 ${
+      scrolled
+        ? "bg-white/95 border-soft-purple"
+        : "bg-purple/70 border-transparent"
+    }`}>
 
       <nav className="container mx-auto">
         <div className="flex items-center justify-between px-6">
           <a href="/" className="flex items-center space-x-2">
-            <img src={logo.src} alt="Kauai Hot Yoga" className="h-20" />
+            <img src={scrolled ? logo.src : logoLight.src} alt="Kauai Hot Yoga" className="h-20 transition-all duration-300" />
           </a>
 
           <div className="hidden lg:flex items-center space-x-8">
@@ -46,8 +68,10 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
               <a
                 key={link.href}
                 href={link.href}
-                className={`text-sm transition-colors hover:text-purple ${
-                  currentPath === link.href ? "text-purple" : "text-purple-dark/70"
+                className={`text-sm transition-colors ${
+                  currentPath === link.href
+                    ? scrolled ? "text-purple" : "text-white"
+                    : scrolled ? "text-purple-dark/70 hover:text-purple" : "text-white/80 hover:text-white"
                 }`}
               >
                 {link.label}
@@ -55,19 +79,53 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
             ))}
             <div
               className="relative"
+              onMouseEnter={() => setExploreDropdownOpen(true)}
+              onMouseLeave={() => setExploreDropdownOpen(false)}
+            >
+              <button
+                className={`text-sm transition-colors flex items-center gap-1 ${
+                  isExploreActive
+                    ? scrolled ? "text-purple" : "text-white"
+                    : scrolled ? "text-purple-dark/70 hover:text-purple" : "text-white/80 hover:text-white"
+                }`}
+              >
+                Explore <ChevronDown size={16} />
+              </button>
+              {exploreDropdownOpen && (
+                <div className="absolute left-0 top-full pt-2 z-50 min-w-[200px]">
+                  <div className="bg-white border border-soft-purple shadow-lg rounded-lg overflow-hidden">
+                  {exploreLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      className={`block py-3 px-4 text-sm transition-colors hover:bg-soft-purple ${
+                        currentPath === link.href ? "text-purple" : "text-purple-dark/70"
+                      }`}
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            <div
+              className="relative"
               onMouseEnter={() => setExperiencesDropdownOpen(true)}
               onMouseLeave={() => setExperiencesDropdownOpen(false)}
             >
               <button
-                className={`text-sm transition-colors hover:text-purple flex items-center gap-1 ${
-                  isExperiencesActive ? "text-purple" : "text-purple-dark/70"
+                className={`text-sm transition-colors flex items-center gap-1 ${
+                  isExperiencesActive
+                    ? scrolled ? "text-purple" : "text-white"
+                    : scrolled ? "text-purple-dark/70 hover:text-purple" : "text-white/80 hover:text-white"
                 }`}
               >
                 Experiences <ChevronDown size={16} />
               </button>
               {experiencesDropdownOpen && (
                 <div className="absolute left-0 top-full pt-2 z-50 min-w-[200px]">
-                  <div className="bg-white border border-soft-purple shadow-lg rounded-lg">
+                  <div className="bg-white border border-soft-purple shadow-lg rounded-lg overflow-hidden">
                   {experiencesLinks.map((link) => (
                     <a
                       key={link.href}
@@ -92,7 +150,7 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
           </div>
 
           <button
-            className="lg:hidden text-purple-dark"
+            className={`lg:hidden transition-colors ${scrolled ? "text-purple-dark" : "text-white"}`}
             onClick={() => setMobileMenuOpen((open) => !open)}
             aria-label="Toggle navigation"
           >
@@ -120,6 +178,43 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
                     {link.label}
                   </a>
                 ))}
+
+                <div>
+                  <button
+                    onClick={() => setExploreDropdownOpen((open) => !open)}
+                    className={`flex items-center justify-between w-full py-2 text-base transition-colors ${
+                      isExploreActive ? "text-purple" : "text-purple-dark/70"
+                    }`}
+                  >
+                    Explore
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform ${exploreDropdownOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {exploreDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden pl-4 space-y-2 mt-2"
+                      >
+                        {exploreLinks.map((link) => (
+                          <a
+                            key={link.href}
+                            href={link.href}
+                            className={`block py-2 text-sm transition-colors ${
+                              currentPath === link.href ? "text-purple" : "text-purple-dark/70"
+                            }`}
+                          >
+                            {link.label}
+                          </a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
                 <div>
                   <button

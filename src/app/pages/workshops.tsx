@@ -70,14 +70,16 @@ export function WorkshopsPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden bg-purple-dark/70">
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-40 bg-fixed"
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
             backgroundImage:
-              "url('/images/beach.jpg')",
+              "url('/images/workshops.jpg')",
           }}
-        />
+        >
+          <div className="absolute inset-0 bg-purple-dark/50" />
+        </div>
         <div className="relative z-10 text-center text-white px-4 max-w-3xl mx-auto">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

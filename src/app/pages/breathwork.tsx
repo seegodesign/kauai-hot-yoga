@@ -53,7 +53,7 @@ export function BreathworkPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
@@ -61,7 +61,7 @@ export function BreathworkPage() {
               "url('/images/9d-breathwork.jpg')",
           }}
         >
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-purple-dark/50" />
         </div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <motion.div
@@ -216,7 +216,7 @@ export function BreathworkPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-purple to-purple-light text-white">
+      <section className="py-20 bg-gradient-to-br from-warm-cream to-purple-light text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -224,8 +224,8 @@ export function BreathworkPage() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-white mb-4">Ready for Transformation?</h2>
-            <p className="text-xl text-white/90 mb-8">
+            <h2 className="text-purple-dark mb-4 text-4xl md:text-5xl font-bold">Ready for Transformation?</h2>
+            <p className="text-xl text-purple-dark/90 mb-8">
               Book your 9D Breathwork journey today
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">

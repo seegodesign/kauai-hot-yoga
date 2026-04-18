@@ -18,6 +18,11 @@ const offeringEntries = await getCollection("offerings");
 const offerings = offeringEntries
   .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
   .map((e) => e.data);
+
+const teacherEntries = await getCollection("teachers");
+const teachers = teacherEntries
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => ({ name: e.data.name, title: e.data.title, photo: e.data.photo }));
 ---
 
 <BaseLayout
@@ -28,6 +33,7 @@ const offerings = offeringEntries
     content={homeEntry.data}
     testimonials={testimonials}
     offerings={offerings}
+    teachers={teachers}
     googleReviewUrl={settingsEntry.data.social?.google_review_url ?? ""}
     yelpReviewUrl={settingsEntry.data.social?.yelp_review_url ?? ""}
     phone={settingsEntry.data.phone ?? ""}

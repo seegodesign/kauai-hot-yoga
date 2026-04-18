@@ -144,6 +144,8 @@ collections:
     create: true
     format: yaml
     identifier_field: name
+    sortable_fields: ['order', 'name', 'source']
+    summary: "{{order}} · {{name}} ({{source}}) — {{highlight}}"
     fields:
       - { label: Name, name: name, widget: string }
       - { label: Location, name: location, widget: string, hint: "e.g. Visiting from California" }

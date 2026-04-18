@@ -204,7 +204,7 @@ export function AboutPage() {
               ].map((brand) => (
                 <span
                   key={brand}
-                  className="px-4 py-2 bg-soft-purple text-purple-dark text-sm font-medium rounded-full"
+                  className="px-4 py-2 border border-gray-300 text-purple-dark text-sm font-medium rounded-full"
                 >
                   {brand}
                 </span>

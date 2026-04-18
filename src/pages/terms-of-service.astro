@@ -1,0 +1,22 @@
+---
+import { getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { TermsOfServicePage } from "../app/pages/terms-of-service";
+
+const settingsEntry = await getEntry("settings", "main");
+if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
+const settings = settingsEntry.data;
+---
+
+<BaseLayout
+  title="Terms of Service | Kauai Hot Yoga"
+  description="Terms of service for Kauai Hot Yoga in Lihue, Hawaii."
+  currentPath="/terms-of-service">
+  <TermsOfServicePage
+    businessName={settings.studio_name}
+    businessEmail={settings.email}
+    businessPhone={settings.phone}
+    businessWebsite="https://www.kauaihotyoga.com"
+    client:load
+  />
+</BaseLayout>

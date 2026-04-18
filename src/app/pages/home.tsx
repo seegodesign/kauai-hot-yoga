@@ -16,6 +16,12 @@ export interface HomeTestimonial {
   source: "Google" | "Yelp";
 }
 
+export interface HomeTeacher {
+  name: string;
+  title: string;
+  photo: string;
+}
+
 export interface HomeOffering {
   slug: string;
   title: string;
@@ -42,6 +48,7 @@ interface HomePageProps {
   content: HomeContent;
   testimonials: HomeTestimonial[];
   offerings: HomeOffering[];
+  teachers: HomeTeacher[];
   googleReviewUrl: string;
   yelpReviewUrl: string;
   phone: string;
@@ -188,7 +195,7 @@ function TestimonialsCarousel({ testimonials }: { testimonials: HomeTestimonial[
   );
 }
 
-export function HomePage({ content, testimonials, offerings, googleReviewUrl, yelpReviewUrl, phone }: HomePageProps) {
+export function HomePage({ content, testimonials, offerings, teachers, googleReviewUrl, yelpReviewUrl, phone }: HomePageProps) {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -579,7 +586,8 @@ export function HomePage({ content, testimonials, offerings, googleReviewUrl, ye
                   <MapPin size={18} className="text-orange mt-0.5 flex-shrink-0" />
                   <div className="text-sm text-muted-foreground leading-relaxed">
                     <p className="font-semibold text-purple-dark mb-1">3-3122 Kuhio Highway, Lihue Annex Shopping Center</p>
-                    <p>Conveniently located just south of Kapa'a and north of Poipu and Koloa — in the heart of Kauai. Find us behind the Subway restaurant, between The Parlor Barbershop and A Place for You.</p>
+                    <p className="mb-2">Conveniently located in Lihue, just south of Kapa'a and north of Poipu and Koloa — in the heart of Kauai. Find us behind the Subway restaurant, between The Parlor Barbershop and A Place for You.</p>
+                    <p><a href="https://www.google.com/maps/dir//Kauai+Hot+Yoga,+3-3122+Kuhio+Hwy,+Lihue,+HI+96766/@21.9778706,-159.3705474,17z/data=!4m17!1m7!3m6!1s0x7c071fdaf143eed1:0x65c385d1ae03e0a6!2sKauai+Hot+Yoga!8m2!3d21.9778656!4d-159.3679725!16s%2Fg%2F11gkv1rmz2!4m8!1m0!1m5!1m1!1s0x7c071fdaf143eed1:0x65c385d1ae03e0a6!2m2!1d-159.3679804!2d21.9778364!3e0?entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" className="inline-flex items-center gap-1 text-orange cursor-pointer hover:text-orange-dark">Get Directions <ArrowRight size={14} /></a></p>
                   </div>
                 </div>
               </motion.div>
@@ -602,6 +610,12 @@ export function HomePage({ content, testimonials, offerings, googleReviewUrl, ye
                 <p className="text-muted-foreground leading-relaxed mb-5">
                   Our commitment is to provide exceptional instruction, a serene environment, and a vibrant community that inspires growth on and off the mat.
                 </p>
+                <a
+                  href="/our-studio"
+                  className="inline-flex items-center gap-2 bg-purple-dark text-white px-8 py-3 rounded-full hover:bg-purple transition-colors"
+                >
+                  About Our Studio <ArrowRight size={16} />
+                </a>
               </motion.div>
             </div>
             <WaveDivider fill="#fff" bottomOffset={-50} flipped={true} />
@@ -639,27 +653,58 @@ export function HomePage({ content, testimonials, offerings, googleReviewUrl, ye
             >
               Our certified hot yoga instructors in Lihue, Kauai bring deep expertise across Bikram, Vinyasa, Pilates, breathwork, and more — guiding every student from first-timer to advanced practitioner. Beyond daily hot yoga classes, we regularly host yoga retreats on Kauai and intensive teacher trainings led by world-renowned instructors. Whether you're a Kauai local building a consistent practice or a visitor looking for the best yoga studio on the island, our teaching staff is here to support your journey.
             </motion.p>
+            {/* Teacher thumbnails */}
+            {teachers.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.12 }}
+                className="flex flex-wrap justify-center gap-6 mb-12"
+              >
+                {teachers.map((teacher, i) => (
+                  <motion.a
+                    key={teacher.name}
+                    href="/our-teachers"
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.12 + i * 0.05 }}
+                    whileHover={{ y: -4 }}
+                    className="flex flex-col items-center gap-2 group"
+                  >
+                    <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white shadow-md group-hover:border-orange transition-colors">
+                      {teacher.photo ? (
+                        <img
+                          src={teacher.photo}
+                          alt={teacher.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-orange to-purple-light flex items-center justify-center text-white text-xl font-bold">
+                          {teacher.name.charAt(0)}
+                        </div>
+                      )}
+                    </div>
+                    <span className="text-xs font-medium text-purple-dark/80 group-hover:text-purple transition-colors text-center leading-tight max-w-[80px]">
+                      {teacher.name.split(' ')[0]}
+                    </span>
+                  </motion.a>
+                ))}
+              </motion.div>
+            )}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.15 }}
-              className="flex flex-wrap justify-center gap-4"
             >
-              {[
-                { label: "All Levels Welcome", icon: "🙏" },
-                { label: "Daily Classes", icon: "🔥" },
-                { label: "Retreats & Trainings", icon: "🌺" },
-                { label: "World-Class Instructors", icon: "⭐" },
-              ].map((pill) => (
-                <span
-                  key={pill.label}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-soft-purple rounded-full text-sm font-medium text-purple-dark shadow-sm"
-                >
-                  <span>{pill.icon}</span>
-                  {pill.label}
-                </span>
-              ))}
+              <a
+                href="/our-teachers"
+                className="inline-flex items-center gap-2 bg-purple-dark text-white px-8 py-3 rounded-full hover:bg-purple transition-colors"
+              >
+                Meet Our Teachers <ArrowRight size={16} />
+              </a>
             </motion.div>
           </div>
         </div>
