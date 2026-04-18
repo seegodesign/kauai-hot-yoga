@@ -124,9 +124,14 @@ function TestimonialsCarousel({ testimonials }: { testimonials: HomeTestimonial[
   const [page, setPage] = useState(0);
   const [direction, setDirection] = useState(1);
   const [cardsPerPage, setCardsPerPage] = useState(3);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const update = () => setCardsPerPage(window.innerWidth >= 768 ? 3 : 1);
+    const update = () => {
+      const desktop = window.innerWidth >= 768;
+      setCardsPerPage(desktop ? 3 : 1);
+      setIsDesktop(desktop);
+    };
     update();
     window.addEventListener("resize", update, { passive: true });
     return () => window.removeEventListener("resize", update);
@@ -235,17 +240,21 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
           src={heroMobileSrc}
           alt=""
           aria-hidden="true"
-          className="fixed inset-0 w-full h-full object-cover -z-10 md:hidden"
+          className="fixed inset-0 w-full h-full object-cover -z-10"
+          loading="eager"
+          fetchPriority="high"
         />
-        {/* Desktop: video background */}
-        <video
-          className="fixed inset-0 w-full h-full object-cover -z-10 hidden md:block"
-          src="/video/yoga.mov"
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
+        {/* Desktop: video background — only rendered in DOM on desktop to prevent mobile download */}
+        {isDesktop && (
+          <video
+            className="fixed inset-0 w-full h-full object-cover -z-10"
+            src="/video/yoga.mov"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        )}
         <div className="absolute inset-0 bg-purple/70" />
         <motion.div
           className="absolute inset-0"
