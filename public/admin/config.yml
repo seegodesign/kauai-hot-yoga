@@ -1,0 +1,183 @@
+# ============================================================
+# Sveltia CMS Configuration — Kauai Hot Yoga
+# ============================================================
+#
+# SETUP REQUIRED BEFORE GOING LIVE:
+#
+# 1. Replace GITHUB_OWNER/GITHUB_REPO with your actual GitHub repo
+#    e.g.  repo: camerongaut/kauai-hot-yoga
+#
+# 2. Set up a GitHub OAuth App:
+#    - Go to GitHub → Settings → Developer settings → OAuth Apps → New OAuth App
+#    - Homepage URL: https://your-site.pages.dev (or your custom domain)
+#    - Authorization callback URL: https://your-auth-worker.workers.dev/callback
+#
+# 3. Deploy the Sveltia CMS Auth worker to Cloudflare:
+#    https://github.com/sveltia/sveltia-cms-auth
+#    Then replace YOUR_AUTH_WORKER below with your worker's subdomain.
+#
+# 4. After deploying the auth worker, set GITHUB_CLIENT_ID and
+#    GITHUB_CLIENT_SECRET as secrets in the Cloudflare Worker dashboard.
+# ============================================================
+
+backend:
+  name: github
+  repo: seegodesign/kauai-hot-yoga
+  branch: main
+  base_url: https://YOUR_AUTH_WORKER.workers.dev
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  # ── Site Settings ─────────────────────────────────────────
+  - name: settings
+    label: Site Settings
+    files:
+      - name: main
+        label: Studio Info
+        file: src/content/settings/main.yml
+        fields:
+          - { label: Studio Name, name: studio_name, widget: string }
+          - { label: Phone, name: phone, widget: string }
+          - { label: Email, name: email, widget: string }
+          - label: Address
+            name: address
+            widget: object
+            fields:
+              - { label: Street, name: street, widget: string }
+              - { label: City, name: city, widget: string }
+              - { label: State, name: state, widget: string }
+              - { label: ZIP Code, name: zip, widget: string }
+          - label: Social Links
+            name: social
+            widget: object
+            fields:
+              - { label: Instagram URL, name: instagram, widget: string, required: false }
+              - { label: Facebook URL, name: facebook, widget: string, required: false }
+
+  # ── Home Page ─────────────────────────────────────────────
+  - name: home
+    label: Home Page
+    files:
+      - name: main
+        label: Home Page Content
+        file: src/content/home/main.yml
+        fields:
+          - label: Hero Section
+            name: hero_heading
+            widget: string
+            hint: The main headline in the hero
+          - label: Hero Subheading
+            name: hero_subheading
+            widget: text
+          - label: Primary CTA Button
+            name: cta_primary
+            widget: object
+            fields:
+              - { label: Button Text, name: text, widget: string }
+              - { label: Link, name: href, widget: string }
+          - label: Secondary CTA Button
+            name: cta_secondary
+            widget: object
+            fields:
+              - { label: Button Text, name: text, widget: string }
+              - { label: Link, name: href, widget: string }
+          - label: Explainer Heading
+            name: explainer_heading
+            widget: string
+          - label: Explainer Paragraphs
+            name: explainer_paragraphs
+            widget: list
+            field: { label: Paragraph, name: text, widget: text }
+          - label: CTA Strip Heading
+            name: cta_strip_heading
+            widget: string
+          - label: CTA Strip Subheading
+            name: cta_strip_subheading
+            widget: text
+          - label: CTA Strip Primary Button
+            name: cta_strip_primary
+            widget: object
+            fields:
+              - { label: Button Text, name: text, widget: string }
+              - { label: Link, name: href, widget: string }
+          - label: CTA Strip Secondary Button
+            name: cta_strip_secondary
+            widget: object
+            fields:
+              - { label: Button Text, name: text, widget: string }
+              - { label: Link, name: href, widget: string }
+
+  # ── Offerings ─────────────────────────────────────────────
+  - name: offerings
+    label: Offerings
+    folder: src/content/offerings
+    create: false
+    format: yaml
+    identifier_field: title
+    fields:
+      - label: Slug
+        name: slug
+        widget: select
+        options:
+          - yoga-classes
+          - workshops
+          - breathwork
+          - cold-plunge
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: Page Link, name: href, widget: string }
+      - { label: Photo, name: image, widget: image }
+      - label: Features List
+        name: items
+        widget: list
+        field: { label: Item, name: item, widget: string }
+      - { label: Display Order, name: order, widget: number, default: 0 }
+
+  # ── Testimonials ──────────────────────────────────────────
+  - name: testimonials
+    label: Testimonials
+    folder: src/content/testimonials
+    create: true
+    format: yaml
+    identifier_field: name
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Location, name: location, widget: string, hint: "e.g. Visiting from California" }
+      - label: Rating
+        name: rating
+        widget: number
+        default: 5
+        min: 1
+        max: 5
+      - { label: Review Text, name: text, widget: text }
+      - { label: Highlight Quote, name: highlight, widget: string, hint: "Short pull-quote shown prominently" }
+      - label: Review Source
+        name: source
+        widget: select
+        options:
+          - Google
+          - Yelp
+      - { label: Display Order, name: order, widget: number, default: 0 }
+
+  # ── FAQ ───────────────────────────────────────────────────
+  - name: faq
+    label: FAQ
+    folder: src/content/faq
+    create: true
+    format: yaml
+    identifier_field: question
+    fields:
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - Getting Started
+          - Class Information
+          - Health & Safety
+          - Studio Policies
+          - 9D Breathwork & Cold Plunge
+      - { label: Question, name: question, widget: string }
+      - { label: Answer, name: answer, widget: text }
+      - { label: Order within category, name: order, widget: number, default: 0 }
