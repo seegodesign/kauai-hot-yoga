@@ -1,0 +1,11 @@
+name: 10-Class Pack
+price: "$219"
+description: Best value for flexibility
+features:
+  - 10 classes - $21.90 per class
+  - Valid for 90 days
+  - All class types included
+  - Shareable with friends
+popular: true
+category: class-pack
+order: 3

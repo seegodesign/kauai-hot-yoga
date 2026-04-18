@@ -1,11 +1,28 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { PricingPage } from "../app/pages/pricing";
+
+const planEntries = await getCollection("pricingPlans");
+const plans = planEntries
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => e.data);
+
+const specialEntries = await getCollection("pricingSpecials");
+const specials = specialEntries
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => e.data);
+
+const faqEntries = await getCollection("faq");
+const faqs = faqEntries
+  .filter((e) => e.data.category === "Pricing")
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => ({ question: e.data.question, answer: e.data.answer }));
 ---
 
 <BaseLayout
   title="Hot Yoga Pricing & Memberships in Kauai | Kauai Hot Yoga"
   description="Drop-in classes, class packs, and monthly memberships at Kauai Hot Yoga in Lihue, Hawaii. Traveler weekly passes and local intro month deals available."
   currentPath="/prices">
-  <PricingPage client:load />
+  <PricingPage plans={plans} specials={specials} faqs={faqs} client:load />
 </BaseLayout>

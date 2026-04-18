@@ -1,0 +1,9 @@
+name: Drop-In Class
+price: "$29"
+description: Mat rental included
+features:
+  - Valid for 1 class
+  - All class types included
+  - Mat rental included
+category: drop-in
+order: 1

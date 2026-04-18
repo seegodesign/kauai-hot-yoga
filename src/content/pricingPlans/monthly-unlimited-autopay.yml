@@ -1,0 +1,12 @@
+name: Monthly Unlimited Autopay
+price: "$139"
+period: month
+description: "First month · Autopay required"
+features:
+  - Unlimited yoga classes
+  - All class types included
+  - Autopay monthly after first month
+  - Cancel anytime
+popular: true
+category: membership
+order: 4

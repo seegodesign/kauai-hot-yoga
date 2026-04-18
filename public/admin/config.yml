@@ -57,6 +57,14 @@ collections:
             fields:
               - { label: Instagram URL, name: instagram, widget: string, required: false }
               - { label: Facebook URL, name: facebook, widget: string, required: false }
+      - name: footer
+        label: Footer Content
+        file: src/content/footer/footer.yml
+        fields:
+          - label: Short Description
+            name: description
+            widget: text
+            hint: "A brief description of the studio shown in the footer"
 
   # ── Home Page ─────────────────────────────────────────────
   - name: home
@@ -243,12 +251,65 @@ collections:
         required: false
       - { label: Draft, name: draft, widget: boolean, default: false, hint: "Drafts are hidden from the public blog" }
       - { label: Body, name: body, widget: markdown }
+
+  # ── Pricing Plans ─────────────────────────────────────────
+  - name: pricingPlans
+    label: Pricing Plans
+    label_singular: Pricing Plan
+    folder: src/content/pricingPlans
+    create: true
+    format: yaml
+    identifier_field: name
+    summary: "{{category}} — {{name}} ({{price}})"
+    fields:
+      - { label: Name, name: name, widget: string, hint: "e.g. 10-Class Pack" }
+      - { label: Price, name: price, widget: string, hint: "e.g. $219" }
+      - { label: Period, name: period, widget: string, required: false, hint: "e.g. month or year (leave blank for one-time)" }
+      - { label: Description, name: description, widget: string, hint: "Short tagline shown under the price" }
+      - label: Features
+        name: features
+        widget: list
+        field: { label: Feature, name: feature, widget: string }
+      - { label: Highlight as Popular, name: popular, widget: boolean, default: false }
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - { label: Drop-In, value: drop-in }
+          - { label: Class Pack, value: class-pack }
+          - { label: Membership, value: membership }
+      - { label: Sort Order, name: order, widget: number, default: 0 }
+
+  # ── Pricing Specials ──────────────────────────────────────
+  - name: pricingSpecials
+    label: Pricing Specials
+    label_singular: Special Offer
+    folder: src/content/pricingSpecials
+    create: true
+    format: yaml
+    identifier_field: name
+    summary: "{{name}} ({{price}})"
+    fields:
+      - { label: Name, name: name, widget: string, hint: "e.g. Traveler Week" }
+      - { label: Subtitle, name: subtitle, widget: string, hint: "e.g. For Visitors" }
+      - { label: Badge, name: badge, widget: string, hint: "e.g. 7 Days" }
+      - { label: Price, name: price, widget: string, hint: "e.g. $89" }
+      - { label: Description, name: description, widget: string, hint: "Short tagline shown under the price" }
+      - label: Features
+        name: features
+        widget: list
+        field: { label: Feature, name: feature, widget: string }
+      - { label: CTA Button Text, name: cta_text, widget: string }
+      - { label: CTA Button URL, name: cta_url, widget: string }
+      - { label: Sort Order, name: order, widget: number, default: 0 }
+
   - name: faq
     label: FAQ
     folder: src/content/faq
     create: true
     format: yaml
     identifier_field: question
+    summary: "{{category}}: {{question}}"
     fields:
       - label: Category
         name: category
@@ -259,6 +320,7 @@ collections:
           - Health & Safety
           - Studio Policies
           - 9D Breathwork & Cold Plunge
+          - Pricing
       - { label: Question, name: question, widget: string }
       - { label: Answer, name: answer, widget: text }
       - { label: Order within category, name: order, widget: number, default: 0 }

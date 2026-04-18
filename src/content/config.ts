@@ -129,4 +129,40 @@ const classes = defineCollection({
   }),
 });
 
-export const collections = { settings, home, testimonials, offerings, faq, blog, community, teachers, classes };
+const footer = defineCollection({
+  type: "data",
+  schema: z.object({
+    description: z.string(),
+  }),
+});
+
+const pricingPlans = defineCollection({
+  type: "data",
+  schema: z.object({
+    name: z.string(),
+    price: z.string(),
+    period: z.string().optional(),
+    description: z.string(),
+    features: z.array(z.string()),
+    popular: z.boolean().optional().default(false),
+    category: z.enum(["drop-in", "class-pack", "membership"]),
+    order: z.number().default(0),
+  }),
+});
+
+const pricingSpecials = defineCollection({
+  type: "data",
+  schema: z.object({
+    name: z.string(),
+    subtitle: z.string(),
+    badge: z.string(),
+    price: z.string(),
+    description: z.string(),
+    features: z.array(z.string()),
+    cta_text: z.string(),
+    cta_url: z.string(),
+    order: z.number().default(0),
+  }),
+});
+
+export const collections = { settings, home, testimonials, offerings, faq, blog, community, teachers, classes, footer, pricingPlans, pricingSpecials };

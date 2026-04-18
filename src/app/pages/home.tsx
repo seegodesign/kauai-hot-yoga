@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Flame, Wind, Snowflake, Users, ArrowRight, Star, MapPin, Check, ChevronLeft, ChevronRight, type LucideIcon } from "lucide-react";
 import { ScrollChevron } from "../components/scroll-chevron";
 import GoogleLogo from "../../assets/google-logo.svg?react";
@@ -119,12 +119,19 @@ function TestimonialCard({ testimonial }: { testimonial: HomeTestimonial }) {
   );
 }
 
-const CARDS_PER_PAGE = 3;
-
 function TestimonialsCarousel({ testimonials }: { testimonials: HomeTestimonial[] }) {
   const [page, setPage] = useState(0);
   const [direction, setDirection] = useState(1);
-  const totalPages = Math.ceil(testimonials.length / CARDS_PER_PAGE);
+  const [cardsPerPage, setCardsPerPage] = useState(3);
+
+  useEffect(() => {
+    const update = () => setCardsPerPage(window.innerWidth >= 768 ? 3 : 1);
+    update();
+    window.addEventListener("resize", update, { passive: true });
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const totalPages = Math.ceil(testimonials.length / cardsPerPage);
 
   const go = (next: number) => {
     setDirection(next > page ? 1 : -1);
@@ -133,7 +140,7 @@ function TestimonialsCarousel({ testimonials }: { testimonials: HomeTestimonial[
   const prev = () => go((page - 1 + totalPages) % totalPages);
   const next = () => go((page + 1) % totalPages);
 
-  const visible = testimonials.slice(page * CARDS_PER_PAGE, page * CARDS_PER_PAGE + CARDS_PER_PAGE);
+  const visible = testimonials.slice(page * cardsPerPage, page * cardsPerPage + cardsPerPage);
 
   const variants = {
     enter: (d: number) => ({ opacity: 0, x: d * 60 }),
@@ -222,8 +229,16 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
     <div className="min-h-screen">
       {/* Hero Section */}
       <section ref={heroRef} className="relative h-[92vh] flex items-center justify-center overflow-hidden">
+        {/* Mobile: static image (no video download) */}
+        <img
+          src="/images/hero-main.jpg"
+          alt=""
+          aria-hidden="true"
+          className="fixed inset-0 w-full h-full object-cover -z-10 md:hidden"
+        />
+        {/* Desktop: video background */}
         <video
-          className="fixed inset-0 w-full h-full object-cover -z-10"
+          className="fixed inset-0 w-full h-full object-cover -z-10 hidden md:block"
           src="/video/yoga.mov"
           autoPlay
           loop
@@ -241,7 +256,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl md:text-7xl mb-6 text-white font-bold"
+            className="text-4xl md:text-7xl mb-6 text-white font-bold"
           >
             {content.hero_heading}
           </motion.h1>
@@ -261,13 +276,13 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
           >
             <a
               href={content.cta_primary.href}
-              className="bg-white text-purple px-8 py-4 rounded-full hover:bg-warm-cream transition-colors text-lg"
+              className="bg-white text-purple px-5 py-3 sm:px-8 sm:py-4 rounded-full hover:bg-warm-cream transition-colors text-lg"
             >
               {content.cta_primary.text}
             </a>
             <a
               href={content.cta_secondary.href}
-              className="bg-orange/90 backdrop-blur-sm text-white px-8 py-4 rounded-full hover:bg-orange transition-colors text-lg border border-white/20"
+              className="bg-orange/90 backdrop-blur-sm text-white px-5 py-3 sm:px-8 sm:py-4 rounded-full hover:bg-orange transition-colors text-lg border border-white/20"
             >
               {content.cta_secondary.text}
             </a>
@@ -289,14 +304,14 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
           </motion.div> */}
 
           {/* Scroll down chevron */}
-          <ScrollChevron className="absolute -bottom-20 left-1/2 -translate-x-1/2" />
+          <ScrollChevron className="absolute -bottom-10 md:-bottom-20 left-1/2 -translate-x-1/2" />
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-white/60 backdrop-blur-md">
+      <section className="py-12 md:py-24 bg-white/60 backdrop-blur-md">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 md:mb-16">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -612,7 +627,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
                 </p>
                 <a
                   href="/our-studio"
-                  className="inline-flex items-center gap-2 bg-purple-dark text-white px-8 py-3 rounded-full hover:bg-purple transition-colors"
+                  className="inline-flex items-center gap-2 bg-purple-dark text-white px-5 py-2.5 sm:px-8 sm:py-3 rounded-full hover:bg-purple transition-colors"
                 >
                   About Our Studio <ArrowRight size={16} />
                 </a>
@@ -701,7 +716,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
             >
               <a
                 href="/our-teachers"
-                className="inline-flex items-center gap-2 bg-purple-dark text-white px-8 py-3 rounded-full hover:bg-purple transition-colors"
+                className="inline-flex items-center gap-2 bg-purple-dark text-white px-5 py-2.5 sm:px-8 sm:py-3 rounded-full hover:bg-purple transition-colors"
               >
                 Meet Our Teachers <ArrowRight size={16} />
               </a>
@@ -756,7 +771,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
               />
               <button
                 type="submit"
-                className="bg-purple text-white font-semibold px-7 py-3 rounded-full hover:bg-purple-dark transition-colors text-sm whitespace-nowrap"
+                className="bg-purple text-white font-semibold px-5 py-2.5 sm:px-7 sm:py-3 rounded-full hover:bg-purple-dark transition-colors text-sm whitespace-nowrap"
               >
                 Sign Up
               </button>
@@ -792,13 +807,13 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href={content.cta_strip_primary.href}
-                className="bg-orange text-white font-semibold px-9 py-4 rounded-full hover:bg-orange-dark hover:scale-105 transition-all shadow-lg"
+                className="bg-orange text-white font-semibold px-6 py-3 sm:px-9 sm:py-4 rounded-full hover:bg-orange-dark hover:scale-105 transition-all shadow-lg"
               >
                 {content.cta_strip_primary.text}
               </a>
               <a
                 href={content.cta_strip_secondary.href}
-                className="bg-white/15 backdrop-blur-sm border border-white/30 text-white font-semibold px-9 py-4 rounded-full hover:bg-white/25 transition-all"
+                className="bg-white/15 backdrop-blur-sm border border-white/30 text-white font-semibold px-6 py-3 sm:px-9 sm:py-4 rounded-full hover:bg-white/25 transition-all"
               >
                 {content.cta_strip_secondary.text}
               </a>

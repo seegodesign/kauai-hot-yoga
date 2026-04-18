@@ -1,0 +1,12 @@
+name: One Month Unlimited
+price: "$179"
+period: month
+description: No commitment
+features:
+  - Unlimited yoga classes
+  - 1 free 9D Breathwork per month
+  - 15% off workshops
+  - 15% off cold plunge add-ons
+  - Priority booking
+category: membership
+order: 5

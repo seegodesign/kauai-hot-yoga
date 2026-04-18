@@ -1,0 +1,10 @@
+name: 5-Class Pack
+price: "$125"
+description: Flexible class package
+features:
+  - 5 classes - $25 per class
+  - Valid for 60 days
+  - All class types included
+  - Shareable with friends
+category: class-pack
+order: 2

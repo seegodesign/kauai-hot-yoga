@@ -1,0 +1,12 @@
+name: Annual Membership
+price: "$1,450"
+period: year
+description: "Best value · or 3 payments of $484"
+features:
+  - Unlimited yoga classes
+  - All class types included
+  - Save $698 vs monthly
+  - Pay in full or 3 installments of $484
+  - Priority booking
+category: membership
+order: 6
