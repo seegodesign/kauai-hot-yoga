@@ -44,7 +44,7 @@ export function ClassesPage({ classes, heroDesktopSrc, heroMobileSrc }: ClassesP
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <picture>
           <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
-          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" width={1920} height={1080} />
+          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high" width={1920} height={1080} />
         </picture>
         <div className="absolute inset-0 bg-purple-dark/70" />
         <div className="relative z-10 text-center text-white px-4 max-w-3xl mx-auto">

@@ -71,7 +71,7 @@ export function SchedulePage({ heroDesktopSrc, heroMobileSrc }: { heroDesktopSrc
       <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
         <picture>
           <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
-          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover bg-fixed" loading="eager" fetchPriority="high" width={1920} height={1080} />
+          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover bg-fixed" loading="eager" fetchpriority="high" width={1920} height={1080} />
         </picture>
         <div className="absolute inset-0 bg-purple/60" />
         <div className="relative container mx-auto px-4 text-center text-white">

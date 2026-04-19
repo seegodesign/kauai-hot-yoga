@@ -232,19 +232,17 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
     ...(offeringMeta[o.slug] ?? { icon: Flame, color: "text-orange" }),
   }));
 
-  const [isDesktop, setIsDesktop] = useState(() =>
-    typeof window !== "undefined" && window.innerWidth >= 768
-  );
+  // Start false to match SSR output — update after mount to avoid hydration mismatch
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
   useEffect(() => {
+    const desktop = window.innerWidth >= 768;
+    setIsDesktop(desktop);
+    setVideoReady(!desktop); // mobile has no video, so mark ready immediately
     const update = () => setIsDesktop(window.innerWidth >= 768);
     window.addEventListener("resize", update, { passive: true });
     return () => window.removeEventListener("resize", update);
   }, []);
-
-  // Show loader until video is ready (on mobile, no video so mark ready immediately)
-  const [videoReady, setVideoReady] = useState(() =>
-    typeof window !== "undefined" && window.innerWidth < 768
-  );
 
   return (
     <div className="min-h-screen">
@@ -271,7 +269,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
           aria-hidden="true"
           className="fixed inset-0 w-full h-full object-cover -z-10"
           loading="eager"
-          fetchPriority="high"
+          fetchpriority="high"
           width={768}
           height={1024}
         />
