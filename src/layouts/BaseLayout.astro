@@ -160,21 +160,67 @@ const localBusinessSchema = {
             href="/schedule"
             class="flex flex-col items-center gap-1 text-purple"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><rect x="3" y="4" width="18" height="18" rx="2" ry="2"
+              ></rect><line x1="16" y1="2" x2="16" y2="6"></line><line
+                x1="8"
+                y1="2"
+                x2="8"
+                y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg
+            >
             <span class="text-xs">Schedule</span>
           </a>
           <a
             href="/prices"
             class="flex flex-row items-center gap-1 bg-orange text-white px-8 py-4 rounded-full"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><rect x="3" y="4" width="18" height="18" rx="2" ry="2"
+              ></rect><line x1="16" y1="2" x2="16" y2="6"></line><line
+                x1="8"
+                y1="2"
+                x2="8"
+                y2="6"></line><line x1="3" y1="10" x2="21" y2="10"
+              ></line><polyline points="9 16 11 18 15 14"></polyline></svg
+            >
             <span class="text-sm">Book</span>
           </a>
           <a
             href="/prices"
             class="flex flex-col items-center gap-1 text-purple"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><line x1="12" y1="1" x2="12" y2="23"></line><path
+                d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+              ></path></svg
+            >
             <span class="text-xs">Pricing</span>
           </a>
         </div>
@@ -431,9 +477,28 @@ const localBusinessSchema = {
       window.addEventListener("load", function () {
         var s = document.createElement("script");
         s.src = "https://widgets.leadconnectorhq.com/loader.js";
-        s.setAttribute("data-resources-url", "https://widgets.leadconnectorhq.com/chat-widget/loader.js");
+        s.setAttribute(
+          "data-resources-url",
+          "https://widgets.leadconnectorhq.com/chat-widget/loader.js",
+        );
         s.setAttribute("data-widget-id", "69e2ffb506d5d53073b74b7d");
         document.body.appendChild(s);
+
+        // On mobile, push the chat bubble above the bottom toolbar
+        if (window.innerWidth < 1024) {
+          var attempts = 0;
+          var poll = setInterval(function () {
+            attempts++;
+            var widget = document.querySelector("chat-widget");
+            var bubble = widget && widget.shadowRoot && widget.shadowRoot.querySelector(".lc_text-widget--bubble");
+            if (bubble) {
+              bubble.style.bottom = "70px";
+              clearInterval(poll);
+            } else if (attempts > 40) {
+              clearInterval(poll);
+            }
+          }, 250);
+        }
       });
     </script>
   </body>

@@ -90,9 +90,9 @@ export function NewClientPopup() {
         <button
           onClick={dismiss}
           aria-label="Close offer"
-          className="absolute top-3 right-3 text-white/60 hover:text-white transition-colors z-10"
+          className="absolute top-3 right-3 text-white/60 hover:text-white lg:text-purple/60 lg:hover:text-purple transition-colors z-10"
         >
-          <X size={20} color="purple" />
+          <X size={20} />
         </button>
 
         {/* Step 1: offer info */}
