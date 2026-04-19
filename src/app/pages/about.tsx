@@ -28,7 +28,7 @@ export function AboutPage({ heroDesktopSrc, heroMobileSrc, studioDesktopSrc, stu
             animate={{ opacity: 1, y: 0 }}
             className="inline-block text-orange-light font-semibold tracking-widest uppercase text-sm mb-4"
           >
-            About Us
+            Kauai Hot Yoga
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -36,7 +36,7 @@ export function AboutPage({ heroDesktopSrc, heroMobileSrc, studioDesktopSrc, stu
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-6xl lg:text-7xl text-white font-bold mb-5"
           >
-            Kauai Hot Yoga
+            About Us
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -90,7 +90,7 @@ export function AboutPage({ heroDesktopSrc, heroMobileSrc, studioDesktopSrc, stu
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="rounded-2xl overflow-hidden shadow-lg aspect-[4/5] max-h-[300px] md:max-h-[500px mx-auto order-2"
+              className="rounded-2xl overflow-hidden shadow-lg aspect-[4/5] max-h-[300px] md:max-h-[500px] mx-auto order-2"
             >
               <picture>
                 <source media="(max-width: 767px)" srcSet={studioMobileSrc} />
@@ -116,7 +116,7 @@ export function AboutPage({ heroDesktopSrc, heroMobileSrc, studioDesktopSrc, stu
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="rounded-2xl overflow-hidden shadow-lg aspect-[4/5] max-h-[300px] md:max-h-[500px mx-auto order-2"
+              className="rounded-2xl overflow-hidden shadow-lg aspect-[4/5] max-h-[300px] md:max-h-[500px] mx-auto order-2"
             >
               <picture>
                 <source media="(max-width: 767px)" srcSet={plungeMobileSrc} />

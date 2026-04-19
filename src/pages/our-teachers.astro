@@ -1,17 +1,22 @@
 ---
 import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { TeachersPage } from "../app/pages/teachers";
+import teachersHeroImg from "../assets/images/hot-yoga-class.jpg";
 
 const teacherEntries = await getCollection("teachers");
 const teachers = teacherEntries
   .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
   .map((e) => e.data);
+
+const heroDesktop = await getImage({ src: teachersHeroImg, width: 1920, format: "webp", quality: 80 });
+const heroMobile = await getImage({ src: teachersHeroImg, width: 768, format: "webp", quality: 80 });
 ---
 
 <BaseLayout
   title="Our Teachers | Kauai Hot Yoga"
   description="Meet the certified hot yoga instructors at Kauai Hot Yoga in Lihue, Hawaii. Experienced teachers in Bikram, Vinyasa, Pilates, breathwork, and more."
   currentPath="/our-teachers">
-  <TeachersPage teachers={teachers} client:visible />
+  <TeachersPage teachers={teachers} heroDesktopSrc={heroDesktop.src} heroMobileSrc={heroMobile.src} client:visible />
 </BaseLayout>

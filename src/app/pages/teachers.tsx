@@ -12,17 +12,19 @@ export interface Teacher {
 
 interface TeachersPageProps {
   teachers: Teacher[];
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
 }
 
-export function TeachersPage({ teachers }: TeachersPageProps) {
+export function TeachersPage({ teachers, heroDesktopSrc, heroMobileSrc }: TeachersPageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero */}
       <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hot-yoga-class.jpg')" }}
-        />
+        <picture>
+          <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
+          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" width={1920} height={1080} />
+        </picture>
         <div className="absolute inset-0 bg-purple-dark/70" />
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-orange/20 rounded-full blur-3xl" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-purple-light/30 rounded-full blur-3xl" />

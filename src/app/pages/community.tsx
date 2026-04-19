@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import { Globe, Instagram } from "lucide-react";
-import beachImg from "../../assets/images/beach.jpg";
 
 export interface CommunityMember {
   name: string;
@@ -13,19 +12,20 @@ export interface CommunityMember {
 
 interface CommunityPageProps {
   members: CommunityMember[];
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
 }
 
-export function CommunityPage({ members }: CommunityPageProps) {
+export function CommunityPage({ members, heroDesktopSrc, heroMobileSrc }: CommunityPageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero */}
       <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: `url('${beachImg.src}')` }}
-        >
-          <div className="absolute inset-0 bg-purple-dark/65" />
-        </div>
+        <picture>
+          <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
+          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchPriority="high" width={1920} height={1080} />
+        </picture>
+        <div className="absolute inset-0 bg-purple-dark/65" />
         <div className="relative container mx-auto px-4 text-center">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
