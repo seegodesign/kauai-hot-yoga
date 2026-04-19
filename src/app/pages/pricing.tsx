@@ -52,7 +52,7 @@ export function PricingPage({ plans, specials, faqs, heroDesktopSrc, heroMobileS
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
+      <section ref={heroRef} className="relative py-20 overflow-hidden min-h-[60svh] flex items-center">
         <picture>
           <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
           <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-center" loading="eager" fetchpriority="high" width={1920} height={1080} />

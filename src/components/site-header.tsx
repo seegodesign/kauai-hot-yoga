@@ -1,4 +1,4 @@
-import { Menu, X, ChevronDown, Flame, Calendar, Tag, Compass, Sparkles, Info, Users, Heart, BookOpen, HelpCircle, Wind, Droplets, Presentation, CalendarCheck } from "lucide-react";
+import { ChevronDown, Flame, Calendar, Tag, Compass, Sparkles, Info, Users, Heart, BookOpen, HelpCircle, Wind, Droplets, Presentation, CalendarCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import logo from "../assets/logo.png";
@@ -157,18 +157,50 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
             onClick={() => setMobileMenuOpen((open) => !open)}
             aria-label="Toggle navigation"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <motion.line
+                x1="3" y1="6" x2="21" y2="6"
+                style={{ transformOrigin: "12px 6px" }}
+                animate={mobileMenuOpen ? { rotate: 45, translateY: 6 } : { rotate: 0, translateY: 0 }}
+                transition={{ duration: 0.25 }}
+              />
+              <motion.line
+                x1="3" y1="12" x2="21" y2="12"
+                style={{ transformOrigin: "12px 12px" }}
+                animate={mobileMenuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.line
+                x1="3" y1="18" x2="21" y2="18"
+                style={{ transformOrigin: "12px 18px" }}
+                animate={mobileMenuOpen ? { rotate: -45, translateY: -6 } : { rotate: 0, translateY: 0 }}
+                transition={{ duration: 0.25 }}
+              />
+            </svg>
           </button>
         </div>
 
         <AnimatePresence>
           {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden overflow-hidden bg-white/95 border-t border-soft-purple relative z-[9999]"
-            >
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="lg:hidden fixed inset-0 top-[81px] bg-black/50 z-[9998]"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-hidden="true"
+              />
+              {/* Menu panel */}
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
+                className="lg:hidden fixed left-0 right-0 top-[81px] bg-white border-t border-soft-purple z-[9999] overflow-y-auto max-h-[calc(100dvh-81px)]"
+              >
               <div className="py-4 px-6 space-y-3">
                 {navLinks.map((link) => (
                   <a
@@ -268,6 +300,7 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
                 </a>
               </div>
             </motion.div>
+            </>
           )}
         </AnimatePresence>
       </nav>

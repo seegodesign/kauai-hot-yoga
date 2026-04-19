@@ -24,7 +24,7 @@ export function BlogPage({ posts }: BlogPageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
+      <section className="relative py-20 overflow-hidden min-h-[60svh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{ backgroundImage: `url('${beachImg.src}')` }}

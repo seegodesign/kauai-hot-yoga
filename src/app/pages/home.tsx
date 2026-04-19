@@ -157,7 +157,18 @@ function TestimonialsCarousel({ testimonials }: { testimonials: HomeTestimonial[
 
   return (
     <div className="max-w-6xl mx-auto">
-      <div className="relative">
+      <div
+        className="relative"
+        onTouchStart={(e) => {
+          const touch = e.touches[0];
+          (e.currentTarget as HTMLDivElement).dataset.touchX = String(touch.clientX);
+        }}
+        onTouchEnd={(e) => {
+          const startX = Number((e.currentTarget as HTMLDivElement).dataset.touchX);
+          const diff = startX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) diff > 0 ? next() : prev();
+        }}
+      >
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={page}
@@ -187,14 +198,20 @@ function TestimonialsCarousel({ testimonials }: { testimonials: HomeTestimonial[
         </button>
 
         <div className="flex items-center gap-2">
-          {Array.from({ length: totalPages }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => go(i)}
-              aria-label={`Go to page ${i + 1}`}
-              className={`rounded-full transition-all ${i === page ? "w-6 h-2.5 bg-orange" : "w-2.5 h-2.5 bg-soft-purple hover:bg-purple-light"}`}
-            />
-          ))}
+          {(() => {
+            const WINDOW = 5;
+            const half = Math.floor(WINDOW / 2);
+            const start = Math.max(0, Math.min(page - half, totalPages - WINDOW));
+            const end = Math.min(totalPages, start + WINDOW);
+            return Array.from({ length: end - start }, (_, i) => start + i).map((i) => (
+              <button
+                key={i}
+                onClick={() => go(i)}
+                aria-label={`Go to page ${i + 1}`}
+                className={`rounded-full transition-all ${i === page ? "w-6 h-2.5 bg-orange" : "w-2.5 h-2.5 bg-soft-purple hover:bg-purple-light"}`}
+              />
+            ));
+          })()}
         </div>
 
         <button
@@ -261,7 +278,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
         )}
       </AnimatePresence>
       {/* Hero Section */}
-      <section ref={heroRef} className="relative h-[92vh] flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} className="relative h-[92svh] flex items-center justify-center overflow-hidden">
         {/* Mobile: static image (no video download) */}
         <img
           src={heroMobileSrc}
@@ -379,7 +396,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
       </section>
 
       {/* Explainer Section */}
-      <section ref={sunRef} className="relative py-20 min-h-[100vh] flex items-center overflow-hidden pb-20">
+      <section ref={sunRef} className="relative py-20 min-h-[100svh] flex items-center overflow-hidden pb-20">
         {/* Light wash so text stays readable */}
         <div className="absolute inset-0 bg-white" />
         {/* Sun rays */}

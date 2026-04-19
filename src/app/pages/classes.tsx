@@ -41,7 +41,7 @@ export function ClassesPage({ classes, heroDesktopSrc, heroMobileSrc }: ClassesP
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[60svh] flex items-center justify-center overflow-hidden">
         <picture>
           <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
           <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high" width={1920} height={1080} />

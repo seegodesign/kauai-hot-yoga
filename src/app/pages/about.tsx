@@ -14,7 +14,7 @@ export function AboutPage({ heroDesktopSrc, heroMobileSrc, studioDesktopSrc, stu
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[60svh] flex items-center overflow-hidden">
         <picture>
           <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
           <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover bg-fixed" loading="eager" fetchpriority="high" width={1920} height={1080} />

@@ -24,7 +24,7 @@ export function FAQPage({ categories, phone, email }: FAQPageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
+      <section className="relative py-20 overflow-hidden min-h-[60svh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{

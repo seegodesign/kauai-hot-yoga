@@ -20,7 +20,7 @@ export function CommunityPage({ members, heroDesktopSrc, heroMobileSrc }: Commun
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative py-20 overflow-hidden min-h-[60vh] flex items-center">
+      <section className="relative py-20 overflow-hidden min-h-[60svh] flex items-center">
         <picture>
           <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
           <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high" width={1920} height={1080} />
