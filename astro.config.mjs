@@ -5,9 +5,11 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import svgr from "vite-plugin-svgr";
 
+import playformCompress from "@playform/compress";
+
 export default defineConfig({
   site: "https://www.kauaihotyoga.com",
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap(), playformCompress()],
   vite: {
     plugins: [svgr(), tailwindcss()],
     resolve: {
