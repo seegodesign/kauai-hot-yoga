@@ -22,7 +22,7 @@ export function TermsOfServicePage({ businessName, businessEmail, businessPhone,
               <li>
                 <strong>Program Description:</strong> This messaging program sends appointment confirmation and
                 reminder messages to customers who have booked an appointment with {businessName} through our website
-                at <a href={businessWebsite} className="text-green-600 hover:underline">{businessWebsite}</a>, or via our
+                at <a href={businessWebsite} className="text-orange-600 hover:underline">{businessWebsite}</a>, or via our
                 scheduling forms, and have explicitly opted in to receive SMS notifications. Opt-in is collected via
                 web forms with a dedicated checkbox for SMS consent. Messages include scheduling confirmations,
                 appointment reminders, rescheduling updates, and customer support communications.
@@ -36,8 +36,8 @@ export function TermsOfServicePage({ businessName, businessEmail, businessPhone,
               <li>
                 <strong>Support Information:</strong> If you experience issues with the messaging program, reply with
                 the keyword "HELP" for more assistance, or reach out directly to{" "}
-                <a href={`mailto:${businessEmail}`} className="text-green-600 hover:underline">{businessEmail}</a> or
-                call <a href={`tel:${businessPhone.replace(/[^\d+]/g, "")}`} className="text-green-600 hover:underline">{businessPhone}</a> during
+                <a href={`mailto:${businessEmail}`} className="text-orange-600 hover:underline">{businessEmail}</a> or
+                call <a href={`tel:${businessPhone.replace(/[^\d+]/g, "")}`} className="text-orange-600 hover:underline">{businessPhone}</a> during
                 business hours.
               </li>
               <li>
@@ -57,7 +57,7 @@ export function TermsOfServicePage({ businessName, businessEmail, businessPhone,
               </li>
               <li>
                 <strong>Privacy Policy:</strong> For privacy-related inquiries, please refer to our{" "}
-                <a href="/privacy" className="text-green-600 hover:underline">Privacy Policy</a>.
+                <a href="/privacy" className="text-orange-600 hover:underline">Privacy Policy</a>.
               </li>
             </ol>
             <p className="mt-4">
@@ -159,7 +159,7 @@ export function TermsOfServicePage({ businessName, businessEmail, businessPhone,
             </p>
             <p className="mt-3">
               If you suspect unauthorized use of your account, notify us immediately at{" "}
-              <a href={`mailto:${businessEmail}`} className="text-green-600 hover:underline">{businessEmail}</a>. We
+              <a href={`mailto:${businessEmail}`} className="text-orange-600 hover:underline">{businessEmail}</a>. We
               are not liable for any loss or damage arising from your failure to comply with this obligation.
             </p>
           </section>
@@ -191,11 +191,11 @@ export function TermsOfServicePage({ businessName, businessEmail, businessPhone,
             <address className="mt-3 not-italic">
               <strong>{businessName}</strong>
               <br />
-              Phone: <a href={`tel:${businessPhone.replace(/[^\d+]/g, "")}`} className="text-green-600 hover:underline">{businessPhone}</a>
+              Phone: <a href={`tel:${businessPhone.replace(/[^\d+]/g, "")}`} className="text-orange-600 hover:underline">{businessPhone}</a>
               <br />
-              Email: <a href={`mailto:${businessEmail}`} className="text-green-600 hover:underline">{businessEmail}</a>
+              Email: <a href={`mailto:${businessEmail}`} className="text-orange-600 hover:underline">{businessEmail}</a>
               <br />
-              Website: <a href={businessWebsite} className="text-green-600 hover:underline">seegoai.net</a>
+              Website: <a href={businessWebsite} className="text-orange-600 hover:underline">{businessWebsite}</a>
             </address>
             <p className="mt-3">By using our website and services, you consent to these Terms of Service.</p>
           </section>

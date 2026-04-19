@@ -38,7 +38,8 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
     { href: "/our-teachers", label: "Our Teachers", icon: Users },
     { href: "/our-community-1", label: "Community", icon: Heart },
     { href: "/blog", label: "Blog", icon: BookOpen },
-    { href: "/faq", label: "New Here?", icon: HelpCircle },
+    { href: "/new-here", label: "New Here?", icon: Sparkles },
+    { href: "/faq", label: "FAQ", icon: HelpCircle },
   ];
 
   const navLinks = [

@@ -1,0 +1,37 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import { getImage } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { NewHerePage } from "../app/pages/new-here";
+import heroImg from "../assets/images/hot-yoga-class.jpg";
+
+const heroDesktop = await getImage({ src: heroImg, width: 1920, format: "webp", quality: 80 });
+const heroMobile  = await getImage({ src: heroImg, width: 768,  format: "webp", quality: 80 });
+
+const specialEntries = await getCollection("pricingSpecials");
+const specials = specialEntries
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => e.data);
+
+// Use the first special as the featured intro offer
+const featured = specials[0];
+
+const settingsEntry = await getEntry("settings", "main");
+if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
+---
+
+<BaseLayout
+  title="New to Kauai Hot Yoga? Start Here | Kauai Hot Yoga"
+  description="First time at Kauai Hot Yoga? Here's everything you need to know — what to bring, what to expect, and an exclusive intro offer for new students."
+  currentPath="/new-here">
+  <NewHerePage
+    heroDesktopSrc={heroDesktop.src}
+    heroMobileSrc={heroMobile.src}
+    specialPrice={featured.price}
+    specialName={featured.name}
+    specialCtaUrl={featured.cta_url}
+    phone={settingsEntry.data.phone}
+    scheduleUrl="/schedule"
+    client:visible
+  />
+</BaseLayout>

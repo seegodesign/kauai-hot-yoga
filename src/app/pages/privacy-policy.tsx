@@ -88,7 +88,7 @@ export function PrivacyPolicyPage({ businessName, businessEmail, businessPhone, 
             <p className="mt-4 font-semibold text-gray-900">Help &amp; Support:</p>
             <ul className="list-disc pl-6 mt-2 space-y-2">
               <li>
-                Reply "HELP" for assistance or contact us at <a href={`mailto:${businessEmail}`} className="text-green-600 hover:underline">{businessEmail}</a>.
+                Reply "HELP" for assistance or contact us at <a href={`mailto:${businessEmail}`} className="text-orange-600 hover:underline">{businessEmail}</a>.
               </li>
               <li>Customer support is available during regular business hours.</li>
             </ul>
@@ -207,11 +207,11 @@ export function PrivacyPolicyPage({ businessName, businessEmail, businessPhone, 
             <address className="mt-3 not-italic">
               <strong>{businessName}</strong>
               <br />
-              Phone: <a href={`tel:${businessPhone.replace(/[^\d+]/g, "")}`} className="text-green-600 hover:underline">{businessPhone}</a>
+              Phone: <a href={`tel:${businessPhone.replace(/[^\d+]/g, "")}`} className="text-orange-600 hover:underline">{businessPhone}</a>
               <br />
-              Email: <a href={`mailto:${businessEmail}`} className="text-green-600 hover:underline">{businessEmail}</a>
+              Email: <a href={`mailto:${businessEmail}`} className="text-orange-600 hover:underline">{businessEmail}</a>
               <br />
-              Website: <a href={businessWebsite} className="text-green-600 hover:underline">{businessWebsite}</a>
+              Website: <a href={businessWebsite} className="text-orange-600 hover:underline">{businessWebsite}</a>
             </address>
             <p className="mt-3">By using our website and services, you consent to this Privacy Policy.</p>
           </section>

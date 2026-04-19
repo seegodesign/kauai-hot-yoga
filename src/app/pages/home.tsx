@@ -329,7 +329,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4"
+            className="hidden sm:flex flex-row items-center justify-center space-x-4"
           >
             <a
               href={content.cta_primary.href}
