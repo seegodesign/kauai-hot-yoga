@@ -1,0 +1,42 @@
+/* Mindbody widget overrides */
+.class_list.modern-theme-wrapper.mindbody_classic {
+  max-width: 100% !important;
+}
+
+.class_list div:has(+ .hc_footer) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.class_list .class_show {
+  flex-basis: 100%;
+  padding: 6% !important;
+  box-shadow: 0 0 4px #00000066;
+  border-radius: 20px;
+  margin-bottom: 0 !important;
+}
+
+@media (min-width: 640px) {
+  .class_list .class_show {
+    flex-basis: 48%;
+    padding: 4% !important;
+  }
+}
+
+.class_info {
+  display: block !important;
+}
+
+.healcode-image-area {
+  display: none;
+}
+
+.class_offered_link {
+  border-radius: 20px !important;
+}
+
+.class_description div,
+.class_description div p {
+  font-size: 16px !important;
+}
