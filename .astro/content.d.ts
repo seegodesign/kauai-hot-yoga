@@ -176,7 +176,7 @@ declare module 'astro:content' {
   id: string;
   body?: string;
   collection: "classes";
-  data: InferEntrySchema<"classes">;
+  data: any;
   rendered?: RenderedContent;
   filePath?: string;
 }>;

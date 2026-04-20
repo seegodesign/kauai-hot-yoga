@@ -100,7 +100,7 @@ export function ColdPlungePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-white text-6xl font-bold mb-6"
+            className="text-white text-4xl md:text-6xl font-bold mb-6"
           >
             Cold Plunge Therapy
           </motion.h1>
@@ -155,7 +155,7 @@ export function ColdPlungePage() {
       </section>
 
       {/* Pairings & Pricing */}
-      <section className="py-20 bg-mist">
+      <section className="py-20 bg-warm-cream">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-4xl font-semibold text-purple-dark text-center mb-12">Cold Plunge Options</h2>
@@ -332,7 +332,7 @@ export function ColdPlungePage() {
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-purple-dark/50" />
+        <div className="absolute inset-0 bg-blue/50" />
         <div className="relative container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

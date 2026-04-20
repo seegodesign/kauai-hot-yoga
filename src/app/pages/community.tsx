@@ -1,11 +1,13 @@
 import { motion } from "motion/react";
 import { Globe, Instagram } from "lucide-react";
+import { PageHero } from "../components/page-hero";
 
 export interface CommunityMember {
   name: string;
   role: string;
   bio: string;
   photo?: string;
+  photo_position?: string;
   website?: string;
   instagram?: string;
 }
@@ -20,38 +22,14 @@ export function CommunityPage({ members, heroDesktopSrc, heroMobileSrc }: Commun
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative py-20 overflow-hidden min-h-[60svh] flex items-center">
-        <picture>
-          <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
-          <img src={heroDesktopSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high" width={1920} height={1080} />
-        </picture>
-        <div className="absolute inset-0 bg-purple-dark/65" />
-        <div className="relative container mx-auto px-4 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-block text-orange-light font-semibold tracking-widest uppercase text-sm mb-4"
-          >
-            Our People
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05 }}
-            className="text-5xl md:text-6xl lg:text-7xl text-white mb-4"
-          >
-            Community
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-xl text-white/85 max-w-2xl mx-auto"
-          >
-            The friends, healers, guides, and collaborators who make Kauai Hot Yoga more than just a studio.
-          </motion.p>
-        </div>
-      </section>
+      <PageHero
+        desktopSrc={heroDesktopSrc}
+        mobileSrc={heroMobileSrc}
+        overlay="bg-purple-dark/65"
+        eyebrow="Our People"
+        title="Community"
+        subtitle="The friends, healers, guides, and collaborators who make Kauai Hot Yoga more than just a studio."
+      />
 
       {/* Members Grid */}
       <section className="py-20 bg-warm-cream">
@@ -77,6 +55,7 @@ export function CommunityPage({ members, heroDesktopSrc, heroMobileSrc }: Commun
                           src={member.photo}
                           alt={member.name}
                           className="w-full h-full object-cover"
+                          style={{ objectPosition: member.photo_position ?? "center" }}
                           loading="lazy"
                           width={400}
                           height={400}

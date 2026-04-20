@@ -1,23 +1,85 @@
 ---
-import { getCollection } from "astro:content";
-import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { ClassesPage } from "../app/pages/classes";
-import studioInteriorImg from "../assets/images/studio-interior.jpg";
-
-const classEntries = await getCollection("classes");
-const classes = classEntries
-  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
-  .map((e) => e.data);
-
-const heroDesktop = await getImage({ src: studioInteriorImg, width: 1600, format: "webp", quality: 85 });
-const heroMobile  = await getImage({ src: studioInteriorImg, width: 768,  format: "webp", quality: 80 });
 ---
 
 <BaseLayout
   title="Hot Yoga Classes in Kauai, Hawaii | Kauai Hot Yoga"
-  description="Explore our hot yoga class styles — Hot 26 & 2, Power Flow, Yin & Restore, and more — at our Lihue, Kauai studio. All levels welcome."
+  description="Explore our hot yoga class styles — Hot 26 &amp; 2, Power Flow, Yin &amp; Restore, and more — at our Lihue, Kauai studio. All levels welcome."
   ogImage="/images/classes-hero.jpg"
   currentPath="/classes">
-  <ClassesPage classes={classes} heroDesktopSrc={heroDesktop.src} heroMobileSrc={heroMobile.src} client:visible />
+  <div class="min-h-screen py-10 px-4 bg-white">
+    <div class="container mx-auto max-w-5xl">
+      <h1 class="text-purple-dark text-center mb-8">Classes</h1>
+      <!-- Mindbody class list widget begin -->
+      <script src="https://widgets.mindbodyonline.com/javascripts/healcode.js" type="text/javascript"></script>
+      <healcode-widget data-type="class_lists" data-widget-partner="object" data-widget-id="3f96061f769" data-widget-version="0"></healcode-widget>
+      <!-- Mindbody class list widget end -->
+
+      <script is:inline>
+        (function () {
+          const LINE_CLAMP = 4;
+          const DESC_SELECTORS = '.class_description';
+
+          function applyReadMore(root) {
+            root.querySelectorAll(DESC_SELECTORS).forEach(function (el) {
+              if (el.dataset.rmApplied) return;
+
+              // Check if content is tall enough to need truncation
+              // We do this after clamping so we can compare clamped vs full height
+              const fullHTML = el.innerHTML;
+
+              // Wrap original content in a clamp container
+              const inner = document.createElement('div');
+              inner.innerHTML = fullHTML;
+              inner.style.cssText = [
+                'overflow:hidden',
+                'display:-webkit-box',
+                '-webkit-box-orient:vertical',
+                '-webkit-line-clamp:' + LINE_CLAMP,
+              ].join(';');
+
+              const btn = document.createElement('button');
+              btn.textContent = 'Read more';
+              btn.style.cssText = 'display:none;background:none;border:none;padding:4px 0 0;color:inherit;font:inherit;text-decoration:underline;cursor:pointer;font-size:0.85em;opacity:0.7;';
+
+              el.innerHTML = '';
+              el.appendChild(inner);
+              el.appendChild(btn);
+              el.dataset.rmApplied = '1';
+
+              // After paint, check if content is actually clamped
+              requestAnimationFrame(function () {
+                if (inner.scrollHeight > inner.clientHeight) {
+                  btn.style.display = 'inline';
+                  var expanded = false;
+                  btn.addEventListener('click', function () {
+                    expanded = !expanded;
+                    if (expanded) {
+                      inner.style.webkitLineClamp = 'unset';
+                      inner.style.display = 'block';
+                      btn.textContent = 'Read less';
+                    } else {
+                      inner.style.display = '-webkit-box';
+                      inner.style.webkitLineClamp = String(LINE_CLAMP);
+                      btn.textContent = 'Read more';
+                    }
+                  });
+                }
+              });
+            });
+          }
+
+          const widget = document.querySelector('healcode-widget');
+          if (!widget) return;
+
+          const observer = new MutationObserver(function () {
+            applyReadMore(widget);
+          });
+
+          observer.observe(widget, { childList: true, subtree: true });
+          applyReadMore(widget);
+        })();
+      </script>
+    </div>
+  </div>
 </BaseLayout>

@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Brain, Heart, Sparkles, Shield, Calendar } from "lucide-react";
+import { PageHero } from "../components/page-hero";
 
 export function BreathworkPage() {
   const benefits = [
@@ -53,43 +54,13 @@ export function BreathworkPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[60svh] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{
-            backgroundImage:
-              "url('/images/9d-breathwork.jpg')",
-          }}
-        >
-          <div className="absolute inset-0 bg-purple-dark/50" />
-        </div>
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm mb-6"
-          >
-            Immersive Experience
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-white text-6xl font-bold mb-6"
-          >
-            9D Breathwork Journey
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-xl text-white/90 mb-8"
-          >
-            A transformative somatic breathwork experience using hypnotic breathwork,
-            binaural beats, solfeggio frequencies, and guided visualization
-          </motion.p>
-        </div>
-      </section>
+      <PageHero
+        desktopSrc="/images/9d-breathwork.jpg"
+        overlay="bg-purple-dark/50"
+        eyebrow="Immersive Experience"
+        title="9D Breathwork Journey"
+        subtitle="A transformative somatic breathwork experience using hypnotic breathwork, binaural beats, solfeggio frequencies, and guided visualization"
+      />
 
       {/* What is 9D Breathwork */}
       <section className="py-20 bg-white">
@@ -101,8 +72,8 @@ export function BreathworkPage() {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-semibold text-purple-dark mb-12">What is 9D Breathwork?</h2>
-              <div className="flex space-x-8 text-md text-muted-foreground">
+              <h2 className="text-3xl md:text-4xl font-semibold text-purple-dark mb-12">What is 9D Breathwork?</h2>
+              <div className="flex flex-col md:flex-row md:space-x-8 space-y-6 md:space-y-0 text-md text-muted-foreground">
                 <div>
                   <h3 className="text-purple-dark mb-3">A Multi-Dimensional Journey</h3>
                   <p className="mb-6 flex-1">
@@ -195,8 +166,8 @@ export function BreathworkPage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-4xl font-semibold text-purple-dark text-center mb-12">What to Expect</h2>
-            <div className="flex space-x-8">
+            <h2 className="text-3xl md:text-4xl font-semibold text-purple-dark text-center mb-12">What to Expect</h2>
+            <div className="flex flex-col md:flex-row md:space-x-8 space-y-6 md:space-y-0">
               <div className="bg-mist p-8 rounded-2xl flex-1">
                 <h3 className="text-purple-dark mb-3">Before Your Session</h3>
                 <p className="text-muted-foreground">

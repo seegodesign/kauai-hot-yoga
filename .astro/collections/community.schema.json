@@ -18,6 +18,10 @@
           "type": "string",
           "default": ""
         },
+        "photo_position": {
+          "type": "string",
+          "default": "center"
+        },
         "website": {
           "type": "string",
           "default": ""

@@ -1,5 +1,6 @@
 import { Calendar, Users, Clock } from "lucide-react";
 import { motion } from "motion/react";
+import { PageHero } from "../components/page-hero";
 
 export function WorkshopsPage() {
   const workshops = [
@@ -70,34 +71,13 @@ export function WorkshopsPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[60svh] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{
-            backgroundImage:
-              "url('/images/workshops.jpg')",
-          }}
-        >
-          <div className="absolute inset-0 bg-purple-dark/50" />
-        </div>
-        <div className="relative z-10 text-center text-white px-4 max-w-3xl mx-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-white mb-4 text-5xl md:text-6xl lg:text-7xl font-bold"
-          >
-            Workshops & Events
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-xl text-white/90"
-          >
-            Deepen your practice with specialized training and immersive experiences
-          </motion.p>
-        </div>
-      </section>
+      <PageHero
+        desktopSrc="/images/workshops.jpg"
+        overlay="bg-purple-dark/50"
+        eyebrow="Special Events"
+        title="Workshops & Events"
+        subtitle="Deepen your practice with specialized training and immersive experiences"
+      />
 
       {/* Workshops Grid */}
       <section className="py-20 bg-white">

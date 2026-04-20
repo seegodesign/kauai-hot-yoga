@@ -97,6 +97,7 @@ const community = defineCollection({
     role: z.string().optional().default(""),
     bio: z.string(),
     photo: z.string().optional().default(""),
+    photo_position: z.string().optional().default("center"),
     website: z.string().optional().default(""),
     instagram: z.string().optional().default(""),
     order: z.number().optional().default(0),
@@ -112,19 +113,6 @@ const teachers = defineCollection({
     photo: z.string().optional().default(""),
     specialties: z.array(z.string()).optional().default([]),
     instagram: z.string().optional().default(""),
-    order: z.number().optional().default(0),
-  }),
-});
-
-const classes = defineCollection({
-  type: "data",
-  schema: z.object({
-    name: z.string(),
-    description: z.string(),
-    duration: z.string().optional().default(""),
-    intensity: z.enum(["Gentle", "Moderate", "Intense"]).optional(),
-    heat: z.boolean().optional().default(true),
-    image: z.string().optional().default(""),
     order: z.number().optional().default(0),
   }),
 });
@@ -165,4 +153,4 @@ const pricingSpecials = defineCollection({
   }),
 });
 
-export const collections = { settings, home, testimonials, offerings, faq, blog, community, teachers, classes, footer, pricingPlans, pricingSpecials };
+export const collections = { settings, home, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials };

@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Check, Flame, Thermometer, Users, Droplets, Footprints, ShowerHead, Waves } from "lucide-react";
+import { PageHero } from "../components/page-hero";
 
 interface NewHerePageProps {
   heroDesktopSrc: string;
@@ -23,58 +24,24 @@ export function NewHerePage({
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative min-h-[60svh] flex items-center justify-center overflow-hidden">
-        <picture>
-          <source media="(max-width: 767px)" srcSet={heroMobileSrc} />
-          <img
-            src={heroDesktopSrc}
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover"
-            loading="eager"
-            fetchpriority="high"
-            width={1920}
-            height={1080}
-          />
-        </picture>
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-dark/80 via-purple/70 to-orange/40" />
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-orange/20 rounded-full blur-3xl" />
-
-        <div className="relative container mx-auto px-4 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-block text-orange-light font-semibold tracking-widest uppercase text-sm mb-4"
-          >
-            Welcome
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05 }}
-            className="text-5xl md:text-6xl lg:text-7xl text-white font-bold mb-4"
-          >
-            New Here?
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-xl text-white/90 max-w-xl mx-auto mb-8"
-          >
-            Everything you need to know before your first visit — plus an exclusive intro offer.
-          </motion.p>
-          <motion.a
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            href="#intro-offer"
-            className="inline-block bg-orange text-white font-semibold px-8 py-4 rounded-full hover:bg-orange-dark transition-colors shadow-lg"
-          >
-            See Intro Offer ↓
-          </motion.a>
-        </div>
-      </section>
+      <PageHero
+        desktopSrc={heroDesktopSrc}
+        mobileSrc={heroMobileSrc}
+        overlay="bg-gradient-to-br from-purple-dark/80 via-purple/70 to-orange/40"
+        eyebrow="Welcome"
+        title="New Here?"
+        subtitle="Everything you need to know before your first visit — plus an exclusive intro offer."
+      >
+        <motion.a
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          href="#intro-offer"
+          className="inline-block mt-8 bg-orange text-white font-semibold px-8 py-4 rounded-full hover:bg-orange-dark transition-colors shadow-lg"
+        >
+          See Intro Offer ↓
+        </motion.a>
+      </PageHero>
 
       {/* Intro Offer */}
       <section id="intro-offer" className="py-20 bg-gradient-to-br from-purple-dark to-purple scroll-mt-20">

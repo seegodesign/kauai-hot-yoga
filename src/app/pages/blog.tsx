@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowRight, Calendar, User, Tag } from "lucide-react";
 import beachImg from "../../assets/images/beach.jpg";
+import { PageHero } from "../components/page-hero";
 
 export interface BlogPost {
   slug: string;
@@ -24,41 +25,13 @@ export function BlogPage({ posts }: BlogPageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative py-20 overflow-hidden min-h-[60svh] flex items-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: `url('${beachImg.src}')` }}
-        />
-        <div className="absolute inset-0 bg-purple/65" />
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-orange/30 rounded-full blur-3xl" />
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-light/40 rounded-full blur-3xl" />
-
-        <div className="relative container mx-auto px-4 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-block text-orange-light font-semibold tracking-widest uppercase text-sm mb-4"
-          >
-            Wellness & Inspiration
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-6xl lg:text-7xl text-white mb-4"
-          >
-            Our Blog
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-white/80 text-lg md:text-xl max-w-xl mx-auto"
-          >
-            Tips, stories, and guides to support your yoga journey.
-          </motion.p>
-        </div>
-      </section>
+      <PageHero
+        desktopSrc={beachImg.src}
+        overlay="bg-purple/65"
+        eyebrow="Wellness & Inspiration"
+        title="Our Blog"
+        subtitle="Tips, stories, and guides to support your yoga journey."
+      />
 
       {/* Posts grid */}
       <section className="py-12 md:py-24 bg-white">

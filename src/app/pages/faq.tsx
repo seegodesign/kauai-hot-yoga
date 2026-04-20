@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from "../components/ui/accordion";
 import meditationImg from "../../assets/images/meditation.jpg";
+import { PageHero } from "../components/page-hero";
 
 export interface FAQCategory {
   category: string;
@@ -22,31 +23,13 @@ export function FAQPage({ categories, phone, email }: FAQPageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden min-h-[60svh] flex items-center">
-        <picture>
-          <img src={meditationImg.src} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high" width={1920} height={1080} />
-        </picture>
-        <div className="absolute inset-0 bg-purple/60" />
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-orange/30 rounded-full blur-3xl" />
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-light/40 rounded-full blur-3xl" />
-        <div className="relative container mx-auto px-4 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-6xl lg:text-7xl text-white mb-4"
-          >
-            Frequently Asked Questions
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-xl text-white/90"
-          >
-            Everything you need to know about Kauai Hot Yoga
-          </motion.p>
-        </div>
-      </section>
+      <PageHero
+        desktopSrc={meditationImg.src}
+        eyebrow="Frequently Asked Questions"
+        overlay="bg-purple/60"
+        title="FAQ"
+        subtitle="Everything you need to know about Kauai Hot Yoga"
+      />
 
       {/* FAQ Sections */}
       <section className="py-16 bg-white">
