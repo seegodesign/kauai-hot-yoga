@@ -2,7 +2,7 @@
 import { getCollection, getEntry } from "astro:content";
 import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { NewHerePage } from "../app/pages/new-here";
+import { NewHerePage } from "../views/new-here";
 import heroImg from "../assets/images/hot-yoga-class.jpg";
 
 const heroDesktop = await getImage({ src: heroImg, width: 1920, format: "webp", quality: 80 });

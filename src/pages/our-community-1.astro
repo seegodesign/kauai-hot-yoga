@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { CommunityPage } from "../app/pages/community";
+import { CommunityPage } from "../views/community";
 import communityHeroImg from "../assets/images/community-hero.jpg";
 
 const communityEntries = await getCollection("community");

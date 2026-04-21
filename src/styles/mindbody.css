@@ -3,13 +3,13 @@
   max-width: 100% !important;
 }
 
-.class_list div:has(+ .hc_footer) {
+.class_list div:has(+ .hc_footer), .class_list ol {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
 }
 
-.class_list .class_show {
+.class_list .class_show:not(.hide-in-detail-view) {
   flex-basis: 100%;
   padding: 6% !important;
   box-shadow: 0 0 4px #00000066;

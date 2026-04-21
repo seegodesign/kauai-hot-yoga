@@ -181,8 +181,8 @@ export function PricingPage({ plans, specials, faqs, heroDesktopSrc, heroMobileS
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 { name: "Cold Plunge Only", price: "$15", description: "Drop in for a quick plunge session. Perfect for recovery days or before/after surf sessions.", features: ["Single session", "Unlimited time in tub", "Towel provided"] },
-                { name: "Hot Yoga + Cold Plunge", price: "$40", badge: "Save $5", description: "The perfect contrast therapy. Practice hot yoga then immediately plunge for maximum benefits.", features: ["1 yoga class + 1 plunge", "Any class style", "Best for recovery"] },
-                { name: "Breathwork + Cold Plunge", price: "$95", badge: "Bundle", description: "Prepare your nervous system with breathwork before cold immersion for deeper resilience building.", features: ["1 breathwork session + 1 plunge", "60–90 min total", "Guided experience"] },
+                // { name: "Hot Yoga + Cold Plunge", price: "$40", badge: "Save $5", description: "The perfect contrast therapy. Practice hot yoga then immediately plunge for maximum benefits.", features: ["1 yoga class + 1 plunge", "Any class style", "Best for recovery"] },
+                // { name: "Breathwork + Cold Plunge", price: "$95", badge: "Bundle", description: "Prepare your nervous system with breathwork before cold immersion for deeper resilience building.", features: ["1 breathwork session + 1 plunge", "60–90 min total", "Guided experience"] },
                 { name: "10-Plunge Pass", price: "$125", badge: "Save $25", description: "Stock up and save. Use at your own pace — perfect for regular recovery practitioners.", features: ["10 plunge sessions", "No expiry", "Shareable"] },
                 { name: "20-Plunge Pass", price: "$200", badge: "Save $100", description: "Our best value pass for committed cold therapy enthusiasts. Never run out of plunges.", features: ["20 plunge sessions", "No expiry", "Best per-session value"] },
               ].map((item, i) => (

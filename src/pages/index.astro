@@ -2,10 +2,12 @@
 import { getCollection, getEntry } from "astro:content";
 import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { HomePage } from "../app/pages/home";
+import { HomePage } from "../views/home";
 import heroMainImg from "../assets/images/hero-main.jpg";
+import flameSectionImg from "../assets/images/flame-section.jpg";
 
 const heroMobile = await getImage({ src: heroMainImg, width: 768, format: "webp", quality: 80 });
+const flameSection = await getImage({ src: flameSectionImg, width: 1920, format: "webp", quality: 80 });
 
 const homeEntry = await getEntry("home", "main");
 if (!homeEntry) throw new Error("Missing content: home/main.yml");
@@ -42,6 +44,7 @@ const teachers = teacherEntries
     yelpReviewUrl={settingsEntry.data.social?.yelp_review_url ?? ""}
     phone={settingsEntry.data.phone ?? ""}
     heroMobileSrc={heroMobile.src}
+    flameSectionSrc={flameSection.src}
     client:load
   />
 </BaseLayout>

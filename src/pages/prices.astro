@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { PricingPage } from "../app/pages/pricing";
+import { PricingPage } from "../views/pricing";
 import heroMainImg from "../assets/images/hero-main.jpg";
 
 const heroDesktop = await getImage({ src: heroMainImg, width: 1600, format: "webp", quality: 85 });

@@ -3,13 +3,23 @@ import { ChevronDown } from "lucide-react";
 
 interface ScrollChevronProps {
   className?: string;
+  target?: string;
 }
 
-export function ScrollChevron({ className = "" }: ScrollChevronProps) {
+export function ScrollChevron({ className = "", target }: ScrollChevronProps) {
   return (
     <motion.button
       aria-label="Scroll down"
-      onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
+      onClick={() => {
+        if (target) {
+          const element = document.getElementById(target);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        } else {
+          window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+        }
+      }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 1.2, duration: 0.6 }}

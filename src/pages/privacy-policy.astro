@@ -1,7 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { PrivacyPolicyPage } from "../app/pages/privacy-policy";
+import { PrivacyPolicyPage } from "../views/privacy-policy";
 
 const settingsEntry = await getEntry("settings", "main");
 if (!settingsEntry) throw new Error("Missing content: settings/main.yml");

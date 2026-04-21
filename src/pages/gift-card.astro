@@ -1,0 +1,21 @@
+---
+import { getImage } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { GiftCardPage } from "../views/gift-card";
+import heroImg from "../assets/images/studio-interior.jpg";
+
+const heroDesktop = await getImage({ src: heroImg, width: 1920, format: "webp", quality: 80 });
+const heroMobile  = await getImage({ src: heroImg, width: 768,  format: "webp", quality: 80 });
+---
+
+<BaseLayout
+  title="Gift Cards | Kauai Hot Yoga"
+  description="Give the gift of hot yoga in Kauai. Purchase a gift card for classes, passes, or memberships at Kauai Hot Yoga in Lihue, Hawaii."
+  ogImage="/images/studio-interior.jpg"
+  currentPath="/gift-card">
+  <GiftCardPage
+    heroDesktopSrc={heroDesktop.src}
+    heroMobileSrc={heroMobile.src}
+    client:load
+  />
+</BaseLayout>

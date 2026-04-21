@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { TeachersPage } from "../app/pages/teachers";
+import { TeachersPage } from "../views/teachers";
 import teachersHeroImg from "../assets/images/hot-yoga-class.jpg";
 
 const teacherEntries = await getCollection("teachers");

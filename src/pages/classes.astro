@@ -1,15 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { PageHero } from "../components/page-hero";
 ---
 
 <BaseLayout
   title="Hot Yoga Classes in Kauai, Hawaii | Kauai Hot Yoga"
   description="Explore our hot yoga class styles — Hot 26 &amp; 2, Power Flow, Yin &amp; Restore, and more — at our Lihue, Kauai studio. All levels welcome."
-  ogImage="/images/classes-hero.jpg"
+  ogImage="/images/hot-yoga-class.jpg"
   currentPath="/classes">
-  <div class="min-h-screen py-10 px-4 bg-white">
+  <PageHero
+    title="Our Classes"
+    subtitle="Explore our hot yoga class styles — Hot 26 & 2, Power Flow, Yin & Restore, and more — at our Lihue, Kauai studio. All levels welcome."
+    desktopSrc="/images/hot-yoga-class.jpg"
+    client:load
+  />
+  <div id="classes" class="py-10 px-4 bg-white">
     <div class="container mx-auto max-w-5xl">
-      <h1 class="text-purple-dark text-center mb-8">Classes</h1>
       <!-- Mindbody class list widget begin -->
       <script src="https://widgets.mindbodyonline.com/javascripts/healcode.js" type="text/javascript"></script>
       <healcode-widget data-type="class_lists" data-widget-partner="object" data-widget-id="3f96061f769" data-widget-version="0"></healcode-widget>
@@ -78,6 +84,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
           observer.observe(widget, { childList: true, subtree: true });
           applyReadMore(widget);
+
+          // Scroll to .container when any widget button is clicked
+          widget.addEventListener('click', function (e) {
+            if (e.target.tagName === 'A') {
+              var container = document.querySelector('#classes');
+              if (container) {
+                setTimeout(function () {
+                  container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 1500); // Delay to allow any potential page changes
+              }
+            }
+          });
         })();
       </script>
     </div>

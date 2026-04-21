@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowRight, Calendar, User, Tag } from "lucide-react";
-import beachImg from "../../assets/images/beach.jpg";
+import beachImg from "../assets/images/beach.jpg";
 import { PageHero } from "../components/page-hero";
 
 export interface BlogPost {

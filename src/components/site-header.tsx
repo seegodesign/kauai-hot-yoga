@@ -1,4 +1,4 @@
-import { ChevronDown, Flame, Calendar, Tag, Compass, Sparkles, Info, Users, Heart, BookOpen, HelpCircle, Wind, Droplets, Presentation, CalendarCheck } from "lucide-react";
+import { ChevronDown, Flame, Calendar, Tag, Compass, Sparkles, Info, Users, Heart, BookOpen, HelpCircle, Wind, Droplets, Presentation, CalendarCheck, MapPin, Gift } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import logo from "../assets/logo.png";
@@ -40,6 +40,7 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
     { href: "/blog", label: "Blog", icon: BookOpen },
     { href: "/new-here", label: "New Here?", icon: Sparkles },
     { href: "/faq", label: "FAQ", icon: HelpCircle },
+    { href: "/gift-card", label: "Gift Card", icon: Gift },
   ];
 
   const navLinks = [
@@ -102,6 +103,8 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
                     <a
                       key={link.href}
                       href={link.href}
+                      target={link.target}
+                      rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
                       className={`block py-3 px-4 text-sm transition-colors hover:bg-soft-purple ${
                         currentPath === link.href ? "text-purple" : "text-purple-dark/70"
                       }`}
@@ -145,11 +148,17 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
                 </div>
               )}
             </div>
-            <a
+            {/* <a
               href="/prices"
               className="bg-orange text-white px-6 py-2.5 rounded-full hover:bg-orange-light transition-colors"
             >
               Book Now
+            </a> */}
+            <a
+              href="/contact-us"
+              className="bg-orange text-white px-6 py-2.5 rounded-full hover:bg-orange-light transition-colors"
+            >
+              Contact
             </a>
           </div>
 
@@ -241,7 +250,7 @@ export function SiteHeader({ currentPath, phone }: SiteHeaderProps) {
                           <a
                             key={link.href}
                             href={link.href}
-                            className={`flex items-center gap-3 py-2 text-sm transition-colors ${
+                            classNasme={`flex items-center gap-3 py-2 text-sm transition-colors ${
                               currentPath === link.href ? "text-purple" : "text-purple-dark/70"
                             }`}
                           >

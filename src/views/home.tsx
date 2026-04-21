@@ -2,9 +2,9 @@ import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import { Flame, Wind, Snowflake, Users, ArrowRight, Star, MapPin, Check, ChevronLeft, ChevronRight, type LucideIcon } from "lucide-react";
 import { ScrollChevron } from "../components/scroll-chevron";
-import GoogleLogo from "../../assets/google-logo.svg?react";
-import YelpLogo from "../../assets/yelp-logo.svg?react";
-import logoLight from "../../assets/logo-light.png";
+import GoogleLogo from "../assets/google-logo.svg?react";
+import YelpLogo from "../assets/yelp-logo.svg?react";
+import logoLight from "../assets/logo-light.png";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -54,6 +54,7 @@ interface HomePageProps {
   yelpReviewUrl: string;
   phone: string;
   heroMobileSrc: string;
+  flameSectionSrc: string;
 }
 
 // Curved wave divider between sections
@@ -226,7 +227,7 @@ function TestimonialsCarousel({ testimonials }: { testimonials: HomeTestimonial[
   );
 }
 
-export function HomePage({ content, testimonials, offerings, teachers, googleReviewUrl, yelpReviewUrl, phone, heroMobileSrc }: HomePageProps) {
+export function HomePage({ content, testimonials, offerings, teachers, googleReviewUrl, yelpReviewUrl, phone, heroMobileSrc, flameSectionSrc }: HomePageProps) {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -361,12 +362,12 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
           </motion.div> */}
 
           {/* Scroll down chevron */}
-          <ScrollChevron className="absolute -bottom-10 md:-bottom-20 left-1/2 -translate-x-1/2" />
+          <ScrollChevron className="absolute -bottom-10 md:-bottom-20 left-1/2 -translate-x-1/2" target="reviews"/>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-12 md:py-12 md:py-24 bg-white/60 backdrop-blur-md">
+      {/* Reviews */}
+      <section id="reviews" className="py-12 md:py-12 md:py-24 bg-white/60 backdrop-blur-md">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-16">
             <motion.span
@@ -582,8 +583,10 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
       </section>
 
       {/* Why Hot Yoga — full-width purple */}
-      <section className="py-20 bg-purple-dark text-white relative overflow-hidden">
-        <div className="container mx-auto px-4 mb-16">
+      <section className="py-20 text-white relative overflow-hidden">
+        <img src={flameSectionSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-purple-dark/50" />
+        <div className="relative container mx-auto px-4 mb-16">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

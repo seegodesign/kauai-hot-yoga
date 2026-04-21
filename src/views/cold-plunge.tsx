@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { Snowflake, Heart, Zap, Shield, TrendingUp, Activity, Wind, Waves, Flame, Sparkles } from "lucide-react";
-import coldPlungeTubImg from "../../assets/images/cold-plunge-tub.jpg";
-import plungeImg from "../../assets/images/plunge.jpg";
+import coldPlungeTubImg from "../assets/images/cold-plunge-tub.jpg";
+import plungeImg from "../assets/images/plunge.jpg";
 
 export function ColdPlungePage() {
   const benefits = [
@@ -38,20 +38,6 @@ export function ColdPlungePage() {
   ];
 
   const pairings = [
-    {
-      title: "Hot Yoga + Cold Plunge",
-      description:
-        "The perfect contrast therapy. Practice hot yoga then immediately plunge for maximum benefits.",
-      price: "$40",
-      savings: "Save $5",
-    },
-    {
-      title: "Breathwork + Cold Plunge",
-      description:
-        "Prepare your nervous system with breathwork before cold immersion for deeper resilience building.",
-      price: "$95",
-      savings: "Bundle Deal",
-    },
     {
       title: "Cold Plunge Only",
       description:
