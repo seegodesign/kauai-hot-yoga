@@ -54,7 +54,6 @@ interface HomePageProps {
   yelpReviewUrl: string;
   phone: string;
   heroMobileSrc: string;
-  flameSectionSrc: string;
 }
 
 // Curved wave divider between sections
@@ -227,7 +226,7 @@ function TestimonialsCarousel({ testimonials }: { testimonials: HomeTestimonial[
   );
 }
 
-export function HomePage({ content, testimonials, offerings, teachers, googleReviewUrl, yelpReviewUrl, phone, heroMobileSrc, flameSectionSrc }: HomePageProps) {
+export function HomePage({ content, testimonials, offerings, teachers, googleReviewUrl, yelpReviewUrl, phone, heroMobileSrc }: HomePageProps) {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -584,8 +583,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
 
       {/* Why Hot Yoga — full-width purple */}
       <section className="py-20 text-white relative overflow-hidden">
-        <img src={flameSectionSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-purple-dark/50" />
+        <div className="absolute inset-0 bg-purple-dark/80" />
         <div className="relative container mx-auto px-4 mb-16">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <motion.div
