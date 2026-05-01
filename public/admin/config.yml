@@ -24,7 +24,7 @@ backend:
   name: github
   repo: seegodesign/kauai-hot-yoga
   branch: main
-  base_url: https://kaui-hot-yoga-sveltia-cms-auth.seegodesign.workers.dev/
+  base_url: https://kaui-hot-yoga-sveltia-cms-auth.seegodesign.workers.dev
 
 media_folder: public/images
 public_folder: /images
