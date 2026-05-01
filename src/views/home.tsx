@@ -555,14 +555,15 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
                   <div>
                     <h4 className="text-purple-dark mb-2">What to Bring</h4>
                     <p className="text-muted-foreground">
-                      Yoga mat (or rent one), towel, water bottle, and an open mind.
+                      Yoga mat, towel, water bottle, and an open mind.
                       We provide filtered water and have showers available.
+                      Mats and towels available for rent.
                     </p>
                   </div>
                   <div>
                     <h4 className="text-purple-dark mb-2">First Timer?</h4>
                     <p className="text-muted-foreground">
-                      Arrive 10 minutes early so we can get you set up. Our teachers will guide you
+                      Arrive 15 minutes early so we can get you set up. Our teachers will guide you
                       through modifications and help you find your comfort zone.
                     </p>
                   </div>

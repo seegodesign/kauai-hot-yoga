@@ -4,9 +4,11 @@ period: month
 description: "First month · Autopay required"
 features:
   - Unlimited yoga classes
+  - 2 month minimum commitment
   - All class types included
   - Autopay monthly after first month
-  - Cancel anytime
+  - Cancel with 2 weeks notice
+  - Priority booking
 popular: true
 category: membership
 order: 4

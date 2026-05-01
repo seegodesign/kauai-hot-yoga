@@ -163,7 +163,7 @@ export function NewHerePage({
                 {
                   step: "02",
                   title: "Come Prepared",
-                  description: "Bring a mat (or rent one for $3), a towel, water, and comfortable clothes. Arrive 10–15 mins early.",
+                  description: "Bring a mat, a towel, water, and comfortable clothes. Mats and towels available for rent. Arrive 15 mins early.",
                   color: "from-orange-dark to-purple-light",
                 },
                 {

@@ -16,7 +16,7 @@ interface Props {
 
 const {
   title = "Kauai Hot Yoga",
-  description = "Hot yoga, breathwork, and recovery experiences in Kauai.",
+  description = "Yoga, breathwork, and recovery experiences in Kauai.",
   ogImage,
   currentPath,
 } = Astro.props;
@@ -28,7 +28,7 @@ const settings = settingsEntry.data;
 const footerEntry = await getEntry("footer", "footer");
 const footerDescription =
   footerEntry?.data.description ??
-  "Find your flow in paradise. Hot yoga, breathwork, and recovery experiences.";
+  "Find your flow in paradise. Yoga, breathwork, and recovery experiences.";
 
 const SITE_URL = "https://www.kauaihotyoga.com";
 const canonicalURL = new URL(currentPath, SITE_URL).href;
