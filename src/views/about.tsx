@@ -244,7 +244,7 @@ export function AboutPage({ heroDesktopSrc, heroMobileSrc, studioDesktopSrc, stu
               See Pricing
             </a>
             <a
-              href="/faq"
+              href="/new-here"
               className="bg-purple-dark border border-white/30 text-white font-semibold px-8 py-3 rounded-full hover:bg-purple transition-colors"
             >
               New Here?

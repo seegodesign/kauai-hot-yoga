@@ -567,7 +567,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
                     </p>
                   </div>
                   <a
-                    href="/faq"
+                    href="/new-here"
                     className="inline-flex items-center space-x-2 text-purple hover:text-purple-light transition-colors"
                   >
                     <span>Read our full beginner guide</span>
