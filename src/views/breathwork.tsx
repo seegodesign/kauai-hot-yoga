@@ -108,7 +108,7 @@ export function BreathworkPage() {
                 </p>
               </div>
               <div className="w-full md:w-80 aspect-square rounded-2xl overflow-hidden flex-shrink-0">
-                <img src="/images/9d-breathwork.webp" alt="9D Breathwork" className="w-full h-full object-cover" />
+                <img src="/images/9d-breathwork-2.webp" alt="9D Breathwork" className="w-full h-full object-cover" />
               </div>
             </motion.div>
 

@@ -76,7 +76,7 @@ export function PricingPage({ plans, specials, faqs, coldPlungePlans, breathwork
       <PageHero
         desktopSrc={heroDesktopSrc}
         mobileSrc={heroMobileSrc}
-        overlay="bg-orange/30"
+        overlay="bg-orange/50"
         title="Pricing & Packages"
         subtitle="Find the perfect option for your practice"
       >
