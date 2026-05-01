@@ -31,15 +31,38 @@ export interface PricingFaq {
   answer: string;
 }
 
+export interface ColdPlungePlan {
+  name: string;
+  price: string;
+  badge?: string;
+  description: string;
+  features: string[];
+  cta_url: string;
+  order: number;
+}
+
+export interface BreathworkPlan {
+  name: string;
+  price: string;
+  duration?: string;
+  badge?: string;
+  description: string;
+  features: string[];
+  cta_url: string;
+  order: number;
+}
+
 interface PricingPageProps {
   plans: PricingPlan[];
   specials: PricingSpecial[];
   faqs: PricingFaq[];
+  coldPlungePlans: ColdPlungePlan[];
+  breathworkPlans: BreathworkPlan[];
   heroDesktopSrc: string;
   heroMobileSrc: string;
 }
 
-export function PricingPage({ plans, specials, faqs, heroDesktopSrc, heroMobileSrc }: PricingPageProps) {
+export function PricingPage({ plans, specials, faqs, coldPlungePlans, breathworkPlans, heroDesktopSrc, heroMobileSrc }: PricingPageProps) {
   const dropInAndPacks = plans.filter((p) => p.category === "drop-in" || p.category === "class-pack");
   const memberships = plans.filter((p) => p.category === "membership");
 
@@ -180,11 +203,7 @@ export function PricingPage({ plans, specials, faqs, heroDesktopSrc, heroMobileS
               After a hot class, step into the cold plunge for a powerful recovery boost. Book your post-class plunge to experience the ultimate contrast therapy.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { name: "Cold Plunge Only", price: "$15", description: "Drop in for a quick plunge session. Perfect for recovery days or before/after surf sessions.", features: ["Single session", "5.5 minute session"], cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102192" },
-                { name: "10-Plunge Pass", price: "$125", badge: "Save $25", description: "Stock up and save. Use at your own pace — perfect for regular recovery practitioners.", features: ["10 plunge sessions", "Valid for 1 year"], cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102193" },
-                { name: "20-Plunge Pass", price: "$200", badge: "Save $100", description: "Our best value pass for committed cold therapy enthusiasts. Never run out of plunges.", features: ["20 plunge sessions", "Valid for 1 year", "Best per-session value"], cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102197" },
-              ].map((item, i) => (
+              {coldPlungePlans.map((item, i) => (
                 <motion.div
                   key={item.name}
                   initial={{ opacity: 0, y: 20 }}
@@ -232,11 +251,7 @@ export function PricingPage({ plans, specials, faqs, heroDesktopSrc, heroMobileS
               A multi-dimensional healing experience using binaural beats, solfeggio frequencies, and guided visualization.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { name: "Single Session", price: "$75", duration: "135 min", description: "Experience the power of collective energy in our intimate group sessions. Maximum 12 participants.", features: ["First Saturday of the month", "Mat, blanket, bolster, headset & eye mask provided"], cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102257" },
-                { name: "3 Pass", price: "$180", duration: "135 min", description: "Experience the power of collective energy in our intimate group sessions. Maximum 12 participants.", features: ["First Saturday of the month", "Mat, blanket, bolster, headset & eye mask provided"], cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102258" },
-                { name: "5 Pass", price: "$250", duration: "135 min", description: "Experience the power of collective energy in our intimate group sessions. Maximum 12 participants.", features: ["First Saturday of the month", "Mat, blanket, bolster, headset & eye mask provided"], cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102259" },
-              ].map((item, i) => (
+              {breathworkPlans.map((item, i) => (
                 <motion.div
                   key={item.name}
                   initial={{ opacity: 0, y: 20 }}

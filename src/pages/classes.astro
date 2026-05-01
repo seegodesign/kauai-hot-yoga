@@ -5,26 +5,33 @@ import { PageHero } from "../components/page-hero";
 
 <BaseLayout
   title="Hot Yoga Classes in Kauai, Hawaii | Kauai Hot Yoga"
-  description="Explore our hot yoga class styles — Hot 26 &amp; 2, Power Flow, Yin &amp; Restore, and more — at our Lihue, Kauai studio. All levels welcome."
-  ogImage="/images/hot-yoga-class.jpg"
-  currentPath="/classes">
+  description="Hot 26 & 2, Vinyasa, Yin and restorative, sculpt and Pilates, sound bath and more"
+  ogImage="/images/hot-yoga-class.webp"
+  currentPath="/classes"
+>
   <PageHero
     title="Our Classes"
-    subtitle="Explore our hot yoga class styles — Hot 26 & 2, Power Flow, Yin & Restore, and more — at our Lihue, Kauai studio. All levels welcome."
-    desktopSrc="/images/hot-yoga-class.jpg"
+    subtitle="Explore our hot yoga class styles — Hot 26 & 2, Vinyasa, Yin and restorative, sculpt and Pilates, sound bath and more — at our Lihue, Kauai studio. All levels welcome."
+    desktopSrc="/images/hot-yoga-class.webp"
     client:load
   />
   <div id="classes" class="py-10 px-4 bg-white">
     <div class="container mx-auto max-w-5xl">
       <!-- Mindbody class list widget begin -->
-      <script src="https://widgets.mindbodyonline.com/javascripts/healcode.js" type="text/javascript"></script>
-      <healcode-widget data-type="class_lists" data-widget-partner="object" data-widget-id="3f96061f769" data-widget-version="0"></healcode-widget>
+      <script
+        src="https://widgets.mindbodyonline.com/javascripts/healcode.js"
+        type="text/javascript"></script>
+      <healcode-widget
+        data-type="class_lists"
+        data-widget-partner="object"
+        data-widget-id="3f96061f769"
+        data-widget-version="0"></healcode-widget>
       <!-- Mindbody class list widget end -->
 
       <script is:inline>
         (function () {
           const LINE_CLAMP = 4;
-          const DESC_SELECTORS = '.class_description';
+          const DESC_SELECTORS = ".class_description";
 
           function applyReadMore(root) {
             root.querySelectorAll(DESC_SELECTORS).forEach(function (el) {
@@ -35,39 +42,40 @@ import { PageHero } from "../components/page-hero";
               const fullHTML = el.innerHTML;
 
               // Wrap original content in a clamp container
-              const inner = document.createElement('div');
+              const inner = document.createElement("div");
               inner.innerHTML = fullHTML;
               inner.style.cssText = [
-                'overflow:hidden',
-                'display:-webkit-box',
-                '-webkit-box-orient:vertical',
-                '-webkit-line-clamp:' + LINE_CLAMP,
-              ].join(';');
+                "overflow:hidden",
+                "display:-webkit-box",
+                "-webkit-box-orient:vertical",
+                "-webkit-line-clamp:" + LINE_CLAMP,
+              ].join(";");
 
-              const btn = document.createElement('button');
-              btn.textContent = 'Read more';
-              btn.style.cssText = 'display:none;background:none;border:none;padding:4px 0 0;color:inherit;font:inherit;text-decoration:underline;cursor:pointer;font-size:0.85em;opacity:0.7;';
+              const btn = document.createElement("button");
+              btn.textContent = "Read more";
+              btn.style.cssText =
+                "display:none;background:none;border:none;padding:4px 0 0;color:inherit;font:inherit;text-decoration:underline;cursor:pointer;font-size:0.85em;opacity:0.7;";
 
-              el.innerHTML = '';
+              el.innerHTML = "";
               el.appendChild(inner);
               el.appendChild(btn);
-              el.dataset.rmApplied = '1';
+              el.dataset.rmApplied = "1";
 
               // After paint, check if content is actually clamped
               requestAnimationFrame(function () {
                 if (inner.scrollHeight > inner.clientHeight) {
-                  btn.style.display = 'inline';
+                  btn.style.display = "inline";
                   var expanded = false;
-                  btn.addEventListener('click', function () {
+                  btn.addEventListener("click", function () {
                     expanded = !expanded;
                     if (expanded) {
-                      inner.style.webkitLineClamp = 'unset';
-                      inner.style.display = 'block';
-                      btn.textContent = 'Read less';
+                      inner.style.webkitLineClamp = "unset";
+                      inner.style.display = "block";
+                      btn.textContent = "Read less";
                     } else {
-                      inner.style.display = '-webkit-box';
+                      inner.style.display = "-webkit-box";
                       inner.style.webkitLineClamp = String(LINE_CLAMP);
-                      btn.textContent = 'Read more';
+                      btn.textContent = "Read more";
                     }
                   });
                 }
@@ -75,7 +83,7 @@ import { PageHero } from "../components/page-hero";
             });
           }
 
-          const widget = document.querySelector('healcode-widget');
+          const widget = document.querySelector("healcode-widget");
           if (!widget) return;
 
           const observer = new MutationObserver(function () {
@@ -86,12 +94,15 @@ import { PageHero } from "../components/page-hero";
           applyReadMore(widget);
 
           // Scroll to .container when any widget button is clicked
-          widget.addEventListener('click', function (e) {
-            if (e.target.tagName === 'A') {
-              var container = document.querySelector('#classes');
+          widget.addEventListener("click", function (e) {
+            if (e.target.tagName === "A") {
+              var container = document.querySelector("#classes");
               if (container) {
                 setTimeout(function () {
-                  container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  container.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
                 }, 1500); // Delay to allow any potential page changes
               }
             }

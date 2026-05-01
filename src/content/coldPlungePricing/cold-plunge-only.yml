@@ -1,0 +1,8 @@
+name: Cold Plunge Only
+price: "$15"
+description: "Drop in for a quick plunge session. Perfect for recovery days or before/after surf sessions."
+features:
+  - Single session
+  - 5.5 minute session
+cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102192"
+order: 1

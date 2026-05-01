@@ -13,7 +13,7 @@ export function WorkshopsPage() {
       price: "$295",
       description:
         "Deep dive into the fundamentals of hot yoga practice. Learn proper alignment, breathing techniques, and build confidence in your practice.",
-      image: "/images/workshops.jpg",
+      image: "/images/workshops.webp",
     },
     {
       title: "Inversions & Arm Balances",
@@ -34,7 +34,7 @@ export function WorkshopsPage() {
       price: "$75",
       description:
         "Explore various pranayama techniques and meditation practices to deepen your inner work and enhance your overall practice.",
-      image: "/images/workshops.jpg",
+      image: "/images/workshops.webp",
     },
     {
       title: "Yin Yoga & Sound Healing",
@@ -72,7 +72,7 @@ export function WorkshopsPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <PageHero
-        desktopSrc="/images/workshops.jpg"
+        desktopSrc="/images/workshops.webp"
         overlay="bg-purple-dark/50"
         eyebrow="Special Events"
         title="Workshops & Events"

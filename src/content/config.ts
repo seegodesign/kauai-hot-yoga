@@ -154,4 +154,31 @@ const pricingSpecials = defineCollection({
   }),
 });
 
-export const collections = { settings, home, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials };
+const coldPlungePricing = defineCollection({
+  type: "data",
+  schema: z.object({
+    name: z.string(),
+    price: z.string(),
+    badge: z.string().optional(),
+    description: z.string(),
+    features: z.array(z.string()),
+    cta_url: z.string(),
+    order: z.number().default(0),
+  }),
+});
+
+const breathworkPricing = defineCollection({
+  type: "data",
+  schema: z.object({
+    name: z.string(),
+    price: z.string(),
+    duration: z.string().optional(),
+    badge: z.string().optional(),
+    description: z.string(),
+    features: z.array(z.string()),
+    cta_url: z.string(),
+    order: z.number().default(0),
+  }),
+});
+
+export const collections = { settings, home, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials, coldPlungePricing, breathworkPricing };

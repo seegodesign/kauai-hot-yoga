@@ -440,19 +440,12 @@ const localBusinessSchema = {
       </footer>
     </div>
 
-    <!-- GHL Chat Widget — deferred until after page load to avoid blocking LCP -->
+    <!-- GHL Chat Widget -->
+    <script defer src="https://beta.leadconnectorhq.com/loader.js" data-resources-url="https://beta.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="69e2ffb506d5d53073b74b7d"></script>
+
+    <!-- On mobile, push the chat bubble above the bottom toolbar -->
     <script>
       window.addEventListener("load", function () {
-        var s = document.createElement("script");
-        s.src = "https://widgets.leadconnectorhq.com/loader.js";
-        s.setAttribute(
-          "data-resources-url",
-          "https://widgets.leadconnectorhq.com/chat-widget/loader.js",
-        );
-        s.setAttribute("data-widget-id", "69e2ffb506d5d53073b74b7d");
-        document.body.appendChild(s);
-
-        // On mobile, push the chat bubble above the bottom toolbar
         if (window.innerWidth < 1024) {
           var attempts = 0;
           var poll = setInterval(function () {

@@ -172,11 +172,27 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
+"breathworkPricing": Record<string, {
+  id: string;
+  body?: string;
+  collection: "breathworkPricing";
+  data: InferEntrySchema<"breathworkPricing">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
 "classes": Record<string, {
   id: string;
   body?: string;
   collection: "classes";
   data: any;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"coldPlungePricing": Record<string, {
+  id: string;
+  body?: string;
+  collection: "coldPlungePricing";
+  data: InferEntrySchema<"coldPlungePricing">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;

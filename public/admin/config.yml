@@ -24,7 +24,7 @@ backend:
   name: github
   repo: seegodesign/kauai-hot-yoga
   branch: main
-  base_url: https://YOUR_AUTH_WORKER.workers.dev
+  base_url: https://sveltia-cms-auth.seegodesign.workers.dev
 
 media_folder: public/images
 public_folder: /images
@@ -301,6 +301,49 @@ collections:
         field: { label: Feature, name: feature, widget: string }
       - { label: CTA Button Text, name: cta_text, widget: string }
       - { label: CTA Button URL, name: cta_url, widget: string }
+      - { label: Sort Order, name: order, widget: number, default: 0 }
+
+  # ── Cold Plunge Pricing ───────────────────────────────────
+  - name: coldPlungePricing
+    label: Pricing Cold Plunge
+    label_singular: Cold Plunge Option
+    folder: src/content/coldPlungePricing
+    create: true
+    format: yaml
+    identifier_field: name
+    summary: "{{name}} ({{price}})"
+    fields:
+      - { label: Name, name: name, widget: string, hint: "e.g. Cold Plunge Only" }
+      - { label: Price, name: price, widget: string, hint: "e.g. $15" }
+      - { label: Badge, name: badge, widget: string, required: false, hint: "e.g. Save $25" }
+      - { label: Description, name: description, widget: text }
+      - label: Features
+        name: features
+        widget: list
+        field: { label: Feature, name: feature, widget: string }
+      - { label: Buy Now URL, name: cta_url, widget: string }
+      - { label: Sort Order, name: order, widget: number, default: 0 }
+
+  # ── Breathwork Pricing ────────────────────────────────────
+  - name: breathworkPricing
+    label: Pricing Breathwork
+    label_singular: Breathwork Option
+    folder: src/content/breathworkPricing
+    create: true
+    format: yaml
+    identifier_field: name
+    summary: "{{name}} ({{price}})"
+    fields:
+      - { label: Name, name: name, widget: string, hint: "e.g. Single Session" }
+      - { label: Price, name: price, widget: string, hint: "e.g. $75" }
+      - { label: Duration, name: duration, widget: string, required: false, hint: "e.g. 135 min" }
+      - { label: Badge, name: badge, widget: string, required: false, hint: "e.g. Bundle" }
+      - { label: Description, name: description, widget: text }
+      - label: Features
+        name: features
+        widget: list
+        field: { label: Feature, name: feature, widget: string }
+      - { label: Buy Now URL, name: cta_url, widget: string }
       - { label: Sort Order, name: order, widget: number, default: 0 }
 
   - name: faq

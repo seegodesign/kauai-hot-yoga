@@ -526,7 +526,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
                 viewport={{ once: true }}
               >
                 <img
-                  src="/images/studio-interior.jpg"
+                  src="/images/studio-interior.webp"
                   alt="Yoga Studio"
                   className="rounded-2xl shadow-lg"
                   width={1200}

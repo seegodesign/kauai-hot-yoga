@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { MapPin, Phone, Mail, Instagram, Facebook, Clock } from "lucide-react";
-import beachImg from "../assets/images/beach.jpg";
+import beachImg from "../assets/images/beach.webp";
 import { PageHero } from "../components/page-hero";
 
 export interface ContactInfo {

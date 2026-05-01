@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { PricingPage } from "../views/pricing";
-import heroMainImg from "../assets/images/hero-main.jpg";
+import heroMainImg from "../assets/images/hero-main.webp";
 
 const heroDesktop = await getImage({ src: heroMainImg, width: 1600, format: "webp", quality: 85 });
 const heroMobile  = await getImage({ src: heroMainImg, width: 768,  format: "webp", quality: 80 });
@@ -23,11 +23,21 @@ const faqs = faqEntries
   .filter((e) => e.data.category === "Pricing")
   .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
   .map((e) => ({ question: e.data.question, answer: e.data.answer }));
+
+const coldPlungeEntries = await getCollection("coldPlungePricing");
+const coldPlungePlans = coldPlungeEntries
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => e.data);
+
+const breathworkEntries = await getCollection("breathworkPricing");
+const breathworkPlans = breathworkEntries
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => e.data);
 ---
 
 <BaseLayout
   title="Hot Yoga Pricing & Memberships in Kauai | Kauai Hot Yoga"
   description="Drop-in classes, class packs, and monthly memberships at Kauai Hot Yoga in Lihue, Hawaii. Traveler weekly passes and local intro month deals available."
   currentPath="/prices">
-  <PricingPage plans={plans} specials={specials} faqs={faqs} heroDesktopSrc={heroDesktop.src} heroMobileSrc={heroMobile.src} client:visible />
+  <PricingPage plans={plans} specials={specials} faqs={faqs} coldPlungePlans={coldPlungePlans} breathworkPlans={breathworkPlans} heroDesktopSrc={heroDesktop.src} heroMobileSrc={heroMobile.src} client:visible />
 </BaseLayout>

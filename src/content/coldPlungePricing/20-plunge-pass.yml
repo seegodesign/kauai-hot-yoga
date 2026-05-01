@@ -1,0 +1,10 @@
+name: 20-Plunge Pass
+price: "$200"
+badge: "Save $100"
+description: "Our best value pass for committed cold therapy enthusiasts. Never run out of plunges."
+features:
+  - 20 plunge sessions
+  - Valid for 1 year
+  - Best per-session value
+cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102197"
+order: 3

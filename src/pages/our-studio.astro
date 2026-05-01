@@ -2,8 +2,8 @@
 import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { AboutPage } from "../views/about";
-import aboutStudioImg from "../assets/images/about-studio.jpg";
-import coldPlungeImg from "../assets/images/cold-plunge.jpg";
+import aboutStudioImg from "../assets/images/about-studio.webp";
+import coldPlungeImg from "../assets/images/cold-plunge.webp";
 
 const heroDesktop    = await getImage({ src: aboutStudioImg, width: 1600, format: "webp", quality: 85 });
 const heroMobile     = await getImage({ src: aboutStudioImg, width: 768,  format: "webp", quality: 80 });

@@ -51,7 +51,7 @@ export function BreathworkPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <PageHero
-        desktopSrc="/images/9d-breathwork.jpg"
+        desktopSrc="/images/9d-breathwork.webp"
         overlay="bg-purple-dark/50"
         eyebrow="Immersive Experience"
         title="9D Breathwork Journey"
@@ -61,35 +61,65 @@ export function BreathworkPage() {
       {/* What is 9D Breathwork */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-semibold text-purple-dark text-center mb-16"
+            >
+              What is 9D Breathwork?
+            </motion.h2>
+
+            {/* Row 1: text left, image right */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              className="flex flex-col md:flex-row items-center gap-10 mb-16"
             >
-              <h2 className="text-3xl md:text-4xl font-semibold text-purple-dark mb-12">What is 9D Breathwork?</h2>
-              <div className="flex flex-col md:flex-row md:space-x-8 space-y-6 md:space-y-0 text-md text-muted-foreground">
-                <div>
-                  <h3 className="text-purple-dark mb-3">A Multi-Dimensional Journey</h3>
-                  <p className="mb-6 flex-1">
-                    9D Breathwork is a multi-dimensional approach to healing that combines ancient
-                    breathwork practices with modern neuroscience and sound technology. Through conscious breathing techniques, guided visualization, and a carefully crafted soundscape,
-                    you'll journey through different "dimensions" of experience that can lead to profound
-                    emotional release, mental clarity, and physical rejuvenation.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-purple-dark mb-3">A Soundscape of Transformation</h3>
-                  <p className="flex-1">
-                    Using specialized audio that includes binaural brain entrainment, solfeggio frequencies,
-                    isochronic brainwave tones, and subliminal hypnotic therapy, you'll be guided through
-                    a powerful journey of release, healing, and transformation. Whether you're new to breathwork or an experienced practitioner, 9D Breathwork offers a unique and deeply supportive container for growth and healing.
-                  </p>
-                </div>
+              <div className="flex-1 text-muted-foreground">
+                <h3 className="text-purple-dark mb-3">A Multi-Dimensional Journey</h3>
+                <p>
+                  9D Breathwork is a multi-dimensional approach to healing that combines ancient
+                  breathwork practices with modern neuroscience and sound technology. Through conscious breathing techniques, guided visualization, and a carefully crafted soundscape,
+                  you'll journey through different "dimensions" of experience that can lead to profound
+                  emotional release, mental clarity, and physical rejuvenation.
+                </p>
+              </div>
+              <div className="w-full md:w-80 aspect-square rounded-2xl overflow-hidden flex-shrink-0">
+                <img src="/images/9d-breathwork.webp" alt="9D Breathwork" className="w-full h-full object-cover" />
               </div>
             </motion.div>
 
+            {/* Row 2: image left, text right */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex flex-col md:flex-row-reverse items-center gap-10"
+            >
+              <div className="flex-1 text-muted-foreground">
+                <h3 className="text-purple-dark mb-3">A Soundscape of Transformation</h3>
+                <p>
+                  Using specialized audio that includes binaural brain entrainment, solfeggio frequencies,
+                  isochronic brainwave tones, and subliminal hypnotic therapy, you'll be guided through
+                  a powerful journey of release, healing, and transformation. Whether you're new to breathwork or an experienced practitioner, 9D Breathwork offers a unique and deeply supportive container for growth and healing.
+                </p>
+              </div>
+              <div className="w-full md:w-80 aspect-square rounded-2xl overflow-hidden flex-shrink-0">
+                <img src="/images/9d-breathwork.webp" alt="9D Breathwork" className="w-full h-full object-cover" />
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {benefits.map((benefit, index) => (
                 <motion.div

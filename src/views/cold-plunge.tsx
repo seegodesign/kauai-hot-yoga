@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { Snowflake, Heart, Zap, Shield, TrendingUp, Activity, Wind, Waves, Flame, Sparkles } from "lucide-react";
-import coldPlungeTubImg from "../assets/images/cold-plunge-tub.jpg";
-import plungeImg from "../assets/images/plunge.jpg";
+import coldPlungeTubImg from "../assets/images/cold-plunge-tub.webp";
+import plungeImg from "../assets/images/plunge.webp";
 
 export function ColdPlungePage() {
   const benefits = [

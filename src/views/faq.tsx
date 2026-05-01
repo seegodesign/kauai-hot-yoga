@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../components/ui/accordion";
-import meditationImg from "../assets/images/meditation.jpg";
+import meditationImg from "../assets/images/meditation.webp";
 import { PageHero } from "../components/page-hero";
 
 export interface FAQCategory {
