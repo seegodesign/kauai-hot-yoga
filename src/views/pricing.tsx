@@ -11,6 +11,7 @@ export interface PricingPlan {
   popular?: boolean;
   category: "drop-in" | "class-pack" | "membership";
   order: number;
+  cta_url?: string;
 }
 
 export interface PricingSpecial {
@@ -108,7 +109,7 @@ export function PricingPage({ plans, specials, faqs, heroDesktopSrc, heroMobileS
                   href={special.cta_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full block text-center bg-orange md:bg-white/20 group-hover:bg-orange hover:opacity-90 text-white font-semibold py-3 rounded-full transition-all duration-300 cursor-pointer"
+                  className="w-full block text-center bg-orange hover:opacity-90 text-white font-semibold py-3 rounded-full transition-all duration-300 cursor-pointer"
                 >
                   {special.cta_text}
                 </a>
@@ -136,7 +137,7 @@ export function PricingPage({ plans, specials, faqs, heroDesktopSrc, heroMobileS
                   transition={{ delay: index * 0.1 }}
                   className="h-full"
                 >
-                  <PricingCard {...option} onBuyNow={handleBuyNow} />
+                  <PricingCard {...option} onBuyNow={handleBuyNow} ctaUrl={option.cta_url} />
                 </motion.div>
               ))}
             </div>
@@ -180,11 +181,9 @@ export function PricingPage({ plans, specials, faqs, heroDesktopSrc, heroMobileS
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { name: "Cold Plunge Only", price: "$15", description: "Drop in for a quick plunge session. Perfect for recovery days or before/after surf sessions.", features: ["Single session", "Unlimited time in tub", "Towel provided"] },
-                { name: "Hot Yoga + Cold Plunge", price: "$40", badge: "Save $5", description: "The perfect contrast therapy. Practice hot yoga then immediately plunge for maximum benefits.", features: ["1 yoga class + 1 plunge", "Any class style", "Best for recovery"] },
-                { name: "Breathwork + Cold Plunge", price: "$95", badge: "Bundle", description: "Prepare your nervous system with breathwork before cold immersion for deeper resilience building.", features: ["1 breathwork session + 1 plunge", "60–90 min total", "Guided experience"] },
-                { name: "10-Plunge Pass", price: "$125", badge: "Save $25", description: "Stock up and save. Use at your own pace — perfect for regular recovery practitioners.", features: ["10 plunge sessions", "No expiry", "Shareable"] },
-                { name: "20-Plunge Pass", price: "$200", badge: "Save $100", description: "Our best value pass for committed cold therapy enthusiasts. Never run out of plunges.", features: ["20 plunge sessions", "No expiry", "Best per-session value"] },
+                { name: "Cold Plunge Only", price: "$15", description: "Drop in for a quick plunge session. Perfect for recovery days or before/after surf sessions.", features: ["Single session", "Unlimited time in tub", "Towel provided"], cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102192" },
+                { name: "10-Plunge Pass", price: "$125", badge: "Save $25", description: "Stock up and save. Use at your own pace — perfect for regular recovery practitioners.", features: ["10 plunge sessions", "No expiry", "Shareable"], cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102193" },
+                { name: "20-Plunge Pass", price: "$200", badge: "Save $100", description: "Our best value pass for committed cold therapy enthusiasts. Never run out of plunges.", features: ["20 plunge sessions", "No expiry", "Best per-session value"], cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102197" },
               ].map((item, i) => (
                 <motion.div
                   key={item.name}
@@ -209,8 +208,13 @@ export function PricingPage({ plans, specials, faqs, heroDesktopSrc, heroMobileS
                       </li>
                     ))}
                   </ul>
-                  <a href="/cold-plunge" className="block text-center border-2 border-purple text-purple font-semibold py-2 rounded-full hover:bg-purple hover:text-white transition-colors text-sm">
-                    Learn More
+                  <a
+                    href={item.cta_url || "#"}
+                    target={item.cta_url ? "_blank" : undefined}
+                    rel={item.cta_url ? "noopener noreferrer" : undefined}
+                    className="block text-center bg-orange hover:opacity-90 text-white font-semibold py-2 rounded-full transition-colors text-sm cursor-pointer"
+                  >
+                    Buy Now
                   </a>
                 </motion.div>
               ))}
@@ -229,10 +233,9 @@ export function PricingPage({ plans, specials, faqs, heroDesktopSrc, heroMobileS
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { name: "Single Session", price: "$75", duration: "135 min", description: "Experience the power of collective energy in our intimate group sessions. Maximum 12 participants.", features: ["Up to 12 participants", "Every Saturday 10:00 AM", "Mat, blanket & eye mask provided"] },
-                { name: "3 Pass", price: "$180", duration: "135 min", description: "Experience the power of collective energy in our intimate group sessions. Maximum 12 participants.", features: ["Up to 12 participants", "Every Saturday 10:00 AM", "Mat, blanket & eye mask provided"] },
-                { name: "5 Pass", price: "$250", duration: "135 min", description: "Experience the power of collective energy in our intimate group sessions. Maximum 12 participants.", features: ["Up to 12 participants", "Every Saturday 10:00 AM", "Mat, blanket & eye mask provided"] },
-                // { name: "Breathwork + Cold Plunge", price: "$95", duration: "90 min", badge: "Bundle", description: "Combine breathwork with cold immersion for enhanced benefits. The perfect recovery and reset experience.", features: ["Breathwork + plunge session", "Best for nervous system reset", "~90 min total"] },
+                { name: "Single Session", price: "$75", duration: "135 min", description: "Experience the power of collective energy in our intimate group sessions. Maximum 12 participants.", features: ["Up to 12 participants", "Every Saturday 10:00 AM", "Mat, blanket & eye mask provided"], cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102257" },
+                { name: "3 Pass", price: "$180", duration: "135 min", description: "Experience the power of collective energy in our intimate group sessions. Maximum 12 participants.", features: ["Up to 12 participants", "Every Saturday 10:00 AM", "Mat, blanket & eye mask provided"], cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102258" },
+                { name: "5 Pass", price: "$250", duration: "135 min", description: "Experience the power of collective energy in our intimate group sessions. Maximum 12 participants.", features: ["Up to 12 participants", "Every Saturday 10:00 AM", "Mat, blanket & eye mask provided"], cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102259" },
               ].map((item, i) => (
                 <motion.div
                   key={item.name}
@@ -258,8 +261,13 @@ export function PricingPage({ plans, specials, faqs, heroDesktopSrc, heroMobileS
                       </li>
                     ))}
                   </ul>
-                  <a href="/9d-breathwork" className="block text-center border-2 border-purple text-purple font-semibold py-2 rounded-full hover:bg-purple hover:text-white transition-colors text-sm">
-                    Learn More
+                  <a
+                    href={item.cta_url || "#"}
+                    target={item.cta_url ? "_blank" : undefined}
+                    rel={item.cta_url ? "noopener noreferrer" : undefined}
+                    className="block text-center bg-orange hover:opacity-90 text-white font-semibold py-2 rounded-full transition-colors text-sm cursor-pointer"
+                  >
+                    Buy Now
                   </a>
                 </motion.div>
               ))}

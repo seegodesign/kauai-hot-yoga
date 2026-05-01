@@ -28,26 +28,22 @@ export function BreathworkPage() {
 
   const sessions = [
     {
-      title: "Individual 9D Breathwork Session",
-      duration: "60 minutes",
-      price: "$85",
-      description:
-        "Private one-on-one session with personalized guidance. Perfect for first-timers or those seeking deeper individual work.",
-    },
-    {
-      title: "Group Breathwork Journey",
-      duration: "90 minutes",
+      title: "Single Session",
+      duration: "135 min",
       price: "$75",
-      description:
-        "Experience the power of collective energy in our intimate group sessions. Maximum 12 participants.",
-      schedule: "Every Saturday at 10:00 AM",
+      cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102257",
     },
     {
-      title: "Breathwork + Cold Plunge",
-      duration: "90 minutes",
-      price: "$95",
-      description:
-        "Combine breathwork with cold immersion for enhanced benefits. The perfect recovery and reset experience.",
+      title: "3 Pass",
+      duration: "135 min",
+      price: "$180",
+      cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102258",
+    },
+    {
+      title: "5 Pass",
+      duration: "135 min",
+      price: "$250",
+      cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102259",
     },
   ];
 
@@ -107,7 +103,6 @@ export function BreathworkPage() {
                   <benefit.icon size={64} className="text-orange mb-4" />
                   <div>
                     <h3 className="text-orange-dark mb-3">{benefit.title}</h3>
-                    <p className="text-muted-foreground">{benefit.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -132,27 +127,22 @@ export function BreathworkPage() {
                   className="bg-white p-8 rounded-2xl border border-soft-purple hover:shadow-lg transition-shadow flex flex-col"
                 >
                   <div className="flex flex-col flex-1">
-                    <div className="flex-1 mb-6">
-                      <h3 className="text-purple-dark mb-2">{session.title}</h3>
+                    <div className="flex-1">
+                      <h3 className="text-2xl text-purple-dark mb-2">{session.title}</h3>
                       <div className="flex flex-wrap gap-4 mb-4 text-sm text-muted-foreground">
-                        <span>{session.duration}</span>
-                        {session.schedule && (
-                          <>
-                            <span>•</span>
-                            <span className="flex items-center space-x-1">
-                              <Calendar size={14} />
-                              <span>{session.schedule}</span>
-                            </span>
-                          </>
-                        )}
+                        Duration: <span>{session.duration}</span>
                       </div>
-                      <p className="text-muted-foreground">{session.description}</p>
                     </div>
                     <div className="flex items-center justify-between w-full">
                       <div className="text-3xl text-purple">{session.price}</div>
-                      <button className="bg-orange text-white px-6 py-2 rounded-full hover:bg-orange-light transition-colors">
-                        Book Now
-                      </button>
+                      <a
+                        href={session.cta_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-orange text-white px-6 py-2 rounded-full hover:bg-orange-light transition-colors"
+                      >
+                        Buy Now
+                      </a>
                     </div>
                   </div>
                 </motion.div>
@@ -195,37 +185,6 @@ export function BreathworkPage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-warm-cream to-purple-light text-white">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
-          >
-            <h2 className="text-purple-dark mb-4 text-4xl md:text-5xl font-bold">Ready for Transformation?</h2>
-            <p className="text-xl text-purple-dark/90 mb-8">
-              Book your 9D Breathwork journey today
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <a
-                href="/schedule"
-                className="bg-white text-purple px-8 py-4 rounded-full hover:bg-warm-cream transition-colors"
-              >
-                View Available Times
-              </a>
-              <a
-                href="/faq"
-                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white/10 transition-colors"
-              >
-                Learn More
-              </a>
-            </div>
-          </motion.div>
         </div>
       </section>
     </div>

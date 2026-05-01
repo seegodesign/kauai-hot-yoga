@@ -135,6 +135,7 @@ const pricingPlans = defineCollection({
     popular: z.boolean().optional().default(false),
     category: z.enum(["drop-in", "class-pack", "membership"]),
     order: z.number().default(0),
+    cta_url: z.string().optional(),
   }),
 });
 

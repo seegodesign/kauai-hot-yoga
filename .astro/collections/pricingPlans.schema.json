@@ -38,6 +38,9 @@
           "type": "number",
           "default": 0
         },
+        "cta_url": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }
