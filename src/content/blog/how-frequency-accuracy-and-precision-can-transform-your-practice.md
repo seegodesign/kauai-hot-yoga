@@ -3,7 +3,7 @@ title: "How Frequency, Accuracy, & Precision Can Transform Your Practice"
 description: Mastering the fundamentals of frequency, accuracy, and precision can unlock new awareness and consistency in your yoga practice—whether you're brand new or a longtime student.
 pubDate: 2025-04-08T12:00:00
 author: Kauai Hot Yoga
-image: /images/yoga-practice.jpg
+image: /images/yoga-practice.webp
 tags:
   - Tips
   - Practice

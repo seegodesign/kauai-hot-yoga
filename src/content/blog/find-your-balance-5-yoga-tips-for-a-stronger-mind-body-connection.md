@@ -3,7 +3,7 @@ title: "Find Your Balance: 5 Yoga Tips for a Stronger Mind-Body Connection"
 description: Your ability to balance in yoga is often a direct reflection of your mental state. Here are five practical tips to improve your balance on and off the mat.
 pubDate: 2025-04-15T12:00:00
 author: Kauai Hot Yoga
-image: /images/find-your-balance.jpg
+image: /images/find-your-balance.webp
 tags:
   - Tips
   - Balance

@@ -404,6 +404,16 @@ const localBusinessSchema = {
                 </p>
                 <p><a href={`mailto:${settings.email}`}>{settings.email}</a></p>
                 <p><a href={`tel:${settings.phone}`}>{settings.phone}</a></p>
+                {settings.social?.google_review_url && (
+                  <p>
+                    <a
+                      href={settings.social.google_review_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="hover:text-white transition-colors"
+                    >⭐ Leave us a Google review</a>
+                  </p>
+                )}
               </div>
             </div>
           </div>
