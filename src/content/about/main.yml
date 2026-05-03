@@ -1,0 +1,29 @@
+seo_title: About Us | Kauai Hot Yoga — Lihue, Hawaii
+seo_description: Learn about Kauai Hot Yoga — our studio, infrared heating, and mission to serve the Kauai community in Lihue, Hawaii.
+hero_eyebrow: Kauai Hot Yoga
+hero_title: About Us
+hero_subtitle: Kauai Hot Yoga is a locally owned and operated yoga studio in Lihue, Kauai. We offer a variety of hot and non-heated yoga classes, workshops, and special events in our beautiful studio, which features a state-of-the-art infrared heating system.
+studio_eyebrow: The Space
+studio_heading: Our Studio
+studio_paragraph: Our beautiful studio offers a spacious yoga room with a state-of-the-art infrared heating system used in all of our hot classes. We offer both heated and non-heated classes, as well as workshops and special events.
+studio_features:
+  - State-of-the-art infrared heating system
+  - Cold plunging available after all hot classes
+  - Men's & women's changing rooms with showers
+  - Free filtered alkaline (Kangen) water for all students
+  - Towel and mat rentals available
+  - Yoga boutique on-site
+studio_cta:
+  text: View Class Schedule
+  href: /schedule
+studio_image_desktop: /images/garland-beach-yoga-sunset.webp
+studio_image_mobile: /images/garland-beach-yoga-sunset.webp
+studio_image_alt: Kauai Hot Yoga studio interior
+cta_heading: Come See For Yourself
+cta_paragraph: 3-3122 Kuhio Highway, Lihue Annex Shopping Center — behind the Subway restaurant, between The Parlor Barbershop and A Place for You.
+cta_primary:
+  text: See Pricing
+  href: /prices
+cta_secondary:
+  text: New Here?
+  href: /new-here

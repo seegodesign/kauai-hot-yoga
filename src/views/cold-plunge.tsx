@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { Snowflake, Heart, Zap, Shield, TrendingUp, Activity, Wind, Waves, Flame, Sparkles } from "lucide-react";
 import coldPlungeTubImg from "../assets/images/cold-plunge-tub.webp";
-import plungeImg from "../assets/images/plunge.webp";
 
 export function ColdPlungePage() {
   const benefits = [
@@ -309,16 +308,7 @@ export function ColdPlungePage() {
 
       {/* CTA */}
       <section className="relative py-20 text-white overflow-hidden">
-        <img
-          src={plungeImg.src}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
-          width={1920}
-          height={1080}
-        />
-        <div className="absolute inset-0 bg-blue/50" />
+        <div className="absolute inset-0 bg-orange" />
         <div className="relative container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -5,6 +5,7 @@ import { ScrollChevron } from "../components/scroll-chevron";
 import GoogleLogo from "../assets/google-logo.svg?react";
 import YelpLogo from "../assets/yelp-logo.svg?react";
 import logoLight from "../assets/logo-light.png";
+import yogaSketch from "../assets/images/yoga-sketch.gif";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -396,17 +397,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
       </section>
 
       {/* Explainer Section */}
-      <section ref={sunRef} className="relative py-20 min-h-[100svh] flex items-center overflow-hidden pb-20">
-        {/* Light wash so text stays readable */}
-        <div className="absolute inset-0 bg-white" />
-        {/* Sun rays */}
-        {/* <motion.div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vmax] h-[200vmax] pointer-events-none opacity-40"
-          style={{
-            background: "repeating-conic-gradient(rgba(255, 200, 87, 0.18) 0deg 12deg, transparent 12deg 24deg)",
-            rotate: sunRotation,
-          }}
-        /> */}
+      <section ref={sunRef} className="relative py-20 min-h-[100svh] flex items-center overflow-hidden pb-20 bg-white">
         {/* Sun disk */}
         <motion.div
           className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-[150px] w-[520px] h-[520px] rounded-full pointer-events-none shadow-[0_0_20px_rgba(247,158,68,0.6)]"

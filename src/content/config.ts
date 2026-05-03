@@ -41,6 +41,29 @@ const home = defineCollection({
   }),
 });
 
+const about = defineCollection({
+  type: "data",
+  schema: z.object({
+    seo_title: z.string(),
+    seo_description: z.string(),
+    hero_eyebrow: z.string(),
+    hero_title: z.string(),
+    hero_subtitle: z.string(),
+    studio_eyebrow: z.string(),
+    studio_heading: z.string(),
+    studio_paragraph: z.string(),
+    studio_features: z.array(z.string()),
+    studio_cta: z.object({ text: z.string(), href: z.string() }),
+    studio_image_desktop: z.string(),
+    studio_image_mobile: z.string(),
+    studio_image_alt: z.string(),
+    cta_heading: z.string(),
+    cta_paragraph: z.string(),
+    cta_primary: z.object({ text: z.string(), href: z.string() }),
+    cta_secondary: z.object({ text: z.string(), href: z.string() }),
+  }),
+});
+
 const testimonials = defineCollection({
   type: "data",
   schema: z.object({
@@ -181,4 +204,4 @@ const breathworkPricing = defineCollection({
   }),
 });
 
-export const collections = { settings, home, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials, coldPlungePricing, breathworkPricing };
+export const collections = { settings, home, about, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials, coldPlungePricing, breathworkPricing };

@@ -119,6 +119,50 @@ collections:
               - { label: Button Text, name: text, widget: string }
               - { label: Link, name: href, widget: string }
 
+  # ── About Page ────────────────────────────────────────────
+  - name: about
+    label: About Page
+    files:
+      - name: main
+        label: About Page Content
+        file: src/content/about/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: Studio Eyebrow, name: studio_eyebrow, widget: string }
+          - { label: Studio Heading, name: studio_heading, widget: string }
+          - { label: Studio Paragraph, name: studio_paragraph, widget: text }
+          - label: Studio Features
+            name: studio_features
+            widget: list
+            field: { label: Feature, name: feature, widget: string }
+          - label: Studio CTA Button
+            name: studio_cta
+            widget: object
+            fields:
+              - { label: Button Text, name: text, widget: string }
+              - { label: Link, name: href, widget: string }
+          - { label: Studio Image (Desktop), name: studio_image_desktop, widget: image, hint: "Upload/select a WebP image when possible" }
+          - { label: Studio Image (Mobile), name: studio_image_mobile, widget: image, hint: "Upload/select a WebP image when possible" }
+          - { label: Studio Image Alt Text, name: studio_image_alt, widget: string }
+          - { label: Bottom CTA Heading, name: cta_heading, widget: string }
+          - { label: Bottom CTA Paragraph, name: cta_paragraph, widget: text }
+          - label: Bottom CTA Primary Button
+            name: cta_primary
+            widget: object
+            fields:
+              - { label: Button Text, name: text, widget: string }
+              - { label: Link, name: href, widget: string }
+          - label: Bottom CTA Secondary Button
+            name: cta_secondary
+            widget: object
+            fields:
+              - { label: Button Text, name: text, widget: string }
+              - { label: Link, name: href, widget: string }
+
   # ── Offerings ─────────────────────────────────────────────
   - name: offerings
     label: Offerings

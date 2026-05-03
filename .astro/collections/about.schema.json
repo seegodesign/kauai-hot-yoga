@@ -1,0 +1,127 @@
+{
+  "$ref": "#/definitions/about",
+  "definitions": {
+    "about": {
+      "type": "object",
+      "properties": {
+        "seo_title": {
+          "type": "string"
+        },
+        "seo_description": {
+          "type": "string"
+        },
+        "hero_eyebrow": {
+          "type": "string"
+        },
+        "hero_title": {
+          "type": "string"
+        },
+        "hero_subtitle": {
+          "type": "string"
+        },
+        "studio_eyebrow": {
+          "type": "string"
+        },
+        "studio_heading": {
+          "type": "string"
+        },
+        "studio_paragraph": {
+          "type": "string"
+        },
+        "studio_features": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "studio_cta": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "href": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "text",
+            "href"
+          ],
+          "additionalProperties": false
+        },
+        "studio_image_desktop": {
+          "type": "string"
+        },
+        "studio_image_mobile": {
+          "type": "string"
+        },
+        "studio_image_alt": {
+          "type": "string"
+        },
+        "cta_heading": {
+          "type": "string"
+        },
+        "cta_paragraph": {
+          "type": "string"
+        },
+        "cta_primary": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "href": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "text",
+            "href"
+          ],
+          "additionalProperties": false
+        },
+        "cta_secondary": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "href": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "text",
+            "href"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "seo_title",
+        "seo_description",
+        "hero_eyebrow",
+        "hero_title",
+        "hero_subtitle",
+        "studio_eyebrow",
+        "studio_heading",
+        "studio_paragraph",
+        "studio_features",
+        "studio_cta",
+        "studio_image_desktop",
+        "studio_image_mobile",
+        "studio_image_alt",
+        "cta_heading",
+        "cta_paragraph",
+        "cta_primary",
+        "cta_secondary"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

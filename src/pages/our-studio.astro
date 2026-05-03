@@ -1,29 +1,29 @@
 ---
+import { getEntry } from "astro:content";
 import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { AboutPage } from "../views/about";
 import aboutStudioImg from "../assets/images/about-studio.webp";
-import coldPlungeImg from "../assets/images/cold-plunge.webp";
+
+const aboutEntry = await getEntry("about", "main");
+if (!aboutEntry) throw new Error("Missing content: about/main.yml");
 
 const heroDesktop    = await getImage({ src: aboutStudioImg, width: 1600, format: "webp", quality: 85 });
 const heroMobile     = await getImage({ src: aboutStudioImg, width: 768,  format: "webp", quality: 80 });
-const studioDesktop  = await getImage({ src: aboutStudioImg, width: 900,  format: "webp", quality: 85 });
-const studioMobile   = await getImage({ src: aboutStudioImg, width: 600,  format: "webp", quality: 80 });
-const plungeDesktop  = await getImage({ src: coldPlungeImg,  width: 900,  format: "webp", quality: 85 });
-const plungeMobile   = await getImage({ src: coldPlungeImg,  width: 600,  format: "webp", quality: 80 });
+const studioDesktopSrc = aboutEntry.data.studio_image_desktop;
+const studioMobileSrc = aboutEntry.data.studio_image_mobile;
 ---
 
 <BaseLayout
-  title="About Us | Kauai Hot Yoga — Lihue, Hawaii"
-  description="Learn about Kauai Hot Yoga — our studio, infrared heating, cold plunge, yoga boutique, and mission to serve the Kauai community in Lihue, Hawaii."
+  title={aboutEntry.data.seo_title}
+  description={aboutEntry.data.seo_description}
   currentPath="/our-studio">
   <AboutPage
+    content={aboutEntry.data}
     heroDesktopSrc={heroDesktop.src}
     heroMobileSrc={heroMobile.src}
-    studioDesktopSrc={studioDesktop.src}
-    studioMobileSrc={studioMobile.src}
-    plungeDesktopSrc={plungeDesktop.src}
-    plungeMobileSrc={plungeMobile.src}
+    studioDesktopSrc={studioDesktopSrc}
+    studioMobileSrc={studioMobileSrc}
     client:visible
   />
 </BaseLayout>
