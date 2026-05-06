@@ -287,7 +287,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
           aria-hidden="true"
           className="fixed inset-0 w-full h-full object-cover -z-10"
           loading="eager"
-          fetchpriority="high"
+          fetchPriority="high"
           width={768}
           height={1024}
         />
@@ -295,7 +295,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
         {isDesktop && (
           <video
             className="fixed inset-0 w-full h-full object-cover -z-10"
-            src="/video/yoga.mov"
+            src="/video/yoga.webm"
             autoPlay
             loop
             muted
@@ -694,9 +694,10 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
       </section>
 
       {/* Teaching Staff — full-width warm-cream */}
-      <section className="py-12 md:py-24 bg-warm-cream relative">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+      <section className="py-12 md:py-24 relative">
+        <div className="absolute inset-0 bg-white/60 backdrop-blur-md" />
+        <div className="relative container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center relative z-10">
             <motion.span
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -774,14 +775,14 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
             >
               <a
                 href="/our-teachers"
-                className="inline-flex items-center gap-2 bg-purple-dark text-white px-5 py-2.5 sm:px-8 sm:py-3 rounded-full hover:bg-purple transition-colors"
+                className="inline-flex items-center gap-2 bg-orange text-white px-5 py-2.5 sm:px-8 sm:py-3 rounded-full hover:bg-purple transition-colors"
               >
                 Meet Our Teachers <ArrowRight size={16} />
               </a>
             </motion.div>
           </div>
         </div>
-        <WaveDivider fill="#FFF8F0" bottomOffset={-50} flipped={true} />
+        <WaveDivider fill="#FFFFFF" bottomOffset={-50} flipped={true} />
       </section>
 
       {/* Subscribe */}
@@ -836,6 +837,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
             </motion.form>
           </div>
         </div>
+        <WaveDivider fill="white" bottomOffset={-72} flipped={true} />
       </section>
 
       {/* CTA Strip */}

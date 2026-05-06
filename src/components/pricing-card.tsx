@@ -30,7 +30,7 @@ export function PricingCard({
       } relative`}
     >
       {popular && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple text-white px-4 py-1 rounded-full text-sm">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple text-white px-4 py-1 rounded-full text-sm text-center">
           Most Popular
         </div>
       )}
