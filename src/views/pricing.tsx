@@ -66,10 +66,6 @@ export function PricingPage({ plans, specials, faqs, coldPlungePlans, breathwork
   const dropInAndPacks = plans.filter((p) => p.category === "drop-in" || p.category === "class-pack");
   const memberships = plans.filter((p) => p.category === "membership");
 
-  const handleBuyNow = () => {
-    alert("Redirecting to MINDBODY for purchase...");
-  };
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -160,7 +156,7 @@ export function PricingPage({ plans, specials, faqs, coldPlungePlans, breathwork
                   transition={{ delay: index * 0.1 }}
                   className="h-full"
                 >
-                  <PricingCard {...option} onBuyNow={handleBuyNow} ctaUrl={option.cta_url} />
+                  {option.cta_url && <PricingCard {...option} ctaUrl={option.cta_url} />}
                 </motion.div>
               ))}
             </div>
@@ -186,7 +182,7 @@ export function PricingPage({ plans, specials, faqs, coldPlungePlans, breathwork
                   transition={{ delay: index * 0.1 }}
                   className="h-full"
                 >
-                  <PricingCard {...membership} onBuyNow={handleBuyNow} />
+                  {membership.cta_url && <PricingCard {...membership} ctaUrl={membership.cta_url} />}
                 </motion.div>
               ))}
             </div>

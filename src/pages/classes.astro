@@ -1,18 +1,23 @@
 ---
+import { getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { PageHero } from "../components/page-hero";
+
+const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
+if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
 ---
 
 <BaseLayout
   title="Hot Yoga Classes in Kauai, Hawaii | Kauai Hot Yoga"
   description="Hot 26 & 2, Vinyasa, Yin and restorative, sculpt and Pilates, sound bath and more"
-  ogImage="/images/hot-yoga-studio.webp"
+  ogImage={pageHeroesEntry.data.classes.desktop}
   currentPath="/classes"
 >
   <PageHero
     title="Our Classes"
     subtitle="Explore our hot yoga class styles — Hot 26 & 2, Vinyasa, Yin and restorative, sculpt and Pilates, sound bath and more — at our Lihue, Kauai studio. All levels welcome."
-    desktopSrc="/images/hot-yoga-studio.webp"
+    desktopSrc={pageHeroesEntry.data.classes.desktop}
+    mobileSrc={pageHeroesEntry.data.classes.mobile}
     client:load
   />
   <div id="classes" class="py-10 px-4 bg-white">

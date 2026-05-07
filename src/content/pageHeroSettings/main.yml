@@ -1,0 +1,45 @@
+about:
+  desktop: /images/about-studio.webp
+  mobile: /images/about-studio.webp
+home:
+  desktop: /images/hero-main.webp
+  mobile: /images/hero-main.webp
+blog:
+  desktop: /images/beach.webp
+  mobile: /images/beach.webp
+classes:
+  desktop: /images/hot-yoga-studio.webp
+  mobile: /images/hot-yoga-studio.webp
+community:
+  desktop: /images/community-hero.webp
+  mobile: /images/community-hero.webp
+contact:
+  desktop: /images/beach.webp
+  mobile: /images/beach.webp
+cold_plunge:
+  desktop: /images/cold-plunge-tub.webp
+  mobile: /images/cold-plunge-tub.webp
+faq:
+  desktop: /images/meditation.webp
+  mobile: /images/meditation.webp
+gift_card:
+  desktop: /images/studio-interior.webp
+  mobile: /images/studio-interior.webp
+new_here:
+  desktop: /images/studio-interior.webp
+  mobile: /images/studio-interior.webp
+pricing:
+  desktop: /images/hero-main.webp
+  mobile: /images/hero-main.webp
+schedule:
+  desktop: /images/schedule-hero.webp
+  mobile: /images/schedule-hero.webp
+teachers:
+  desktop: /images/studio-interior.webp
+  mobile: /images/studio-interior.webp
+workshops:
+  desktop: /images/workshops.webp
+  mobile: /images/workshops.webp
+breathwork:
+  desktop: /images/9d-breathwork.webp
+  mobile: /images/9d-breathwork.webp

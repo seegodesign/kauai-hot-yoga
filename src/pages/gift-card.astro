@@ -1,11 +1,10 @@
 ---
-import { getImage } from "astro:assets";
+import { getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { GiftCardPage } from "../views/gift-card";
-import heroImg from "../assets/images/studio-interior.webp";
 
-const heroDesktop = await getImage({ src: heroImg, width: 1920, format: "webp", quality: 80 });
-const heroMobile  = await getImage({ src: heroImg, width: 768,  format: "webp", quality: 80 });
+const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
+if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
 ---
 
 <BaseLayout
@@ -14,8 +13,8 @@ const heroMobile  = await getImage({ src: heroImg, width: 768,  format: "webp", 
   ogImage="/images/studio-interior.webp"
   currentPath="/gift-card">
   <GiftCardPage
-    heroDesktopSrc={heroDesktop.src}
-    heroMobileSrc={heroMobile.src}
+    heroDesktopSrc={pageHeroesEntry.data.gift_card.desktop}
+    heroMobileSrc={pageHeroesEntry.data.gift_card.mobile}
     client:load
   />
 </BaseLayout>

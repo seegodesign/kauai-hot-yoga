@@ -8,8 +8,7 @@ interface PricingCardProps {
   description: string;
   features: string[];
   popular?: boolean;
-  onBuyNow: () => void;
-  ctaUrl?: string;
+  ctaUrl: string;
 }
 
 export function PricingCard({
@@ -19,7 +18,6 @@ export function PricingCard({
   description,
   features,
   popular = false,
-  onBuyNow,
   ctaUrl,
 }: PricingCardProps) {
   return (
@@ -50,31 +48,18 @@ export function PricingCard({
           </li>
         ))}
       </ul>
-      {ctaUrl ? (
-        <a
-          href={ctaUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`w-full block text-center py-3 rounded-full transition-colors ${
-            popular
-              ? "bg-orange text-white hover:bg-orange-dark"
-              : "bg-purple text-white hover:bg-purple-light"
-          }`}
-        >
-          Buy Now
-        </a>
-      ) : (
-        <button
-          onClick={onBuyNow}
-          className={`w-full py-3 rounded-full transition-colors ${
-            popular
-              ? "bg-orange text-white hover:bg-orange-dark"
-              : "bg-purple text-white hover:bg-purple-light"
-          }`}
-        >
-          Buy Now
-        </button>
-      )}
+      <a
+        href={ctaUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`w-full block text-center py-3 rounded-full transition-colors ${
+          popular
+            ? "bg-orange text-white hover:bg-orange-dark"
+            : "bg-purple text-white hover:bg-purple-light"
+        }`}
+      >
+        Buy Now
+      </a>
     </motion.div>
   );
 }

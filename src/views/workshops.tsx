@@ -2,7 +2,12 @@ import { Calendar, Users, Clock } from "lucide-react";
 import { motion } from "motion/react";
 import { PageHero } from "../components/page-hero";
 
-export function WorkshopsPage() {
+interface WorkshopsPageProps {
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
+}
+
+export function WorkshopsPage({ heroDesktopSrc, heroMobileSrc }: WorkshopsPageProps) {
   const workshops = [
     {
       title: "Yoga Foundations Weekend",
@@ -72,7 +77,8 @@ export function WorkshopsPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <PageHero
-        desktopSrc="/images/workshops.webp"
+        desktopSrc={heroDesktopSrc}
+        mobileSrc={heroMobileSrc}
         overlay="bg-purple-dark/50"
         eyebrow="Special Events"
         title="Workshops & Events"

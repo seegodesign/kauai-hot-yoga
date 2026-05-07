@@ -27,6 +27,9 @@ const categories = categoryOrder
 
 const settingsEntry = await getEntry("settings", "main");
 if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
+
+const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
+if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
 ---
 
 <BaseLayout
@@ -34,5 +37,5 @@ if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
   description="Everything you need to know before your first hot yoga class at Kauai Hot Yoga in Lihue, Hawaii — what to bring, what to expect, and more."
   ogImage="/images/faq-hero.webp"
   currentPath="/faq">
-  <FAQPage categories={categories} phone={settingsEntry.data.phone} email={settingsEntry.data.email} client:visible />
+  <FAQPage categories={categories} phone={settingsEntry.data.phone} email={settingsEntry.data.email} heroDesktopSrc={pageHeroesEntry.data.faq.desktop} heroMobileSrc={pageHeroesEntry.data.faq.mobile} client:visible />
 </BaseLayout>

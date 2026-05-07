@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import { MapPin, Phone, Mail, Instagram, Facebook, Clock } from "lucide-react";
-import beachImg from "../assets/images/beach.webp";
 import { PageHero } from "../components/page-hero";
 
 export interface ContactInfo {
@@ -13,26 +12,34 @@ export interface ContactInfo {
     state: string;
     zip: string;
   };
-  social: {
+  social?: {
     instagram?: string;
     facebook?: string;
   };
+  business_hours?: {
+    day: string;
+    hours: string;
+  }[];
 }
 
 interface ContactPageProps {
   info: ContactInfo;
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
 }
 
-export function ContactPage({ info }: ContactPageProps) {
+export function ContactPage({ info, heroDesktopSrc, heroMobileSrc }: ContactPageProps) {
   const googleMapsUrl = `https://maps.google.com/?q=${encodeURIComponent(
     `${info.address.street}, ${info.address.city}, ${info.address.state} ${info.address.zip}`
   )}`;
+  const social = info.social ?? {};
 
   return (
     <div className="min-h-screen">
       {/* Hero */}
       <PageHero
-        desktopSrc={beachImg.src}
+        desktopSrc={heroDesktopSrc}
+        mobileSrc={heroMobileSrc}
         overlay="bg-purple/65"
         eyebrow="Get In Touch"
         title="Contact Us"
@@ -114,21 +121,31 @@ export function ContactPage({ info }: ContactPageProps) {
                 </div>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-widest text-orange mb-2">Studio Hours</p>
-                  <div className="space-y-1 text-purple-dark/80">
-                    <p><span className="font-medium text-purple-dark">Mon – Fri</span> &nbsp;6:00 AM – 8:00 PM</p>
-                    <p><span className="font-medium text-purple-dark">Sat – Sun</span> &nbsp;7:00 AM – 6:00 PM</p>
-                  </div>
+                  {info.business_hours && info.business_hours.length > 0 ? (
+                    <div className="space-y-1 text-purple-dark/80">
+                      {info.business_hours.map((entry) => (
+                        <p key={entry.day}>
+                          <span className="font-medium text-purple-dark">{entry.day}</span> {entry.hours}
+                        </p>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="space-y-1 text-purple-dark/80">
+                      <p><span className="font-medium text-purple-dark">Mon - Fri</span> 6:00 AM - 8:00 PM</p>
+                      <p><span className="font-medium text-purple-dark">Sat - Sun</span> 7:00 AM - 6:00 PM</p>
+                    </div>
+                  )}
                 </div>
               </div>
 
               {/* Social */}
-              {(info.social.instagram || info.social.facebook) && (
+              {(social.instagram || social.facebook) && (
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-widest text-orange mb-4">Follow Us</p>
                   <div className="flex gap-3">
-                    {info.social.instagram && (
+                    {social.instagram && (
                       <a
-                        href={info.social.instagram}
+                        href={social.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-12 h-12 rounded-2xl bg-soft-purple flex items-center justify-center hover:bg-purple transition-colors group"
@@ -137,9 +154,9 @@ export function ContactPage({ info }: ContactPageProps) {
                         <Instagram size={20} className="text-purple group-hover:text-white transition-colors" />
                       </a>
                     )}
-                    {info.social.facebook && (
+                    {social.facebook && (
                       <a
-                        href={info.social.facebook}
+                        href={social.facebook}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-12 h-12 rounded-2xl bg-soft-purple flex items-center justify-center hover:bg-purple transition-colors group"

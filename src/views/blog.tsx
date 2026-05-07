@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import { ArrowRight, Calendar, User, Tag } from "lucide-react";
-import beachImg from "../assets/images/beach.webp";
 import { PageHero } from "../components/page-hero";
 
 export interface BlogPost {
@@ -15,18 +14,21 @@ export interface BlogPost {
 
 interface BlogPageProps {
   posts: BlogPost[];
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
 }
 
 function formatDate(date: Date) {
   return new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric" }).format(date);
 }
 
-export function BlogPage({ posts }: BlogPageProps) {
+export function BlogPage({ posts, heroDesktopSrc, heroMobileSrc }: BlogPageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero */}
       <PageHero
-        desktopSrc={beachImg.src}
+        desktopSrc={heroDesktopSrc}
+        mobileSrc={heroMobileSrc}
         overlay="bg-purple/65"
         eyebrow="Wellness & Inspiration"
         title="Our Blog"

@@ -14,6 +14,15 @@ const settings = defineCollection({
     }),
     latitude: z.number().optional().default(21.978104),
     longitude: z.number().optional().default(-159.368038),
+    business_hours: z
+      .array(
+        z.object({
+          day: z.string(),
+          hours: z.string(),
+        })
+      )
+      .optional()
+      .default([]),
     social: z
       .object({
         instagram: z.string().optional().default(""),
@@ -204,4 +213,25 @@ const breathworkPricing = defineCollection({
   }),
 });
 
-export const collections = { settings, home, about, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials, coldPlungePricing, breathworkPricing };
+const pageHeroSettings = defineCollection({
+  type: "data",
+  schema: z.object({
+    about: z.object({ desktop: z.string(), mobile: z.string() }),
+    home: z.object({ desktop: z.string(), mobile: z.string() }),
+    blog: z.object({ desktop: z.string(), mobile: z.string() }),
+    classes: z.object({ desktop: z.string(), mobile: z.string() }),
+    community: z.object({ desktop: z.string(), mobile: z.string() }),
+    contact: z.object({ desktop: z.string(), mobile: z.string() }),
+    cold_plunge: z.object({ desktop: z.string(), mobile: z.string() }),
+    faq: z.object({ desktop: z.string(), mobile: z.string() }),
+    gift_card: z.object({ desktop: z.string(), mobile: z.string() }),
+    new_here: z.object({ desktop: z.string(), mobile: z.string() }),
+    pricing: z.object({ desktop: z.string(), mobile: z.string() }),
+    schedule: z.object({ desktop: z.string(), mobile: z.string() }),
+    teachers: z.object({ desktop: z.string(), mobile: z.string() }),
+    workshops: z.object({ desktop: z.string(), mobile: z.string() }),
+    breathwork: z.object({ desktop: z.string(), mobile: z.string() }),
+  }),
+});
+
+export const collections = { settings, home, about, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials, coldPlungePricing, breathworkPricing, pageHeroSettings };

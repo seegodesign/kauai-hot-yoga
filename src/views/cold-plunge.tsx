@@ -1,8 +1,11 @@
 import { motion } from "motion/react";
 import { Snowflake, Heart, Zap, Shield, TrendingUp, Activity, Wind, Waves, Flame, Sparkles } from "lucide-react";
-import coldPlungeTubImg from "../assets/images/cold-plunge-tub.webp";
 
-export function ColdPlungePage() {
+interface ColdPlungePageProps {
+  heroDesktopSrc: string;
+}
+
+export function ColdPlungePage({ heroDesktopSrc }: ColdPlungePageProps) {
   const benefits = [
     {
       icon: Activity,
@@ -41,21 +44,24 @@ export function ColdPlungePage() {
       title: "Cold Plunge Only",
       description:
         "Drop in for a quick plunge session. Perfect for recovery days or before/after surf sessions.",
-      price: "$15",
+      price: "$17",
+      ctaUrl: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102192",
     },
     {
       title: "10-Plunge Pass",
       description:
         "Stock up and save. Use at your own pace — perfect for regular recovery practitioners.",
-      price: "$125",
-      savings: "Save $25",
+      price: "$140",
+      savings: "Save $30",
+      ctaUrl: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102193",
     },
     {
       title: "20-Plunge Pass",
       description:
         "Our best value pass for committed cold therapy enthusiasts. Never run out of plunges.",
-      price: "$200",
-      savings: "Save $100",
+      price: "$235",
+      savings: "Save $105",
+      ctaUrl: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102197",
     },
   ];
 
@@ -67,7 +73,7 @@ export function ColdPlungePage() {
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
             backgroundImage:
-              `url('${coldPlungeTubImg.src}')`,
+              `url('${heroDesktopSrc}')`,
           }}
         >
           <div className="absolute inset-0 bg-black/50" />
@@ -162,9 +168,14 @@ export function ColdPlungePage() {
                   <h3 className="text-purple-dark mb-3">{pairing.title}</h3>
                   <p className="text-muted-foreground text-sm mb-6">{pairing.description}</p>
                   <div className="text-3xl text-purple mb-6">{pairing.price}</div>
-                  <button className="w-full bg-purple text-white py-3 rounded-full hover:bg-purple-light transition-colors">
+                  <a
+                    href={pairing.ctaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full block text-center bg-purple text-white py-3 rounded-full hover:bg-purple-light transition-colors"
+                  >
                     Book Now
-                  </button>
+                  </a>
                 </motion.div>
               ))}
             </div>
@@ -186,9 +197,14 @@ export function ColdPlungePage() {
                   <h3 className="text-purple-dark mb-3">{pairing.title}</h3>
                   <p className="text-muted-foreground text-sm mb-6">{pairing.description}</p>
                   <div className="text-3xl text-purple mb-6">{pairing.price}</div>
-                  <button className="w-full bg-purple text-white py-3 rounded-full hover:bg-purple-light transition-colors">
+                  <a
+                    href={pairing.ctaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full block text-center bg-purple text-white py-3 rounded-full hover:bg-purple-light transition-colors"
+                  >
                     Book Now
-                  </button>
+                  </a>
                 </motion.div>
               ))}
             </div>
@@ -303,38 +319,6 @@ export function ColdPlungePage() {
               </ul>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="relative py-20 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-orange" />
-        <div className="relative container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
-          >
-            <h2 className="text-4xl font-semibold text-white mb-4">Ready to Take the Plunge?</h2>
-            <p className="text-xl text-white/90 mb-8">
-              Experience the transformative power of cold therapy
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <a
-                href="/schedule"
-                className="bg-white text-purple px-8 py-4 rounded-full hover:bg-warm-cream transition-colors"
-              >
-                Book Your Session
-              </a>
-              <a
-                href="/prices"
-                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white/10 transition-colors"
-              >
-                View Pricing
-              </a>
-            </div>
-          </motion.div>
         </div>
       </section>
     </div>

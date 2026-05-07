@@ -2,7 +2,12 @@ import { motion } from "motion/react";
 import { Brain, Heart, Sparkles, Shield, Calendar } from "lucide-react";
 import { PageHero } from "../components/page-hero";
 
-export function BreathworkPage() {
+interface BreathworkPageProps {
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
+}
+
+export function BreathworkPage({ heroDesktopSrc, heroMobileSrc }: BreathworkPageProps) {
   const benefits = [
     {
       icon: Brain,
@@ -51,7 +56,8 @@ export function BreathworkPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <PageHero
-        desktopSrc="/images/9d-breathwork.webp"
+        desktopSrc={heroDesktopSrc}
+        mobileSrc={heroMobileSrc}
         overlay="bg-purple-dark/50"
         eyebrow="Immersive Experience"
         title="9D Breathwork Journey"

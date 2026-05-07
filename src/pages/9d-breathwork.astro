@@ -1,6 +1,10 @@
 ---
+import { getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { BreathworkPage } from "../views/breathwork";
+
+const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
+if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
 ---
 
 <BaseLayout
@@ -8,5 +12,5 @@ import { BreathworkPage } from "../views/breathwork";
   description="Experience transformative 9D Breathwork journeys using binaural beats, solfeggio frequencies, and guided visualization in Kauai."
   ogImage="/images/breathwork-hero.webp"
   currentPath="/9d-breathwork">
-  <BreathworkPage client:visible />
+  <BreathworkPage heroDesktopSrc={pageHeroesEntry.data.breathwork.desktop} heroMobileSrc={pageHeroesEntry.data.breathwork.mobile} client:visible />
 </BaseLayout>

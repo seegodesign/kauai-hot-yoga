@@ -1,22 +1,20 @@
 ---
-import { getCollection } from "astro:content";
-import { getImage } from "astro:assets";
+import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { CommunityPage } from "../views/community";
-import communityHeroImg from "../assets/images/community-hero.webp";
 
 const communityEntries = await getCollection("community");
 const members = communityEntries
   .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
   .map((e) => e.data);
 
-const heroDesktop = await getImage({ src: communityHeroImg, width: 1920, format: "webp", quality: 80 });
-const heroMobile = await getImage({ src: communityHeroImg, width: 768, format: "webp", quality: 80 });
+const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
+if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
 ---
 
 <BaseLayout
   title="Community | Kauai Hot Yoga"
   description="Meet the local practitioners, healers, and guides who are part of the Kauai Hot Yoga community in Lihue, Hawaii."
   currentPath="/our-community-1">
-  <CommunityPage members={members} heroDesktopSrc={heroDesktop.src} heroMobileSrc={heroMobile.src} client:visible />
+  <CommunityPage members={members} heroDesktopSrc={pageHeroesEntry.data.community.desktop} heroMobileSrc={pageHeroesEntry.data.community.mobile} client:visible />
 </BaseLayout>

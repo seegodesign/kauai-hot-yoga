@@ -1,6 +1,10 @@
 ---
+import { getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { WorkshopsPage } from "../views/workshops";
+
+const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
+if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
 ---
 
 <BaseLayout
@@ -8,5 +12,5 @@ import { WorkshopsPage } from "../views/workshops";
   description="Deepen your practice with specialized yoga workshops and wellness events at Kauai Hot Yoga in Lihue, Hawaii. Open to all levels."
   ogImage="/images/workshops-hero.webp"
   currentPath="/workshops">
-  <WorkshopsPage client:visible />
+  <WorkshopsPage heroDesktopSrc={pageHeroesEntry.data.workshops.desktop} heroMobileSrc={pageHeroesEntry.data.workshops.mobile} client:visible />
 </BaseLayout>

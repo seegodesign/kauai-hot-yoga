@@ -5,7 +5,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../components/ui/accordion";
-import meditationImg from "../assets/images/meditation.webp";
 import { PageHero } from "../components/page-hero";
 
 export interface FAQCategory {
@@ -17,14 +16,17 @@ interface FAQPageProps {
   categories: FAQCategory[];
   phone: string;
   email: string;
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
 }
 
-export function FAQPage({ categories, phone, email }: FAQPageProps) {
+export function FAQPage({ categories, phone, email, heroDesktopSrc, heroMobileSrc }: FAQPageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <PageHero
-        desktopSrc={meditationImg.src}
+        desktopSrc={heroDesktopSrc}
+        mobileSrc={heroMobileSrc}
         eyebrow="Frequently Asked Questions"
         overlay="bg-purple/60"
         title="FAQ"

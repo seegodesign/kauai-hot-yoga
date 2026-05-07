@@ -51,6 +51,13 @@ collections:
               - { label: ZIP Code, name: zip, widget: string }
           - { label: Latitude, name: latitude, widget: number, value_type: float, hint: "e.g. 21.978104" }
           - { label: Longitude, name: longitude, widget: number, value_type: float, hint: "e.g. -159.368038" }
+          - label: Business Hours
+            name: business_hours
+            widget: list
+            summary: "{{fields.day}}: {{fields.hours}}"
+            fields:
+              - { label: Day, name: day, widget: string, hint: "e.g. Monday" }
+              - { label: Hours, name: hours, widget: string, hint: "e.g. 8:30 AM-7:30 PM" }
           - label: Social Links
             name: social
             widget: object
@@ -65,6 +72,100 @@ collections:
             name: description
             widget: text
             hint: "A brief description of the studio shown in the footer"
+      - name: page_heroes
+        label: Page Hero Images
+        file: src/content/pageHeroSettings/main.yml
+        fields:
+          - label: Home Page
+            name: home
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: About Page
+            name: about
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: Blog Page
+            name: blog
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: Classes Page
+            name: classes
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: Community Page
+            name: community
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: Contact Page
+            name: contact
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: Cold Plunge Page
+            name: cold_plunge
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: FAQ Page
+            name: faq
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: Gift Card Page
+            name: gift_card
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: New Here Page
+            name: new_here
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: Pricing Page
+            name: pricing
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: Schedule Page
+            name: schedule
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: Teachers Page
+            name: teachers
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: Workshops Page
+            name: workshops
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
+          - label: 9D Breathwork Page
+            name: breathwork
+            widget: object
+            fields:
+              - { label: Desktop Image, name: desktop, widget: image }
+              - { label: Mobile Image, name: mobile, widget: image }
 
   # ── Home Page ─────────────────────────────────────────────
   - name: home

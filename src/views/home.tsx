@@ -5,7 +5,6 @@ import { ScrollChevron } from "../components/scroll-chevron";
 import GoogleLogo from "../assets/google-logo.svg?react";
 import YelpLogo from "../assets/yelp-logo.svg?react";
 import logoLight from "../assets/logo-light.png";
-import yogaSketch from "../assets/images/yoga-sketch.gif";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 

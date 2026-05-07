@@ -1,15 +1,30 @@
 studio_name: Kauai Hot Yoga
-phone: "(804) 615-3678"
+phone: (804) 615-3678
 email: info@kauaihotyoga.com
 address:
   street: 3-3122 Kuhio Highway
   city: Lihue
   state: Hawaii
-  zip: "96766"
+  zip: '96766'
 latitude: 21.978104
 longitude: -159.368038
+business_hours:
+  - day: Sunday
+    hours: 7 AM-7:30 PM
+  - day: Monday
+    hours: 8:30 AM-7:30 PM
+  - day: Tuesday
+    hours: 6 AM-7 PM
+  - day: Wednesday
+    hours: 6 AM-7:30 PM
+  - day: Thursday
+    hours: 6 AM-7 PM
+  - day: Friday
+    hours: 6 AM-7 PM
+  - day: Saturday
+    hours: 7 AM-11 AM
 social:
-  instagram: "https://www.instagram.com/kauaihotyoga"
-  facebook: "https://www.facebook.com/1585085535130978"
-  google_review_url: "https://www.google.com/search?sca_esv=ba43fa757c43458e&rlz=1C5CHFA_enUS1024US1024&sxsrf=ANbL-n42RLQOwyaPETwI7YPAe1OvX9guaA:1776481784996&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOa1fZxaAPArwL4LmXRRjqdZ0fmXYn6Wv2wTW6vhTPblnUntpWtzA8RiXUA_P7JfKvqg_tiJ8uGQXHVnMlzrPlARO6fqx&q=Kauai+Hot+Yoga+Reviews&sa=X&ved=2ahUKEwjhn_qttvaTAxUske4BHTnYNV8Q0bkNegQITxAH&biw=1728&bih=963&dpr=2"
-  yelp_review_url: "https://www.yelp.com/biz/kauai-hot-yoga-lihue"
+  instagram: https://www.instagram.com/kauaihotyoga
+  facebook: https://www.facebook.com/1585085535130978
+  google_review_url: https://www.google.com/search?sca_esv=ba43fa757c43458e&rlz=1C5CHFA_enUS1024US1024&sxsrf=ANbL-n42RLQOwyaPETwI7YPAe1OvX9guaA:1776481784996&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOa1fZxaAPArwL4LmXRRjqdZ0fmXYn6Wv2wTW6vhTPblnUntpWtzA8RiXUA_P7JfKvqg_tiJ8uGQXHVnMlzrPlARO6fqx&q=Kauai+Hot+Yoga+Reviews&sa=X&ved=2ahUKEwjhn_qttvaTAxUske4BHTnYNV8Q0bkNegQITxAH&biw=1728&bih=963&dpr=2
+  yelp_review_url: https://www.yelp.com/biz/kauai-hot-yoga-lihue
