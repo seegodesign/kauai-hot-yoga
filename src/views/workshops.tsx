@@ -141,9 +141,12 @@ export function WorkshopsPage({ heroDesktopSrc, heroMobileSrc }: WorkshopsPagePr
 
                     <p className="text-muted-foreground mb-6">{workshop.description}</p>
 
-                    <button className="bg-purple text-white px-8 py-3 rounded-full hover:bg-purple-light transition-colors">
+                    <a
+                      href="/contact-us"
+                      className="inline-flex items-center bg-purple text-white px-8 py-3 rounded-full hover:bg-purple-light transition-colors"
+                    >
                       Reserve Your Spot
-                    </button>
+                    </a>
                   </div>
                 </div>
               </motion.div>

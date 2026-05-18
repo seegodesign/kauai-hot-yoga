@@ -57,7 +57,7 @@ export function TermsOfServicePage({ businessName, businessEmail, businessPhone,
               </li>
               <li>
                 <strong>Privacy Policy:</strong> For privacy-related inquiries, please refer to our{" "}
-                <a href="/privacy" className="text-orange-600 hover:underline">Privacy Policy</a>.
+                <a href="/privacy-policy" className="text-orange-600 hover:underline">Privacy Policy</a>.
               </li>
             </ol>
             <p className="mt-4">

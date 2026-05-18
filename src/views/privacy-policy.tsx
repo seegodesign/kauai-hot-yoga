@@ -65,7 +65,7 @@ export function PrivacyPolicyPage({ businessName, businessEmail, businessPhone, 
             <h2 className="text-xl font-semibold text-gray-900 mb-3">3. SMS Messaging & Compliance</h2>
             <p className="font-semibold text-gray-900">Text Message Program Terms &amp; Conditions</p>
             <p>
-              By providing your phone number through our website forms, booking pages, or other communication channels, you expressly consent to receive SMS messages from Seego Design LLC DBA Seego AI.
+              By providing your phone number through our website forms, booking pages, or other communication channels, you expressly consent to receive SMS messages from {businessName}.
             </p>
             <p className="mt-3 font-semibold text-gray-900">Opt-In &amp; Consent:</p>
             <ul className="list-disc pl-6 mt-2 space-y-2">

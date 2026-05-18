@@ -286,7 +286,7 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
           aria-hidden="true"
           className="fixed inset-0 w-full h-full object-cover -z-10"
           loading="eager"
-          fetchPriority="high"
+          fetchpriority="high"
           width={768}
           height={1024}
         />
@@ -786,54 +786,24 @@ export function HomePage({ content, testimonials, offerings, teachers, googleRev
 
       {/* Subscribe */}
       <section className="py-20 bg-white relative">
+        <div className="absolute left-0 right-0 -top-16 z-10">
+          <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-16 block">
+            <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="white" />
+          </svg>
+        </div>
         <div className="container mx-auto px-4">
           <div className="max-w-xl mx-auto text-center">
-            <motion.span
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-block text-orange font-semibold tracking-widest uppercase text-xs mb-3"
-            >
-              Stay in the Loop
-            </motion.span>
-            <motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 }}
-              className="text-3xl md:text-4xl font-bold text-purple-dark mb-3"
-            >
-              Subscribe
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-muted-foreground mb-8"
-            >
-              Sign up to hear from us about specials, sales, and events.
-            </motion.p>
-            <motion.form
+            <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.15 }}
-              onSubmit={(e) => e.preventDefault()}
-              className="flex flex-col sm:flex-row gap-3"
+              className="max-w-md mx-auto"
             >
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="flex-1 px-5 py-3 rounded-full border border-soft-purple bg-white text-purple-dark placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-purple/30 text-sm"
-              />
-              <button
-                type="submit"
-                className="bg-purple text-white font-semibold px-5 py-2.5 sm:px-7 sm:py-3 rounded-full hover:bg-purple-dark transition-colors text-sm whitespace-nowrap"
-              >
-                Sign Up
-              </button>
-            </motion.form>
+              {/* Begin Constant Contact Inline Form Code */}
+              <div className="ctct-inline-form" data-form-id="d5c6102e-c3ca-451a-8784-d4d6c90998dd" />
+              {/* End Constant Contact Inline Form Code */}
+            </motion.div>
           </div>
         </div>
         <WaveDivider fill="white" bottomOffset={-72} flipped={true} />

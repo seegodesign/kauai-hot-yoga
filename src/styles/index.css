@@ -7,3 +7,24 @@
 button {
   cursor: pointer;
 }
+
+/* Constant Contact inline form styles */
+.ctct-inline-form input,
+.ctct-inline-form button {
+  border-radius: 25px !important;
+}
+.ctct-gdpr-text, .ctct-form-footer, #email_address_label_0 {
+  display: none !important;
+}
+#email_address_field_0 {
+  width: 70%;
+  float: left;
+  position: relative;
+  margin-right: 8px;
+}
+.ctct-form-button {
+  margin-top: 25px !important;
+  width: 26%!important;
+  height: 46px !important;
+  padding: 0 !important;
+}

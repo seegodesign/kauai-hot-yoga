@@ -31,7 +31,7 @@ export function PageHero({
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover"
             loading="eager"
-            fetchPriority="high"
+            fetchpriority="high"
             width={1920}
             height={1080}
           />

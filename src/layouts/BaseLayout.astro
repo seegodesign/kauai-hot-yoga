@@ -11,6 +11,8 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  keywords?: string | string[];
+  noindex?: boolean;
   currentPath: string;
 }
 
@@ -18,6 +20,8 @@ const {
   title = "Kauai Hot Yoga",
   description = "Yoga, breathwork, and recovery experiences in Kauai.",
   ogImage,
+  keywords,
+  noindex = false,
   currentPath,
 } = Astro.props;
 
@@ -36,6 +40,21 @@ function toOgImage(url: string): string {
   return url.startsWith("http") ? url : new URL(url, SITE_URL).href;
 }
 const ogImageURL = ogImage ? toOgImage(ogImage) : `${SITE_URL}${logo.src}`;
+const defaultKeywords = [
+  "Kauai Hot Yoga",
+  "hot yoga Kauai",
+  "hot yoga Lihue",
+  "yoga classes Kauai",
+  "9D breathwork Kauai",
+  "cold plunge Kauai",
+  "yoga studio Lihue",
+].join(", ");
+const keywordsContent = Array.isArray(keywords)
+  ? keywords.join(", ")
+  : (keywords ?? defaultKeywords);
+const robotsContent = noindex
+  ? "noindex, nofollow"
+  : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -92,6 +111,11 @@ const localBusinessSchema = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywordsContent} />
+    <meta name="author" content={settings.studio_name} />
+    <meta name="robots" content={robotsContent} />
+    <meta name="googlebot" content={robotsContent} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
 
     <!-- Canonical -->
     <link rel="canonical" href={canonicalURL} />
@@ -108,6 +132,7 @@ const localBusinessSchema = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:secure_url" content={ogImageURL} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={title} />
@@ -115,6 +140,7 @@ const localBusinessSchema = {
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
@@ -134,6 +160,22 @@ const localBusinessSchema = {
 
     <!-- Theme -->
     <meta name="theme-color" content="#4A1F56" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-WLXJRMRLD6"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-WLXJRMRLD6");
+    </script>
 
     <!-- Local Business structured data -->
     <script
@@ -188,7 +230,7 @@ const localBusinessSchema = {
       <footer
         class="bg-gradient-to-r from-purple-dark to-purple text-white/80 py-12 mb-10 lg:mb-0"
       >
-        <div class="container mx-auto px-4 max-w-7xl">
+        <div class="container mx-auto px-4 md:px-8 max-w-7xl">
           <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
             <div>
               <Image
@@ -404,16 +446,20 @@ const localBusinessSchema = {
                 </p>
                 <p><a href={`mailto:${settings.email}`}>{settings.email}</a></p>
                 <p><a href={`tel:${settings.phone}`}>{settings.phone}</a></p>
-                {settings.social?.google_review_url && (
-                  <p>
-                    <a
-                      href={settings.social.google_review_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="hover:text-white transition-colors"
-                    >⭐ Leave us a Google review</a>
-                  </p>
-                )}
+                {
+                  settings.social?.google_review_url && (
+                    <p>
+                      <a
+                        href={settings.social.google_review_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hover:text-white transition-colors"
+                      >
+                        ⭐ Leave us a Google review
+                      </a>
+                    </p>
+                  )
+                }
               </div>
             </div>
           </div>
@@ -450,8 +496,23 @@ const localBusinessSchema = {
       </footer>
     </div>
 
+    <!-- Begin Constant Contact Active Forms -->
+    <script is:inline>
+      window._ctct_m = "bf0713212510aef5e9a41d0f929a1100";
+    </script>
+    <script
+      is:inline
+      id="signupScript"
+      src="//static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js"
+      async
+      defer></script>
+    <!-- End Constant Contact Active Forms -->
+
     <!-- GHL Chat Widget -->
-    <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a03e3d735331a56823d66db"></script>
+    <script
+      src="https://widgets.leadconnectorhq.com/loader.js"
+      data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+      data-widget-id="6a03e3d735331a56823d66db"></script>
 
     <!-- On mobile, push the chat bubble above the bottom toolbar -->
     <script>
@@ -465,7 +526,7 @@ const localBusinessSchema = {
               widget &&
               widget.shadowRoot &&
               widget.shadowRoot.querySelector(".lc_text-widget--bubble");
-            if (bubble) {
+            if (bubble instanceof HTMLElement) {
               bubble.style.bottom = "70px";
               clearInterval(poll);
             } else if (attempts > 40) {
