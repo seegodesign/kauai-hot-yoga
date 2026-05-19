@@ -1,7 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { AboutPage } from "../views/about";
+import AboutPage from "../views/about.astro";
 
 const aboutEntry = await getEntry("about", "main");
 if (!aboutEntry) throw new Error("Missing content: about/main.yml");
@@ -25,6 +25,5 @@ const studioMobileSrc = aboutEntry.data.studio_image_mobile;
     heroMobileSrc={heroMobileSrc}
     studioDesktopSrc={studioDesktopSrc}
     studioMobileSrc={studioMobileSrc}
-    client:visible
   />
 </BaseLayout>

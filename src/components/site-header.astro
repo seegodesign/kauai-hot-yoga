@@ -1,0 +1,399 @@
+---
+import logo from "../assets/logo.png";
+import logoLight from "../assets/logo-light.png";
+
+interface Props {
+  currentPath: string;
+  phone?: string;
+  instagramUrl?: string;
+  facebookUrl?: string;
+}
+
+const { currentPath, instagramUrl, facebookUrl } = Astro.props;
+
+const experiencesLinks = [
+  { href: "/workshops", label: "Workshops" },
+  { href: "/9d-breathwork", label: "9D Breathwork" },
+  { href: "/cold-plunge", label: "Cold Plunge" },
+];
+
+const exploreLinks = [
+  { href: "/our-studio", label: "About Us" },
+  { href: "/our-teachers", label: "Our Teachers" },
+  { href: "/our-community", label: "Community" },
+  { href: "/blog", label: "Blog" },
+  { href: "/new-here", label: "New Here?" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/gift-card", label: "Gift Card" },
+];
+
+const navLinks = [
+  { href: "/classes", label: "Classes" },
+  { href: "/schedule", label: "Schedule" },
+  { href: "/prices", label: "Pricing" },
+];
+
+const isExperiencesActive = experiencesLinks.some((link) => currentPath === link.href);
+const isExploreActive = exploreLinks.some((link) => currentPath === link.href);
+const isHome = currentPath === "/";
+---
+
+<header
+  class={`border-b sticky top-0 z-40 transition-colors duration-300 ${
+    isHome
+      ? "bg-purple/70 border-transparent"
+      : "bg-white/95 border-soft-purple backdrop-blur-md"
+  }`}
+  data-site-header
+  data-current-path={currentPath}
+  data-header-mode={isHome ? "hero" : "scrolled"}
+>
+  <nav class="container mx-auto">
+    <div class="flex items-center justify-between px-6 py-1">
+      <a href="/" class="flex items-center space-x-2">
+        <img src={logo.src} alt="Kauai Hot Yoga" class="h-20 header-logo-dark" width="240" height="80" />
+        <img src={logoLight.src} alt="Kauai Hot Yoga" class="h-20 header-logo-light" width="240" height="80" />
+      </a>
+
+      <div class="hidden lg:flex items-center space-x-8">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class={`desktop-link text-sm transition-colors ${
+                currentPath === link.href
+                  ? "desktop-link-active text-purple"
+                  : "desktop-link-inactive text-purple-dark/70 hover:text-purple"
+              }`}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+
+        <div class="relative group">
+          <button
+            type="button"
+            class={`desktop-link cursor-pointer text-sm transition-colors flex items-center gap-1 ${
+              isExploreActive
+                ? "desktop-link-active text-purple"
+                : "desktop-link-inactive text-purple-dark/70 hover:text-purple"
+            }`}
+            aria-haspopup="true"
+          >
+            Explore
+            <span class="icon-mask icon-chevron-down submenu-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="absolute left-0 top-full pt-2 z-50 min-w-[220px] hidden group-hover:block group-focus-within:block">
+            <div class="bg-white border border-soft-purple shadow-lg rounded-lg overflow-hidden">
+              {
+                exploreLinks.map((link) => (
+                  <a
+                    href={link.href}
+                    class={`block py-3 px-4 text-sm transition-colors hover:bg-soft-purple ${
+                      currentPath === link.href ? "text-purple" : "text-purple-dark/70"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <button
+            type="button"
+            class={`desktop-link cursor-pointer text-sm transition-colors flex items-center gap-1 ${
+              isExperiencesActive
+                ? "desktop-link-active text-purple"
+                : "desktop-link-inactive text-purple-dark/70 hover:text-purple"
+            }`}
+            aria-haspopup="true"
+          >
+            Experiences
+            <span class="icon-mask icon-chevron-down submenu-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="absolute left-0 top-full pt-2 z-50 min-w-[220px] hidden group-hover:block group-focus-within:block">
+            <div class="bg-white border border-soft-purple shadow-lg rounded-lg overflow-hidden">
+              {
+                experiencesLinks.map((link) => (
+                  <a
+                    href={link.href}
+                    class={`block py-3 px-4 text-sm transition-colors hover:bg-soft-purple ${
+                      currentPath === link.href ? "text-purple" : "text-purple-dark/70"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="/contact-us"
+          class="bg-orange text-white px-6 py-2.5 rounded-full hover:bg-orange-light transition-colors"
+        >
+          Contact
+        </a>
+
+        {
+          instagramUrl && (
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              class="social-link transition-colors hover:text-orange text-purple-dark/60"
+            >
+              <span class="icon-mask icon-instagram" aria-hidden="true"></span>
+            </a>
+          )
+        }
+
+        {
+          facebookUrl && (
+            <a
+              href={facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              class="social-link transition-colors hover:text-orange text-purple-dark/60"
+            >
+              <span class="icon-mask icon-facebook" aria-hidden="true"></span>
+            </a>
+          )
+        }
+      </div>
+
+      <button
+        type="button"
+        class="mobile-toggle lg:hidden transition-colors text-purple-dark"
+        aria-label="Toggle navigation"
+        data-mobile-nav-toggle
+        aria-expanded="false"
+      >
+        <span class="icon-mask icon-menu" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div class="lg:hidden fixed inset-x-0 top-[81px] bg-white border-t border-soft-purple z-[9999] overflow-y-auto max-h-[calc(100dvh-81px)] mobile-nav-panel" data-mobile-nav>
+      <div class="py-4 px-6 space-y-3">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class={`block py-2 text-base transition-colors ${
+                currentPath === link.href ? "text-purple" : "text-purple-dark/70"
+              }`}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+
+        <details>
+          <summary class={`list-none cursor-pointer py-2 text-base transition-colors flex items-center gap-2 ${isExploreActive ? "text-purple" : "text-purple-dark/70"}`}>
+            <span>Explore</span>
+            <span class="icon-mask icon-chevron-down submenu-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="pl-4 space-y-2 mt-2">
+            {
+              exploreLinks.map((link) => (
+                <a
+                  href={link.href}
+                  class={`block py-2 text-sm transition-colors ${
+                    currentPath === link.href ? "text-purple" : "text-purple-dark/70"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              ))
+            }
+          </div>
+        </details>
+
+        <details>
+          <summary class={`list-none cursor-pointer py-2 text-base transition-colors flex items-center gap-2 ${isExperiencesActive ? "text-purple" : "text-purple-dark/70"}`}>
+            <span>Experiences</span>
+            <span class="icon-mask icon-chevron-down submenu-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="pl-4 space-y-2 mt-2">
+            {
+              experiencesLinks.map((link) => (
+                <a
+                  href={link.href}
+                  class={`block py-2 text-sm transition-colors ${
+                    currentPath === link.href ? "text-purple" : "text-purple-dark/70"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              ))
+            }
+          </div>
+        </details>
+
+        <a
+          href="/prices"
+          class="flex items-center justify-center gap-2 bg-orange text-white px-6 py-3 rounded-full hover:bg-orange-dark transition-colors"
+        >
+          <span class="icon-mask icon-book-now" aria-hidden="true"></span>
+          <span>Book Now</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector("[data-site-header]");
+  const toggle = document.querySelector("[data-mobile-nav-toggle]");
+  const panel = document.querySelector("[data-mobile-nav]");
+
+  if (header instanceof HTMLElement) {
+    const isHomePath = header.dataset.currentPath === "/";
+
+    if (isHomePath) {
+      const onScroll = () => {
+        const scrolled = window.scrollY > 0;
+        header.dataset.headerMode = scrolled ? "scrolled" : "hero";
+        header.classList.toggle("bg-white/95", scrolled);
+        header.classList.toggle("border-soft-purple", scrolled);
+        header.classList.toggle("backdrop-blur-md", scrolled);
+        header.classList.toggle("bg-purple/70", !scrolled);
+        header.classList.toggle("border-transparent", !scrolled);
+      };
+
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
+  }
+
+  if (toggle instanceof HTMLButtonElement && panel instanceof HTMLDivElement) {
+    toggle.addEventListener("click", () => {
+      const isOpen = panel.classList.contains("is-open");
+      panel.classList.toggle("is-open", !isOpen);
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+    });
+
+    panel.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        panel.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+</script>
+
+<style>
+  .icon-mask {
+    display: inline-block;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+
+  .icon-instagram {
+    width: 20px;
+    height: 20px;
+    -webkit-mask-image: url("/icons/instagram.svg");
+    mask-image: url("/icons/instagram.svg");
+  }
+
+  .icon-facebook {
+    width: 20px;
+    height: 20px;
+    -webkit-mask-image: url("/icons/facebook.svg");
+    mask-image: url("/icons/facebook.svg");
+  }
+
+  .icon-menu {
+    width: 24px;
+    height: 24px;
+    -webkit-mask-image: url("/icons/menu.svg");
+    mask-image: url("/icons/menu.svg");
+  }
+
+  .icon-book-now {
+    width: 16px;
+    height: 16px;
+    -webkit-mask-image: url("/icons/book.svg");
+    mask-image: url("/icons/book.svg");
+  }
+
+  .icon-chevron-down {
+    width: 14px;
+    height: 14px;
+    -webkit-mask-image: url("/icons/chevron-down.svg");
+    mask-image: url("/icons/chevron-down.svg");
+  }
+
+  .submenu-chevron {
+    flex-shrink: 0;
+    transition: transform 180ms ease;
+  }
+
+  details[open] > summary .submenu-chevron {
+    transform: rotate(180deg);
+  }
+
+  .mobile-nav-panel {
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 220ms ease, transform 220ms ease, visibility 0s linear 220ms;
+  }
+
+  .mobile-nav-panel.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+
+  [data-site-header][data-header-mode="hero"] .header-logo-dark {
+    display: none;
+  }
+
+  [data-site-header][data-header-mode="hero"] .header-logo-light {
+    display: block;
+  }
+
+  [data-site-header][data-header-mode="scrolled"] .header-logo-dark {
+    display: block;
+  }
+
+  [data-site-header][data-header-mode="scrolled"] .header-logo-light {
+    display: none;
+  }
+
+  [data-site-header][data-header-mode="hero"] .desktop-link-active {
+    color: rgb(255 255 255);
+  }
+
+  [data-site-header][data-header-mode="hero"] .desktop-link-inactive {
+    color: rgb(255 255 255 / 0.8);
+  }
+
+  [data-site-header][data-header-mode="hero"] .desktop-link-inactive:hover {
+    color: rgb(255 255 255);
+  }
+
+  [data-site-header][data-header-mode="hero"] .social-link {
+    color: rgb(255 255 255 / 0.8);
+  }
+
+  [data-site-header][data-header-mode="hero"] .mobile-toggle {
+    color: rgb(255 255 255);
+  }
+</style>

@@ -1,0 +1,223 @@
+---
+import PageHero from "../components/page-hero.astro";
+
+interface Props {
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
+  specialPrice: string;
+  specialName: string;
+  specialCtaUrl: string;
+  phone: string;
+  scheduleUrl: string;
+}
+
+const {
+  heroDesktopSrc,
+  heroMobileSrc,
+  specialPrice,
+  specialName,
+  specialCtaUrl,
+  phone,
+  scheduleUrl,
+} = Astro.props;
+
+const steps = [
+  {
+    step: "01",
+    title: "Book Your Class",
+    description:
+      "Pick a time that works for you - browse the full schedule online or through MINDBODY.",
+    color: "from-orange to-orange-dark",
+  },
+  {
+    step: "02",
+    title: "Come Prepared",
+    description:
+      "Bring a mat, towel, water, and comfortable clothes. Arrive 15 minutes early.",
+    color: "from-orange-dark to-purple-light",
+  },
+  {
+    step: "03",
+    title: "Check In",
+    description:
+      "Our staff will welcome you, show you around, and get you set up in the perfect spot.",
+    color: "from-purple-light to-purple",
+  },
+  {
+    step: "04",
+    title: "Feel the Difference",
+    description:
+      "Listen to your body, take breaks as needed, and walk out feeling better than when you walked in.",
+    color: "from-purple to-purple-dark",
+  },
+];
+
+const expectations = [
+  {
+    title: "Its warm - that is the point",
+    body: "Our hot classes use infrared heating to warm your body from within. You will sweat, and you will feel great.",
+  },
+  {
+    title: "All levels are welcome",
+    body: "Every class is beginner-friendly. Teachers offer modifications and encourage you to go at your own pace.",
+  },
+  {
+    title: "Hydrate and rest as needed",
+    body: "Drink plenty of water before class. If you need a break, take one. Your body, your practice.",
+  },
+  {
+    title: "Shoes off at the door",
+    body: "We are a shoes-off studio. You will practice barefoot on your mat.",
+  },
+  {
+    title: "Showers and changing rooms",
+    body: "Separate changing rooms with showers are available so you can freshen up after class.",
+  },
+  {
+    title: "Cold plunge after class",
+    body: "Contrast therapy is available after hot classes for faster recovery and a big energy lift.",
+  },
+];
+---
+
+<div class="min-h-screen">
+  <PageHero
+    desktopSrc={heroDesktopSrc}
+    mobileSrc={heroMobileSrc}
+    overlay="bg-gradient-to-br from-purple-dark/80 via-purple/70 to-orange/40"
+    eyebrow="Welcome"
+    title="New Here?"
+    subtitle="Everything you need to know before your first visit - plus an exclusive intro offer."
+  >
+    <a
+      href="#intro-offer"
+      class="inline-block mt-8 bg-orange text-white font-semibold px-8 py-4 rounded-full hover:bg-orange-dark transition-colors shadow-lg motion-preset-slide-up motion-duration-700 motion-delay-200"
+    >
+      See Intro Offer
+    </a>
+  </PageHero>
+
+  <section id="intro-offer" class="py-20 bg-gradient-to-br from-purple-dark to-purple scroll-mt-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+          <span class="inline-block text-orange-light font-semibold tracking-widest uppercase text-xs mb-3">
+            New Students Only
+          </span>
+          <h2 class="text-4xl md:text-5xl font-bold text-white">Your First Step</h2>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row gap-10 items-center motion-preset-slide-up motion-duration-700">
+          <div class="text-center md:text-left md:min-w-[200px]">
+            <div class="inline-flex items-center gap-2 bg-orange/30 border border-orange/40 rounded-full px-4 py-1 text-xs font-bold uppercase tracking-widest text-orange-light mb-4">
+              Limited Offer
+            </div>
+            <p class="text-white/70 text-sm font-semibold uppercase tracking-widest mb-1">{specialName}</p>
+            <div class="text-7xl font-extrabold leading-none mb-2">{specialPrice}</div>
+            <p class="text-white/60 text-sm">For new clients only</p>
+          </div>
+
+          <div class="hidden md:block w-px self-stretch bg-white/20"></div>
+          <div class="md:hidden w-full h-px bg-white/20"></div>
+
+          <div class="flex-1">
+            <h3 class="text-xl font-bold mb-5">What is included</h3>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-start gap-3 text-white/85 text-sm"><span class="text-orange mt-0.5 shrink-0">✓</span>Access to all class styles</li>
+              <li class="flex items-start gap-3 text-white/85 text-sm"><span class="text-orange mt-0.5 shrink-0">✓</span>All levels welcome, no experience needed</li>
+              <li class="flex items-start gap-3 text-white/85 text-sm"><span class="text-orange mt-0.5 shrink-0">✓</span>Mat and towel rentals available</li>
+              <li class="flex items-start gap-3 text-white/85 text-sm"><span class="text-orange mt-0.5 shrink-0">✓</span>Free filtered alkaline water</li>
+              <li class="flex items-start gap-3 text-white/85 text-sm"><span class="text-orange mt-0.5 shrink-0">✓</span>Cold plunge access after hot classes</li>
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a
+                href={specialCtaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-1 text-center bg-orange text-white font-bold py-4 rounded-full hover:bg-orange-dark transition-colors"
+              >
+                Claim This Offer
+              </a>
+              <a
+                href={scheduleUrl}
+                class="flex-1 text-center border-2 border-white/40 text-white font-semibold py-4 rounded-full hover:bg-white/10 hover:border-white transition-colors"
+              >
+                Browse Schedule
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-14">
+          <span class="inline-block text-orange font-semibold tracking-widest uppercase text-sm mb-4">Your first visit</span>
+          <h2 class="text-5xl md:text-6xl text-purple-dark">Ready in 4 Steps</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+          {steps.map((step, index) => (
+            <div class="relative z-10 flex flex-col items-center text-center motion-preset-slide-up motion-duration-700" style={`--motion-delay:${index * 100}ms`}>
+              <div class={`w-20 h-20 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center mb-5 shadow-lg`}>
+                <span class="text-white text-2xl font-bold">{step.step}</span>
+              </div>
+              <div class="bg-white border border-soft-purple rounded-2xl p-6 shadow-sm w-full">
+                <h4 class="text-purple-dark mb-2 text-base font-semibold">{step.title}</h4>
+                <p class="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-warm-cream">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block text-orange font-semibold tracking-widest uppercase text-sm mb-4">No Surprises</span>
+          <h2 class="text-4xl md:text-5xl text-purple-dark">What to Expect</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {expectations.map((item, i) => (
+            <div class="bg-white rounded-2xl p-6 border border-soft-purple shadow-sm motion-preset-slide-up motion-duration-700" style={`--motion-delay:${i * 80}ms`}>
+              <h4 class="text-purple-dark font-semibold mb-2">{item.title}</h4>
+              <p class="text-sm text-muted-foreground leading-relaxed">{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-purple-dark mb-4">Still Have Questions?</h2>
+        <p class="text-muted-foreground mb-8">
+          Check out our full FAQ, or reach out - we are always happy to help.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="/faq"
+            class="bg-purple text-white font-semibold px-8 py-3 rounded-full hover:bg-purple-dark transition-colors"
+          >
+            View All FAQs
+          </a>
+          <a
+            href={`tel:${phone.replace(/\D/g, "")}`}
+            class="border-2 border-purple text-purple font-semibold px-8 py-3 rounded-full hover:bg-purple/5 transition-colors"
+          >
+            Call Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

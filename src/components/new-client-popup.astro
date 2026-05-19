@@ -1,0 +1,151 @@
+---
+const STORAGE_KEY = "khy_intro_offer_seen";
+const EXPIRY_KEY = "khy_intro_offer_expiry";
+const CTA_URL =
+  "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102264";
+const OFFER_DURATION_MS = 10 * 60 * 100 * 3;
+---
+
+<div id="new-client-popup" class="fixed inset-0 z-50 items-center justify-center p-4 hidden">
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" data-popup-close aria-hidden="true"></div>
+
+  <div class="relative z-10 bg-purple rounded-2xl shadow-2xl w-full max-w-md overflow-hidden text-white text-center px-8 py-10 motion-preset-slide-up motion-duration-500">
+    <button
+      type="button"
+      aria-label="Close offer"
+      data-popup-close
+      class="absolute top-3 right-3 text-white/50 hover:text-white transition-colors"
+    >
+      <span class="icon-mask icon-close" aria-hidden="true"></span>
+    </button>
+
+    <span class="inline-block text-xs font-bold uppercase tracking-widest bg-white/20 border border-orange/30 rounded-full px-3 py-1 mb-5">
+      Web-Only Offer
+    </span>
+
+    <p class="text-xs font-semibold uppercase tracking-widest text-white/60 mb-3">New Client Special</p>
+
+    <h2 class="text-3xl font-extrabold leading-tight mb-1">
+      <span class="text-orange">3 classes</span> for only
+    </h2>
+    <p class="text-6xl font-extrabold mb-5">$59</p>
+
+    <p class="text-sm text-white/80 leading-relaxed mb-6">
+      Your first step into hot yoga, breathwork, and recovery - all levels welcome, no experience needed.
+    </p>
+
+    <a
+      href={CTA_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-popup-cta
+      class="block w-full bg-orange hover:bg-orange-dark text-white font-bold py-3 rounded-full transition-colors"
+    >
+      Claim This Offer ->
+    </a>
+
+    <div id="new-client-popup-timer-wrap" class="mt-6 flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-white/10 border border-white/20">
+      <span class="text-xs text-white/70">Offer expires in</span>
+      <span id="new-client-popup-timer" class="font-bold text-lg tabular-nums tracking-wider">03:00</span>
+    </div>
+
+    <p class="mt-4 text-xs text-white/40">For new clients only. Valid at Kauai Hot Yoga.</p>
+  </div>
+</div>
+
+<script is:inline define:vars={{ STORAGE_KEY, EXPIRY_KEY, OFFER_DURATION_MS }}>
+  (() => {
+    const popup = document.getElementById("new-client-popup");
+    if (!popup) return;
+
+    const timerValue = document.getElementById("new-client-popup-timer");
+    const timerWrap = document.getElementById("new-client-popup-timer-wrap");
+    const closeTargets = popup.querySelectorAll("[data-popup-close]");
+    const cta = popup.querySelector("[data-popup-cta]");
+
+    let tick;
+
+    function formatTime(ms) {
+      const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+      const minutes = Math.floor(totalSeconds / 60)
+        .toString()
+        .padStart(2, "0");
+      const seconds = (totalSeconds % 60).toString().padStart(2, "0");
+      return `${minutes}:${seconds}`;
+    }
+
+    function hidePopup() {
+      localStorage.setItem(STORAGE_KEY, "1");
+      popup.classList.add("hidden");
+      popup.classList.remove("flex");
+      if (tick) {
+        clearInterval(tick);
+        tick = undefined;
+      }
+    }
+
+    function showPopup() {
+      popup.classList.remove("hidden");
+      popup.classList.add("flex");
+
+      const expiry = Date.now() + OFFER_DURATION_MS;
+      localStorage.setItem(EXPIRY_KEY, String(expiry));
+
+      if (timerValue) timerValue.textContent = formatTime(OFFER_DURATION_MS);
+
+      if (tick) clearInterval(tick);
+      tick = window.setInterval(() => {
+        const savedExpiry = Number(localStorage.getItem(EXPIRY_KEY));
+        const left = savedExpiry - Date.now();
+
+        if (timerValue) timerValue.textContent = formatTime(left);
+
+        if (timerWrap) {
+          if (left < 60000) {
+            timerWrap.classList.remove("bg-white/10", "border-white/20");
+            timerWrap.classList.add("bg-red-500/20", "border-red-400/40");
+          } else {
+            timerWrap.classList.add("bg-white/10", "border-white/20");
+            timerWrap.classList.remove("bg-red-500/20", "border-red-400/40");
+          }
+        }
+
+        if (left <= 0) hidePopup();
+      }, 500);
+    }
+
+    closeTargets.forEach((node) => {
+      node.addEventListener("click", hidePopup);
+    });
+
+    if (cta instanceof HTMLAnchorElement) {
+      cta.addEventListener("click", hidePopup);
+    }
+
+    const seen = localStorage.getItem(STORAGE_KEY);
+    const devMode = new URLSearchParams(window.location.search).get("dev");
+    if (seen && !devMode) return;
+
+    window.setTimeout(showPopup, 3000);
+  })();
+</script>
+
+<style>
+  .icon-mask {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+
+  .icon-close {
+    -webkit-mask-image: url("/icons/close.svg");
+    mask-image: url("/icons/close.svg");
+  }
+</style>

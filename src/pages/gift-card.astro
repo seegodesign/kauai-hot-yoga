@@ -1,7 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { GiftCardPage } from "../views/gift-card";
+import GiftCardPage from "../views/gift-card.astro";
 
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
@@ -15,6 +15,5 @@ if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.ym
   <GiftCardPage
     heroDesktopSrc={pageHeroesEntry.data.gift_card.desktop}
     heroMobileSrc={pageHeroesEntry.data.gift_card.mobile}
-    client:load
   />
 </BaseLayout>

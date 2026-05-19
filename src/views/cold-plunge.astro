@@ -1,0 +1,200 @@
+---
+import PageHero from "../components/page-hero.astro";
+
+interface Props {
+  heroDesktopSrc: string;
+  heroMobileSrc?: string;
+}
+
+const { heroDesktopSrc, heroMobileSrc } = Astro.props;
+
+const benefits = [
+  {
+    title: "Enhanced Recovery",
+    description: "Reduce inflammation and speed up muscle recovery after workouts",
+  },
+  {
+    title: "Boost Energy",
+    description: "Increase alertness and energy levels through cold exposure",
+  },
+  {
+    title: "Improved Circulation",
+    description: "Strengthen cardiovascular system and improve blood flow",
+  },
+  {
+    title: "Immune Support",
+    description: "Stimulate immune response and increase white blood cell production",
+  },
+  {
+    title: "Mental Resilience",
+    description: "Build mental toughness and stress tolerance",
+  },
+  {
+    title: "Mood Enhancement",
+    description: "Natural endorphin release for improved mood and wellbeing",
+  },
+];
+
+const pairings = [
+  {
+    title: "Cold Plunge Only",
+    description:
+      "Drop in for a quick plunge session. Perfect for recovery days or before/after surf sessions.",
+    price: "$17",
+    ctaUrl:
+      "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102192",
+  },
+  {
+    title: "10-Plunge Pass",
+    description:
+      "Stock up and save. Use at your own pace - perfect for regular recovery practitioners.",
+    price: "$140",
+    savings: "Save $30",
+    ctaUrl:
+      "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102193",
+  },
+  {
+    title: "20-Plunge Pass",
+    description:
+      "Our best value pass for committed cold therapy enthusiasts. Never run out of plunges.",
+    price: "$235",
+    savings: "Save $105",
+    ctaUrl:
+      "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=102197",
+  },
+];
+
+const steps = [
+  {
+    title: "Prepare",
+    description:
+      "Start with breathwork or a hot yoga class. We will guide you on breathing techniques before entering the cold.",
+  },
+  {
+    title: "Plunge",
+    description:
+      "Enter slowly and focus on your breath. Start with 1-3 minutes and build up over time.",
+  },
+  {
+    title: "Warm Up",
+    description:
+      "Exit mindfully and warm up naturally. Use our sauna or take a warm shower.",
+  },
+  {
+    title: "Integrate",
+    description:
+      "Relax, hydrate, and notice the effects: increased alertness, mood elevation, and calm.",
+  },
+];
+---
+
+<div class="min-h-screen">
+  <PageHero
+    desktopSrc={heroDesktopSrc}
+    mobileSrc={heroMobileSrc}
+    overlay="bg-black/50"
+    eyebrow="45-50F Ice Bath"
+    title="Cold Plunge Therapy"
+    subtitle="Ice bath immersion for recovery, inflammation reduction, and mental clarity"
+  />
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16 motion-preset-slide-up motion-duration-700">
+          <h2 class="text-4xl font-semibold text-purple-dark mb-6">The Science of Cold</h2>
+          <p class="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Cold water immersion has been used for centuries as a healing practice. Modern science
+            confirms its powerful benefits for both body and mind.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {
+            benefits.map((benefit, index) => (
+              <div class="border border-orange p-6 rounded-2xl motion-preset-slide-up motion-duration-700" style={`--motion-delay:${index * 60}ms`}>
+                <h4 class="text-purple-dark mb-2">{benefit.title}</h4>
+                <p class="text-sm text-muted-foreground">{benefit.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-warm-cream">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-4xl font-semibold text-purple-dark text-center mb-12">Cold Plunge Options</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {
+            pairings.map((pairing, index) => (
+              <div class="bg-white p-8 rounded-2xl border border-soft-purple hover:shadow-lg transition-shadow relative motion-preset-slide-up motion-duration-700" style={`--motion-delay:${index * 80}ms`}>
+                {
+                  pairing.savings && (
+                    <div class="absolute -top-3 right-4 bg-sunset text-white px-3 py-1 rounded-full text-xs">
+                      {pairing.savings}
+                    </div>
+                  )
+                }
+                <h3 class="text-purple-dark mb-3">{pairing.title}</h3>
+                <p class="text-muted-foreground text-sm mb-6">{pairing.description}</p>
+                <div class="text-3xl text-purple mb-6">{pairing.price}</div>
+                <a
+                  href={pairing.ctaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full block text-center bg-purple text-white py-3 rounded-full hover:bg-purple-light transition-colors"
+                >
+                  Book Now
+                </a>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-4xl font-semibold text-purple text-center mb-8">How It Works</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {
+            steps.map((item, index) => (
+              <div class="flex flex-col items-center text-center motion-preset-slide-up motion-duration-700" style={`--motion-delay:${index * 100}ms`}>
+                <div class="w-16 h-16 rounded-full bg-soft-purple/40 flex items-center justify-center mb-5 shadow-sm text-purple font-bold text-xl">
+                  {index + 1}
+                </div>
+                <h3 class="text-purple-dark font-semibold text-2xl mb-2">{item.title}</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-warm-cream">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-4xl font-semibold text-purple text-center mb-8">Safety First</h2>
+        <div class="bg-white p-8 rounded-2xl border border-soft-purple">
+          <p class="text-muted-foreground mb-6">
+            Cold plunge is generally safe for most people, but please note:
+          </p>
+          <ul class="space-y-3 text-muted-foreground">
+            <li class="flex items-start space-x-3"><span class="text-purple">•</span><span>Consult your doctor if you have heart conditions, high blood pressure, or are pregnant</span></li>
+            <li class="flex items-start space-x-3"><span class="text-purple">•</span><span>Never plunge alone - staff supervision is always provided</span></li>
+            <li class="flex items-start space-x-3"><span class="text-purple">•</span><span>Start with shorter durations and build gradually</span></li>
+            <li class="flex items-start space-x-3"><span class="text-purple">•</span><span>Listen to your body and exit if you feel dizzy or uncomfortable</span></li>
+            <li class="flex items-start space-x-3"><span class="text-purple">•</span><span>Avoid alcohol before or after cold plunge sessions</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

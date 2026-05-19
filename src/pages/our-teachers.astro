@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { TeachersPage } from "../views/teachers";
+import TeachersPage from "../views/teachers.astro";
 
 const teacherEntries = await getCollection("teachers");
 const teachers = teacherEntries
@@ -16,5 +16,5 @@ if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.ym
   title="Our Teachers | Kauai Hot Yoga"
   description="Meet the certified hot yoga instructors at Kauai Hot Yoga in Lihue, Hawaii. Experienced teachers in Bikram, Vinyasa, Pilates, breathwork, and more."
   currentPath="/our-teachers">
-  <TeachersPage teachers={teachers} heroDesktopSrc={pageHeroesEntry.data.teachers.desktop} heroMobileSrc={pageHeroesEntry.data.teachers.mobile} client:visible />
+  <TeachersPage teachers={teachers} heroDesktopSrc={pageHeroesEntry.data.teachers.desktop} heroMobileSrc={pageHeroesEntry.data.teachers.mobile} />
 </BaseLayout>

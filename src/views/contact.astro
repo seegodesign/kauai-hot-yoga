@@ -1,0 +1,172 @@
+---
+import PageHero from "../components/page-hero.astro";
+
+export interface ContactInfo {
+  studio_name: string;
+  phone: string;
+  email: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+  };
+  social?: {
+    instagram?: string;
+    facebook?: string;
+  };
+  business_hours?: {
+    day: string;
+    hours: string;
+  }[];
+}
+
+interface Props {
+  info: ContactInfo;
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
+}
+
+const { info, heroDesktopSrc, heroMobileSrc } = Astro.props;
+
+const googleMapsUrl = `https://maps.google.com/?q=${encodeURIComponent(
+  `${info.address.street}, ${info.address.city}, ${info.address.state} ${info.address.zip}`,
+)}`;
+const social = info.social ?? {};
+---
+
+<div class="min-h-screen">
+  <PageHero
+    desktopSrc={heroDesktopSrc}
+    mobileSrc={heroMobileSrc}
+    overlay="bg-purple/65"
+    eyebrow="Get In Touch"
+    title="Contact Us"
+    subtitle="We'd love to hear from you. Reach out with any questions about classes, memberships, or your first visit."
+  />
+
+  <section class="py-12 md:py-24 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div class="space-y-10 motion-preset-slide-up motion-duration-700">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-purple-dark mb-8">Reach Out</h2>
+
+            <ul class="space-y-6">
+              <li>
+                <a href={`tel:${info.phone.replace(/\D/g, "")}`} class="block group">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-orange mb-1">Phone</p>
+                  <p class="text-purple-dark text-lg group-hover:text-purple transition-colors">{info.phone}</p>
+                </a>
+              </li>
+
+              <li>
+                <a href={`mailto:${info.email}`} class="block group">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-orange mb-1">Email</p>
+                  <p class="text-purple-dark text-lg group-hover:text-purple transition-colors">{info.email}</p>
+                </a>
+              </li>
+
+              <li>
+                <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" class="block group">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-orange mb-1">Address</p>
+                  <p class="text-purple-dark text-lg group-hover:text-purple transition-colors leading-snug">
+                    {info.address.street}<br />
+                    {info.address.city}, {info.address.state} {info.address.zip}
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-orange mb-2">Studio Hours</p>
+            {
+              info.business_hours && info.business_hours.length > 0 ? (
+                <div class="space-y-1 text-purple-dark/80">
+                  {info.business_hours.map((entry) => (
+                    <p>
+                      <span class="font-medium text-purple-dark">{entry.day}</span> {entry.hours}
+                    </p>
+                  ))}
+                </div>
+              ) : (
+                <div class="space-y-1 text-purple-dark/80">
+                  <p>
+                    <span class="font-medium text-purple-dark">Mon - Fri</span> 6:00 AM - 8:00 PM
+                  </p>
+                  <p>
+                    <span class="font-medium text-purple-dark">Sat - Sun</span> 7:00 AM - 6:00 PM
+                  </p>
+                </div>
+              )
+            }
+          </div>
+
+          {
+            (social.instagram || social.facebook) && (
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-widest text-orange mb-4">Follow Us</p>
+                <div class="flex gap-3">
+                  {social.instagram && (
+                    <a
+                      href={social.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-soft-purple text-purple hover:bg-purple hover:text-white transition-colors"
+                      aria-label="Instagram"
+                    >
+                      <img
+                        src="/icons/instagram.svg"
+                        alt=""
+                        aria-hidden="true"
+                        class="w-4 h-4"
+                        loading="lazy"
+                        width="16"
+                        height="16"
+                      />
+                      <span>Instagram</span>
+                    </a>
+                  )}
+                  {social.facebook && (
+                    <a
+                      href={social.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-soft-purple text-purple hover:bg-purple hover:text-white transition-colors"
+                      aria-label="Facebook"
+                    >
+                      <img
+                        src="/icons/facebook.svg"
+                        alt=""
+                        aria-hidden="true"
+                        class="w-4 h-4"
+                        loading="lazy"
+                        width="16"
+                        height="16"
+                      />
+                      <span>Facebook</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            )
+          }
+        </div>
+
+        <div class="rounded-2xl overflow-hidden shadow-lg border border-soft-purple aspect-[4/3] w-full motion-preset-slide-up motion-duration-700 motion-delay-100">
+          <iframe
+            title="Kauai Hot Yoga location"
+            src="https://maps.google.com/maps?q=Kauai+Hot+Yoga,+3-3122+Kuhio+Highway,+Lihue,+Hawaii+96766&z=17&output=embed"
+            width="100%"
+            height="100%"
+            style="border:0"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

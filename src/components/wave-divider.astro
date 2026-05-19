@@ -1,0 +1,45 @@
+---
+interface Props {
+  src?: string;
+  variant?: "white" | "purple-gradient";
+  bottomOffset?: number;
+  topOffset?: number;
+  flipped?: boolean;
+  className?: string;
+}
+
+const {
+  src,
+  variant = "white",
+  bottomOffset = 0,
+  topOffset,
+  flipped = false,
+  className = "",
+} = Astro.props;
+
+const resolvedSrc =
+  src ??
+  (variant === "purple-gradient"
+    ? "/icons/wave-divider-purple-gradient.svg"
+    : "/icons/wave-divider-white.svg");
+
+const positionStyle =
+  typeof topOffset === "number" ? `top: ${topOffset}px;` : `bottom: ${bottomOffset}px;`;
+const transformStyle = flipped ? " transform: scaleY(-1);" : "";
+const style = `${positionStyle}${transformStyle}`;
+---
+
+<div
+  class={`absolute left-0 right-0 z-10 pointer-events-none ${className}`.trim()}
+  style={style}
+  aria-hidden="true"
+>
+  <img
+    src={resolvedSrc}
+    alt=""
+    class="w-full h-16 block"
+    loading="lazy"
+    width="1440"
+    height="60"
+  />
+</div>

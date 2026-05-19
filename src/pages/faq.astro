@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { FAQPage } from "../views/faq";
+import FAQPage from "../views/faq.astro";
 
 const faqEntries = await getCollection("faq");
 
@@ -37,5 +37,5 @@ if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.ym
   description="Everything you need to know before your first hot yoga class at Kauai Hot Yoga in Lihue, Hawaii — what to bring, what to expect, and more."
   ogImage="/images/faq-hero.webp"
   currentPath="/faq">
-  <FAQPage categories={categories} phone={settingsEntry.data.phone} email={settingsEntry.data.email} heroDesktopSrc={pageHeroesEntry.data.faq.desktop} heroMobileSrc={pageHeroesEntry.data.faq.mobile} client:visible />
+  <FAQPage categories={categories} phone={settingsEntry.data.phone} email={settingsEntry.data.email} heroDesktopSrc={pageHeroesEntry.data.faq.desktop} heroMobileSrc={pageHeroesEntry.data.faq.mobile} />
 </BaseLayout>

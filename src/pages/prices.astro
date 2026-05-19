@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { PricingPage } from "../views/pricing";
+import PricingPage from "../views/pricing.astro";
 
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
@@ -37,5 +37,5 @@ const breathworkPlans = breathworkEntries
   title="Hot Yoga Pricing & Memberships in Kauai | Kauai Hot Yoga"
   description="Drop-in classes, class packs, and monthly memberships at Kauai Hot Yoga in Lihue, Hawaii. Traveler weekly passes and local intro month deals available."
   currentPath="/prices">
-  <PricingPage plans={plans} specials={specials} faqs={faqs} coldPlungePlans={coldPlungePlans} breathworkPlans={breathworkPlans} heroDesktopSrc={pageHeroesEntry.data.pricing.desktop} heroMobileSrc={pageHeroesEntry.data.pricing.mobile} client:visible />
+  <PricingPage plans={plans} specials={specials} faqs={faqs} coldPlungePlans={coldPlungePlans} breathworkPlans={breathworkPlans} heroDesktopSrc={pageHeroesEntry.data.pricing.desktop} heroMobileSrc={pageHeroesEntry.data.pricing.mobile} />
 </BaseLayout>

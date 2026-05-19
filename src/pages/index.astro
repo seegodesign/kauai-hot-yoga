@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { HomePage } from "../views/home";
+import HomePage from "../views/home.astro";
 
 const homeEntry = await getEntry("home", "main");
 if (!homeEntry) throw new Error("Missing content: home/main.yml");
@@ -41,6 +41,5 @@ const teachers = teacherEntries
     yelpReviewUrl={settingsEntry.data.social?.yelp_review_url ?? ""}
     phone={settingsEntry.data.phone ?? ""}
     heroMobileSrc={pageHeroesEntry.data.home.mobile}
-    client:load
   />
 </BaseLayout>

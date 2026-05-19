@@ -1,0 +1,20 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CommunityPage from "../views/community.astro";
+
+const communityEntries = await getCollection("community");
+const members = communityEntries
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => e.data);
+
+const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
+if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
+---
+
+<BaseLayout
+  title="Community | Kauai Hot Yoga"
+  description="Meet the local practitioners, healers, and guides who are part of the Kauai Hot Yoga community in Lihue, Hawaii."
+  currentPath="/our-community">
+  <CommunityPage members={members} heroDesktopSrc={pageHeroesEntry.data.community.desktop} heroMobileSrc={pageHeroesEntry.data.community.mobile} />
+</BaseLayout>

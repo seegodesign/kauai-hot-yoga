@@ -1,0 +1,72 @@
+---
+interface Props {
+  className?: string;
+  target?: string;
+}
+
+const { className = "", target } = Astro.props;
+---
+
+<button
+  type="button"
+  aria-label="Scroll down"
+  class={`scroll-chevron text-white/70 hover:text-white transition-colors cursor-pointer motion-preset-fade motion-duration-700 ${className}`}
+  data-scroll-target={target ?? ""}
+>
+  <span class="inline-block scroll-chevron-icon">
+    <span class="icon-mask icon-chevron-down" aria-hidden="true"></span>
+  </span>
+</button>
+
+<script>
+  document.querySelectorAll(".scroll-chevron").forEach((button) => {
+    if (!(button instanceof HTMLButtonElement)) return;
+
+    button.addEventListener("click", () => {
+      const target = button.dataset.scrollTarget;
+      if (target) {
+        const element = document.getElementById(target);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+      }
+
+      window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+    });
+  });
+</script>
+
+<style>
+  .icon-mask {
+    display: inline-block;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+
+  .icon-chevron-down {
+    width: 36px;
+    height: 36px;
+    -webkit-mask-image: url("/icons/chevron-down.svg");
+    mask-image: url("/icons/chevron-down.svg");
+  }
+
+  .scroll-chevron-icon {
+    animation: scroll-chevron-bob 1.6s ease-in-out infinite;
+  }
+
+  @keyframes scroll-chevron-bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(8px);
+    }
+  }
+</style>

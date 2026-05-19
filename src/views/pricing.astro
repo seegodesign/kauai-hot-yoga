@@ -1,0 +1,310 @@
+---
+import PricingCard from "../components/pricing-card.astro";
+import PageHero from "../components/page-hero.astro";
+
+export interface PricingPlan {
+  name: string;
+  price: string;
+  period?: string;
+  description: string;
+  features: string[];
+  popular?: boolean;
+  category: "drop-in" | "class-pack" | "membership";
+  order: number;
+  cta_url?: string;
+}
+
+export interface PricingSpecial {
+  name: string;
+  subtitle: string;
+  badge: string;
+  price: string;
+  description: string;
+  features: string[];
+  cta_text: string;
+  cta_url: string;
+  order: number;
+}
+
+export interface PricingFaq {
+  question: string;
+  answer: string;
+}
+
+export interface ColdPlungePlan {
+  name: string;
+  price: string;
+  badge?: string;
+  description: string;
+  features: string[];
+  cta_url: string;
+  order: number;
+}
+
+export interface BreathworkPlan {
+  name: string;
+  price: string;
+  duration?: string;
+  badge?: string;
+  description: string;
+  features: string[];
+  cta_url: string;
+  order: number;
+}
+
+interface Props {
+  plans: PricingPlan[];
+  specials: PricingSpecial[];
+  faqs: PricingFaq[];
+  coldPlungePlans: ColdPlungePlan[];
+  breathworkPlans: BreathworkPlan[];
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
+}
+
+const {
+  plans,
+  specials,
+  faqs,
+  coldPlungePlans,
+  breathworkPlans,
+  heroDesktopSrc,
+  heroMobileSrc,
+} = Astro.props;
+
+const dropInAndPacks = plans.filter(
+  (p: PricingPlan) => p.category === "drop-in" || p.category === "class-pack",
+);
+const memberships = plans.filter((p: PricingPlan) => p.category === "membership");
+
+const specialsGridClass =
+  specials.length <= 1
+    ? "md:grid-cols-1 max-w-2xl"
+    : specials.length === 2
+      ? "md:grid-cols-2 max-w-4xl"
+      : "md:grid-cols-3 max-w-6xl";
+---
+
+<div class="min-h-screen">
+  <PageHero
+    desktopSrc={heroDesktopSrc}
+    mobileSrc={heroMobileSrc}
+    overlay="bg-orange/50"
+    title="Pricing & Packages"
+    subtitle="Find the perfect option for your practice"
+  />
+
+  <section class="py-14 bg-gradient-to-r from-purple to-purple-light">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto text-center mb-10">
+        <span class="inline-block text-orange-light font-semibold tracking-widest uppercase text-xs mb-3">
+          Limited-Time Deals
+        </span>
+        <h2 class="text-3xl md:text-4xl font-bold text-white">Special Offers</h2>
+      </div>
+
+      <div class={`grid grid-cols-1 ${specialsGridClass} gap-6 mx-auto`}>
+        {
+          specials.map((special, index) => (
+            <div class="group bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 text-white flex flex-col motion-preset-slide-up motion-duration-700" style={`--motion-delay:${index * 80}ms`}>
+              <div class="flex items-start justify-between mb-4">
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-orange-light mb-1">
+                    {special.subtitle}
+                  </p>
+                  <h3 class="text-2xl font-bold">{special.name}</h3>
+                </div>
+                <span class="hidden sm:inline bg-white/20 group-hover:bg-orange text-white text-xs font-bold px-3 py-1 rounded-full transition-colors duration-300">
+                  {special.badge}
+                </span>
+              </div>
+
+              <div class="text-5xl font-extrabold mb-1">{special.price}</div>
+              <p class="text-white/60 text-sm mb-6">{special.description}</p>
+
+              <ul class="space-y-2 text-sm text-white/80 mb-8 flex-1">
+                {
+                  special.features.map((f) => (
+                    <li class="flex items-center gap-2"><span class="text-orange">✓</span> {f}</li>
+                  ))
+                }
+              </ul>
+
+              <a
+                href={special.cta_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full block text-center bg-orange hover:opacity-90 text-white font-semibold py-3 rounded-full transition-all duration-300"
+              >
+                {special.cta_text}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="drop-in" class="py-16 bg-white scroll-mt-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-purple-dark text-center mb-4 text-4xl md:text-5xl">Classes & Packs</h2>
+        <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+          Drop in anytime or stock up and save. Class packs are shareable.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {
+            dropInAndPacks.map((option) => (
+              <div class="h-full">
+                {option.cta_url && <PricingCard {...option} ctaUrl={option.cta_url} />}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="memberships" class="py-16 bg-warm-cream scroll-mt-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-purple-dark text-center mb-4 text-4xl md:text-5xl">Monthly Memberships</h2>
+        <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+          For regular practitioners. Auto-renews monthly, cancel anytime.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {
+            memberships.map((membership) => (
+              <div class="h-full">
+                {membership.cta_url && <PricingCard {...membership} ctaUrl={membership.cta_url} />}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cold-plunge" class="py-16 bg-white scroll-mt-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-purple-dark text-center mb-4 text-4xl md:text-5xl">Cold Plunge</h2>
+        <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+          After a hot class, step into the cold plunge for a powerful recovery boost. Book your
+          post-class plunge to experience the ultimate contrast therapy.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            coldPlungePlans.map((item, i) => (
+              <div class="bg-white border border-soft-purple rounded-2xl p-6 flex flex-col motion-preset-slide-up motion-duration-700" style={`--motion-delay:${i * 70}ms`}>
+                <div class="flex items-start justify-between mb-3">
+                  <h3 class="text-purple-dark font-semibold text-lg leading-snug">{item.name}</h3>
+                  {
+                    item.badge && (
+                      <span class="shrink-0 ml-2 bg-orange/15 text-orange text-xs font-bold px-2 py-1 rounded-full">
+                        {item.badge}
+                      </span>
+                    )
+                  }
+                </div>
+
+                <div class="text-4xl font-extrabold text-purple mb-1">{item.price}</div>
+                <p class="text-sm text-muted-foreground mb-4 flex-1">{item.description}</p>
+
+                <ul class="space-y-1 mb-5">
+                  {item.features.map((f) => (
+                    <li class="text-sm text-muted-foreground flex items-center gap-2">
+                      <span class="text-orange">✓</span> {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href={item.cta_url || "#"}
+                  target={item.cta_url ? "_blank" : undefined}
+                  rel={item.cta_url ? "noopener noreferrer" : undefined}
+                  class="block text-center bg-orange hover:opacity-90 text-white font-semibold py-2 rounded-full transition-colors text-sm"
+                >
+                  Buy Now
+                </a>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="breathwork" class="py-16 bg-warm-cream scroll-mt-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-purple-dark text-center mb-4 text-4xl md:text-5xl">9D Breathwork</h2>
+        <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+          A multi-dimensional healing experience using binaural beats, solfeggio frequencies, and
+          guided visualization.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            breathworkPlans.map((item, i) => (
+              <div class="bg-white border border-soft-purple rounded-2xl p-6 flex flex-col motion-preset-slide-up motion-duration-700" style={`--motion-delay:${i * 70}ms`}>
+                <div class="flex items-start justify-between mb-3">
+                  <h3 class="text-purple-dark font-semibold text-lg leading-snug">{item.name}</h3>
+                  {
+                    item.badge && (
+                      <span class="shrink-0 ml-2 bg-orange/15 text-orange text-xs font-bold px-2 py-1 rounded-full">
+                        {item.badge}
+                      </span>
+                    )
+                  }
+                </div>
+
+                <div class="text-4xl font-extrabold text-purple mb-1">{item.price}</div>
+                <p class="text-xs text-muted-foreground mb-3">{item.duration}</p>
+                <p class="text-sm text-muted-foreground mb-4 flex-1">{item.description}</p>
+
+                <ul class="space-y-1 mb-5">
+                  {item.features.map((f) => (
+                    <li class="text-sm text-muted-foreground flex items-center gap-2">
+                      <span class="text-orange">✓</span> {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href={item.cta_url || "#"}
+                  target={item.cta_url ? "_blank" : undefined}
+                  rel={item.cta_url ? "noopener noreferrer" : undefined}
+                  class="block text-center bg-orange hover:opacity-90 text-white font-semibold py-2 rounded-full transition-colors text-sm"
+                >
+                  Buy Now
+                </a>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-purple-dark text-2xl text-center mb-12">Pricing FAQs</h2>
+        <div class="space-y-6">
+          {
+            faqs.map((faq) => (
+              <div class="bg-white p-6 rounded-2xl border border-soft-purple">
+                <h4 class="text-purple-dark mb-2">{faq.question}</h4>
+                <p class="text-sm text-muted-foreground">{faq.answer}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

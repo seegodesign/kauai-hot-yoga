@@ -1,0 +1,84 @@
+---
+import PageHero from "../components/page-hero.astro";
+
+export interface FAQCategory {
+  category: string;
+  questions: { q: string; a: string }[];
+}
+
+interface Props {
+  categories: FAQCategory[];
+  phone: string;
+  email: string;
+  heroDesktopSrc: string;
+  heroMobileSrc: string;
+}
+
+const { categories, phone, email, heroDesktopSrc, heroMobileSrc } = Astro.props;
+---
+
+<div class="min-h-screen">
+  <PageHero
+    desktopSrc={heroDesktopSrc}
+    mobileSrc={heroMobileSrc}
+    eyebrow="Frequently Asked Questions"
+    overlay="bg-purple/60"
+    title="FAQ"
+    subtitle="Everything you need to know about Kauai Hot Yoga"
+  />
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        {
+          categories.map((category, categoryIndex) => (
+            <div class="mb-12 motion-preset-slide-up motion-duration-700" style={`--motion-delay:${categoryIndex * 80}ms`}>
+              <h2 class="text-purple-dark mb-6">{category.category}</h2>
+
+              <div class="space-y-4">
+                {category.questions.map((faq, index) => (
+                  <details class="bg-warm-cream rounded-xl border border-soft-purple overflow-hidden group">
+                    <summary class="px-6 py-4 cursor-pointer text-left text-purple-dark list-none flex items-center justify-between">
+                      <span>{faq.q}</span>
+                      <span aria-hidden="true" class="ml-3 text-purple-dark/60 group-open:rotate-180 transition-transform">▾</span>
+                    </summary>
+                    <div class="px-6 pb-4">
+                      <p class="text-muted-foreground">{faq.a}</p>
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-warm-cream">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-purple-dark mb-4">Still Have Questions?</h2>
+        <p class="text-muted-foreground mb-8">
+          We're here to help! Reach out and we'll get back to you quickly.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+          <div>
+            <p class="text-sm text-muted-foreground mb-1">Call Us</p>
+            <a href={`tel:${phone.replace(/\D/g, "")}`} class="text-purple hover:text-purple-light transition-colors">
+              {phone}
+            </a>
+          </div>
+          <div class="hidden sm:block text-soft-purple">|</div>
+          <div>
+            <p class="text-sm text-muted-foreground mb-1">Email Us</p>
+            <a href={`mailto:${email}`} class="text-purple hover:text-purple-light transition-colors">
+              {email}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

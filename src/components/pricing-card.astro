@@ -1,0 +1,68 @@
+---
+interface Props {
+  name: string;
+  price: string;
+  period?: string;
+  description: string;
+  features: string[];
+  popular?: boolean;
+  ctaUrl: string;
+}
+
+const {
+  name,
+  price,
+  period,
+  description,
+  features,
+  popular = false,
+  ctaUrl,
+} = Astro.props;
+---
+
+<div
+  class={`bg-white rounded-2xl p-8 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border-2 flex flex-col h-full motion-preset-slide-up motion-duration-700 ${
+    popular ? "border-purple" : "border-soft-purple"
+  } relative`}
+>
+  {
+    popular && (
+      <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple text-white px-4 py-1 rounded-full text-sm text-center">
+        Most Popular
+      </div>
+    )
+  }
+
+  <div class="mb-6">
+    <h3 class="text-purple-dark mb-2">{name}</h3>
+    <div class="flex items-baseline space-x-1 mb-2">
+      <span class="text-4xl text-purple">{price}</span>
+      {period && <span class="text-muted-foreground">/{period}</span>}
+    </div>
+    <p class="text-sm text-muted-foreground">{description}</p>
+  </div>
+
+  <ul class="space-y-3 mb-8 flex-grow">
+    {
+      features.map((feature) => (
+        <li class="flex items-start space-x-2">
+          <span class="text-tropical-green mt-0.5" aria-hidden="true">✓</span>
+          <span class="text-sm text-purple-dark/80">{feature}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <a
+    href={ctaUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class={`w-full block text-center py-3 rounded-full transition-colors ${
+      popular
+        ? "bg-orange text-white hover:bg-orange-dark"
+        : "bg-purple text-white hover:bg-purple-light"
+    }`}
+  >
+    Buy Now
+  </a>
+</div>

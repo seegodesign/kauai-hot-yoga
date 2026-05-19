@@ -1,7 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { ColdPlungePage } from "../views/cold-plunge";
+import ColdPlungePage from "../views/cold-plunge.astro";
 
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
@@ -12,5 +12,5 @@ if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.ym
   description="Ice bath therapy and cold plunge sessions for recovery, inflammation reduction, and mental clarity in Kauai."
   ogImage="/images/cold-plunge-hero.webp"
   currentPath="/cold-plunge">
-  <ColdPlungePage heroDesktopSrc={pageHeroesEntry.data.cold_plunge.desktop} client:visible />
+  <ColdPlungePage heroDesktopSrc={pageHeroesEntry.data.cold_plunge.desktop} heroMobileSrc={pageHeroesEntry.data.cold_plunge.mobile} />
 </BaseLayout>

@@ -1,0 +1,874 @@
+---
+import ScrollChevron from "../components/scroll-chevron.astro";
+import WaveDivider from "../components/wave-divider.astro";
+
+export interface HomeTestimonial {
+  name: string;
+  location: string;
+  rating: number;
+  text: string;
+  highlight: string;
+  source: "Google" | "Yelp";
+}
+
+export interface HomeTeacher {
+  name: string;
+  title: string;
+  photo: string;
+}
+
+export interface HomeOffering {
+  slug: string;
+  title: string;
+  description: string;
+  href: string;
+  image: string;
+  items: string[];
+}
+
+export interface HomeContent {
+  hero_heading: string;
+  hero_subheading: string;
+  cta_primary: { text: string; href: string };
+  cta_secondary: { text: string; href: string };
+  explainer_heading: string;
+  explainer_paragraphs: string[];
+  cta_strip_heading: string;
+  cta_strip_subheading: string;
+  cta_strip_primary: { text: string; href: string };
+  cta_strip_secondary: { text: string; href: string };
+}
+
+interface Props {
+  content: HomeContent;
+  testimonials: HomeTestimonial[];
+  offerings: HomeOffering[];
+  teachers: HomeTeacher[];
+  googleReviewUrl: string;
+  yelpReviewUrl: string;
+  phone: string;
+  heroMobileSrc: string;
+}
+
+const {
+  content,
+  testimonials,
+  offerings,
+  teachers,
+  googleReviewUrl,
+  yelpReviewUrl,
+  phone,
+  heroMobileSrc,
+} = Astro.props;
+
+const topTestimonials = testimonials;
+const topOfferings = offerings.slice(0, 4);
+const topTeachers = teachers.slice(0, 8);
+const hotYogaAmenities = [
+  {
+    title: "State-of-the-Art Studio",
+    body: "The best in hot yoga heating and flooring technology for a premium practice environment.",
+  },
+  {
+    title: "Showers & Changing Rooms",
+    body: "Freshen up after class so you're ready to take on the rest of your day.",
+  },
+  {
+    title: "Yoga Boutique",
+    body: "Shop the latest hot yoga products and fashions at reasonable prices.",
+  },
+  {
+    title: "Free Kangen Water",
+    body: "Complimentary alkaline water for all students. Bring your refillable bottle!",
+  },
+  {
+    title: "Cold Plunge Bath",
+    body: "State-of-the-art cold plunge - the perfect complement after a hot yoga class. Book via the Mindbody app.",
+  },
+];
+---
+
+<div class="min-h-screen relative">
+  <div class="fixed inset-0 z-0 pointer-events-none md:hidden">
+    <img
+      src={heroMobileSrc}
+      alt=""
+      aria-hidden="true"
+      class="w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+      width="768"
+      height="1024"
+    />
+  </div>
+
+  <div class="fixed inset-0 z-0 pointer-events-none hidden md:block">
+    <video
+      class="w-full h-full object-cover"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="metadata"
+      poster={heroMobileSrc}
+      aria-hidden="true"
+    >
+      <source src="/video/yoga.webm" type="video/webm" />
+    </video>
+  </div>
+
+  <div
+    class="fixed inset-0 z-0 pointer-events-none hidden md:block"
+    data-home-video-blur-layer
+    style="backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px);"
+  ></div>
+
+  <div class="relative z-10">
+  <section class="relative h-[92svh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0 pointer-events-none bg-purple/70"></div>
+    <div class="text-center text-white px-4 max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-7xl mb-6 text-white font-bold motion-preset-slide-up motion-duration-700">
+        {content.hero_heading}
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 text-white/90 motion-preset-slide-up motion-duration-700 motion-delay-100">
+        {content.hero_subheading}
+      </p>
+      <div class="hidden sm:flex flex-row items-center justify-center space-x-4 motion-preset-slide-up motion-duration-700 motion-delay-200">
+        <a
+          href={content.cta_primary.href}
+          class="bg-white text-purple px-5 py-3 sm:px-8 sm:py-4 rounded-full hover:bg-warm-cream transition-colors text-lg"
+        >
+          {content.cta_primary.text}
+        </a>
+        <a
+          href={content.cta_secondary.href}
+          class="bg-orange/90 backdrop-blur-sm text-white px-5 py-3 sm:px-8 sm:py-4 rounded-full hover:bg-orange transition-colors text-lg border border-white/20"
+        >
+          {content.cta_secondary.text}
+        </a>
+      </div>
+
+      <div class="mt-8 md:mt-10 flex justify-center motion-preset-fade motion-duration-700 motion-delay-300">
+        <ScrollChevron className="mx-auto" target="reviews" />
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="relative overflow-hidden py-12 md:py-24 bg-white/60 backdrop-blur-md">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-8 md:mb-16">
+        <span class="inline-block text-orange font-semibold tracking-widest uppercase text-sm mb-4">
+          Reviews
+        </span>
+        <h2 class="text-5xl md:text-6xl text-purple-dark mb-4">Loved by Locals & Visitors Alike</h2>
+        <p class="text-muted-foreground text-lg">Real stories from our community</p>
+      </div>
+
+      <div class="relative max-w-6xl mx-auto" data-testimonials-slider>
+        <div class="overflow-hidden">
+          <div
+            class="flex -mx-3 transition-transform duration-500 ease-out will-change-transform"
+            data-slider-track
+          >
+            {
+              topTestimonials.map((testimonial, i) => (
+                <article
+                  class="w-full md:w-1/3 flex-shrink-0 px-3 motion-preset-slide-up motion-duration-700"
+                  style={`--motion-delay:${i * 70}ms`}
+                >
+                  <div class="bg-white rounded-2xl shadow-sm border border-soft-purple overflow-hidden flex flex-col h-full">
+                    <div class="h-1.5 bg-gradient-to-r from-orange to-purple-light" />
+                    <div class="p-8 flex flex-col flex-1">
+                      <span class="text-sm font-semibold text-orange uppercase tracking-wide mb-4">
+                        {testimonial.highlight}
+                      </span>
+                      <p class="text-purple-dark/80 italic leading-relaxed flex-1 mb-6">"{testimonial.text}"</p>
+                      <div class="flex items-center justify-between gap-3 mb-4">
+                        <div class="text-md text-yellow-500">
+                          {"★".repeat(Math.max(0, testimonial.rating))}
+                        </div>
+
+                        <img
+                          src={testimonial.source === "Google" ? "/icons/google.svg" : "/icons/yelp.svg"}
+                          alt=""
+                          aria-hidden="true"
+                          class="w-4 h-4"
+                          loading="lazy"
+                          width="16"
+                          height="16"
+                        />
+                      </div>
+                      <div class="pt-4 border-t border-soft-purple">
+                        <p class="text-sm font-semibold text-purple-dark">{testimonial.name}</p>
+                        <p class="text-xs text-muted-foreground">
+                          {testimonial.location} · {testimonial.source}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="mt-8 flex items-center justify-center gap-4">
+          <button
+            type="button"
+            class="w-10 h-10 rounded-full border border-soft-purple bg-white hover:bg-soft-purple/30 flex items-center justify-center transition-colors text-purple-dark"
+            data-slider-prev
+            aria-label="Previous reviews"
+          >
+            <img
+              src="/icons/chevron-left.svg"
+              alt=""
+              aria-hidden="true"
+              class="w-5 h-5"
+              width="20"
+              height="20"
+              loading="lazy"
+            />
+          </button>
+
+          <div
+            class="flex items-center gap-2"
+            data-slider-dots
+            role="tablist"
+            aria-label="Review pages"
+          ></div>
+
+          <button
+            type="button"
+            class="w-10 h-10 rounded-full border border-soft-purple bg-white hover:bg-soft-purple/30 flex items-center justify-center transition-colors text-purple-dark"
+            data-slider-next
+            aria-label="Next reviews"
+          >
+            <img
+              src="/icons/chevron-right.svg"
+              alt=""
+              aria-hidden="true"
+              class="w-5 h-5"
+              width="20"
+              height="20"
+              loading="lazy"
+            />
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-4 mt-10">
+        {
+          googleReviewUrl && (
+            <a
+              href={googleReviewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-5 py-2 rounded-full bg-white border border-soft-purple text-purple-dark hover:border-purple transition-colors"
+            >
+              Read Google Reviews
+            </a>
+          )
+        }
+        {
+          yelpReviewUrl && (
+            <a
+              href={yelpReviewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-5 py-2 rounded-full bg-white border border-soft-purple text-purple-dark hover:border-purple transition-colors"
+            >
+              Read Yelp Reviews
+            </a>
+          )
+        }
+      </div>
+    </div>
+
+    <WaveDivider />
+  </section>
+
+  <section
+    id="explainer"
+    class="relative overflow-hidden py-20 min-h-[100svh] flex items-center bg-white backdrop-blur-md"
+    data-explainer-section
+  >
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 md:left-auto md:right-[150px] md:translate-x-0 w-[320px] h-[320px] md:w-[520px] md:h-[520px] rounded-full pointer-events-none shadow-[0_0_20px_rgba(247,158,68,0.6)]"
+      style="background: radial-gradient(circle, #ffd684 0%, #F79E44 55%, #FFC857 100%); opacity: 0.8; transform: translate(-50%, -50%) scale(0.1);"
+      data-explainer-sun
+      aria-hidden="true"
+    ></div>
+
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="relative z-10 md:max-w-xl max-w-3xl mx-auto md:ml-16 text-center md:text-left motion-preset-slide-up motion-duration-700">
+        <h2 class="text-4xl md:text-5xl text-purple-dark mb-6">{content.explainer_heading}</h2>
+        <div class="space-y-5 text-lg text-muted-foreground leading-relaxed">
+          {content.explainer_paragraphs.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+    </div>
+
+    <WaveDivider bottomOffset={-50} flipped />
+  </section>
+
+  <section class="relative overflow-hidden py-12 md:py-24 bg-warm-cream/60 backdrop-blur-md">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <span class="inline-block text-orange font-semibold tracking-widest uppercase text-sm mb-4">
+          Explore
+        </span>
+        <h2 class="text-5xl md:text-6xl text-purple mb-5 font-bold">What We Offer</h2>
+        <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
+          Explore our range of experiences designed to support your wellness journey.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        {
+          topOfferings.map((offering, index) => (
+            <a href={offering.href} class="motion-preset-slide-up motion-duration-700" style={`--motion-delay:${index * 70}ms`}>
+              <div class="bg-white/80 backdrop-blur-sm rounded-2xl hover:shadow-xl transition-all border border-soft-purple h-full group overflow-hidden">
+                <div class="relative h-44 overflow-hidden">
+                  <img
+                    src={offering.image}
+                    alt={offering.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    width="800"
+                    height="450"
+                  />
+                </div>
+
+                <div class="p-7">
+                  <h3 class="text-purple-dark mb-2 text-xl">{offering.title}</h3>
+                  <p class="text-muted-foreground text-sm mb-4 leading-relaxed">
+                    {offering.description}
+                  </p>
+
+                  <ul class="space-y-1.5 mb-5">
+                    {
+                      offering.items.map((item) => (
+                        <li class="flex items-center gap-2 text-sm text-purple-dark/80">
+                          <span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-orange" />
+                          {item}
+                        </li>
+                      ))
+                    }
+                  </ul>
+
+                  <span class="text-purple text-sm font-medium">Learn more -></span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <WaveDivider />
+  </section>
+
+  <section class="relative py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="motion-preset-slide-right motion-duration-700">
+            <img
+              src="/images/studio-interior.webp"
+              alt="Yoga Studio"
+              class="rounded-2xl shadow-lg w-full"
+              loading="lazy"
+              width="1200"
+              height="800"
+            />
+          </div>
+
+          <div class="motion-preset-slide-left motion-duration-700">
+            <h2 class="text-purple-dark mb-6 text-3xl md:text-4xl font-bold">New Here?</h2>
+
+            <div class="space-y-6">
+              <div>
+                <h4 class="text-purple-dark mb-2">What to Expect</h4>
+                <p class="text-muted-foreground">
+                  Our hot yoga classes are held in a climate-controlled studio heated to 95-105°F.
+                  Expect a welcoming atmosphere where all levels are supported.
+                </p>
+              </div>
+
+              <div>
+                <h4 class="text-purple-dark mb-2">What to Bring</h4>
+                <p class="text-muted-foreground">
+                  Yoga mat, towel, water bottle, and an open mind. We provide filtered water and
+                  have showers available. Mats and towels available for rent.
+                </p>
+              </div>
+
+              <div>
+                <h4 class="text-purple-dark mb-2">First Timer?</h4>
+                <p class="text-muted-foreground">
+                  Arrive 15 minutes early so we can get you set up. Our teachers will guide you
+                  through modifications and help you find your comfort zone.
+                </p>
+              </div>
+
+              <a
+                href="/new-here"
+                class="inline-flex items-center gap-2 text-purple hover:text-purple-light transition-colors"
+              >
+                <span>Read our full beginner guide</span>
+                <img
+                  src="/icons/chevron-right.svg"
+                  alt=""
+                  aria-hidden="true"
+                  class="w-4 h-4"
+                  loading="lazy"
+                  width="16"
+                  height="16"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <WaveDivider bottomOffset={-50} flipped />
+  </section>
+
+  <section class="py-20 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-purple-dark/80"></div>
+
+    <div class="relative container mx-auto px-4 mb-16">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div class="motion-preset-slide-up motion-duration-700">
+          <span class="inline-block text-orange-light font-semibold tracking-widest uppercase text-xs mb-3">
+            The Science of Heat
+          </span>
+          <h2 class="text-3xl md:text-4xl text-white font-bold mb-5">Why Hot Yoga?</h2>
+          <p class="text-white/75 leading-relaxed mb-5">
+            Hot yoga helps you relax and safely stretch muscles while improving flexibility,
+            strength, and stamina. Heat accelerates the body's chemical processes - so you burn fat
+            faster, break down acidity faster, and detox while flushing your body with oxygenated
+            blood.
+          </p>
+          <p class="text-white/75 leading-relaxed mb-5">
+            People love the results from hot yoga: more energy, more confidence, less anxiety and
+            pain. We recommend a minimum of three classes per week to see and maintain results. Our
+            classes welcome beginners and all levels.
+          </p>
+          <p class="font-semibold text-sm">Come see for yourself.</p>
+        </div>
+
+        <div class="space-y-4 motion-preset-slide-up motion-duration-700 motion-delay-100">
+          <span class="inline-block text-orange-light font-semibold tracking-widest uppercase text-xs mb-1">
+            Studio Amenities
+          </span>
+          <h3 class="text-2xl text-white font-bold mb-4">Everything You Need</h3>
+
+          {
+            hotYogaAmenities.map((item, i) => (
+              <div class="flex items-start gap-3 motion-preset-slide-right motion-duration-700" style={`--motion-delay:${i * 70}ms`}>
+                <div class="w-6 h-6 rounded-full bg-orange/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span class="text-orange-light text-xs" aria-hidden="true">✓</span>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-white">{item.title}</p>
+                  <p class="text-sm text-white/65">{item.body}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <WaveDivider />
+  </section>
+
+  <section class="relative z-20 py-20 bg-white overflow-visible">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto space-y-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div class="motion-preset-slide-up motion-duration-700">
+            <span class="inline-block text-orange font-semibold tracking-widest uppercase text-xs mb-3">
+              Lihue, Kauai, Hawaii
+            </span>
+            <h2 class="text-3xl md:text-4xl text-purple-dark font-bold mb-5 leading-tight">
+              Kauai's Central Source for Hot Yoga & Wellness
+            </h2>
+            <p class="text-muted-foreground leading-relaxed mb-5">
+              Kauai Hot Yoga in Lihue is the island's premier studio for hot yoga, pilates, sound
+              healing, cold plunging, workshops, trainings, and hot yoga retreats - all under one
+              roof.
+            </p>
+
+            <div class="flex items-start gap-3 p-4 bg-white rounded-xl border border-soft-purple">
+              <span class="text-orange mt-0.5 flex-shrink-0" aria-hidden="true">📍</span>
+              <div class="text-sm text-muted-foreground leading-relaxed">
+                <p class="font-semibold text-purple-dark mb-1">
+                  3-3122 Kuhio Highway, Lihue Annex Shopping Center
+                </p>
+                <p class="mb-2">
+                  Conveniently located in Lihue, just south of Kapa'a and north of Poipu and
+                  Koloa - in the heart of Kauai. Find us behind the Subway restaurant, between The
+                  Parlor Barbershop and A Place for You.
+                </p>
+                <p>
+                  <a
+                    href="https://www.google.com/maps/dir//Kauai+Hot+Yoga,+3-3122+Kuhio+Hwy,+Lihue,+HI+96766/@21.9778706,-159.3705474,17z/data=!4m17!1m7!3m6!1s0x7c071fdaf143eed1:0x65c385d1ae03e0a6!2sKauai+Hot+Yoga!8m2!3d21.9778656!4d-159.3679725!16s%2Fg%2F11gkv1rmz2!4m8!1m0!1m5!1m1!1s0x7c071fdaf143eed1:0x65c385d1ae03e0a6!2m2!1d-159.3679804!2d21.9778364!3e0?entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 text-orange cursor-pointer hover:text-orange-dark"
+                  >
+                    Get Directions
+                    <img
+                      src="/icons/chevron-right.svg"
+                      alt=""
+                      aria-hidden="true"
+                      class="w-3.5 h-3.5"
+                      loading="lazy"
+                      width="14"
+                      height="14"
+                    />
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="motion-preset-slide-up motion-duration-700 motion-delay-100">
+            <span class="inline-block text-orange font-semibold tracking-widest uppercase text-xs mb-3">
+              Our Purpose
+            </span>
+            <h3 class="text-2xl text-purple-dark font-bold mb-5">Our Mission</h3>
+            <p class="text-muted-foreground leading-relaxed mb-5">
+              At Kauai Hot Yoga, our mission is to heal, empower, and connect people to the joy,
+              beauty, and purpose of their own unique lives and experiences - through the various
+              practices of yoga.
+            </p>
+            <p class="text-muted-foreground leading-relaxed mb-5">
+              We believe in the transformative power of yoga to cultivate self-love, confidence,
+              resilience, and compassion. We are dedicated to creating a welcoming, inclusive, and
+              supportive community space where everyone can explore and deepen their practice -
+              whether you're a local looking for a consistent studio home or a visitor seeking the
+              best yoga experience on Kauai.
+            </p>
+            <p class="text-muted-foreground leading-relaxed mb-5">
+              Our commitment is to provide exceptional instruction, a serene environment, and a
+              vibrant community that inspires growth on and off the mat.
+            </p>
+            <a
+              href="/our-studio"
+              class="inline-flex items-center gap-2 bg-purple-dark text-white px-5 py-2.5 sm:px-8 sm:py-3 rounded-full hover:bg-purple transition-colors"
+            >
+              About Our Studio
+              <img
+                src="/icons/chevron-right.svg"
+                alt=""
+                aria-hidden="true"
+                class="w-4 h-4"
+                loading="lazy"
+                width="16"
+                height="16"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <WaveDivider bottomOffset={-50} flipped />
+  </section>
+
+  <section class="relative z-10 py-12 md:py-24 overflow-hidden bg-white/60 backdrop-blur-md">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <span class="inline-block text-orange font-semibold tracking-widest uppercase text-xs mb-4">
+          Our Teachers
+        </span>
+        <h2 class="text-3xl md:text-4xl text-purple-dark font-bold mb-6 leading-tight">
+          An Experienced Teaching Staff
+        </h2>
+        <p class="text-muted-foreground leading-relaxed text-lg mb-12">
+          Our certified instructors in Lihue, Kauai bring deep expertise across Bikram, Vinyasa,
+          Pilates, breathwork, and more - guiding every student from first-timer to advanced
+          practitioner.
+        </p>
+
+        {
+          topTeachers.length > 0 && (
+            <div class="flex flex-wrap justify-center gap-6 mb-12">
+              {topTeachers.map((teacher, i) => (
+                <a
+                  href="/our-teachers"
+                  class="flex flex-col items-center gap-2 group motion-preset-slide-up motion-duration-700"
+                  style={`--motion-delay:${i * 50}ms`}
+                >
+                  <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-white shadow-md group-hover:border-orange transition-colors">
+                    {
+                      teacher.photo ? (
+                        <img
+                          src={teacher.photo}
+                          alt={teacher.name}
+                          class="w-full h-full object-cover"
+                          loading="lazy"
+                          width="80"
+                          height="80"
+                        />
+                      ) : (
+                        <div class="w-full h-full bg-gradient-to-br from-orange to-purple-light flex items-center justify-center text-white text-xl font-bold">
+                          {teacher.name.charAt(0)}
+                        </div>
+                      )
+                    }
+                  </div>
+                  <span class="text-xs font-medium text-purple-dark/80 group-hover:text-purple transition-colors text-center leading-tight max-w-[80px]">
+                    {teacher.name.split(" ")[0]}
+                  </span>
+                </a>
+              ))}
+            </div>
+          )
+        }
+
+        <a
+          href="/our-teachers"
+          class="inline-flex items-center gap-2 bg-orange text-white px-5 py-2.5 sm:px-8 sm:py-3 rounded-full hover:bg-purple transition-colors"
+        >
+          Meet Our Teachers
+        </a>
+      </div>
+    </div>
+
+    <WaveDivider bottomOffset={-50} flipped />
+  </section>
+
+  <section class="relative z-20 py-20 bg-white backdrop-blur-md overflow-visible">
+    <WaveDivider topOffset={-64} />
+
+    <div class="container mx-auto px-4">
+      <div class="max-w-xl mx-auto text-center">
+        <div class="max-w-md mx-auto motion-preset-slide-up motion-duration-700">
+          <div class="ctct-inline-form" data-form-id="d5c6102e-c3ca-451a-8784-d4d6c90998dd"></div>
+        </div>
+      </div>
+    </div>
+
+    <WaveDivider bottomOffset={-72} flipped />
+  </section>
+
+  <section class="relative z-10 py-12 md:py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-purple-dark/60 backdrop-blur-sm"></div>
+    <div class="absolute -top-20 left-1/4 w-72 h-72 bg-orange/20 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-20 right-1/4 w-72 h-72 bg-purple-light/20 rounded-full blur-3xl"></div>
+
+    <div class="relative container mx-auto px-4 py-20">
+      <div class="max-w-4xl mx-auto text-center motion-preset-slide-up motion-duration-700">
+        <span class="inline-block text-orange-light font-semibold tracking-widest uppercase text-sm mb-4">
+          Begin Today
+        </span>
+        <h2 class="text-5xl md:text-6xl font-bold text-white mb-5 leading-tight">
+          {content.cta_strip_heading}
+        </h2>
+        <p class="text-white/75 text-lg mb-10 max-w-xl mx-auto">
+          {content.cta_strip_subheading}
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={content.cta_strip_primary.href}
+            class="bg-orange text-white font-semibold px-6 py-3 sm:px-9 sm:py-4 rounded-full hover:bg-orange-dark hover:scale-105 transition-all shadow-lg"
+          >
+            {content.cta_strip_primary.text}
+          </a>
+          <a
+            href={content.cta_strip_secondary.href}
+            class="bg-white/15 backdrop-blur-sm border border-white/30 text-white font-semibold px-6 py-3 sm:px-9 sm:py-4 rounded-full hover:bg-white/25 transition-all"
+          >
+            {content.cta_strip_secondary.text}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <WaveDivider variant="purple-gradient" bottomOffset={-2} />
+  </section>
+  </div>
+</div>
+
+<script>
+  const blurLayer = document.querySelector("[data-home-video-blur-layer]");
+
+  if (blurLayer instanceof HTMLElement) {
+    const MAX_BLUR = 20;
+    let maxScroll = window.innerHeight;
+    let ticking = false;
+
+    const applyBlur = () => {
+      const progress = Math.min(window.scrollY / maxScroll, 1);
+      const blur = progress * MAX_BLUR;
+      blurLayer.style.backdropFilter = `blur(${blur}px)`;
+      blurLayer.style.setProperty("-webkit-backdrop-filter", `blur(${blur}px)`);
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(applyBlur);
+      }
+    };
+
+    const onResize = () => {
+      maxScroll = window.innerHeight;
+      onScroll();
+    };
+
+    applyBlur();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
+  }
+
+  const explainerSection = document.querySelector("[data-explainer-section]");
+  const explainerSun = document.querySelector("[data-explainer-sun]");
+
+  if (explainerSection instanceof HTMLElement && explainerSun instanceof HTMLElement) {
+    let explainerTicking = false;
+
+    const updateExplainerSun = () => {
+      const rect = explainerSection.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 1;
+      const progress = Math.min(
+        Math.max((viewportHeight - rect.top) / (viewportHeight + rect.height), 0),
+        1,
+      );
+
+      const scale =
+        progress <= 0.5
+          ? 0.1 + (progress / 0.5) * 0.9
+          : 1 - ((progress - 0.5) / 0.5) * 0.4;
+      const rotation = progress * 72;
+      const translate = window.innerWidth >= 768 ? "translate(0, -50%)" : "translate(-50%, -50%)";
+
+      explainerSun.style.transform = `${translate} scale(${scale}) rotate(${rotation}deg)`;
+      explainerTicking = false;
+    };
+
+    const onExplainerScroll = () => {
+      if (!explainerTicking) {
+        explainerTicking = true;
+        window.requestAnimationFrame(updateExplainerSun);
+      }
+    };
+
+    updateExplainerSun();
+    window.addEventListener("scroll", onExplainerScroll, { passive: true });
+    window.addEventListener("resize", onExplainerScroll, { passive: true });
+  }
+
+  const testimonialsSlider = document.querySelector("[data-testimonials-slider]");
+
+  if (testimonialsSlider instanceof HTMLElement) {
+    const track = testimonialsSlider.querySelector("[data-slider-track]");
+    const prevButton = testimonialsSlider.querySelector("[data-slider-prev]");
+    const nextButton = testimonialsSlider.querySelector("[data-slider-next]");
+    const dotsContainer = testimonialsSlider.querySelector("[data-slider-dots]");
+
+    if (
+      track instanceof HTMLElement &&
+      prevButton instanceof HTMLButtonElement &&
+      nextButton instanceof HTMLButtonElement &&
+      dotsContainer instanceof HTMLElement
+    ) {
+      const slides = Array.from(track.children).filter(
+        (slide): slide is HTMLElement => slide instanceof HTMLElement,
+      );
+
+      let cardsPerView = 3;
+      let totalPages = 1;
+      let currentPage = 0;
+      let resizeTimer: number | undefined;
+
+      const getCardsPerView = () => {
+        if (window.innerWidth >= 768) {
+          return 3;
+        }
+
+        return 1;
+      };
+
+      const updateDots = () => {
+        const dots = Array.from(dotsContainer.children);
+
+        dots.forEach((dot, index) => {
+          if (!(dot instanceof HTMLButtonElement)) {
+            return;
+          }
+
+          const isActive = index === currentPage;
+          dot.className = `rounded-full transition-all ${
+            isActive
+              ? "w-6 h-2.5 bg-orange"
+              : "w-2.5 h-2.5 bg-soft-purple hover:bg-purple-light"
+          }`;
+          dot.setAttribute("aria-current", isActive ? "true" : "false");
+        });
+      };
+
+      const updatePosition = () => {
+        if (slides.length === 0) {
+          return;
+        }
+
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        const offset = currentPage * slideWidth * cardsPerView;
+        track.style.transform = `translate3d(-${offset}px, 0, 0)`;
+        updateDots();
+      };
+
+      const renderDots = () => {
+        dotsContainer.innerHTML = "";
+
+        for (let i = 0; i < totalPages; i += 1) {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "rounded-full transition-all";
+          dot.setAttribute("aria-label", `Go to page ${i + 1}`);
+          dot.addEventListener("click", () => {
+            currentPage = i;
+            updatePosition();
+          });
+          dotsContainer.append(dot);
+        }
+      };
+
+      const recalculate = () => {
+        cardsPerView = getCardsPerView();
+        totalPages = Math.max(1, Math.ceil(slides.length / cardsPerView));
+        currentPage = Math.min(currentPage, totalPages - 1);
+        renderDots();
+        updatePosition();
+      };
+
+      prevButton.addEventListener("click", () => {
+        currentPage = (currentPage - 1 + totalPages) % totalPages;
+        updatePosition();
+      });
+
+      nextButton.addEventListener("click", () => {
+        currentPage = (currentPage + 1) % totalPages;
+        updatePosition();
+      });
+
+      window.addEventListener("resize", () => {
+        if (resizeTimer) {
+          window.clearTimeout(resizeTimer);
+        }
+
+        resizeTimer = window.setTimeout(recalculate, 120);
+      });
+
+      recalculate();
+    }
+  }
+</script>

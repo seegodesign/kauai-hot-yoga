@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { BlogPage } from "../views/blog";
+import BlogPage from "../views/blog.astro";
 
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
@@ -21,5 +21,5 @@ const posts = allPosts
 ---
 
 <BaseLayout title="Blog | Kauai Hot Yoga" description="Tips, stories, and guides to support your yoga journey from the team at Kauai Hot Yoga." currentPath="/blog">
-  <BlogPage posts={posts} heroDesktopSrc={pageHeroesEntry.data.blog.desktop} heroMobileSrc={pageHeroesEntry.data.blog.mobile} client:visible />
+  <BlogPage posts={posts} heroDesktopSrc={pageHeroesEntry.data.blog.desktop} heroMobileSrc={pageHeroesEntry.data.blog.mobile} />
 </BaseLayout>

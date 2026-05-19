@@ -1,7 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { ContactPage } from "../views/contact";
+import ContactPage from "../views/contact.astro";
 
 const settingsEntry = await getEntry("settings", "main");
 if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
@@ -11,5 +11,5 @@ if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.ym
 ---
 
 <BaseLayout title="Contact | Kauai Hot Yoga" description="Get in touch with Kauai Hot Yoga. Find our address, phone number, email, and studio hours." currentPath="/contact-us">
-  <ContactPage info={settingsEntry.data} heroDesktopSrc={pageHeroesEntry.data.contact.desktop} heroMobileSrc={pageHeroesEntry.data.contact.mobile} client:visible />
+  <ContactPage info={settingsEntry.data} heroDesktopSrc={pageHeroesEntry.data.contact.desktop} heroMobileSrc={pageHeroesEntry.data.contact.mobile} />
 </BaseLayout>

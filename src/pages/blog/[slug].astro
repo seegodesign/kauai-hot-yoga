@@ -1,7 +1,6 @@
 ---
-import { getCollection, getEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { Calendar, User, Tag, ArrowLeft } from "lucide-react";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -35,7 +34,7 @@ function formatDate(date: Date) {
 
         {/* Back link */}
         <a href="/blog" class="inline-flex items-center gap-2 text-sm text-purple/70 hover:text-purple transition-colors mb-8">
-          <ArrowLeft size={16} />
+          <span aria-hidden="true">&larr;</span>
           Back to Blog
         </a>
 
@@ -56,11 +55,11 @@ function formatDate(date: Date) {
         {/* Meta */}
         <div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-12 pb-8 border-b border-soft-purple">
           <span class="flex items-center gap-1.5">
-            <Calendar size={14} />
+            <span aria-hidden="true">Date:</span>
             {formatDate(post.data.pubDate)}
           </span>
           <span class="flex items-center gap-1.5">
-            <User size={14} />
+            <span aria-hidden="true">Author:</span>
             {post.data.author}
           </span>
         </div>
