@@ -64,6 +64,9 @@ collections:
             fields:
               - { label: Instagram URL, name: instagram, widget: string, required: false }
               - { label: Facebook URL, name: facebook, widget: string, required: false }
+              - { label: Google Review URL, name: google_review_url, widget: string, required: false }
+              - { label: Yelp Review URL, name: yelp_review_url, widget: string, required: false }
+              - { label: Social Share Image, name: social_share_image, widget: image, required: false, hint: "Used as the default image for link previews when pages do not set their own social image. Recommended size: 1200x630." }
       - name: footer
         label: Footer Content
         file: src/content/footer/footer.yml

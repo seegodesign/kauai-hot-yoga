@@ -29,6 +29,7 @@ const settings = defineCollection({
         facebook: z.string().optional().default(""),
         google_review_url: z.string().optional().default(""),
         yelp_review_url: z.string().optional().default(""),
+        social_share_image: z.string().optional().default(""),
       })
       .optional(),
   }),

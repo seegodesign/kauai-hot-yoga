@@ -38,7 +38,12 @@ const canonicalURL = new URL(currentPath, SITE_URL).href;
 function toOgImage(url: string): string {
   return url.startsWith("http") ? url : new URL(url, SITE_URL).href;
 }
-const ogImageURL = ogImage ? toOgImage(ogImage) : `${SITE_URL}${logo.src}`;
+const defaultSocialShareImage = settings.social?.social_share_image?.trim();
+const ogImageURL = ogImage
+  ? toOgImage(ogImage)
+  : defaultSocialShareImage
+    ? toOgImage(defaultSocialShareImage)
+    : `${SITE_URL}${logo.src}`;
 const defaultKeywords = [
   "Kauai Hot Yoga",
   "hot yoga Kauai",
