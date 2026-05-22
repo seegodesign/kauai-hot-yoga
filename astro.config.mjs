@@ -12,6 +12,22 @@ export default defineConfig({
       status: 301,
       destination: "/our-community",
     },
+    "/blog/f/the-science-backed-benefits-of-26-2-hot-yoga": {
+      status: 301,
+      destination: "/blog/the-science-backed-benefits-of-26-2-hot-yoga",
+    },
+    "/blog/f/how-yin-yoga-hydrates-your-fascia-and-boosts-hyaluronic-acid": {
+      status: 301,
+      destination: "/blog/how-yin-yoga-hydrates-your-fascia-and-boosts-hyaluronic-acid",
+    },
+    "/blog/f/how-frequency-accuracy-precision-can-transform-your-practice": {
+      status: 301,
+      destination: "/blog/how-frequency-accuracy-and-precision-can-transform-your-practice",
+    },
+    "/blog/f/five-profound-lessons-from-marvins-class-this-morning": {
+      status: 301,
+      destination: "/blog/five-profound-lessons-from-marvin-s-class-this-morning",
+    },
   },
   integrations: [sitemap(), playformCompress()],
   vite: {
