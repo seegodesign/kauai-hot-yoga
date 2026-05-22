@@ -33,6 +33,7 @@ export interface HomeContent {
   cta_secondary: { text: string; href: string };
   explainer_heading: string;
   explainer_paragraphs: string[];
+  new_here_image: string;
   cta_strip_heading: string;
   cta_strip_subheading: string;
   cta_strip_primary: { text: string; href: string };
@@ -374,7 +375,7 @@ const hotYogaAmenities = [
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div class="motion-preset-slide-right motion-duration-700">
             <img
-              src="/images/studio-interior.webp"
+              src={content.new_here_image}
               alt="Yoga Studio"
               class="rounded-2xl shadow-lg w-full"
               loading="lazy"

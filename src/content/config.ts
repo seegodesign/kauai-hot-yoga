@@ -43,6 +43,7 @@ const home = defineCollection({
     cta_secondary: z.object({ text: z.string(), href: z.string() }),
     explainer_heading: z.string(),
     explainer_paragraphs: z.array(z.string()),
+    new_here_image: z.string(),
     cta_strip_heading: z.string(),
     cta_strip_subheading: z.string(),
     cta_strip_primary: z.object({ text: z.string(), href: z.string() }),
@@ -70,6 +71,39 @@ const about = defineCollection({
     cta_paragraph: z.string(),
     cta_primary: z.object({ text: z.string(), href: z.string() }),
     cta_secondary: z.object({ text: z.string(), href: z.string() }),
+  }),
+});
+
+const workshopsPage = defineCollection({
+  type: "data",
+  schema: z.object({
+    seo_title: z.string(),
+    seo_description: z.string(),
+    hero_eyebrow: z.string(),
+    hero_title: z.string(),
+    hero_subtitle: z.string(),
+    reserve_button_text: z.string(),
+    reserve_button_href: z.string(),
+    workshops: z.array(
+      z.object({
+        title: z.string(),
+        date: z.string(),
+        time: z.string(),
+        instructor: z.string(),
+        capacity: z.string(),
+        price: z.string(),
+        description: z.string(),
+        image: z.string().optional().default(""),
+      })
+    ),
+    benefits_heading: z.string(),
+    benefits_intro: z.string(),
+    benefits: z.array(
+      z.object({
+        title: z.string(),
+        body: z.string(),
+      })
+    ),
   }),
 });
 
@@ -234,4 +268,4 @@ const pageHeroSettings = defineCollection({
   }),
 });
 
-export const collections = { settings, home, about, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials, coldPlungePricing, breathworkPricing, pageHeroSettings };
+export const collections = { settings, home, about, workshopsPage, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials, coldPlungePricing, breathworkPricing, pageHeroSettings };

@@ -9,9 +9,11 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.9",
     "@playform/compress": "^0.2.3",
     "@tailwindcss/typography": "^0.5.19",
-    "tw-animate-css": "1.3.8"
+    "tw-animate-css": "1.3.8",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.7.2",

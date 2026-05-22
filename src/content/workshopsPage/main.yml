@@ -1,0 +1,33 @@
+seo_title: Yoga Workshops in Kauai, Hawaii | Kauai Hot Yoga
+seo_description: Deepen your practice with specialized yoga workshops and wellness events at Kauai Hot Yoga in Lihue, Hawaii. Open to all levels.
+hero_eyebrow: Special Events
+hero_title: Workshops & Events
+hero_subtitle: Deepen your practice with specialized training and immersive experiences
+reserve_button_text: Reserve Your Spot
+reserve_button_href: /contact-us
+workshops:
+  - title: Breathwork & Meditation Intensive
+    date: May 10, 2026
+    time: 10:00 AM - 1:00 PM
+    instructor: Elena Matsumoto
+    capacity: Limited to 20 students
+    price: $75
+    description: Explore various pranayama techniques and meditation practices to deepen your inner work and enhance your overall practice.
+    image: ""
+  - title: Yin Yoga & Sound Healing
+    date: To be announced
+    time: To be announced
+    instructor: Cameron & Garland
+    capacity: Limited to 12 students
+    price: $65
+    description: Gentle yin poses, reiki, and body work combined with live ambient bansuri flute music for deep relaxation and healing. Perfect for unwinding and releasing tension.
+    image: ""
+benefits_heading: Workshop Benefits
+benefits_intro: Workshops offer focused time to dive deeper into specific aspects of yoga practice. They are perfect for building skills, overcoming plateaus, and connecting with our community.
+benefits:
+  - title: Small Groups
+    body: Limited capacity ensures personalized attention from instructors.
+  - title: Deep Learning
+    body: Extended time allows for thorough exploration of techniques.
+  - title: Community
+    body: Connect with like-minded practitioners in an intimate setting.

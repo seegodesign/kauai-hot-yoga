@@ -201,6 +201,10 @@ collections:
             name: explainer_paragraphs
             widget: list
             field: { label: Paragraph, name: text, widget: text }
+          - label: New Here Section Image
+            name: new_here_image
+            widget: image
+            hint: Upload/select a WebP image when possible
           - label: CTA Strip Heading
             name: cta_strip_heading
             widget: string
@@ -263,6 +267,44 @@ collections:
             fields:
               - { label: Button Text, name: text, widget: string }
               - { label: Link, name: href, widget: string }
+
+  # ── Workshops Page ────────────────────────────────────────
+  - name: workshopsPage
+    label: Workshops Page
+    files:
+      - name: main
+        label: Workshops Page Content
+        file: src/content/workshopsPage/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: Reserve Button Text, name: reserve_button_text, widget: string }
+          - { label: Reserve Button Link, name: reserve_button_href, widget: string }
+          - label: Workshops
+            name: workshops
+            widget: list
+            summary: "{{fields.title}} — {{fields.date}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Date, name: date, widget: string }
+              - { label: Time, name: time, widget: string }
+              - { label: Instructor, name: instructor, widget: string }
+              - { label: Capacity, name: capacity, widget: string }
+              - { label: Price, name: price, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: Image, name: image, widget: image, required: false }
+          - { label: Benefits Section Heading, name: benefits_heading, widget: string }
+          - { label: Benefits Section Intro, name: benefits_intro, widget: text }
+          - label: Benefits
+            name: benefits
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
 
   # ── Offerings ─────────────────────────────────────────────
   - name: offerings

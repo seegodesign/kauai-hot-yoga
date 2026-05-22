@@ -1,16 +1,24 @@
 ---
-import { getEntry } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import WorkshopsPage from "../views/workshops.astro";
+
+const workshopsEntries = await getCollection("workshopsPage");
+const workshopsEntry = workshopsEntries[0];
+if (!workshopsEntry) throw new Error("Missing content: workshopsPage collection is empty");
 
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
 ---
 
 <BaseLayout
-  title="Yoga Workshops in Kauai, Hawaii | Kauai Hot Yoga"
-  description="Deepen your practice with specialized yoga workshops and wellness events at Kauai Hot Yoga in Lihue, Hawaii. Open to all levels."
+  title={workshopsEntry.data.seo_title}
+  description={workshopsEntry.data.seo_description}
   ogImage="/images/workshops-hero.webp"
   currentPath="/workshops">
-  <WorkshopsPage heroDesktopSrc={pageHeroesEntry.data.workshops.desktop} heroMobileSrc={pageHeroesEntry.data.workshops.mobile} />
+  <WorkshopsPage
+    content={workshopsEntry.data}
+    heroDesktopSrc={pageHeroesEntry.data.workshops.desktop}
+    heroMobileSrc={pageHeroesEntry.data.workshops.mobile}
+  />
 </BaseLayout>
