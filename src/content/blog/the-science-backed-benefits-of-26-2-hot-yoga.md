@@ -3,7 +3,7 @@ title: The Science-Backed Benefits of 26 & 2 Hot Yoga
 description: Over 20 years of research confirms the powerful effects of the 26 & 2 sequence on strength, flexibility, heart health, metabolism, stress, and mood. Here's what science actually says.
 pubDate: 2025-07-20T12:00:00
 author: Kauai Hot Yoga
-image: /images/26-2-hot-yoga.webp
+image: /images/khy science.jpg
 tags:
   - Hot Yoga
   - Science
@@ -40,8 +40,8 @@ And if you're over 50? Even better. Bikram Yoga appears to be especially benefic
 
 Forget the myth of burning 1,000 calories. Real data shows that a 90-minute class burns:
 
-- ~460–650 calories for men
-- ~330–550 calories for women
+- \~460–650 calories for men
+- \~330–550 calories for women
 
 That's equivalent to a brisk 90-minute walk—except you're also gaining strength, flexibility, focus, and inner calm. Plus, the heated environment helps you become more heat resilient, which can translate to better performance in other activities (and even summer days).
 
