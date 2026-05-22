@@ -1,18 +1,18 @@
-about:
-  desktop: /images/about-studio.webp
-  mobile: /images/about-studio.webp
 home:
   desktop: /images/hero-main.webp
   mobile: /images/hero-main.webp
+about:
+  desktop: /images/about-studio.webp
+  mobile: /images/about-studio.webp
 blog:
   desktop: /images/beach.webp
   mobile: /images/beach.webp
 classes:
-  desktop: /images/hot-yoga-studio.webp
-  mobile: /images/hot-yoga-studio.webp
+  desktop: /images/141A9579.jpg
+  mobile: /images/141A9579.jpg
 community:
-  desktop: /images/community-hero.webp
-  mobile: /images/community-hero.webp
+  desktop: /images/KHY group.jpg
+  mobile: /images/KHY group.jpg
 contact:
   desktop: /images/beach.webp
   mobile: /images/beach.webp
