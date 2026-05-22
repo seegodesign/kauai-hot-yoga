@@ -2,8 +2,8 @@ home:
   desktop: /images/hero-main.webp
   mobile: /images/hero-main.webp
 about:
-  desktop: /images/about-studio.webp
-  mobile: /images/about-studio.webp
+  desktop: /images/KHY studio.jpg
+  mobile: /images/KHY studio.jpg
 blog:
   desktop: /images/beach.webp
   mobile: /images/beach.webp
@@ -20,26 +20,26 @@ cold_plunge:
   desktop: /images/cold-plunge-tub.webp
   mobile: /images/cold-plunge-tub.webp
 faq:
-  desktop: /images/meditation.webp
-  mobile: /images/meditation.webp
+  desktop: /images/KHY Nyisha.jpg
+  mobile: /images/KHY Nyisha.jpg
 gift_card:
-  desktop: /images/studio-interior.webp
-  mobile: /images/studio-interior.webp
+  desktop: /images/KHY Marvin.jpg
+  mobile: /images/KHY Marvin.jpg
 new_here:
-  desktop: /images/studio-interior.webp
-  mobile: /images/studio-interior.webp
+  desktop: /images/KHY group.jpg
+  mobile: /images/KHY group.jpg
 pricing:
   desktop: /images/hero-main.webp
   mobile: /images/hero-main.webp
 schedule:
-  desktop: /images/schedule-hero.webp
-  mobile: /images/schedule-hero.webp
+  desktop: /images/KHY Nyisha 2.jpg
+  mobile: /images/KHY Nyisha 2.jpg
 teachers:
-  desktop: /images/studio-interior.webp
-  mobile: /images/studio-interior.webp
+  desktop: /images/KHY CHeyenne 2.jpg
+  mobile: /images/KHY CHeyenne 2.jpg
 workshops:
-  desktop: /images/workshops.webp
-  mobile: /images/workshops.webp
+  desktop: /images/KHY Group 2.jpg
+  mobile: /images/KHY Group 2.jpg
 breathwork:
   desktop: /images/9d-breathwork.webp
   mobile: /images/9d-breathwork.webp
