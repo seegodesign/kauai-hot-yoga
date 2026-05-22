@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.kauaihotyoga.com/sitemap-index.xml
+Sitemap: https://kauaihotyoga.com/sitemap-index.xml

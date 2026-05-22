@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 import playformCompress from "@playform/compress";
 
 export default defineConfig({
-  site: "https://www.kauaihotyoga.com",
+  site: "https://kauaihotyoga.com",
   redirects: {
     "/our-community-1": {
       status: 301,

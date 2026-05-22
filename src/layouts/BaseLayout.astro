@@ -33,7 +33,7 @@ const footerDescription =
   footerEntry?.data.description ??
   "Find your flow in paradise. Yoga, breathwork, and recovery experiences.";
 
-const SITE_URL = "https://www.kauaihotyoga.com";
+const SITE_URL = "https://kauaihotyoga.com";
 const canonicalURL = new URL(currentPath, SITE_URL).href;
 function toOgImage(url: string): string {
   return url.startsWith("http") ? url : new URL(url, SITE_URL).href;
