@@ -4,10 +4,10 @@ badge: Local Deal
 price: $119
 description: First month unlimited · New members only
 features:
-  - Unlimited classes for 30 days
+  - Unlimited classes for 30 day
   - All class types included
-  - Rolls into regular membership after
+  - Special offer given at the end of your month
   - Must show local ID
 cta_text: Claim Local Offer
-cta_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=100003"
+cta_url: https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=43&prodid=100003
 order: 1

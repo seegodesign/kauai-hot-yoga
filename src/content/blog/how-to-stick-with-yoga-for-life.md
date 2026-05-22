@@ -3,7 +3,7 @@ title: How to Stick with Yoga For Life!
 description: Most people quit yoga early because they feel discouraged or not “good enough,” but that challenge is actually where growth happens. Sticking with the practice—by staying consistent, pushing past excuses, and staying engaged—leads to lasting physical, mental, and emotional benefits for anyone willing to continue.
 pubDate: 2023-12-07T19:59:00
 author: Kauai Hot Yoga
-image: /images/how-to-stick-with-yoga.webp
+image: /images/khy yoga4.jpg
 tags: []
 draft: false
 ---

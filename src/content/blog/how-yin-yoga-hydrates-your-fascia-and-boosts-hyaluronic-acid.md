@@ -1,9 +1,9 @@
 ---
-title: "The Science of Stillness: How Yin Yoga Hydrates Your Fascia and Boosts Hyaluronic Acid"
+title: 'The Science of Stillness: How Yin Yoga Hydrates Your Fascia and Boosts Hyaluronic Acid'
 description: Yin Yoga isn't just meditative—it's a powerful practice for your fascia. Learn how long-held, passive poses stimulate hyaluronic acid production and keep your connective tissue supple and hydrated.
 pubDate: 2025-07-24T12:00:00
 author: Kauai Hot Yoga
-image: /images/yin-yoga.webp
+image: /images/khy stillness2.jpg
 tags:
   - Yin Yoga
   - Science

@@ -2,8 +2,7 @@ slug: breathwork
 title: 9D Breathwork
 description: Transformative breathwork journeys for emotional release and clarity
 href: /9d-breathwork
-image: /images/9d-breathwork.webp
-order: 3
+image: /images/9D.jpg
 items:
   - Emotional release & healing
   - Guided hypnosis journeys
@@ -11,3 +10,4 @@ items:
   - Clarity & inner vision
   - Group & private sessions
   - No experience needed
+order: 3

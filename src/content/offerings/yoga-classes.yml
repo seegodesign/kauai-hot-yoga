@@ -2,8 +2,7 @@ slug: yoga-classes
 title: Yoga Classes
 description: Hot yoga in a welcoming space designed to challenge and restore
 href: /classes
-image: /images/hot-yoga-studio.webp
-order: 1
+image: /images/khy yoga classes.jpg
 items:
   - 26&2 Bikram Hot Yoga
   - Hot Vinyasa
@@ -15,3 +14,4 @@ items:
   - Hot Vinyasa Slow Flow
   - Hot Yoga Fusion
   - Intermediate & Advanced Hot Yoga
+order: 1

@@ -1,9 +1,9 @@
 ---
-title: "Find Your Balance: 5 Yoga Tips for a Stronger Mind-Body Connection"
+title: 'Find Your Balance: 5 Yoga Tips for a Stronger Mind-Body Connection'
 description: Your ability to balance in yoga is often a direct reflection of your mental state. Here are five practical tips to improve your balance on and off the mat.
 pubDate: 2025-04-15T12:00:00
 author: Kauai Hot Yoga
-image: /images/find-your-balance.webp
+image: /images/KHY Balance.jpg
 tags:
   - Tips
   - Balance
@@ -37,7 +37,7 @@ Like anything in yoga, balance improves with consistent practice. If you tend to
 
 If you want to level up your balance practice, try standing on softer or uneven surfaces. Practicing on warm-cream, grass, or even a thick yoga mat will force you to engage the right muscles and stabilize more actively. Though it may be harder at first, this kind of challenge will improve your balance dramatically when you return to your normal mat.
 
----
+***
 
 Remember: Balance isn't just a physical skill—it's a mental one. If your mind is racing, don't be surprised if your body feels unsteady. But with patience, focus, and the right techniques, your balance will improve. More importantly, you'll cultivate a stronger, steadier mind and a grounded presence both on and off the mat.
 
