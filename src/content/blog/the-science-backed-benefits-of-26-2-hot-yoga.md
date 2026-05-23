@@ -3,7 +3,7 @@ title: The Science-Backed Benefits of 26 & 2 Hot Yoga
 description: Over 20 years of research confirms the powerful effects of the 26 & 2 sequence on strength, flexibility, heart health, metabolism, stress, and mood. Here's what science actually says.
 pubDate: 2025-07-20T12:00:00
 author: Kauai Hot Yoga
-image: /images/khy science.jpg
+image: /images/yenna replace 2.jpg
 tags:
   - Hot Yoga
   - Science
