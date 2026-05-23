@@ -3,7 +3,7 @@ title: Five Profound Lessons From Marvin's Class This Morning!
 description: After returning to a yoga class as a student, Garland reflects on how Marvin’s teaching went beyond physical practice, offering meaningful life lessons about staying youthful through yoga, letting go through forgiveness, growing through challenges, embracing equality, and facing inner struggles. The experience was deeply healing and even inspired personal reconciliation, highlighting yoga’s powerful emotional and spiritual impact.
 pubDate: 2025-03-12T12:00:00
 author: Kauai Hot Yoga
-image: /images/khy stillness.jpg
+image: /images/Marvin replace.jpg
 tags: []
 draft: false
 ---
