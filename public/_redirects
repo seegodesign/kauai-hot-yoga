@@ -1,4 +1,0 @@
-# Canonical host + HTTPS redirects for Cloudflare Pages
-http://www.kauaihotyoga.com/* https://kauaihotyoga.com/:splat 301
-https://www.kauaihotyoga.com/* https://kauaihotyoga.com/:splat 301
-http://kauaihotyoga.com/* https://kauaihotyoga.com/:splat 301
