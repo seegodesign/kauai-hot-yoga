@@ -34,7 +34,12 @@ const footerDescription =
   "Find your flow in paradise. Yoga, breathwork, and recovery experiences.";
 
 const SITE_URL = "https://kauaihotyoga.com";
-const canonicalURL = new URL(currentPath, SITE_URL).href;
+function toCanonicalPath(pathname: string): string {
+  if (!pathname || pathname === "/") return "/";
+  const normalized = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  return `${normalized.replace(/\/+$/, "")}/`;
+}
+const canonicalURL = new URL(toCanonicalPath(currentPath), SITE_URL).href;
 function toOgImage(url: string): string {
   return url.startsWith("http") ? url : new URL(url, SITE_URL).href;
 }
