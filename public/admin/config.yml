@@ -309,6 +309,48 @@ collections:
               - { label: Title, name: title, widget: string }
               - { label: Body, name: body, widget: text }
 
+  # ── 9D Breathwork Page ───────────────────────────────────
+  - name: breathworkPage
+    label: 9D Breathwork Page
+    files:
+      - name: main
+        label: 9D Breathwork Content
+        file: src/content/breathworkPage/main.yml
+        fields:
+          - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: What Is Section Heading, name: what_is_heading, widget: string }
+          - label: Intro Blocks
+            name: intro_blocks
+            widget: list
+            summary: "{{fields.title}}"
+            min: 1
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+              - { label: Image, name: image, widget: image }
+              - { label: Image Alt Text, name: image_alt, widget: string }
+              - { label: Image On Right, name: image_right, widget: boolean, default: true, hint: "Turn off to place image on the left on desktop" }
+          - label: Benefits
+            name: benefits
+            widget: list
+            summary: "{{fields.title}}"
+            min: 1
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - { label: Sessions Section Heading, name: sessions_heading, widget: string }
+          - { label: What To Expect Heading, name: expect_heading, widget: string }
+          - label: What To Expect Cards
+            name: expectations
+            widget: list
+            summary: "{{fields.title}}"
+            min: 1
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+
   # ── Offerings ─────────────────────────────────────────────
   - name: offerings
     label: Offerings

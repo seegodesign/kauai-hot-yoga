@@ -108,6 +108,39 @@ const workshopsPage = defineCollection({
   }),
 });
 
+const breathworkPage = defineCollection({
+  type: "data",
+  schema: z.object({
+    hero_eyebrow: z.string(),
+    hero_title: z.string(),
+    hero_subtitle: z.string(),
+    what_is_heading: z.string(),
+    intro_blocks: z.array(
+      z.object({
+        title: z.string(),
+        body: z.string(),
+        image: z.string(),
+        image_alt: z.string(),
+        image_right: z.boolean().optional().default(true),
+      })
+    ),
+    benefits: z.array(
+      z.object({
+        title: z.string(),
+        description: z.string(),
+      })
+    ),
+    sessions_heading: z.string(),
+    expect_heading: z.string(),
+    expectations: z.array(
+      z.object({
+        title: z.string(),
+        body: z.string(),
+      })
+    ),
+  }),
+});
+
 const testimonials = defineCollection({
   type: "data",
   schema: z.object({
@@ -269,4 +302,4 @@ const pageHeroSettings = defineCollection({
   }),
 });
 
-export const collections = { settings, home, about, workshopsPage, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials, coldPlungePricing, breathworkPricing, pageHeroSettings };
+export const collections = { settings, home, about, workshopsPage, breathworkPage, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials, coldPlungePricing, breathworkPricing, pageHeroSettings };

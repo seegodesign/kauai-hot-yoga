@@ -1,10 +1,15 @@
 ---
-import { getEntry } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BreathworkPage from "../views/breathwork.astro";
 
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
+
+const breathworkContentEntry = await getEntry("breathworkPage", "main");
+if (!breathworkContentEntry) throw new Error("Missing content: breathworkPage/main.yml");
+
+const sessions = (await getCollection("breathworkPricing")).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
@@ -12,5 +17,10 @@ if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.ym
   description="Experience transformative 9D Breathwork journeys using binaural beats, solfeggio frequencies, and guided visualization in Kauai."
   ogImage="/images/breathwork-hero.webp"
   currentPath="/9d-breathwork">
-  <BreathworkPage heroDesktopSrc={pageHeroesEntry.data.breathwork.desktop} heroMobileSrc={pageHeroesEntry.data.breathwork.mobile} />
+  <BreathworkPage
+    heroDesktopSrc={pageHeroesEntry.data.breathwork.desktop}
+    heroMobileSrc={pageHeroesEntry.data.breathwork.mobile}
+    content={breathworkContentEntry.data}
+    sessions={sessions.map((entry) => entry.data)}
+  />
 </BaseLayout>
