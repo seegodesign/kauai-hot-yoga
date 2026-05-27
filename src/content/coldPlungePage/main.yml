@@ -27,11 +27,11 @@ steps:
   - title: Plunge
     description: Enter slowly and focus on your breath. Start with 1-3 minutes and build up over time.
   - title: Warm Up
-    description: Exit mindfully and warm up naturally. Use our sauna or take a warm shower.
+    description: Exit mindfully and warm up naturally. To receive maximum benefit, avoid a warm shower directly after.
   - title: Integrate
-    description: "Relax, hydrate, and notice the effects: increased alertness, mood elevation, and calm."
+    description: 'Relax, hydrate, and notice the effects: increased alertness, mood elevation, and calm.'
 safety_heading: Safety First
-safety_intro: "Cold plunge is generally safe for most people, but please note:"
+safety_intro: 'Cold plunge is generally safe for most people, but please note:'
 safety_points:
   - Consult your doctor if you have heart conditions, high blood pressure, or are pregnant
   - Never plunge alone - staff supervision is always provided
