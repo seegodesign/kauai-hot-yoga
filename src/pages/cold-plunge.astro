@@ -1,16 +1,26 @@
 ---
-import { getEntry } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ColdPlungePage from "../views/cold-plunge.astro";
 
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
+
+const coldPlungeContentEntry = await getEntry("coldPlungePage", "main");
+if (!coldPlungeContentEntry) throw new Error("Missing content: coldPlungePage/main.yml");
+
+const options = (await getCollection("coldPlungePricing")).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
-  title="Cold Plunge | Kauai Hot Yoga"
-  description="Ice bath therapy and cold plunge sessions for recovery, inflammation reduction, and mental clarity in Kauai."
+  title={coldPlungeContentEntry.data.seo_title}
+  description={coldPlungeContentEntry.data.seo_description}
   ogImage="/images/cold-plunge-hero.webp"
   currentPath="/cold-plunge">
-  <ColdPlungePage heroDesktopSrc={pageHeroesEntry.data.cold_plunge.desktop} heroMobileSrc={pageHeroesEntry.data.cold_plunge.mobile} />
+  <ColdPlungePage
+    heroDesktopSrc={pageHeroesEntry.data.cold_plunge.desktop}
+    heroMobileSrc={pageHeroesEntry.data.cold_plunge.mobile}
+    content={coldPlungeContentEntry.data}
+    options={options.map((entry) => entry.data)}
+  />
 </BaseLayout>

@@ -141,6 +141,37 @@ const breathworkPage = defineCollection({
   }),
 });
 
+const coldPlungePage = defineCollection({
+  type: "data",
+  schema: z.object({
+    seo_title: z.string(),
+    seo_description: z.string(),
+    hero_eyebrow: z.string(),
+    hero_title: z.string(),
+    hero_subtitle: z.string(),
+    science_heading: z.string(),
+    science_intro: z.string(),
+    benefits: z.array(
+      z.object({
+        title: z.string(),
+        description: z.string(),
+      })
+    ),
+    options_heading: z.string(),
+    options_cta_text: z.string(),
+    how_it_works_heading: z.string(),
+    steps: z.array(
+      z.object({
+        title: z.string(),
+        description: z.string(),
+      })
+    ),
+    safety_heading: z.string(),
+    safety_intro: z.string(),
+    safety_points: z.array(z.string()),
+  }),
+});
+
 const testimonials = defineCollection({
   type: "data",
   schema: z.object({
@@ -302,4 +333,4 @@ const pageHeroSettings = defineCollection({
   }),
 });
 
-export const collections = { settings, home, about, workshopsPage, breathworkPage, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials, coldPlungePricing, breathworkPricing, pageHeroSettings };
+export const collections = { settings, home, about, workshopsPage, breathworkPage, coldPlungePage, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials, coldPlungePricing, breathworkPricing, pageHeroSettings };

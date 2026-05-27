@@ -351,6 +351,48 @@ collections:
               - { label: Title, name: title, widget: string }
               - { label: Body, name: body, widget: text }
 
+  # ── Cold Plunge Page ─────────────────────────────────────
+  - name: coldPlungePage
+    label: Cold Plunge Page
+    files:
+      - name: main
+        label: Cold Plunge Content
+        file: src/content/coldPlungePage/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: Science Section Heading, name: science_heading, widget: string }
+          - { label: Science Section Intro, name: science_intro, widget: text }
+          - label: Benefits
+            name: benefits
+            widget: list
+            summary: "{{fields.title}}"
+            min: 1
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - { label: Options Section Heading, name: options_heading, widget: string }
+          - { label: Options Button Text, name: options_cta_text, widget: string }
+          - { label: How It Works Heading, name: how_it_works_heading, widget: string }
+          - label: How It Works Steps
+            name: steps
+            widget: list
+            summary: "{{fields.title}}"
+            min: 1
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - { label: Safety Section Heading, name: safety_heading, widget: string }
+          - { label: Safety Section Intro, name: safety_intro, widget: text }
+          - label: Safety Points
+            name: safety_points
+            widget: list
+            min: 1
+            field: { label: Point, name: point, widget: string }
+
   # ── Offerings ─────────────────────────────────────────────
   - name: offerings
     label: Offerings
