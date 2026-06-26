@@ -25,9 +25,13 @@ interface Props {
   info: ContactInfo;
   heroDesktopSrc: string;
   heroMobileSrc: string;
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  sectionHeading: string;
 }
 
-const { info, heroDesktopSrc, heroMobileSrc } = Astro.props;
+const { info, heroDesktopSrc, heroMobileSrc, heroEyebrow, heroTitle, heroSubtitle, sectionHeading } = Astro.props;
 
 const googleMapsUrl = `https://maps.google.com/?q=${encodeURIComponent(
   `${info.address.street}, ${info.address.city}, ${info.address.state} ${info.address.zip}`,
@@ -40,9 +44,9 @@ const social = info.social ?? {};
     desktopSrc={heroDesktopSrc}
     mobileSrc={heroMobileSrc}
     overlay="bg-purple/65"
-    eyebrow="Get In Touch"
-    title="Contact Us"
-    subtitle="We'd love to hear from you. Reach out with any questions about classes, memberships, or your first visit."
+    eyebrow={heroEyebrow}
+    title={heroTitle}
+    subtitle={heroSubtitle}
   />
 
   <section class="py-12 md:py-24 bg-white">
@@ -50,7 +54,7 @@ const social = info.social ?? {};
       <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         <div class="space-y-10 motion-preset-slide-up motion-duration-700">
           <div>
-            <h2 class="text-3xl md:text-4xl font-bold text-purple-dark mb-8">Reach Out</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-purple-dark mb-8">{sectionHeading}</h2>
 
             <ul class="space-y-6">
               <li>

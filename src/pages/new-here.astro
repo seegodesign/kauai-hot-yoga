@@ -16,13 +16,17 @@ if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
 
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
+
+const pageContentEntry = await getEntry("newHerePage", "main");
+if (!pageContentEntry) throw new Error("Missing content: newHerePage/main.yml");
 ---
 
 <BaseLayout
-  title="New to Kauai Hot Yoga? Start Here | Kauai Hot Yoga"
-  description="First time at Kauai Hot Yoga? Here's everything you need to know — what to bring, what to expect, and an exclusive intro offer for new students."
+  title={pageContentEntry.data.seo_title}
+  description={pageContentEntry.data.seo_description}
   currentPath="/new-here">
   <NewHerePage
+    content={pageContentEntry.data}
     heroDesktopSrc={pageHeroesEntry.data.new_here.desktop}
     heroMobileSrc={pageHeroesEntry.data.new_here.mobile}
     specialPrice={featured.price}

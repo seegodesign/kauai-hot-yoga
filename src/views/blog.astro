@@ -15,9 +15,12 @@ interface Props {
   posts: BlogPost[];
   heroDesktopSrc: string;
   heroMobileSrc: string;
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
 }
 
-const { posts, heroDesktopSrc, heroMobileSrc } = Astro.props;
+const { posts, heroDesktopSrc, heroMobileSrc, heroEyebrow, heroTitle, heroSubtitle } = Astro.props;
 
 function formatDate(date: Date) {
   return new Intl.DateTimeFormat("en-US", {
@@ -33,9 +36,9 @@ function formatDate(date: Date) {
     desktopSrc={heroDesktopSrc}
     mobileSrc={heroMobileSrc}
     overlay="bg-purple/65"
-    eyebrow="Wellness & Inspiration"
-    title="Our Blog"
-    subtitle="Tips, stories, and guides to support your yoga journey."
+    eyebrow={heroEyebrow}
+    title={heroTitle}
+    subtitle={heroSubtitle}
   />
 
   <section class="py-12 md:py-24 bg-white">

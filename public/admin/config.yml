@@ -178,6 +178,8 @@ collections:
         label: Home Page Content
         file: src/content/home/main.yml
         fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
           - label: Hero Section
             name: hero_heading
             widget: string
@@ -208,6 +210,7 @@ collections:
             name: new_here_image
             widget: image
             hint: Upload/select a WebP image when possible
+          - { label: "CTA Strip Eyebrow", name: cta_strip_eyebrow, widget: string, required: false }
           - label: CTA Strip Heading
             name: cta_strip_heading
             widget: string
@@ -226,6 +229,54 @@ collections:
             fields:
               - { label: Button Text, name: text, widget: string }
               - { label: Link, name: href, widget: string }
+          - { label: Reviews Eyebrow, name: reviews_eyebrow, widget: string, required: false }
+          - { label: Reviews Heading, name: reviews_heading, widget: string, required: false }
+          - { label: Reviews Subtitle, name: reviews_subtitle, widget: string, required: false }
+          - { label: Why Hot Yoga Eyebrow, name: why_hot_yoga_eyebrow, widget: string, required: false }
+          - { label: Why Hot Yoga Heading, name: why_hot_yoga_heading, widget: string, required: false }
+          - label: Why Hot Yoga Paragraphs
+            name: why_hot_yoga_paragraphs
+            widget: list
+            field: { label: Paragraph, name: text, widget: text }
+            required: false
+          - { label: Why Hot Yoga CTA, name: why_hot_yoga_cta, widget: string, required: false }
+          - { label: Amenities Eyebrow, name: amenities_eyebrow, widget: string, required: false }
+          - { label: Amenities Heading, name: amenities_heading, widget: string, required: false }
+          - label: Amenities
+            name: amenities
+            widget: list
+            required: false
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+          - { label: New Here Section Heading, name: new_here_section_heading, widget: string, required: false }
+          - label: New Here Quick Tips
+            name: new_here_quick_tips
+            widget: list
+            required: false
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+          - { label: New Here CTA Text, name: new_here_cta_text, widget: string, required: false }
+          - { label: New Here CTA Link, name: new_here_cta_href, widget: string, required: false }
+          - { label: Location Eyebrow, name: location_eyebrow, widget: string, required: false }
+          - { label: Location Heading, name: location_heading, widget: string, required: false }
+          - { label: Location Body, name: location_body, widget: text, required: false }
+          - { label: Mission Eyebrow, name: mission_eyebrow, widget: string, required: false }
+          - { label: Mission Heading, name: mission_heading, widget: string, required: false }
+          - label: Mission Paragraphs
+            name: mission_paragraphs
+            widget: list
+            field: { label: Paragraph, name: text, widget: text }
+            required: false
+          - { label: Mission CTA Text, name: mission_cta_text, widget: string, required: false }
+          - { label: Mission CTA Link, name: mission_cta_href, widget: string, required: false }
+          - { label: Teachers Section Eyebrow, name: teachers_section_eyebrow, widget: string, required: false }
+          - { label: Teachers Section Heading, name: teachers_section_heading, widget: string, required: false }
+          - { label: Teachers Section Subtitle, name: teachers_section_subtitle, widget: text, required: false }
+          - { label: Teachers Section CTA Text, name: teachers_section_cta_text, widget: string, required: false }
 
   # ── About Page ────────────────────────────────────────────
   - name: about
@@ -317,6 +368,8 @@ collections:
         label: 9D Breathwork Content
         file: src/content/breathworkPage/main.yml
         fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
           - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
           - { label: Hero Title, name: hero_title, widget: string }
           - { label: Hero Subtitle, name: hero_subtitle, widget: text }
@@ -619,3 +672,232 @@ collections:
       - { label: Question, name: question, widget: string }
       - { label: Answer, name: answer, widget: text }
       - { label: Order within category, name: order, widget: number, default: 0 }
+
+  # ── New Here Page ─────────────────────────────────────────
+  - name: newHerePage
+    label: New Here Page
+    files:
+      - name: main
+        label: New Here Content
+        file: src/content/newHerePage/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: Hero CTA Text, name: hero_cta_text, widget: string }
+          - { label: Intro Offer Eyebrow, name: intro_offer_eyebrow, widget: string }
+          - { label: Intro Offer Heading, name: intro_offer_heading, widget: string }
+          - { label: Intro Offer Badge, name: intro_offer_badge, widget: string }
+          - { label: Intro Offer Label, name: intro_offer_label, widget: string }
+          - { label: What Is Included Heading, name: what_is_included_heading, widget: string }
+          - label: Included Features
+            name: included_features
+            widget: list
+            field: { label: Feature, name: feature, widget: string }
+          - { label: Claim Offer Button Text, name: claim_offer_text, widget: string }
+          - { label: Browse Schedule Button Text, name: browse_schedule_text, widget: string }
+          - { label: How It Works Eyebrow, name: how_it_works_eyebrow, widget: string }
+          - { label: How It Works Heading, name: how_it_works_heading, widget: string }
+          - label: Steps
+            name: steps
+            widget: list
+            summary: "{{fields.step}} — {{fields.title}}"
+            fields:
+              - { label: Step Number, name: step, widget: string, hint: "e.g. 01" }
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: Gradient Color Class, name: color, widget: string, hint: "e.g. from-orange to-orange-dark" }
+          - { label: What To Expect Eyebrow, name: what_to_expect_eyebrow, widget: string }
+          - { label: What To Expect Heading, name: what_to_expect_heading, widget: string }
+          - label: Expectations
+            name: expectations
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+          - { label: Bottom CTA Heading, name: bottom_cta_heading, widget: string }
+          - { label: Bottom CTA Body, name: bottom_cta_body, widget: text }
+          - { label: Bottom CTA Primary Button Text, name: bottom_cta_primary_text, widget: string }
+          - { label: Bottom CTA Primary Button Link, name: bottom_cta_primary_href, widget: string }
+          - { label: Bottom CTA Secondary Button Text, name: bottom_cta_secondary_text, widget: string }
+
+  # ── Gift Card Page ────────────────────────────────────────
+  - name: giftCardPage
+    label: Gift Card Page
+    files:
+      - name: main
+        label: Gift Card Content
+        file: src/content/giftCardPage/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: Hero CTA Text, name: hero_cta_text, widget: string }
+          - { label: Purchase URL, name: purchase_url, widget: string }
+          - { label: Cards Section Eyebrow, name: section_eyebrow, widget: string }
+          - { label: Cards Section Heading, name: section_heading, widget: string }
+          - { label: Cards Section Body, name: section_body, widget: text }
+          - label: Gift Cards
+            name: cards
+            widget: list
+            summary: "{{fields.name}} — {{fields.price}}"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Price, name: price, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: Highlight as Popular, name: highlight, widget: boolean, default: false }
+          - { label: Bottom CTA Heading, name: bottom_cta_heading, widget: string }
+          - { label: Bottom CTA Body, name: bottom_cta_body, widget: text }
+          - { label: Bottom CTA Button Text, name: bottom_cta_button_text, widget: string }
+
+  # ── Schedule Page ─────────────────────────────────────────
+  - name: schedulePage
+    label: Schedule Page
+    files:
+      - name: main
+        label: Schedule Content
+        file: src/content/schedulePage/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: Mindbody Widget ID, name: widget_id, widget: string, hint: "The Mindbody Schedules widget ID" }
+
+  # ── Pricing Page ──────────────────────────────────────────
+  - name: pricingPage
+    label: Pricing Page
+    files:
+      - name: main
+        label: Pricing Page Content
+        file: src/content/pricingPage/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: Specials Eyebrow, name: specials_eyebrow, widget: string }
+          - { label: Specials Heading, name: specials_heading, widget: string }
+          - { label: Classes & Packs Heading, name: classes_packs_heading, widget: string }
+          - { label: Classes & Packs Body, name: classes_packs_body, widget: text }
+          - { label: Memberships Heading, name: memberships_heading, widget: string }
+          - { label: Memberships Body, name: memberships_body, widget: text }
+          - { label: Cold Plunge Heading, name: cold_plunge_heading, widget: string }
+          - { label: Cold Plunge Body, name: cold_plunge_body, widget: text }
+          - { label: Breathwork Heading, name: breathwork_heading, widget: string }
+          - { label: Breathwork Body, name: breathwork_body, widget: text }
+          - { label: FAQ Section Heading, name: faq_heading, widget: string }
+
+  # ── Contact Page ──────────────────────────────────────────
+  - name: contactPage
+    label: Contact Page
+    files:
+      - name: main
+        label: Contact Content
+        file: src/content/contactPage/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: Section Heading, name: section_heading, widget: string }
+
+  # ── Teachers Page ─────────────────────────────────────────
+  - name: teachersPage
+    label: Teachers Page
+    files:
+      - name: main
+        label: Teachers Page Content
+        file: src/content/teachersPage/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+
+  # ── Community Page ────────────────────────────────────────
+  - name: communityPage
+    label: Community Page
+    files:
+      - name: main
+        label: Community Page Content
+        file: src/content/communityPage/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+
+  # ── FAQ Page ──────────────────────────────────────────────
+  - name: faqPage
+    label: FAQ Page
+    files:
+      - name: main
+        label: FAQ Page Content
+        file: src/content/faqPage/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: Still Have Questions Heading, name: still_have_questions_heading, widget: string }
+          - { label: Still Have Questions Body, name: still_have_questions_body, widget: text }
+
+  # ── Classes Page ──────────────────────────────────────────
+  - name: classesPage
+    label: Classes Page
+    files:
+      - name: main
+        label: Classes Page Content
+        file: src/content/classesPage/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: Mindbody Widget ID, name: widget_id, widget: string, hint: "The Mindbody class list widget ID" }
+
+  # ── Blog Page ─────────────────────────────────────────────
+  - name: blogPage
+    label: Blog Page
+    files:
+      - name: main
+        label: Blog Page Content
+        file: src/content/blogPage/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+
+  # ── Legal Pages ───────────────────────────────────────────
+  - name: legalPages
+    label: Legal Pages
+    files:
+      - name: privacy-policy
+        label: Privacy Policy
+        file: src/content/legalPages/privacy-policy.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Effective Date, name: effective_date, widget: string, hint: "e.g. January 1st, 2026" }
+          - { label: Website URL, name: website_url, widget: string, hint: "e.g. https://kauaihotyoga.com" }
+      - name: terms-of-service
+        label: Terms of Service
+        file: src/content/legalPages/terms-of-service.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Effective Date, name: effective_date, widget: string, hint: "e.g. January 1st, 2026" }
+          - { label: Website URL, name: website_url, widget: string, hint: "e.g. https://kauaihotyoga.com" }

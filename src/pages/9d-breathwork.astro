@@ -13,8 +13,8 @@ const sessions = (await getCollection("breathworkPricing")).sort((a, b) => a.dat
 ---
 
 <BaseLayout
-  title="9D Breathwork | Kauai Hot Yoga"
-  description="Experience transformative 9D Breathwork journeys using binaural beats, solfeggio frequencies, and guided visualization in Kauai."
+  title={breathworkContentEntry.data.seo_title || "9D Breathwork | Kauai Hot Yoga"}
+  description={breathworkContentEntry.data.seo_description || "Experience transformative 9D Breathwork journeys using binaural beats, solfeggio frequencies, and guided visualization in Kauai."}
   ogImage="/images/breathwork-hero.webp"
   currentPath="/9d-breathwork">
   <BreathworkPage

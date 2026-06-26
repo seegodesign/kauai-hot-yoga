@@ -5,17 +5,22 @@ import PageHero from "../components/page-hero.astro";
 
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
+
+const pageContentEntry = await getEntry("classesPage", "main");
+if (!pageContentEntry) throw new Error("Missing content: classesPage/main.yml");
+
+const { hero_title, hero_subtitle, widget_id } = pageContentEntry.data;
 ---
 
 <BaseLayout
-  title="Hot Yoga Classes in Kauai, Hawaii | Kauai Hot Yoga"
-  description="Hot 26 & 2, Vinyasa, Yin and restorative, sculpt and Pilates, sound bath and more"
+  title={pageContentEntry.data.seo_title || "Hot Yoga Classes in Kauai, Hawaii | Kauai Hot Yoga"}
+  description={pageContentEntry.data.seo_description || "Hot 26 & 2, Vinyasa, Yin and restorative, sculpt and Pilates, sound bath and more"}
   ogImage={pageHeroesEntry.data.classes.desktop}
   currentPath="/classes"
 >
   <PageHero
-    title="Our Classes"
-    subtitle="Explore our hot yoga class styles — Hot 26 & 2, Vinyasa, Yin and restorative, sculpt and Pilates, sound bath and more — at our Lihue, Kauai studio. All levels welcome."
+    title={hero_title}
+    subtitle={hero_subtitle}
     desktopSrc={pageHeroesEntry.data.classes.desktop}
     mobileSrc={pageHeroesEntry.data.classes.mobile}
   />
@@ -28,7 +33,7 @@ if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.ym
       <healcode-widget
         data-type="class_lists"
         data-widget-partner="object"
-        data-widget-id="3f96061f769"
+        data-widget-id={widget_id}
         data-widget-version="0"></healcode-widget>
       <!-- Mindbody class list widget end -->
 

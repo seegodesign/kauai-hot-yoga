@@ -34,10 +34,37 @@ export interface HomeContent {
   explainer_heading: string;
   explainer_paragraphs: string[];
   new_here_image: string;
+  cta_strip_eyebrow: string;
   cta_strip_heading: string;
   cta_strip_subheading: string;
   cta_strip_primary: { text: string; href: string };
   cta_strip_secondary: { text: string; href: string };
+  reviews_eyebrow: string;
+  reviews_heading: string;
+  reviews_subtitle: string;
+  why_hot_yoga_eyebrow: string;
+  why_hot_yoga_heading: string;
+  why_hot_yoga_paragraphs: string[];
+  why_hot_yoga_cta: string;
+  amenities_eyebrow: string;
+  amenities_heading: string;
+  amenities: { title: string; body: string }[];
+  new_here_section_heading: string;
+  new_here_quick_tips: { title: string; body: string }[];
+  new_here_cta_text: string;
+  new_here_cta_href: string;
+  location_eyebrow: string;
+  location_heading: string;
+  location_body: string;
+  mission_eyebrow: string;
+  mission_heading: string;
+  mission_paragraphs: string[];
+  mission_cta_text: string;
+  mission_cta_href: string;
+  teachers_section_eyebrow: string;
+  teachers_section_heading: string;
+  teachers_section_subtitle: string;
+  teachers_section_cta_text: string;
 }
 
 interface Props {
@@ -65,28 +92,6 @@ const {
 const topTestimonials = testimonials;
 const topOfferings = offerings.slice(0, 4);
 const topTeachers = teachers.slice(0, 8);
-const hotYogaAmenities = [
-  {
-    title: "State-of-the-Art Studio",
-    body: "The best in hot yoga heating and flooring technology for a premium practice environment.",
-  },
-  {
-    title: "Showers & Changing Rooms",
-    body: "Freshen up after class so you're ready to take on the rest of your day.",
-  },
-  {
-    title: "Yoga Boutique",
-    body: "Shop the latest hot yoga products and fashions at reasonable prices.",
-  },
-  {
-    title: "Free Kangen Water",
-    body: "Complimentary alkaline water for all students. Bring your refillable bottle!",
-  },
-  {
-    title: "Cold Plunge Bath",
-    body: "State-of-the-art cold plunge - the perfect complement after a hot yoga class. Book via the Mindbody app.",
-  },
-];
 ---
 
 <div class="min-h-screen relative">
@@ -159,10 +164,10 @@ const hotYogaAmenities = [
     <div class="container mx-auto px-4">
       <div class="text-center mb-8 md:mb-16">
         <span class="inline-block text-orange font-semibold tracking-widest uppercase text-sm mb-4">
-          Reviews
+          {content.reviews_eyebrow}
         </span>
-        <h2 class="text-5xl md:text-6xl text-purple-dark mb-4">Loved by Locals & Visitors Alike</h2>
-        <p class="text-muted-foreground text-lg">Real stories from our community</p>
+        <h2 class="text-5xl md:text-6xl text-purple-dark mb-4">{content.reviews_heading}</h2>
+        <p class="text-muted-foreground text-lg">{content.reviews_subtitle}</p>
       </div>
 
       <div class="relative max-w-6xl mx-auto" data-testimonials-slider>
@@ -385,38 +390,21 @@ const hotYogaAmenities = [
           </div>
 
           <div class="motion-preset-slide-left motion-duration-700">
-            <h2 class="text-purple-dark mb-6 text-3xl md:text-4xl font-bold">New Here?</h2>
+            <h2 class="text-purple-dark mb-6 text-3xl md:text-4xl font-bold">{content.new_here_section_heading}</h2>
 
             <div class="space-y-6">
-              <div>
-                <h4 class="text-purple-dark mb-2">What to Expect</h4>
-                <p class="text-muted-foreground">
-                  Our hot yoga classes are held in a climate-controlled studio heated to 95-105°F.
-                  Expect a welcoming atmosphere where all levels are supported.
-                </p>
-              </div>
-
-              <div>
-                <h4 class="text-purple-dark mb-2">What to Bring</h4>
-                <p class="text-muted-foreground">
-                  Yoga mat, towel, water bottle, and an open mind. We provide filtered water and
-                  have showers available. Mats and towels available for rent.
-                </p>
-              </div>
-
-              <div>
-                <h4 class="text-purple-dark mb-2">First Timer?</h4>
-                <p class="text-muted-foreground">
-                  Arrive 15 minutes early so we can get you set up. Our teachers will guide you
-                  through modifications and help you find your comfort zone.
-                </p>
-              </div>
+              {content.new_here_quick_tips.map((tip) => (
+                <div>
+                  <h4 class="text-purple-dark mb-2">{tip.title}</h4>
+                  <p class="text-muted-foreground">{tip.body}</p>
+                </div>
+              ))}
 
               <a
-                href="/new-here"
+                href={content.new_here_cta_href}
                 class="inline-flex items-center gap-2 text-purple hover:text-purple-light transition-colors"
               >
-                <span>Read our full beginner guide</span>
+                <span>{content.new_here_cta_text}</span>
                 <img
                   src="/icons/chevron-right.svg"
                   alt=""
@@ -443,31 +431,23 @@ const hotYogaAmenities = [
       <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <div class="motion-preset-slide-up motion-duration-700">
           <span class="inline-block text-orange-light font-semibold tracking-widest uppercase text-xs mb-3">
-            The Science of Heat
+            {content.why_hot_yoga_eyebrow}
           </span>
-          <h2 class="text-3xl md:text-4xl text-white font-bold mb-5">Why Hot Yoga?</h2>
-          <p class="text-white/75 leading-relaxed mb-5">
-            Hot yoga helps you relax and safely stretch muscles while improving flexibility,
-            strength, and stamina. Heat accelerates the body's chemical processes - so you burn fat
-            faster, break down acidity faster, and detox while flushing your body with oxygenated
-            blood.
-          </p>
-          <p class="text-white/75 leading-relaxed mb-5">
-            People love the results from hot yoga: more energy, more confidence, less anxiety and
-            pain. We recommend a minimum of three classes per week to see and maintain results. Our
-            classes welcome beginners and all levels.
-          </p>
-          <p class="font-semibold text-sm">Come see for yourself.</p>
+          <h2 class="text-3xl md:text-4xl text-white font-bold mb-5">{content.why_hot_yoga_heading}</h2>
+          {content.why_hot_yoga_paragraphs.map((p) => (
+            <p class="text-white/75 leading-relaxed mb-5">{p}</p>
+          ))}
+          <p class="font-semibold text-sm">{content.why_hot_yoga_cta}</p>
         </div>
 
         <div class="space-y-4 motion-preset-slide-up motion-duration-700 motion-delay-100">
           <span class="inline-block text-orange-light font-semibold tracking-widest uppercase text-xs mb-1">
-            Studio Amenities
+            {content.amenities_eyebrow}
           </span>
-          <h3 class="text-2xl text-white font-bold mb-4">Everything You Need</h3>
+          <h3 class="text-2xl text-white font-bold mb-4">{content.amenities_heading}</h3>
 
           {
-            hotYogaAmenities.map((item, i) => (
+            content.amenities.map((item, i) => (
               <div class="flex items-start gap-3 motion-preset-slide-right motion-duration-700" style={`--motion-delay:${i * 70}ms`}>
                 <div class="w-6 h-6 rounded-full bg-orange/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span class="text-orange-light text-xs" aria-hidden="true">✓</span>
@@ -492,15 +472,13 @@ const hotYogaAmenities = [
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div class="motion-preset-slide-up motion-duration-700">
             <span class="inline-block text-orange font-semibold tracking-widest uppercase text-xs mb-3">
-              Lihue, Kauai, Hawaii
+              {content.location_eyebrow}
             </span>
             <h2 class="text-3xl md:text-4xl text-purple-dark font-bold mb-5 leading-tight">
-              Kauai's Central Source for Hot Yoga & Wellness
+              {content.location_heading}
             </h2>
             <p class="text-muted-foreground leading-relaxed mb-5">
-              Kauai Hot Yoga in Lihue is the island's premier studio for hot yoga, pilates, sound
-              healing, cold plunging, workshops, trainings, and hot yoga retreats - all under one
-              roof.
+              {content.location_body}
             </p>
 
             <div class="flex items-start gap-3 p-4 bg-white rounded-xl border border-soft-purple">
@@ -539,30 +517,17 @@ const hotYogaAmenities = [
 
           <div class="motion-preset-slide-up motion-duration-700 motion-delay-100">
             <span class="inline-block text-orange font-semibold tracking-widest uppercase text-xs mb-3">
-              Our Purpose
+              {content.mission_eyebrow}
             </span>
-            <h3 class="text-2xl text-purple-dark font-bold mb-5">Our Mission</h3>
-            <p class="text-muted-foreground leading-relaxed mb-5">
-              At Kauai Hot Yoga, our mission is to heal, empower, and connect people to the joy,
-              beauty, and purpose of their own unique lives and experiences - through the various
-              practices of yoga.
-            </p>
-            <p class="text-muted-foreground leading-relaxed mb-5">
-              We believe in the transformative power of yoga to cultivate self-love, confidence,
-              resilience, and compassion. We are dedicated to creating a welcoming, inclusive, and
-              supportive community space where everyone can explore and deepen their practice -
-              whether you're a local looking for a consistent studio home or a visitor seeking the
-              best yoga experience on Kauai.
-            </p>
-            <p class="text-muted-foreground leading-relaxed mb-5">
-              Our commitment is to provide exceptional instruction, a serene environment, and a
-              vibrant community that inspires growth on and off the mat.
-            </p>
+            <h3 class="text-2xl text-purple-dark font-bold mb-5">{content.mission_heading}</h3>
+            {content.mission_paragraphs.map((p) => (
+              <p class="text-muted-foreground leading-relaxed mb-5">{p}</p>
+            ))}
             <a
-              href="/our-studio"
+              href={content.mission_cta_href}
               class="inline-flex items-center gap-2 bg-purple-dark text-white px-5 py-2.5 sm:px-8 sm:py-3 rounded-full hover:bg-purple transition-colors"
             >
-              About Our Studio
+              {content.mission_cta_text}
               <img
                 src="/icons/chevron-right.svg"
                 alt=""
@@ -585,15 +550,13 @@ const hotYogaAmenities = [
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto text-center relative z-10">
         <span class="inline-block text-orange font-semibold tracking-widest uppercase text-xs mb-4">
-          Our Teachers
+          {content.teachers_section_eyebrow}
         </span>
         <h2 class="text-3xl md:text-4xl text-purple-dark font-bold mb-6 leading-tight">
-          An Experienced Teaching Staff
+          {content.teachers_section_heading}
         </h2>
         <p class="text-muted-foreground leading-relaxed text-lg mb-12">
-          Our certified instructors in Lihue, Kauai bring deep expertise across Bikram, Vinyasa,
-          Pilates, breathwork, and more - guiding every student from first-timer to advanced
-          practitioner.
+          {content.teachers_section_subtitle}
         </p>
 
         {
@@ -636,7 +599,7 @@ const hotYogaAmenities = [
           href="/our-teachers"
           class="inline-flex items-center gap-2 bg-orange text-white px-5 py-2.5 sm:px-8 sm:py-3 rounded-full hover:bg-purple transition-colors"
         >
-          Meet Our Teachers
+          {content.teachers_section_cta_text}
         </a>
       </div>
     </div>
@@ -666,7 +629,7 @@ const hotYogaAmenities = [
     <div class="relative container mx-auto px-4 py-20">
       <div class="max-w-4xl mx-auto text-center motion-preset-slide-up motion-duration-700">
         <span class="inline-block text-orange-light font-semibold tracking-widest uppercase text-sm mb-4">
-          Begin Today
+          {content.cta_strip_eyebrow}
         </span>
         <h2 class="text-5xl md:text-6xl font-bold text-white mb-5 leading-tight">
           {content.cta_strip_heading}

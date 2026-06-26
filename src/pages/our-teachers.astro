@@ -10,11 +10,21 @@ const teachers = teacherEntries
 
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
+
+const pageContentEntry = await getEntry("teachersPage", "main");
+if (!pageContentEntry) throw new Error("Missing content: teachersPage/main.yml");
 ---
 
 <BaseLayout
-  title="Our Teachers | Kauai Hot Yoga"
-  description="Meet the certified hot yoga instructors at Kauai Hot Yoga in Lihue, Hawaii. Experienced teachers in Bikram, Vinyasa, Pilates, breathwork, and more."
+  title={pageContentEntry.data.seo_title || "Our Teachers | Kauai Hot Yoga"}
+  description={pageContentEntry.data.seo_description || "Meet the certified hot yoga instructors at Kauai Hot Yoga in Lihue, Hawaii. Experienced teachers in Bikram, Vinyasa, Pilates, breathwork, and more."}
   currentPath="/our-teachers">
-  <TeachersPage teachers={teachers} heroDesktopSrc={pageHeroesEntry.data.teachers.desktop} heroMobileSrc={pageHeroesEntry.data.teachers.mobile} />
+  <TeachersPage
+    teachers={teachers}
+    heroDesktopSrc={pageHeroesEntry.data.teachers.desktop}
+    heroMobileSrc={pageHeroesEntry.data.teachers.mobile}
+    heroEyebrow={pageContentEntry.data.hero_eyebrow}
+    heroTitle={pageContentEntry.data.hero_title}
+    heroSubtitle={pageContentEntry.data.hero_subtitle}
+  />
 </BaseLayout>

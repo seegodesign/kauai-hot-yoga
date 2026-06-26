@@ -14,9 +14,12 @@ interface Props {
   teachers: Teacher[];
   heroDesktopSrc: string;
   heroMobileSrc: string;
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
 }
 
-const { teachers, heroDesktopSrc, heroMobileSrc } = Astro.props;
+const { teachers, heroDesktopSrc, heroMobileSrc, heroEyebrow, heroTitle, heroSubtitle } = Astro.props;
 ---
 
 <div class="min-h-screen">
@@ -24,9 +27,9 @@ const { teachers, heroDesktopSrc, heroMobileSrc } = Astro.props;
     desktopSrc={heroDesktopSrc}
     mobileSrc={heroMobileSrc}
     overlay="bg-purple-dark/70"
-    eyebrow="Meet the Team"
-    title="Our Teachers"
-    subtitle="Certified, experienced, and deeply passionate about helping you build a lifelong yoga practice."
+    eyebrow={heroEyebrow}
+    title={heroTitle}
+    subtitle={heroSubtitle}
   />
 
   <section class="py-12 md:py-24 bg-white">

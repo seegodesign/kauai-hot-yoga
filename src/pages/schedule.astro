@@ -5,13 +5,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
 
+const pageContentEntry = await getEntry("schedulePage", "main");
+if (!pageContentEntry) throw new Error("Missing content: schedulePage/main.yml");
+
 const heroDesktop = pageHeroesEntry.data.schedule.desktop;
 const heroMobile = pageHeroesEntry.data.schedule.mobile;
+const { hero_eyebrow, hero_title, hero_subtitle, widget_id } = pageContentEntry.data;
 ---
 
 <BaseLayout
-  title="Class Schedule | Kauai Hot Yoga"
-  description="View the weekly hot yoga class schedule and book your spot at Kauai Hot Yoga."
+  title={pageContentEntry.data.seo_title || "Class Schedule | Kauai Hot Yoga"}
+  description={pageContentEntry.data.seo_description || "View the weekly hot yoga class schedule and book your spot at Kauai Hot Yoga."}
   ogImage={heroDesktop}
   currentPath="/schedule">
 
@@ -34,11 +38,11 @@ const heroMobile = pageHeroesEntry.data.schedule.mobile;
     <div class="absolute -top-24 -right-24 w-96 h-96 bg-orange/20 rounded-full blur-3xl pointer-events-none"></div>
     <div class="relative container mx-auto px-4 text-center">
       <span class="inline-block text-orange-light font-semibold tracking-widest uppercase text-sm mb-4">
-        Plan Your Week
+        {hero_eyebrow}
       </span>
-      <h1 class="text-5xl md:text-6xl lg:text-7xl text-white font-bold mb-4">Class Schedule</h1>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl text-white font-bold mb-4">{hero_title}</h1>
       <p class="text-white/85 text-lg md:text-xl max-w-2xl mx-auto">
-        Browse upcoming classes and book your spot directly through Mindbody.
+        {hero_subtitle}
       </p>
     </div>
   </section>
@@ -46,7 +50,7 @@ const heroMobile = pageHeroesEntry.data.schedule.mobile;
   <div class="py-10 px-4 bg-white min-h-[50svh]">
     <div class="container mx-auto max-w-5xl">
       <!-- Mindbody Schedules widget begin -->
-      <div class="mindbody-widget" data-widget-type="Schedules" data-widget-id="3f50039f769"></div>
+      <div class="mindbody-widget" data-widget-type="Schedules" data-widget-id={widget_id}></div>
       <script async src="https://brandedweb.mindbodyonline.com/embed/widget.js"></script>
       <!-- Mindbody Schedules widget end -->
     </div>

@@ -1,3 +1,5 @@
+seo_title: "Hot Yoga Studio in Kauai, Hawaii | Kauai Hot Yoga"
+seo_description: "Kauai Hot Yoga is Kauai's premier hot yoga studio in Lihue, Hawaii. Hot yoga classes, 9D breathwork, cold plunge, and wellness workshops. All levels welcome."
 hero_heading: Feel Better in Your Body. Starting Today.
 hero_subheading: Yoga, breathwork, and recovery experiences designed to restore your body and mind, located in the heart of Kauai.
 cta_primary:
@@ -19,3 +21,51 @@ cta_strip_primary:
 cta_strip_secondary:
   text: Buy a Pass
   href: /prices
+cta_strip_eyebrow: "Begin Today"
+reviews_eyebrow: "Reviews"
+reviews_heading: "Loved by Locals & Visitors Alike"
+reviews_subtitle: "Real stories from our community"
+why_hot_yoga_eyebrow: "The Science of Heat"
+why_hot_yoga_heading: "Why Hot Yoga?"
+why_hot_yoga_paragraphs:
+  - "Hot yoga helps you relax and safely stretch muscles while improving flexibility, strength, and stamina. Heat accelerates the body's chemical processes - so you burn fat faster, break down acidity faster, and detox while flushing your body with oxygenated blood."
+  - "People love the results from hot yoga: more energy, more confidence, less anxiety and pain. We recommend a minimum of three classes per week to see and maintain results. Our classes welcome beginners and all levels."
+why_hot_yoga_cta: "Come see for yourself."
+amenities_eyebrow: "Studio Amenities"
+amenities_heading: "Everything You Need"
+amenities:
+  - title: "State-of-the-Art Studio"
+    body: "The best in hot yoga heating and flooring technology for a premium practice environment."
+  - title: "Showers & Changing Rooms"
+    body: "Freshen up after class so you're ready to take on the rest of your day."
+  - title: "Yoga Boutique"
+    body: "Shop the latest hot yoga products and fashions at reasonable prices."
+  - title: "Free Kangen Water"
+    body: "Complimentary alkaline water for all students. Bring your refillable bottle!"
+  - title: "Cold Plunge Bath"
+    body: "State-of-the-art cold plunge - the perfect complement after a hot yoga class. Book via the Mindbody app."
+new_here_section_heading: "New Here?"
+new_here_quick_tips:
+  - title: "What to Expect"
+    body: "Our hot yoga classes are held in a climate-controlled studio heated to 95-105°F. Expect a welcoming atmosphere where all levels are supported."
+  - title: "What to Bring"
+    body: "Yoga mat, towel, water bottle, and an open mind. We provide filtered water and have showers available. Mats and towels available for rent."
+  - title: "First Timer?"
+    body: "Arrive 15 minutes early so we can get you set up. Our teachers will guide you through modifications and help you find your comfort zone."
+new_here_cta_text: "Read our full beginner guide"
+new_here_cta_href: "/new-here"
+location_eyebrow: "Lihue, Kauai, Hawaii"
+location_heading: "Kauai's Central Source for Hot Yoga & Wellness"
+location_body: "Kauai Hot Yoga in Lihue is the island's premier studio for hot yoga, pilates, sound healing, cold plunging, workshops, trainings, and hot yoga retreats - all under one roof."
+mission_eyebrow: "Our Purpose"
+mission_heading: "Our Mission"
+mission_paragraphs:
+  - "At Kauai Hot Yoga, our mission is to heal, empower, and connect people to the joy, beauty, and purpose of their own unique lives and experiences - through the various practices of yoga."
+  - "We believe in the transformative power of yoga to cultivate self-love, confidence, resilience, and compassion. We are dedicated to creating a welcoming, inclusive, and supportive community space where everyone can explore and deepen their practice - whether you're a local looking for a consistent studio home or a visitor seeking the best yoga experience on Kauai."
+  - "Our commitment is to provide exceptional instruction, a serene environment, and a vibrant community that inspires growth on and off the mat."
+mission_cta_text: "About Our Studio"
+mission_cta_href: "/our-studio"
+teachers_section_eyebrow: "Our Teachers"
+teachers_section_heading: "An Experienced Teaching Staff"
+teachers_section_subtitle: "Our certified instructors in Lihue, Kauai bring deep expertise across Bikram, Vinyasa, Pilates, breathwork, and more - guiding every student from first-timer to advanced practitioner."
+teachers_section_cta_text: "Meet Our Teachers"

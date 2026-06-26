@@ -29,8 +29,8 @@ const teachers = teacherEntries
 ---
 
 <BaseLayout
-  title="Hot Yoga Studio in Kauai, Hawaii | Kauai Hot Yoga"
-  description="Kauai Hot Yoga is Kauai's premier hot yoga studio in Lihue, Hawaii. Hot yoga classes, 9D breathwork, cold plunge, and wellness workshops. All levels welcome."
+  title={homeEntry.data.seo_title || "Hot Yoga Studio in Kauai, Hawaii | Kauai Hot Yoga"}
+  description={homeEntry.data.seo_description || "Kauai Hot Yoga is Kauai's premier hot yoga studio in Lihue, Hawaii. Hot yoga classes, 9D breathwork, cold plunge, and wellness workshops. All levels welcome."}
   currentPath="/">
   <HomePage
     content={homeEntry.data}

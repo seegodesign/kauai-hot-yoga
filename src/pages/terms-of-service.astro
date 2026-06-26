@@ -6,16 +6,20 @@ import TermsOfServicePage from "../views/terms-of-service.astro";
 const settingsEntry = await getEntry("settings", "main");
 if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
 const settings = settingsEntry.data;
+
+const legalEntry = await getEntry("legalPages", "terms-of-service");
+if (!legalEntry) throw new Error("Missing content: legalPages/terms-of-service.yml");
 ---
 
 <BaseLayout
-  title="Terms of Service | Kauai Hot Yoga"
-  description="Terms of service for Kauai Hot Yoga in Lihue, Hawaii."
+  title={legalEntry.data.seo_title || "Terms of Service | Kauai Hot Yoga"}
+  description={legalEntry.data.seo_description || "Terms of service for Kauai Hot Yoga in Lihue, Hawaii."}
   currentPath="/terms-of-service">
   <TermsOfServicePage
     businessName={settings.studio_name}
     businessEmail={settings.email}
     businessPhone={settings.phone}
-    businessWebsite="https://kauaihotyoga.com"
+    businessWebsite={legalEntry.data.website_url}
+    effectiveDate={legalEntry.data.effective_date}
   />
 </BaseLayout>

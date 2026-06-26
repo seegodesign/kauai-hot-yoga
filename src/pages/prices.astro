@@ -6,6 +6,9 @@ import PricingPage from "../views/pricing.astro";
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
 
+const pageContentEntry = await getEntry("pricingPage", "main");
+if (!pageContentEntry) throw new Error("Missing content: pricingPage/main.yml");
+
 const planEntries = await getCollection("pricingPlans");
 const plans = planEntries
   .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
@@ -34,8 +37,8 @@ const breathworkPlans = breathworkEntries
 ---
 
 <BaseLayout
-  title="Hot Yoga Pricing & Memberships in Kauai | Kauai Hot Yoga"
-  description="Drop-in classes, class packs, and monthly memberships at Kauai Hot Yoga in Lihue, Hawaii. Traveler weekly passes and local intro month deals available."
+  title={pageContentEntry.data.seo_title || "Hot Yoga Pricing & Memberships in Kauai | Kauai Hot Yoga"}
+  description={pageContentEntry.data.seo_description || "Drop-in classes, class packs, and monthly memberships at Kauai Hot Yoga in Lihue, Hawaii. Traveler weekly passes and local intro month deals available."}
   currentPath="/prices">
-  <PricingPage plans={plans} specials={specials} faqs={faqs} coldPlungePlans={coldPlungePlans} breathworkPlans={breathworkPlans} heroDesktopSrc={pageHeroesEntry.data.pricing.desktop} heroMobileSrc={pageHeroesEntry.data.pricing.mobile} />
+  <PricingPage pageContent={pageContentEntry.data} plans={plans} specials={specials} faqs={faqs} coldPlungePlans={coldPlungePlans} breathworkPlans={breathworkPlans} heroDesktopSrc={pageHeroesEntry.data.pricing.desktop} heroMobileSrc={pageHeroesEntry.data.pricing.mobile} />
 </BaseLayout>

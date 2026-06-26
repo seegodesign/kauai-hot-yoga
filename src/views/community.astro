@@ -15,9 +15,12 @@ interface Props {
   members: CommunityMember[];
   heroDesktopSrc: string;
   heroMobileSrc: string;
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
 }
 
-const { members, heroDesktopSrc, heroMobileSrc } = Astro.props;
+const { members, heroDesktopSrc, heroMobileSrc, heroEyebrow, heroTitle, heroSubtitle } = Astro.props;
 ---
 
 <div class="min-h-screen">
@@ -25,9 +28,9 @@ const { members, heroDesktopSrc, heroMobileSrc } = Astro.props;
     desktopSrc={heroDesktopSrc}
     mobileSrc={heroMobileSrc}
     overlay="bg-purple-dark/65"
-    eyebrow="Our People"
-    title="Community"
-    subtitle="The friends, healers, guides, and collaborators who make Kauai Hot Yoga more than just a studio."
+    eyebrow={heroEyebrow}
+    title={heroTitle}
+    subtitle={heroSubtitle}
   />
 
   <section class="py-20 bg-warm-cream">

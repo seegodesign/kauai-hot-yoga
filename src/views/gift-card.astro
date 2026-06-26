@@ -1,62 +1,30 @@
 ---
 import PageHero from "../components/page-hero.astro";
 
-const GIFT_CARD_URL =
-  "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=42";
-
-const giftCards = [
-  {
-    name: "Single Class",
-    price: "$29",
-    description: "A perfect one-time gift for someone curious about hot yoga.",
-  },
-  {
-    name: "Gift Card",
-    price: "$50",
-    description: "Flexible value they can apply toward any class or pass.",
-  },
-  {
-    name: "Gift Card",
-    price: "$100",
-    description: "Flexible value they can apply toward any class or pass.",
-  },
-  {
-    name: "Intro Month",
-    price: "$119",
-    description:
-      "Unlimited classes for a full month - the ideal way to start a practice.",
-    highlight: true,
-  },
-  {
-    name: "5 Class Pass",
-    price: "$125",
-    description: "Five classes to use at their own pace. Great for the occasional yogi.",
-  },
-  {
-    name: "One Month Unlimited",
-    price: "$179",
-    description:
-      "A full month of unlimited hot yoga - the ultimate gift for a dedicated practitioner.",
-    highlight: true,
-  },
-  {
-    name: "10 Class Card",
-    price: "$219",
-    description: "Ten classes to use whenever they like. Perfect for a regular practice.",
-  },
-  {
-    name: "Custom Amount",
-    price: "Your choice",
-    description: "Let them choose exactly what they want. Any amount, any time.",
-  },
-];
+export interface GiftCardContent {
+  seo_title: string;
+  seo_description: string;
+  hero_eyebrow: string;
+  hero_title: string;
+  hero_subtitle: string;
+  hero_cta_text: string;
+  purchase_url: string;
+  section_eyebrow: string;
+  section_heading: string;
+  section_body: string;
+  cards: { name: string; price: string; description: string; highlight: boolean }[];
+  bottom_cta_heading: string;
+  bottom_cta_body: string;
+  bottom_cta_button_text: string;
+}
 
 interface Props {
+  content: GiftCardContent;
   heroDesktopSrc: string;
   heroMobileSrc: string;
 }
 
-const { heroDesktopSrc, heroMobileSrc } = Astro.props;
+const { content, heroDesktopSrc, heroMobileSrc } = Astro.props;
 ---
 
 <div class="min-h-screen">
@@ -64,17 +32,17 @@ const { heroDesktopSrc, heroMobileSrc } = Astro.props;
     desktopSrc={heroDesktopSrc}
     mobileSrc={heroMobileSrc}
     overlay="bg-gradient-to-br from-purple-dark/80 via-purple/70 to-orange/40"
-    eyebrow="Give the Gift of Wellness"
-    title="Gift Cards"
-    subtitle="Share the warmth, strength, and community of Kauai Hot Yoga with someone you love."
+    eyebrow={content.hero_eyebrow}
+    title={content.hero_title}
+    subtitle={content.hero_subtitle}
   >
     <a
-      href={GIFT_CARD_URL}
+      href={content.purchase_url}
       target="_blank"
       rel="noopener noreferrer"
       class="inline-flex items-center gap-2 mt-8 bg-orange text-white font-semibold px-8 py-4 rounded-full hover:bg-orange-dark transition-colors shadow-lg motion-preset-slide-up motion-duration-700 motion-delay-200"
     >
-      Purchase a Gift Card
+      {content.hero_cta_text}
     </a>
   </PageHero>
 
@@ -82,19 +50,19 @@ const { heroDesktopSrc, heroMobileSrc } = Astro.props;
     <div class="container mx-auto px-4">
       <div class="text-center mb-14">
         <span class="inline-block text-orange font-semibold tracking-widest uppercase text-sm mb-3">
-          Options
+          {content.section_eyebrow}
         </span>
-        <h2 class="text-4xl font-bold text-purple-dark mb-4">Choose Your Gift</h2>
+        <h2 class="text-4xl font-bold text-purple-dark mb-4">{content.section_heading}</h2>
         <p class="text-purple-dark/65 max-w-xl mx-auto">
-          All gift cards are redeemable for classes, passes, or memberships at Kauai Hot Yoga.
+          {content.section_body}
         </p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {
-          giftCards.map((card, i) => (
+          content.cards.map((card, i) => (
             <a
-              href={GIFT_CARD_URL}
+              href={content.purchase_url}
               target="_blank"
               rel="noopener noreferrer"
               class={`group relative rounded-2xl p-6 border-2 flex flex-col gap-3 hover:shadow-xl transition-all motion-preset-slide-up motion-duration-700 ${
@@ -130,18 +98,18 @@ const { heroDesktopSrc, heroMobileSrc } = Astro.props;
   <section class="py-20 bg-gradient-to-br from-purple-dark to-purple text-center">
     <div class="container mx-auto px-4 max-w-2xl">
       <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-        Ready to give the gift of wellness?
+        {content.bottom_cta_heading}
       </h2>
       <p class="text-white/75 mb-8 text-lg">
-        Gift cards are delivered instantly and never expire. The perfect present for any occasion.
+        {content.bottom_cta_body}
       </p>
       <a
-        href={GIFT_CARD_URL}
+        href={content.purchase_url}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 bg-orange text-white font-semibold px-10 py-4 rounded-full hover:bg-orange-dark transition-colors shadow-lg text-lg"
       >
-        Purchase a Gift Card
+        {content.bottom_cta_button_text}
       </a>
     </div>
   </section>

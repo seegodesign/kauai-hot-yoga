@@ -6,16 +6,20 @@ import PrivacyPolicyPage from "../views/privacy-policy.astro";
 const settingsEntry = await getEntry("settings", "main");
 if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
 const settings = settingsEntry.data;
+
+const legalEntry = await getEntry("legalPages", "privacy-policy");
+if (!legalEntry) throw new Error("Missing content: legalPages/privacy-policy.yml");
 ---
 
 <BaseLayout
-  title="Privacy Policy | Kauai Hot Yoga"
-  description="Privacy policy for Kauai Hot Yoga in Lihue, Hawaii."
+  title={legalEntry.data.seo_title || "Privacy Policy | Kauai Hot Yoga"}
+  description={legalEntry.data.seo_description || "Privacy policy for Kauai Hot Yoga in Lihue, Hawaii."}
   currentPath="/privacy-policy">
   <PrivacyPolicyPage
     businessName={settings.studio_name}
     businessEmail={settings.email}
     businessPhone={settings.phone}
-    businessWebsite="https://kauaihotyoga.com"
+    businessWebsite={legalEntry.data.website_url}
+    effectiveDate={legalEntry.data.effective_date}
   />
 </BaseLayout>

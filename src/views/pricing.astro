@@ -52,7 +52,24 @@ export interface BreathworkPlan {
   order: number;
 }
 
+export interface PricingPageContent {
+  hero_title: string;
+  hero_subtitle: string;
+  specials_eyebrow: string;
+  specials_heading: string;
+  classes_packs_heading: string;
+  classes_packs_body: string;
+  memberships_heading: string;
+  memberships_body: string;
+  cold_plunge_heading: string;
+  cold_plunge_body: string;
+  breathwork_heading: string;
+  breathwork_body: string;
+  faq_heading: string;
+}
+
 interface Props {
+  pageContent: PricingPageContent;
   plans: PricingPlan[];
   specials: PricingSpecial[];
   faqs: PricingFaq[];
@@ -63,6 +80,7 @@ interface Props {
 }
 
 const {
+  pageContent,
   plans,
   specials,
   faqs,
@@ -90,17 +108,17 @@ const specialsGridClass =
     desktopSrc={heroDesktopSrc}
     mobileSrc={heroMobileSrc}
     overlay="bg-orange/50"
-    title="Pricing & Packages"
-    subtitle="Find the perfect option for your practice"
+    title={pageContent.hero_title}
+    subtitle={pageContent.hero_subtitle}
   />
 
   <section class="py-14 bg-gradient-to-r from-purple to-purple-light">
     <div class="container mx-auto px-4">
       <div class="max-w-5xl mx-auto text-center mb-10">
         <span class="inline-block text-orange-light font-semibold tracking-widest uppercase text-xs mb-3">
-          Limited-Time Deals
+          {pageContent.specials_eyebrow}
         </span>
-        <h2 class="text-3xl md:text-4xl font-bold text-white">Special Offers</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-white">{pageContent.specials_heading}</h2>
       </div>
 
       <div class={`grid grid-cols-1 ${specialsGridClass} gap-6 mx-auto`}>
@@ -148,9 +166,9 @@ const specialsGridClass =
   <section id="drop-in" class="py-16 bg-white scroll-mt-20">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-purple-dark text-center mb-4 text-4xl md:text-5xl">Classes & Packs</h2>
+        <h2 class="text-purple-dark text-center mb-4 text-4xl md:text-5xl">{pageContent.classes_packs_heading}</h2>
         <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Drop in anytime or stock up and save. Class packs are shareable.
+          {pageContent.classes_packs_body}
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -169,9 +187,9 @@ const specialsGridClass =
   <section id="memberships" class="py-16 bg-warm-cream scroll-mt-20">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-purple-dark text-center mb-4 text-4xl md:text-5xl">Monthly Memberships</h2>
+        <h2 class="text-purple-dark text-center mb-4 text-4xl md:text-5xl">{pageContent.memberships_heading}</h2>
         <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          For regular practitioners. Auto-renews monthly, cancel anytime.
+          {pageContent.memberships_body}
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -190,10 +208,9 @@ const specialsGridClass =
   <section id="cold-plunge" class="py-16 bg-white scroll-mt-20">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-purple-dark text-center mb-4 text-4xl md:text-5xl">Cold Plunge</h2>
+        <h2 class="text-purple-dark text-center mb-4 text-4xl md:text-5xl">{pageContent.cold_plunge_heading}</h2>
         <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          After a hot class, step into the cold plunge for a powerful recovery boost. Book your
-          post-class plunge to experience the ultimate contrast therapy.
+          {pageContent.cold_plunge_body}
         </p>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -241,10 +258,9 @@ const specialsGridClass =
   <section id="breathwork" class="py-16 bg-warm-cream scroll-mt-20">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-purple-dark text-center mb-4 text-4xl md:text-5xl">9D Breathwork</h2>
+        <h2 class="text-purple-dark text-center mb-4 text-4xl md:text-5xl">{pageContent.breathwork_heading}</h2>
         <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          A multi-dimensional healing experience using binaural beats, solfeggio frequencies, and
-          guided visualization.
+          {pageContent.breathwork_body}
         </p>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -293,7 +309,7 @@ const specialsGridClass =
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-purple-dark text-2xl text-center mb-12">Pricing FAQs</h2>
+        <h2 class="text-purple-dark text-2xl text-center mb-12">{pageContent.faq_heading}</h2>
         <div class="space-y-6">
           {
             faqs.map((faq) => (

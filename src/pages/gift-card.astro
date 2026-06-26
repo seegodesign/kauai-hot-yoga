@@ -5,14 +5,18 @@ import GiftCardPage from "../views/gift-card.astro";
 
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
+
+const pageContentEntry = await getEntry("giftCardPage", "main");
+if (!pageContentEntry) throw new Error("Missing content: giftCardPage/main.yml");
 ---
 
 <BaseLayout
-  title="Gift Cards | Kauai Hot Yoga"
-  description="Give the gift of hot yoga in Kauai. Purchase a gift card for classes, passes, or memberships at Kauai Hot Yoga in Lihue, Hawaii."
+  title={pageContentEntry.data.seo_title}
+  description={pageContentEntry.data.seo_description}
   ogImage="/images/studio-interior.webp"
   currentPath="/gift-card">
   <GiftCardPage
+    content={pageContentEntry.data}
     heroDesktopSrc={pageHeroesEntry.data.gift_card.desktop}
     heroMobileSrc={pageHeroesEntry.data.gift_card.mobile}
   />

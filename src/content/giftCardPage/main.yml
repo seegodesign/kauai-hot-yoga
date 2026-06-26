@@ -1,0 +1,46 @@
+seo_title: "Gift Cards | Kauai Hot Yoga"
+seo_description: "Give the gift of hot yoga in Kauai. Purchase a gift card for classes, passes, or memberships at Kauai Hot Yoga in Lihue, Hawaii."
+hero_eyebrow: "Give the Gift of Wellness"
+hero_title: "Gift Cards"
+hero_subtitle: "Share the warmth, strength, and community of Kauai Hot Yoga with someone you love."
+hero_cta_text: "Purchase a Gift Card"
+purchase_url: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=42"
+section_eyebrow: "Options"
+section_heading: "Choose Your Gift"
+section_body: "All gift cards are redeemable for classes, passes, or memberships at Kauai Hot Yoga."
+cards:
+  - name: "Single Class"
+    price: "$29"
+    description: "A perfect one-time gift for someone curious about hot yoga."
+    highlight: false
+  - name: "Gift Card"
+    price: "$50"
+    description: "Flexible value they can apply toward any class or pass."
+    highlight: false
+  - name: "Gift Card"
+    price: "$100"
+    description: "Flexible value they can apply toward any class or pass."
+    highlight: false
+  - name: "Intro Month"
+    price: "$119"
+    description: "Unlimited classes for a full month - the ideal way to start a practice."
+    highlight: true
+  - name: "5 Class Pass"
+    price: "$125"
+    description: "Five classes to use at their own pace. Great for the occasional yogi."
+    highlight: false
+  - name: "One Month Unlimited"
+    price: "$179"
+    description: "A full month of unlimited hot yoga - the ultimate gift for a dedicated practitioner."
+    highlight: true
+  - name: "10 Class Card"
+    price: "$219"
+    description: "Ten classes to use whenever they like. Perfect for a regular practice."
+    highlight: false
+  - name: "Custom Amount"
+    price: "Your choice"
+    description: "Let them choose exactly what they want. Any amount, any time."
+    highlight: false
+bottom_cta_heading: "Ready to give the gift of wellness?"
+bottom_cta_body: "Gift cards are delivered instantly and never expire. The perfect present for any occasion."
+bottom_cta_button_text: "Purchase a Gift Card"

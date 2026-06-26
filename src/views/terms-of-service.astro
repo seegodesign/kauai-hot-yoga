@@ -4,15 +4,16 @@ interface Props {
   businessEmail: string;
   businessPhone: string;
   businessWebsite: string;
+  effectiveDate: string;
 }
 
-const { businessName, businessEmail, businessPhone, businessWebsite } = Astro.props;
+const { businessName, businessEmail, businessPhone, businessWebsite, effectiveDate } = Astro.props;
 ---
 
 <div class="min-h-screen bg-white py-16 px-4 sm:px-6 lg:px-8">
   <div class="max-w-3xl mx-auto">
     <h1 class="text-4xl font-bold text-gray-900 mb-2">Terms of Service</h1>
-    <p class="text-sm text-gray-500 mb-10">Effective Date: Jan 1st, 2026</p>
+    <p class="text-sm text-gray-500 mb-10">Effective Date: {effectiveDate}</p>
 
     <div class="prose prose-gray max-w-none space-y-8 text-gray-700 leading-relaxed">
       <section>

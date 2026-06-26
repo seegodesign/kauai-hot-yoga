@@ -30,12 +30,26 @@ if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
 
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
+
+const pageContentEntry = await getEntry("faqPage", "main");
+if (!pageContentEntry) throw new Error("Missing content: faqPage/main.yml");
 ---
 
 <BaseLayout
-  title="First Time Hot Yoga in Kauai – FAQ | Kauai Hot Yoga"
-  description="Everything you need to know before your first hot yoga class at Kauai Hot Yoga in Lihue, Hawaii — what to bring, what to expect, and more."
+  title={pageContentEntry.data.seo_title || "First Time Hot Yoga in Kauai – FAQ | Kauai Hot Yoga"}
+  description={pageContentEntry.data.seo_description || "Everything you need to know before your first hot yoga class at Kauai Hot Yoga in Lihue, Hawaii — what to bring, what to expect, and more."}
   ogImage="/images/faq-hero.webp"
   currentPath="/faq">
-  <FAQPage categories={categories} phone={settingsEntry.data.phone} email={settingsEntry.data.email} heroDesktopSrc={pageHeroesEntry.data.faq.desktop} heroMobileSrc={pageHeroesEntry.data.faq.mobile} />
+  <FAQPage
+    categories={categories}
+    phone={settingsEntry.data.phone}
+    email={settingsEntry.data.email}
+    heroDesktopSrc={pageHeroesEntry.data.faq.desktop}
+    heroMobileSrc={pageHeroesEntry.data.faq.mobile}
+    heroEyebrow={pageContentEntry.data.hero_eyebrow}
+    heroTitle={pageContentEntry.data.hero_title}
+    heroSubtitle={pageContentEntry.data.hero_subtitle}
+    stillHaveQuestionsHeading={pageContentEntry.data.still_have_questions_heading}
+    stillHaveQuestionsBody={pageContentEntry.data.still_have_questions_body}
+  />
 </BaseLayout>

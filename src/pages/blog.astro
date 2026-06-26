@@ -6,6 +6,9 @@ import BlogPage from "../views/blog.astro";
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
 
+const pageContentEntry = await getEntry("blogPage", "main");
+if (!pageContentEntry) throw new Error("Missing content: blogPage/main.yml");
+
 const allPosts = await getCollection("blog", ({ data }) => !data.draft);
 const posts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -20,6 +23,13 @@ const posts = allPosts
   }));
 ---
 
-<BaseLayout title="Blog | Kauai Hot Yoga" description="Tips, stories, and guides to support your yoga journey from the team at Kauai Hot Yoga." currentPath="/blog">
-  <BlogPage posts={posts} heroDesktopSrc={pageHeroesEntry.data.blog.desktop} heroMobileSrc={pageHeroesEntry.data.blog.mobile} />
+<BaseLayout title={pageContentEntry.data.seo_title || "Blog | Kauai Hot Yoga"} description={pageContentEntry.data.seo_description || "Tips, stories, and guides to support your yoga journey from the team at Kauai Hot Yoga."} currentPath="/blog">
+  <BlogPage
+    posts={posts}
+    heroDesktopSrc={pageHeroesEntry.data.blog.desktop}
+    heroMobileSrc={pageHeroesEntry.data.blog.mobile}
+    heroEyebrow={pageContentEntry.data.hero_eyebrow}
+    heroTitle={pageContentEntry.data.hero_title}
+    heroSubtitle={pageContentEntry.data.hero_subtitle}
+  />
 </BaseLayout>

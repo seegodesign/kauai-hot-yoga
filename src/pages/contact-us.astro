@@ -8,8 +8,19 @@ if (!settingsEntry) throw new Error("Missing content: settings/main.yml");
 
 const pageHeroesEntry = await getEntry("pageHeroSettings", "main");
 if (!pageHeroesEntry) throw new Error("Missing content: pageHeroSettings/main.yml");
+
+const pageContentEntry = await getEntry("contactPage", "main");
+if (!pageContentEntry) throw new Error("Missing content: contactPage/main.yml");
 ---
 
-<BaseLayout title="Contact | Kauai Hot Yoga" description="Get in touch with Kauai Hot Yoga. Find our address, phone number, email, and studio hours." currentPath="/contact-us">
-  <ContactPage info={settingsEntry.data} heroDesktopSrc={pageHeroesEntry.data.contact.desktop} heroMobileSrc={pageHeroesEntry.data.contact.mobile} />
+<BaseLayout title={pageContentEntry.data.seo_title || "Contact | Kauai Hot Yoga"} description={pageContentEntry.data.seo_description || "Get in touch with Kauai Hot Yoga. Find our address, phone number, email, and studio hours."} currentPath="/contact-us">
+  <ContactPage
+    info={settingsEntry.data}
+    heroDesktopSrc={pageHeroesEntry.data.contact.desktop}
+    heroMobileSrc={pageHeroesEntry.data.contact.mobile}
+    heroEyebrow={pageContentEntry.data.hero_eyebrow}
+    heroTitle={pageContentEntry.data.hero_title}
+    heroSubtitle={pageContentEntry.data.hero_subtitle}
+    sectionHeading={pageContentEntry.data.section_heading}
+  />
 </BaseLayout>
