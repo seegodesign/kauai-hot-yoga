@@ -4,24 +4,24 @@ hero_eyebrow: Special Events
 hero_title: Workshops & Events
 hero_subtitle: Deepen your practice with specialized training and immersive experiences
 reserve_button_text: Reserve Your Spot
-reserve_button_href: https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=-8&sView=day&sLoc=0&date=06/14/26
+reserve_button_href: https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=-8&sView=day&sLoc=0
 workshops:
-  - title: Breathwork & Meditation Intensive
-    date: June 14, 2026
+  - title: 9D Breathwork & Meditation Intensive
+    date: July 19
     time: 2:30-4:45PM
     instructor: Garland Hume
     capacity: Limited to 14 students
     price: $75
-    description: This 9D Breathwork journey is designed to gently explore and release the five primary trauma imprints that shape our thoughts, emotions, and nervous system responses. Through immersive sound, guided breathwork, and subconscious reprogramming, you’ll be guided into a deep inner experience of awareness, healing, and emotional release. This journey offers a safe space to reconnect with your authentic self, regulate the nervous system, and create new pathways for empowerment, peace, and transformation.
+    description: 'The Emergence: This journey is for people who feel they’ve reached the limits of what thinking alone can resolve and are carrying unprocessed emotional or internal pressure beneath the surface. It’s intended for those who have already done personal growth or healing work but still sense something deeper asking to be felt, released, or transformed—often alongside experiences like overwhelm, burnout, grief, nervous system dysregulation, or major identity shifts. Rather than offering passive relaxation, it is a somatic, immersive process that invites participants to move through intensity instead of avoiding it, building the capacity to stay present with challenging sensations and emotions while allowing space for release, surrender, and inner change.'
     image: /images/9D Breathwork.jpg
-  - title: Yin Yoga & Sound Healing
-    date: To be announced
-    time: To be announced
-    instructor: Cameron & Garland
+  - title: 'From Reflection to Action: A 7-Week Chakra Journey'
+    date: Sundays, August 16-September 27
+    time: 3-4:15PM
+    instructor: Kat Clark
     capacity: Limited to 12 students
-    price: TBD
-    description: Gentle yin poses, reiki, and body work combined with live ambient bansuri flute music for deep relaxation and healing. Perfect for unwinding and releasing tension.
-    image: /images/yin sound bath 2.jpg
+    price: $280
+    description: 'We’re excited to welcome Kat Clark for REVERB: Embody Your Purpose, a 7-week chakra-based journey held Sundays from 3:00–4:15 PM at Kauai Hot Yoga, August 16 through September 27. This transformative series is designed to bridge the gap between self-awareness and action, helping participants move beyond cycles of reflection into aligned, purposeful living. Each session blends gentle movement, sound healing, nervous system repatterning, and guided workbook practices to support embodied growth, emotional integration, and inner resilience. REVERB offers a supportive space to deepen self-trust, cultivate clarity, and take courageous, grounded steps toward meaningful change.'
+    image: /images/kat clark.jpg
 benefits_heading: Workshop Benefits
 benefits_intro: Workshops offer focused time to dive deeper into specific aspects of yoga practice. They are perfect for building skills, overcoming plateaus, and connecting with our community.
 benefits:
