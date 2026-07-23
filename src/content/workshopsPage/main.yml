@@ -7,12 +7,21 @@ reserve_button_text: Reserve Your Spot
 reserve_button_href: https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=-8&sView=day&sLoc=0
 workshops:
   - title: 9D Breathwork & Meditation Intensive
-    date: July 19
+    date: August 9
     time: 2:30-4:45PM
     instructor: Garland Hume
     capacity: Limited to 14 students
     price: $75
-    description: 'The Emergence: This journey is for people who feel they’ve reached the limits of what thinking alone can resolve and are carrying unprocessed emotional or internal pressure beneath the surface. It’s intended for those who have already done personal growth or healing work but still sense something deeper asking to be felt, released, or transformed—often alongside experiences like overwhelm, burnout, grief, nervous system dysregulation, or major identity shifts. Rather than offering passive relaxation, it is a somatic, immersive process that invites participants to move through intensity instead of avoiding it, building the capacity to stay present with challenging sensations and emotions while allowing space for release, surrender, and inner change.'
+    description: |-
+      You Are Enough 
+
+      You Are Enough is a high-intensity transformational breathwork journey designed to help you release self-doubt, overcome fear of judgment, and reconnect with your inherent worth. Through a powerful progression of conscious breathing, connected mouth breathing, immersive 9D audio, transformational coaching, visualization, and emotional release, this experience guides you beyond limiting beliefs and into embodied self-belief.
+
+      As the intensity builds, you’ll move through structured breath holds, full-body activation, primal vocal release, and deep emotional clearing, creating space to let go of shame, victimhood, and the stories that have kept you feeling small.
+
+      The final integration shifts into gentle nasal breathing, heart-centered awareness, golden light visualization, and subconscious reinforcement, anchoring a new internal truth: you are enough exactly as you are.
+
+      Designed for anyone ready to step beyond their comfort zone and lead with greater confidence, courage, and authenticity, You Are Enough offers a profound opportunity to reclaim your power.
     image: /images/9D Breathwork.jpg
   - title: 'From Reflection to Action: A 7-Week Chakra Journey'
     date: Sundays, August 16-September 27
