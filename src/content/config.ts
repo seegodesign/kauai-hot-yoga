@@ -145,6 +145,9 @@ const breathworkPage = defineCollection({
     hero_eyebrow: z.string(),
     hero_title: z.string(),
     hero_subtitle: z.string(),
+    hero_cta_label: z.string().optional().default("Reserve Your Spot"),
+    hero_cta_url: z.string().optional().default("https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=-8&sView=day&sLoc=0"),
+    hero_cta_target: z.string().optional().default("_blank"),
     what_is_heading: z.string(),
     intro_blocks: z.array(
       z.object({
@@ -249,6 +252,50 @@ const blog = defineCollection({
     image: z.string().optional(),
     tags: z.array(z.string()).optional().default([]),
     draft: z.boolean().optional().default(false),
+  }),
+});
+
+const retreats = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    seo_description: z.string(),
+    status: z.enum(["upcoming", "sold-out", "past"]).default("upcoming"),
+    start_date: z.coerce.date(),
+    end_date: z.coerce.date(),
+    date_display: z.string(),
+    location: z.string(),
+    partner: z.string().optional().default(""),
+    summary: z.string(),
+    hero_image: z.string().optional().default(""),
+    price_from: z.string().optional().default(""),
+    booking_url: z.string().optional().default(""),
+    booking_button_text: z.string().optional().default("Reserve your place"),
+    highlights: z.array(z.string()).optional().default([]),
+    included: z.array(z.string()).optional().default([]),
+    not_included: z.array(z.string()).optional().default([]),
+    hosts: z.array(z.object({
+      name: z.string(),
+      role: z.string().optional().default(""),
+      bio: z.string(),
+      image: z.string().optional().default(""),
+    })).optional().default([]),
+    travel_notes: z.array(z.string()).optional().default([]),
+    draft: z.boolean().optional().default(false),
+  }),
+});
+
+const retreatsPage = defineCollection({
+  type: "data",
+  schema: z.object({
+    seo_title: z.string(),
+    seo_description: z.string(),
+    hero_image: z.string().optional().default(""),
+    hero_eyebrow: z.string(),
+    hero_title: z.string(),
+    hero_subtitle: z.string(),
+    intro_heading: z.string(),
+    intro_body: z.string(),
   }),
 });
 
@@ -532,4 +579,4 @@ const legalPages = defineCollection({
   }),
 });
 
-export const collections = { settings, home, about, workshopsPage, breathworkPage, coldPlungePage, testimonials, offerings, faq, blog, community, teachers, footer, pricingPlans, pricingSpecials, coldPlungePricing, breathworkPricing, pageHeroSettings, newHerePage, giftCardPage, schedulePage, pricingPage, contactPage, teachersPage, communityPage, faqPage, classesPage, blogPage, legalPages };
+export const collections = { settings, home, about, workshopsPage, breathworkPage, coldPlungePage, testimonials, offerings, faq, blog, retreats, retreatsPage, community, teachers, footer, pricingPlans, pricingSpecials, coldPlungePricing, breathworkPricing, pageHeroSettings, newHerePage, giftCardPage, schedulePage, pricingPage, contactPage, teachersPage, communityPage, faqPage, classesPage, blogPage, legalPages };

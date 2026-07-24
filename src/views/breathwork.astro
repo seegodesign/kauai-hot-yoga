@@ -10,6 +10,12 @@ interface Props {
 }
 
 const { heroDesktopSrc, heroMobileSrc, content, sessions } = Astro.props;
+
+const heroCtaLabel = content.hero_cta_label?.trim() || "Reserve Your Spot";
+const heroCtaUrl =
+  content.hero_cta_url?.trim() ||
+  "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=-8&sView=day&sLoc=0";
+const heroCtaTarget = content.hero_cta_target?.trim() || "_blank";
 ---
 
 <div class="min-h-screen">
@@ -20,7 +26,16 @@ const { heroDesktopSrc, heroMobileSrc, content, sessions } = Astro.props;
     eyebrow={content.hero_eyebrow}
     title={content.hero_title}
     subtitle={content.hero_subtitle}
-  />
+  >
+    <a
+      href={heroCtaUrl}
+      target={heroCtaTarget}
+      rel="noopener noreferrer"
+      class="inline-flex items-center bg-orange text-white font-semibold px-8 py-3 mt-8 rounded-full hover:bg-orange-light transition-colors motion-preset-slide-up motion-duration-700 motion-delay-300"
+    >
+      {heroCtaLabel}
+    </a>
+  </PageHero>
 
   <section class="py-20 bg-white">
     <div class="container mx-auto px-4">

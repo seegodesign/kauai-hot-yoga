@@ -1,0 +1,137 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const retreats = await getCollection("retreats", ({ data }) => !data.draft);
+  return retreats.map((retreat) => ({ params: { slug: retreat.slug }, props: { retreat } }));
+}
+
+const { retreat } = Astro.props;
+const { Content } = await retreat.render();
+const { data } = retreat;
+const canBook = data.status === "upcoming" && data.booking_url;
+---
+
+<BaseLayout
+  title={`${data.title} | Kauai Hot Yoga`}
+  description={data.seo_description}
+  ogImage={data.hero_image || undefined}
+  currentPath={`/retreats/${retreat.slug}`}
+>
+  <div class="min-h-screen bg-white">
+    <section class="relative min-h-[72svh] flex items-end overflow-hidden bg-gradient-to-br from-purple-dark via-purple to-orange">
+      {data.hero_image && <img src={data.hero_image} alt={data.title} class="absolute inset-0 w-full h-full object-cover" width="1920" height="1080" />}
+      <div class="absolute inset-0 bg-gradient-to-t from-purple-dark via-purple-dark/45 to-purple-dark/15"></div>
+      <div class="relative container mx-auto px-4 pb-14 md:pb-20 pt-28">
+        <div class="max-w-4xl">
+          <a href="/retreats" class="inline-flex text-white/80 hover:text-white mb-8 transition-colors">← All retreats</a>
+          <p class="text-orange-light font-semibold tracking-widest uppercase text-sm mb-4">{data.location}</p>
+          <h1 class="text-4xl md:text-6xl lg:text-7xl text-white font-bold leading-tight mb-5">{data.title}</h1>
+          <div class="flex flex-wrap gap-x-7 gap-y-2 text-white/90 text-lg">
+            <span>{data.date_display}</span>
+            {data.partner && <span>In partnership with {data.partner}</span>}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-soft-purple bg-mist">
+      <div class="container mx-auto px-4 max-w-6xl py-6 flex flex-col md:flex-row md:items-center justify-between gap-5">
+        <div>
+          <p class="text-sm uppercase tracking-wider text-purple/70 font-semibold">The journey</p>
+          <p class="text-purple-dark font-bold text-lg">{data.date_display} · {data.location}</p>
+        </div>
+        {canBook ? (
+          <a href={data.booking_url} target="_blank" rel="noopener noreferrer" class="inline-flex justify-center bg-orange text-white px-8 py-3 rounded-full hover:bg-orange-dark transition-colors font-semibold">
+            {data.booking_button_text}
+          </a>
+        ) : (
+          <span class="inline-flex justify-center bg-purple-dark/10 text-purple-dark px-8 py-3 rounded-full font-semibold">
+            {data.status === "sold-out" ? "Sold out" : "Retreat complete"}
+          </span>
+        )}
+      </div>
+    </section>
+
+    <section class="py-16 md:py-24">
+      <div class="container mx-auto px-4 max-w-6xl grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_19rem] gap-12 lg:gap-20">
+        <article class="prose prose-lg prose-purple max-w-none
+          prose-headings:text-purple-dark prose-headings:font-bold
+          prose-p:text-purple-dark/80 prose-p:leading-relaxed
+          prose-a:text-purple prose-strong:text-purple-dark
+          prose-ul:text-purple-dark/80">
+          <p class="lead text-xl md:text-2xl text-purple-dark leading-relaxed">{data.summary}</p>
+          <Content />
+        </article>
+
+        <aside class="space-y-6 lg:sticky lg:top-28 lg:self-start">
+          {data.price_from && (
+            <div class="rounded-2xl bg-purple-dark text-white p-6">
+              <p class="text-white/65 text-sm uppercase tracking-wider">Starting at</p>
+              <p class="text-3xl font-bold mt-1">{data.price_from}</p>
+            </div>
+          )}
+          {data.highlights.length > 0 && (
+            <div class="rounded-2xl border border-soft-purple p-6">
+              <h2 class="text-xl font-bold text-purple-dark mb-4">Journey highlights</h2>
+              <ul class="space-y-3">
+                {data.highlights.map((item: string) => <li class="flex gap-3 text-sm text-muted-foreground"><span class="text-orange">✦</span><span>{item}</span></li>)}
+              </ul>
+            </div>
+          )}
+        </aside>
+      </div>
+    </section>
+
+    {(data.included.length > 0 || data.not_included.length > 0) && (
+      <section class="bg-mist py-16 md:py-24">
+        <div class="container mx-auto px-4 max-w-6xl">
+          <h2 class="text-3xl md:text-5xl text-purple-dark font-bold mb-10">The details</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="rounded-2xl bg-white border border-soft-purple p-7">
+              <h3 class="text-2xl font-bold text-purple-dark mb-5">What’s included</h3>
+              <ul class="space-y-3">{data.included.map((item: string) => <li class="flex gap-3 text-muted-foreground"><span class="text-orange">✓</span><span>{item}</span></li>)}</ul>
+            </div>
+            {data.not_included.length > 0 && (
+              <div class="rounded-2xl bg-white border border-soft-purple p-7">
+                <h3 class="text-2xl font-bold text-purple-dark mb-5">Not included</h3>
+                <ul class="space-y-3">{data.not_included.map((item: string) => <li class="flex gap-3 text-muted-foreground"><span class="text-purple/50">—</span><span>{item}</span></li>)}</ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+    )}
+
+    {data.hosts.length > 0 && (
+      <section class="py-16 md:py-24">
+        <div class="container mx-auto px-4 max-w-6xl">
+          <p class="text-orange font-semibold tracking-widest uppercase text-sm mb-2">Your guides</p>
+          <h2 class="text-3xl md:text-5xl text-purple-dark font-bold mb-10">Meet your hosts</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {data.hosts.map((host: { name: string; role: string; bio: string; image: string }) => (
+              <div class="flex flex-col sm:flex-row gap-6 rounded-2xl border border-soft-purple p-6">
+                {host.image && <img src={host.image} alt={host.name} class="w-28 h-28 rounded-full object-cover shrink-0" width="224" height="224" loading="lazy" />}
+                <div>
+                  <h3 class="text-2xl font-bold text-purple-dark">{host.name}</h3>
+                  {host.role && <p class="text-orange font-semibold text-sm mb-3">{host.role}</p>}
+                  <p class="text-muted-foreground text-sm leading-relaxed">{host.bio}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    {data.travel_notes.length > 0 && (
+      <section class="bg-purple-dark text-white py-16">
+        <div class="container mx-auto px-4 max-w-4xl">
+          <h2 class="text-3xl font-bold mb-6">Before you go</h2>
+          <ul class="grid gap-4">{data.travel_notes.map((note: string) => <li class="flex gap-3 text-white/80"><span class="text-orange-light">✦</span><span>{note}</span></li>)}</ul>
+        </div>
+      </section>
+    )}
+  </div>
+</BaseLayout>

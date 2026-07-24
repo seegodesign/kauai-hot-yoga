@@ -12,6 +12,7 @@ interface Props {
 const { currentPath, instagramUrl, facebookUrl } = Astro.props;
 
 const experiencesLinks = [
+  { href: "/retreats", label: "Retreats" },
   { href: "/workshops", label: "Workshops" },
   { href: "/9d-breathwork", label: "9D Breathwork" },
   { href: "/cold-plunge", label: "Cold Plunge" },
@@ -33,7 +34,7 @@ const navLinks = [
   { href: "/prices", label: "Pricing" },
 ];
 
-const isExperiencesActive = experiencesLinks.some((link) => currentPath === link.href);
+const isExperiencesActive = experiencesLinks.some((link) => currentPath === link.href || currentPath.startsWith(`${link.href}/`));
 const isExploreActive = exploreLinks.some((link) => currentPath === link.href);
 const isHome = currentPath === "/";
 ---

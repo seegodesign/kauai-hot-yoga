@@ -373,6 +373,15 @@ collections:
           - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
           - { label: Hero Title, name: hero_title, widget: string }
           - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: Hero CTA Label, name: hero_cta_label, widget: string, default: "Reserve Your Spot" }
+          - { label: Hero CTA URL, name: hero_cta_url, widget: string, default: "https://clients.mindbodyonline.com/classic/ws?studioid=605678&stype=-8&sView=day&sLoc=0" }
+          - label: Hero CTA Target
+            name: hero_cta_target
+            widget: select
+            default: _blank
+            options:
+              - { label: New tab, value: _blank }
+              - { label: Same tab, value: _self }
           - { label: What Is Section Heading, name: what_is_heading, widget: string }
           - label: Intro Blocks
             name: intro_blocks
@@ -556,6 +565,72 @@ collections:
         required: false
       - { label: Draft, name: draft, widget: boolean, default: false, hint: "Drafts are hidden from the public blog" }
       - { label: Body, name: body, widget: markdown }
+
+  # ── Retreats ─────────────────────────────────────────────
+  - name: retreats
+    label: Retreats
+    label_singular: Retreat
+    folder: src/content/retreats
+    create: true
+    format: frontmatter
+    extension: md
+    identifier_field: title
+    slug: "{{slug}}"
+    sortable_fields: ['start_date', 'title', 'status']
+    summary: "{{date_display}} · {{title}} ({{status}})"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: SEO Description, name: seo_description, widget: text, hint: "A concise description for search results and link previews." }
+      - label: Status
+        name: status
+        widget: select
+        default: upcoming
+        options:
+          - { label: Upcoming, value: upcoming }
+          - { label: Sold Out, value: sold-out }
+          - { label: Past, value: past }
+      - { label: Start Date, name: start_date, widget: datetime, time_format: false }
+      - { label: End Date, name: end_date, widget: datetime, time_format: false }
+      - { label: Display Date, name: date_display, widget: string, hint: "e.g. July 24–31, 2027" }
+      - { label: Location, name: location, widget: string }
+      - { label: Retreat Partner, name: partner, widget: string, required: false }
+      - { label: Short Summary, name: summary, widget: text, hint: "Shown on the retreats listing and at the top of the detail page." }
+      - { label: Hero Image, name: hero_image, widget: image, required: false, hint: "Recommended: 1920×1080 landscape image." }
+      - { label: Starting Price, name: price_from, widget: string, required: false, hint: "Include currency symbol, e.g. $3,600." }
+      - { label: Registration URL, name: booking_url, widget: string, required: false }
+      - { label: Registration Button Text, name: booking_button_text, widget: string, default: "Reserve your place" }
+      - label: Journey Highlights
+        name: highlights
+        widget: list
+        required: false
+        field: { label: Highlight, name: highlight, widget: string }
+      - label: What's Included
+        name: included
+        widget: list
+        required: false
+        field: { label: Item, name: item, widget: string }
+      - label: What's Not Included
+        name: not_included
+        widget: list
+        required: false
+        field: { label: Item, name: item, widget: string }
+      - label: Hosts
+        name: hosts
+        widget: list
+        required: false
+        summary: "{{fields.name}} · {{fields.role}}"
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: Role, name: role, widget: string, required: false }
+          - { label: Bio, name: bio, widget: text }
+          - { label: Photo, name: image, widget: image, required: false }
+      - label: Travel Notes
+        name: travel_notes
+        widget: list
+        required: false
+        field: { label: Note, name: note, widget: text }
+      - { label: Draft, name: draft, widget: boolean, default: false, hint: "Draft retreats are hidden from the website." }
+      - { label: Page Content, name: body, widget: markdown, hint: "Add the overview, itinerary, accommodation details, and any other long-form content." }
 
   # ── Pricing Plans ─────────────────────────────────────────
   - name: pricingPlans
@@ -880,6 +955,23 @@ collections:
           - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
           - { label: Hero Title, name: hero_title, widget: string }
           - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+
+  # ── Retreats Page ─────────────────────────────────────────
+  - name: retreatsPage
+    label: Retreats Page
+    files:
+      - name: main
+        label: Retreats Page Content
+        file: src/content/retreatsPage/main.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: SEO Description, name: seo_description, widget: text }
+          - { label: Hero Image, name: hero_image, widget: image, required: false, hint: "Upload or select a landscape image. Recommended size: 1920×1080. If empty, the purple gradient is shown." }
+          - { label: Hero Eyebrow, name: hero_eyebrow, widget: string }
+          - { label: Hero Title, name: hero_title, widget: string }
+          - { label: Hero Subtitle, name: hero_subtitle, widget: text }
+          - { label: Introduction Heading, name: intro_heading, widget: string }
+          - { label: Introduction Body, name: intro_body, widget: text }
 
   # ── Legal Pages ───────────────────────────────────────────
   - name: legalPages

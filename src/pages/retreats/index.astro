@@ -1,0 +1,102 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/page-hero.astro";
+
+const pageEntry = await getEntry("retreatsPage", "main");
+if (!pageEntry) throw new Error("Missing content: retreatsPage/main.yml");
+
+const retreats = (await getCollection("retreats", ({ data }) => !data.draft))
+  .sort((a, b) => a.data.start_date.getTime() - b.data.start_date.getTime());
+const upcoming = retreats.filter(({ data }) => data.status !== "past");
+const past = retreats.filter(({ data }) => data.status === "past");
+
+const statusLabel = (status: string) =>
+  status === "sold-out" ? "Sold out" : status === "past" ? "Past retreat" : "Now booking";
+---
+
+<BaseLayout
+  title={pageEntry.data.seo_title}
+  description={pageEntry.data.seo_description}
+  currentPath="/retreats"
+>
+  <div class="min-h-screen bg-white">
+    <PageHero
+      desktopSrc={pageEntry.data.hero_image}
+      overlay="bg-purple-dark"
+      eyebrow={pageEntry.data.hero_eyebrow}
+      title={pageEntry.data.hero_title}
+      subtitle={pageEntry.data.hero_subtitle}
+    />
+
+    <section class="bg-mist py-16 md:py-24">
+      <div class="container mx-auto px-4 text-center max-w-3xl">
+        <span class="text-orange font-semibold tracking-widest uppercase text-sm">Leave the ordinary behind</span>
+        <h2 class="text-purple-dark text-3xl md:text-5xl font-bold mt-3 mb-5">{pageEntry.data.intro_heading}</h2>
+        <p class="text-muted-foreground text-lg leading-relaxed">{pageEntry.data.intro_body}</p>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-24">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="flex items-end justify-between gap-4 mb-10">
+          <div>
+            <span class="text-orange font-semibold tracking-widest uppercase text-sm">Pack your mat</span>
+            <h2 class="text-purple-dark text-3xl md:text-5xl font-bold mt-2">Upcoming retreats</h2>
+          </div>
+        </div>
+
+        {upcoming.length === 0 ? (
+          <p class="rounded-2xl bg-mist p-10 text-center text-muted-foreground">New journeys are in the works. Check back soon.</p>
+        ) : (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {upcoming.map(({ slug, data }, index) => (
+              <article class="group rounded-3xl overflow-hidden border border-soft-purple bg-white shadow-sm hover:shadow-xl transition-all motion-preset-slide-up motion-duration-700" style={`--motion-delay:${index * 80}ms`}>
+                <a href={`/retreats/${slug}`} class="block h-full">
+                  <div class="relative h-72 overflow-hidden bg-gradient-to-br from-purple-dark via-purple to-orange">
+                    {data.hero_image && (
+                      <img src={data.hero_image} alt={data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" width="1000" height="650" />
+                    )}
+                    <div class="absolute inset-0 bg-gradient-to-t from-purple-dark/80 via-transparent to-transparent"></div>
+                    <span class="absolute top-5 left-5 rounded-full bg-white/95 px-4 py-2 text-xs font-bold uppercase tracking-wider text-purple">{statusLabel(data.status)}</span>
+                    <div class="absolute inset-x-0 bottom-0 p-6 text-white">
+                      <p class="text-orange-light text-sm font-semibold uppercase tracking-widest mb-2">{data.location}</p>
+                      <h3 class="text-2xl md:text-3xl font-bold leading-tight">{data.title}</h3>
+                    </div>
+                  </div>
+                  <div class="p-6 md:p-8">
+                    <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-purple mb-5">
+                      <span>{data.date_display}</span>
+                      {data.price_from && <span>From {data.price_from}</span>}
+                    </div>
+                    <p class="text-muted-foreground leading-relaxed mb-6">{data.summary}</p>
+                    <span class="inline-flex items-center gap-2 text-purple font-semibold group-hover:text-orange transition-colors">
+                      Explore the journey <span aria-hidden="true">→</span>
+                    </span>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+
+    {past.length > 0 && (
+      <section class="bg-mist py-16">
+        <div class="container mx-auto px-4 max-w-6xl">
+          <h2 class="text-2xl md:text-3xl font-bold text-purple-dark mb-8">Past retreats</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {past.map(({ slug, data }) => (
+              <a href={`/retreats/${slug}`} class="rounded-2xl bg-white border border-soft-purple p-6 hover:shadow-md transition-shadow">
+                <p class="text-sm text-orange font-semibold mb-2">{data.date_display}</p>
+                <h3 class="text-xl font-bold text-purple-dark">{data.title}</h3>
+                <p class="text-sm text-muted-foreground mt-2">{data.location}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+  </div>
+</BaseLayout>
