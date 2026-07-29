@@ -35,7 +35,7 @@ workshops:
     date: Sunday, October 4th
     time: 11:30AM-5PM
     instructor: Cathy Hume
-    capacity: '8'
+    capacity: Limited to 8 students
     price: $200
     description: |-
       Reiki Level Two (Okuden) – Deepening the Practice
@@ -50,7 +50,7 @@ workshops:
     date: Sunday, October 11th
     time: 11:30AM-5PM
     instructor: Cathy Hume
-    capacity: '8'
+    capacity: Limited to 8 students
     price: $150
     description: |-
       Reiki Level One (Shoden) – Foundations of Energy Healing
