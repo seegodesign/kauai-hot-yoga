@@ -3,7 +3,7 @@ title: Why Men Need Yoga
 description: This blog explores why taking care of your health is an important part of strength for men, especially those who carry the responsibilities of providing, protecting, serving, and working in physically demanding or dangerous jobs. It looks at how yoga can help men build strength, mobility, resilience, and body awareness while making time to slow down, recover, and take care of themselves.
 pubDate: 2026-09-27T07:18:00
 author: Kauai Hot Yoga
-image: /images/Marvin replace.jpg
+image: /images/mbo marvin 2.jpg
 tags: []
 draft: false
 ---
